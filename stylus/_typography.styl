@@ -1,0 +1,96 @@
+// TYPOGRAPHY
+// Helper classes to extend other classes onto:
+// 
+.fs-xxlarge
+  font-size 48px
+
+.fs-xlarge
+  font-size 30px
+
+.fs-large
+  font-size 24px
+
+.fs-medium
+  font-size 21px
+
+.fs-small
+  font-size 18px
+
+.fs-xsmall
+  font-size 14px
+
+.fw-strong
+  font-weight bold
+
+.fw-normal
+  font-weight normal
+
+.fw-light
+  font-weight 200
+
+
+h1, .h1, .page-title
+  @extend .fs-xxlarge
+  @extend .fg-maqua
+  @extend .fw-strong
+  line-height 1.2em
+
+h2, .h2, .sub-title
+  @extend .fs-xlarge
+  @extend .fg-dblue
+  @extend .fw-strong
+  line-height 1.2em
+
+h3, .h3, .section-title
+  @extend .fs-large
+  @extend .fg-mgrey
+  @extend .fw-strong
+  line-height 1.2em
+
+h4, .h4, .title-description
+  @extend .fs-large
+  @extend .fg-mgrey
+  @extend .fw-light
+  line-height 1.2em
+
+h5, .h5, .photo-title
+  @extend .fs-medium
+  @extend .fg-white
+  @extend .fw-strong
+  line-height 1.2em
+
+h6, .h6, .caption-text
+  @extend .fs-small
+  @extend .fg-dgrey
+  @extend .fw-normal
+  line-height 1.2em
+
+body, p, li, .body-text
+  @extend .fs-xsmall
+  @extend .fg-dgrey
+  @extend .fw-normal
+  line-height 1.2em
+
+h1, h2, h3, h4, h5, h6
+  a
+    color inherit
+
+.main-nav a
+  @extend h4
+  @extend .fg-maqua
+
+a
+  &, &:hover
+    text-decoration none
+
+ul.dashed
+  list-style-type none
+  margin-left 0
+  padding-left 0
+
+  li
+    &:before
+      content "–"
+      margin-right 10px
+
+

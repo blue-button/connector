@@ -1,0 +1,116 @@
+extends templates/layout
+
+block content
+  .bb-onc-header
+    ul.top-nav.nav.nav-pills.pull-right.hidden-xs
+      li: a(href='findrecords.html') Get my data
+      li: a(href='userecords.html') Use my data
+
+    h6.onc-tagline.fg-white
+      img.bb-onc-logo(src='/img/bb-onc.png')
+      | The Office of the National Coordinator for Health Information Technology
+
+  .section.splash-section
+    .splash-title.text-center
+      img.large-logo(src='img/bb-logo-vector.png')
+      h1 Empowering you with your health records
+      a.btn.btn-lg.btn-primary(href="findrecords.html") Get Started
+
+  .section.why-bb
+    .container.text-center
+      h1.fg-white What is Blue Button?
+      h2.fw-normal.fg-white Blue Button is a way to get your
+        br
+        | health records electronically so you can&hellip;
+      .row
+        .col-md-3.col-sm-3.circ-col.why-secure.text-center
+          .wrap-outer-icon
+            .wrap-icon.text-center
+              i.circ-icon.icon-lock
+          h3.fg-white Be Secure
+          h5.fg-white.fw-normal that your records are protected under HIPAA. We do not store or collect your records but send you to organizations do.
+
+        .col-md-3.col-sm-3.circ-col.why-recall.text-center
+          .wrap-outer-icon
+            .wrap-icon.text-center
+              i.circ-icon.icon-medkit
+          h3.fg-white Reference
+          h5.fg-white.fw-normal your health records to be reminded when you had your last shot, or the exact date of a procedure.
+
+        .col-md-3.col-sm-3.circ-col.why-check.text-center
+          .wrap-outer-icon
+            .wrap-icon.text-center
+              i.circ-icon.icon-check-sign
+          h3.fg-white Check
+          h5.fg-white.fw-normal the accuracy of your records, monitor changes, and stay aware of your health status.
+
+        .col-md-3.col-sm-3.circ-col.why-share.text-center
+          .wrap-outer-icon
+            .wrap-icon.text-center
+              i.circ-icon.icon-user-md
+          h3.fg-white Share
+          h5.fg-white.fw-normal with your doctor or someone else you trust, when traveling, seeking a second opinion, moving, switching insurance, or in case of emergency.
+
+  .section.get-started
+    .container-inner.text-center
+      h1 Stay in control of your health
+      h2.fg-maqua.fw-normal &hellip;in three easy steps:
+      .row
+        .col-md-4.circ-col.start-find
+          .wrap-outer-icon
+            .wrap-icon.text-center
+              //- i.circ-icon.icon-medkit
+          h3.fg-daqua Find It
+          h5.fg-dgrey.fw-normal See if your physician, hospital, pharmacy, lab, or health insurance offers Blue Button.
+
+        .col-md-4.circ-col.start-download
+          .wrap-outer-icon
+            .wrap-icon.text-center
+              //- i.circ-icon.icon-user-md
+          h3.fg-dblue Get It
+          h5.fg-dgrey.fw-normal Start compiling your health data from your various health care providers.
+
+        .col-md-4.circ-col.start-use
+          .wrap-outer-icon
+            .wrap-icon.text-center
+              //- i.circ-icon.icon-check-sign
+          h3.fg-mblue Use It
+          h5.fg-dgrey.fw-normal Plug it into third party apps and services that help keep you at your best.
+
+      h1: a(href='findrecords.html') Get started
+
+  .section.testimonials
+    .container.text-center
+      h1.fg-white Blue Button helped us.
+      h2.fg-white.fw-normal Read and watch how Blue Button helped these individuals.
+
+      .row.centered-row
+        .col-md-3.col-sm-3.img-container
+          img(src='http://placehold.it/228x200')
+          h5.caption Jean,<br>mother of 2
+
+        .col-md-3.col-sm-3.img-container
+          img(src='http://placehold.it/228x200')
+          h5.caption George,<br>diabetes patient
+
+        .col-md-5.col-sm-5.img-container
+          img(src='http://placehold.it/380x200')
+          h5.caption Randy,<br>Vietnam Veteran
+
+      .row.centered-row
+        .col-md-5.col-sm-5.img-container
+          img(src='http://placehold.it/380x200')
+          h5.caption Jean,<br>mother of 2
+
+        .col-md-3.col-sm-3.img-container
+          img(src='http://placehold.it/228x200')
+          h5.caption George,<br>diabetes patient
+
+        .col-md-3.col-sm-3.img-container
+          img(src='http://placehold.it/228x200')
+          h5.caption Randy,<br>Vietnam Veteran
+
+      .row.centered-row
+        .col-md-11.col-sm-11.share-blurb
+          p.pull-right.text-right.fg-white Share your story on how Blue Button has helped you &rarr;
+            a.share-btn.btn.btn-warning.btn-lg SHARE

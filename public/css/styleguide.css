@@ -1,0 +1,87 @@
+.blockize {
+  display: block;
+}
+.inline {
+  display: inline;
+}
+.clearfix {
+  overflow: hidden;
+}
+.no-pad {
+  padding: 0;
+}
+.bg-dgrey {
+  background-color: #474b5a;
+}
+.fg-dgrey {
+  color: #474b5a;
+}
+.bg-mgrey {
+  background-color: #959dac;
+}
+.fg-mgrey {
+  color: #959dac;
+}
+.bg-lgrey {
+  background-color: #e4e6ea;
+}
+.fg-lgrey {
+  color: #e4e6ea;
+}
+.bg-daqua {
+  background-color: #0a94bb;
+}
+.fg-daqua {
+  color: #0a94bb;
+}
+.bg-maqua {
+  background-color: #25c2dc;
+}
+.fg-maqua {
+  color: #25c2dc;
+}
+.bg-laqua {
+  background-color: #a7e6f0;
+}
+.fg-laqua {
+  color: #a7e6f0;
+}
+.bg-dblue {
+  background-color: #0070bb;
+}
+.fg-dblue {
+  color: #0070bb;
+}
+.bg-mblue {
+  background-color: #328cc8;
+}
+.fg-mblue {
+  color: #328cc8;
+}
+.bg-lblue {
+  background-color: #80c0dd;
+}
+.fg-lblue {
+  color: #80c0dd;
+}
+.bg-white {
+  background-color: #fff;
+}
+.fg-white {
+  color: #fff;
+}
+.sg-main-title,
+h1.sg-main-title,
+h2.sg-main-title {
+  color: #474b5a;
+  border-bottom: solid 8px #474b5a;
+  padding-bottom: 20px;
+}
+.sg-main-title .downplay {
+  font-weight: normal;
+}
+.sg-section-title {
+  color: #474b5a;
+  border-bottom: solid 6px #474b5a;
+  padding-bottom: 16px;
+}

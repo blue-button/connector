@@ -1,0 +1,159 @@
+extends templates/layout
+append head
+  link(rel='stylesheet', href='css/styleguide.css')
+block content
+  .container
+    h1.sg-main-title Blue Button Hub /&nbsp;
+      span.downplay Web Design Style Guide
+
+    .row
+      .col-md-6
+        h2.sg-section-title Mark
+
+        h2.sg-section-title Color
+
+        ul.row.list-unstyled
+          li.col-md-4.text-center
+            .color-swatch.bg-daqua.fg-white
+              strong daqua
+              br
+              em #0a94bb
+
+            .color-swatch.bg-maqua.fg-white
+              strong maqua
+              br
+              em #25c2dc
+
+            .color-swatch.bg-laqua.fg-white
+              strong laqua
+              br
+              em #a7e6f0
+
+          li.col-md-4.text-center
+            .color-swatch.bg-dblue.fg-white
+              strong dblue
+              br
+              em #0070bb
+
+            .color-swatch.bg-mblue.fg-white
+              strong mblue
+              br
+              em #328cc8
+
+            .color-swatch.bg-lblue.fg-white
+              strong lblue
+              br
+              em #80c0dd
+
+          li.col-md-4.text-center
+            .color-swatch.bg-dgrey.fg-white
+              strong dgrey
+              br
+              em #474b5a
+
+            .color-swatch.bg-mgrey.fg-white
+              strong mgrey
+              br
+              em #959dac
+
+            .color-swatch.bg-lgrey.fg-white
+              strong lgrey
+              br
+              em #e4e6ea
+
+        h2.sg-section-title Strokes
+
+        .row
+          .col-md-8
+            nav.main-nav.navbar.navbar-default
+              .container
+                .navbar-header
+                  a.navbar-brand.logo(href="#") Top Nav
+
+            h1.page-title Page Title
+
+            h2.sub-title Section Title
+
+      .col-md-6
+        h2 Typography
+
+        h1.h1
+          | H1
+          br
+          em Page Titles
+          br
+          | Helvetica Neue Bold
+          br
+          | 48px / 3em
+          br
+          | white or maqua
+
+        h2.h2
+          | H2
+          br
+          em Page Sub-Title
+          br
+          | (eg: Provider Profile)
+          br
+          | Helvetica Neue Bold
+          br
+          | 30px / 1.875em
+          br
+          | white or dblue
+
+        h3
+          | H3
+          br
+          em Icon Title / Section Title
+          br
+          | Helvetica Neue Bold
+          br
+          | 24px / 1.5em
+          br
+          | color varies
+
+        h4
+          | H4
+          br
+          em Title descriptive text
+          br
+          | Helvetica Neue Regular
+          br
+          | 24px / 1.5em
+          br
+          | color varies
+
+        h5.bg-lgrey
+          | H5
+          br
+          em Photo Title
+          br
+          | Helvetica Neue Bold
+          br
+          | 21px / 1.313em
+          br
+          | white
+
+        h6
+          | H6
+          br
+          | Caption text
+          br
+          em Icon caption / Section Sub-title
+          br
+          | Helvetica Neue Regular
+          br
+          | 18px / 1.125em
+          br
+          | white or dgrey
+
+        p
+          | P
+          br
+          | Body Text
+          br
+          | Helvetica Neue Regular
+          br
+          | 14px / .875em
+          br
+          | white or dgrey

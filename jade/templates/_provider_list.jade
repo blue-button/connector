@@ -1,0 +1,26 @@
+ul.nav.nav-pills.nav-stacked.col-md-4.provider-list
+  li: a(href="#insurance-aetna", data-toggle='tab') Aetna
+  li: a(href="#insurance-kaiser-permanente", data-toggle='tab') Kaiser Permanente
+  li: a(href="#insurance-unitedhealth-group", data-toggle='tab') UnitedHealth Group
+  li: a(href="#insurance-veterans-affairs", data-toggle='tab') Veterans Affairs
+  li: a(href="#insurance-wellpoint", data-toggle='tab') Wellpoint
+
+.tab-content.col-md-8
+  .tab-pane.no-data.active
+    h4 Don't see your organization or provider listed?
+    h6 You may have a legal right under HIPAA to get your health records electronically.
+    a.not-listed-learn-more.btn.btn-lg.btn-primary(href='#') Learn More
+
+  #insurance-aetna.tab-pane.offerings
+    h3.fg-white What you can expect
+    hr.white.hairline
+    ul.dashed
+      li.h6.fg-white Medical conditions
+      li.h6.fg-white List of your physicians
+      li.h6.fg-white Prescriptions
+      li.h6.fg-white Procedures
+      li.h6.fg-white Surgeries
+      li.h6.fg-white Claims data
+
+    h6.fw-strong.fg-white.pull-left: a(href='companyprofile.html') View Profile &rarr;
+    a.btn.btn-large.btn-info.pull-right(href='#') Get My Data

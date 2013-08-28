@@ -1,0 +1,31 @@
+!!! 5
+html
+  block head
+    head
+      title Blue Button Hub | Download Your Health Information
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      meta(content='text/html; charset=UTF-8', http-equiv='Content-Type')
+      link(rel='stylesheet', href='css/bootstrap.min.css')
+      link(rel='stylesheet', href='css/bbhub.css')
+      link(rel='stylesheet', href='css/font-awesome.min.css')
+
+      script(src='js/jquery.min.js')
+      script(src='js/bootstrap.min.js')
+      script(src='js/bbhub.js')
+  body
+    block content
+
+    .section.footer
+      .container
+        ul.pull-right.list-inline
+          li: a(href="#").share-icon: i.icon-envelope
+          li: a(href="#").share-icon: i.icon-facebook
+          li: a(href="#").share-icon: i.icon-twitter
+
+        p.bb-logotype.inline
+          img.little-logo(src='img/bb-logo-vector.png')
+          | Blue Button
+
+        ul.list-inline.inline
+          li: a(href="#") About
+          li: a(href="#") Partners
