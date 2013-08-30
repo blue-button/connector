@@ -89,8 +89,12 @@ img.little-logo
   height 36px
   mr 15px
 
-.large-logo
-  mb -20px
+.splash-logo-container
+  overflow  hidden
+  height 150px
+  .splash-logo
+    mb -20px
+    opacity .7
 
 .bb-logotype
   mt 10px
@@ -167,19 +171,28 @@ body
 
   .start-find
     .img-header
-      color $daqua
+      @extend .fg-daqua
     .wrap-icon
+      background url('../img/magnify-icon.png') no-repeat
       bgc $daqua
+    .step-num
+      line-height 59px
   .start-download
     .img-header
-      color $mblue
+      @extend .fg-mblue
     .wrap-icon
+      background url('../img/bb-thin-outline.png') no-repeat
       bgc $mblue
+    .step-num
+      line-height 50px
   .start-use
     .img-header
       color #6ea9d3
     .wrap-icon
+      background url('../img/arrow-right-thin-outline.png') no-repeat
       bgc #6ea9d3
+    .step-num
+      line-height 74px
 
   h2.big-header, .lead
     color $maqua
@@ -189,6 +202,11 @@ body
 .section.what-do
   bgc #fff
   pb 50px
+
+.step-num
+  fw bold
+  fs 28px
+
 
 .section.testimonials
   bgc $mblue
@@ -247,15 +265,23 @@ body
 .provider-rapper
   display block
   mb 30px
-  padding 15px
+  padding 5px
   text-decoration none
-  height 140px
+  height 150px
   bgc $maqua
   color #fff
   &:hover, li.active &
     color #fff
     text-decoration none
     bgc $daqua
+  i
+    display inline-block !important
+    fs 48px
+    pt 8px
+  .insurance-icon
+    pt 0
+  .start-here
+    mt 2px
 
 
 .nav-pills>li
@@ -280,8 +306,17 @@ body
   pl 10px
   border-left solid 1px $mgrey
 
+.view-profile-btn
+  text-decoration underline
+
+.get-data-btn
+  fs 18px
+
+.or
+  padding 0 15px
+
 .not-listed-learn-more
-  mt 15px
+  mt 20px
 
 .get-records-prep
   position relative
@@ -313,11 +348,3 @@ body
   padding 0 15px 15px
   margin-left -15px
   margin-right -15px
-
-  .profile-btn
-    display inline-block
-    color #fff
-    fw bold
-    text-decoration underline
-    mt 10px
-
