@@ -4,16 +4,25 @@ block content
   .container
     h1.page-title Use my health records
 
-    h4.text-center.fg-dgrey Take your records with you. Plug it into apps and other services that help you reach your health goals and receive recommendations to keep you at your best.
+    h4.use-records-description.text-center.fg-dgrey
+      | Take your records with you. Plug it into apps and other services that help
+      | you reach your health goals and receive recommendations to keep you at your best.
 
-    .row.centered-row
-      .col-md-3.provider-rapper
-        h3.fg-white iBlueButton
+    ul.row.centered-row.list-unstyled.text-center
+      li.col-md-3.col-sm-3
+        a.box-link-rapper.app-rapper(href='#')
+          h5.fg-white iBlueButton
+      li.col-md-3.col-sm-3
+        a.box-link-rapper.app-rapper(href='#')
+          h5.fg-white Microsoft HealthVault
+      li.col-md-3.col-sm-3
+        a.box-link-rapper.app-rapper(href='#')
+          h5.fg-white NoMoreClipboard
 
-      .col-md-3.provider-rapper
-        h3.fg-white Microsoft HealthVault
-
-      .col-md-3.provider-rapper
-        h3.fg-white NoMoreClipboard
-
-    p.text-center The apps and services above contains just a fraction of the resources available today. The Department of Health and Human Services or the U.S. Government does not endorse any product, service or general policies of any non-Federal entity nor is responsible for the content of any individual organization's material or web pages found at these links.
+    .app-disclaimer
+      p
+        | The apps and services above contains just a fraction of the resources available
+        | today. The Department of Health and Human Services or the U.S. Government does not
+        | endorse any product, service or general policies of any non-Feder- al entity nor is
+        | responsible for the content of any individual organization’s material or web pages
+        | found at these links.

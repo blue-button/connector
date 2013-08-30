@@ -367,7 +367,7 @@ img.little-logo {
   padding: 80px 0 80px 0;
 }
 .splash-section {
-  height: 800px;
+  height: 700px;
   padding-top: 10px;
   background: url("../img/splash-bg.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -507,7 +507,7 @@ img.little-logo {
 .fake-checkbox em {
   display: none;
 }
-.provider-rapper {
+.box-link-rapper {
   display: block;
   margin-bottom: 30px;
   padding: 5px;
@@ -516,22 +516,29 @@ img.little-logo {
   background-color: #25c2dc;
   color: #fff;
 }
-.provider-rapper:hover,
-li.active .provider-rapper {
+.box-link-rapper:hover,
+li.active .box-link-rapper {
   color: #fff;
   text-decoration: none;
   background-color: #0a94bb;
 }
-.provider-rapper i {
+.box-link-rapper i {
   display: inline-block !important;
   font-size: 48px;
   padding-top: 8px;
 }
-.provider-rapper .insurance-icon {
+.box-link-rapper .insurance-icon {
   padding-top: 0;
 }
-.provider-rapper .start-here {
+.box-link-rapper .start-here {
   margin-top: 2px;
+}
+.use-records-description,
+.app-disclaimer {
+  margin: 40px;
+}
+.app-rapper {
+  height: 100px;
 }
 .nav-pills>li >a {
   -webkit-border-radius: 0;
