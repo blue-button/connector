@@ -314,6 +314,21 @@ hr.white {
 .bb-onc-header .top-nav li a:hover {
   color: #474b5a;
 }
+.next-btn {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  font-size: 18px;
+  line-height: 5px;
+}
+.next-btn i {
+  font-size: 2.5em;
+}
+.next-btn-fixed {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
 .share-blurb {
   margin-top: 45px;
   padding-right: 0;
@@ -365,6 +380,7 @@ img.little-logo {
 }
 .section {
   padding: 80px 0 80px 0;
+  position: relative;
 }
 .splash-section {
   height: 700px;
