@@ -291,6 +291,9 @@ hr.white {
 .btn-info {
   font-size: 1.2em;
 }
+.top-nav {
+  margin-top: 15px;
+}
 .bb-onc-header {
   height: 80px;
   padding: 15px;
@@ -306,7 +309,7 @@ hr.white {
   margin-top: 0;
 }
 .bb-onc-header .top-nav {
-  padding-top: 0;
+  padding-top: 8px;
 }
 .bb-onc-header .top-nav li a {
   color: #fff;
