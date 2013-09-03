@@ -575,6 +575,8 @@ li.active .box-link-rapper {
 }
 .provider-list {
   padding-right: 0px;
+  height: 290px;
+  overflow-y: auto;
 }
 .no-data {
   margin-top: -10px;
