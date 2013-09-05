@@ -504,8 +504,8 @@ img.little-logo {
   text-align: center;
   font-size: 1.5em;
 }
-.hero-unit {
-  padding: 20px;
+.load-profile {
+  min-height: 400px;
 }
 .fake-checkbox {
   display: block;

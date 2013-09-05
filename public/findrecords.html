@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/jade-runtime.js"></script>
+    <script src="js/jade-templates.js"></script>
     <script src="js/bbhub.js"></script>
   </head>
   <body>
@@ -16,8 +18,8 @@
       <div class="container">
         <div class="navbar-header"><a href="/" class="navbar-brand logo bb-logotype"><img src="img/bb-logo-vector.png" class="little-logo">Blue Button</a></div>
         <ul class="top-nav nav navbar-nav pull-right hidden-xs">
-          <li><a href="#">Get my records</a></li>
-          <li><a href="#">Use my records</a></li>
+          <li><a href="findrecords.html">Get my records</a></li>
+          <li><a href="userecords.html">Use my records</a></li>
         </ul>
       </div>
     </nav>
@@ -48,42 +50,7 @@
             <h4 class="fg-dgrey">Select your insurance provider</h4>
           </div>
           <div class="col-md-8 providers">
-            <ul class="nav nav-pills nav-stacked col-md-4 provider-list">
-              <li><a href="#insurance-aetna" data-toggle="tab">Aetna</a></li>
-              <li><a href="#insurance-kaiser-permanente" data-toggle="tab">Kaiser Permanente</a></li>
-              <li><a href="#insurance-unitedhealth-group" data-toggle="tab">UnitedHealth Group</a></li>
-              <li><a href="#insurance-veterans-affairs" data-toggle="tab">Veterans Affairs</a></li>
-              <li><a href="#insurance-wellpoint" data-toggle="tab">Wellpoint</a></li>
-              <li><a href="#insurance-aetna" data-toggle="tab">Aetna</a></li>
-              <li><a href="#insurance-kaiser-permanente" data-toggle="tab">Kaiser Permanente</a></li>
-              <li><a href="#insurance-unitedhealth-group" data-toggle="tab">UnitedHealth Group</a></li>
-              <li><a href="#insurance-veterans-affairs" data-toggle="tab">Veterans Affairs</a></li>
-              <li><a href="#insurance-wellpoint" data-toggle="tab">Wellpoint</a></li>
-              <li><a href="#insurance-aetna" data-toggle="tab">Aetna</a></li>
-              <li><a href="#insurance-kaiser-permanente" data-toggle="tab">Kaiser Permanente</a></li>
-              <li><a href="#insurance-unitedhealth-group" data-toggle="tab">UnitedHealth Group</a></li>
-              <li><a href="#insurance-veterans-affairs" data-toggle="tab">Veterans Affairs</a></li>
-              <li><a href="#insurance-wellpoint" data-toggle="tab">Wellpoint</a></li>
-            </ul>
-            <div class="tab-content col-md-8">
-              <div class="tab-pane no-data active">
-                <h4>Don't see your organization or provider listed?</h4>
-                <h6>You may have a legal right under HIPAA to get your health records electronically.</h6><a href="#" class="not-listed-learn-more btn btn-lg btn-primary">Learn More</a>
-              </div>
-              <div id="insurance-aetna" class="tab-pane offerings">
-                <h3 class="fg-white">What you can expect</h3>
-                <hr class="white hairline">
-                <ul class="dashed">
-                  <li class="h6 fg-white">Medical conditions</li>
-                  <li class="h6 fg-white">List of your physicians</li>
-                  <li class="h6 fg-white">Prescriptions</li>
-                  <li class="h6 fg-white">Procedures</li>
-                  <li class="h6 fg-white">Surgeries</li>
-                  <li class="h6 fg-white">Claims data</li>
-                </ul>
-                <h6 class="fg-white"><a href="companyprofile.html" class="view-profile-btn fw-strong">View Profile</a><span class="or">or</span><a href="#" class="get-data-btn btn btn-large btn-info">Get My Data</a></h6>
-              </div>
-            </div>
+            <h3>loading...</h3>
           </div>
         </div>
         <div id="physician" class="tab-pane">
@@ -91,42 +58,7 @@
             <h4 class="fg-dgrey">Select your physician</h4>
           </div>
           <div class="col-md-8 providers">
-            <ul class="nav nav-pills nav-stacked col-md-4 provider-list">
-              <li><a href="#insurance-aetna" data-toggle="tab">Aetna</a></li>
-              <li><a href="#insurance-kaiser-permanente" data-toggle="tab">Kaiser Permanente</a></li>
-              <li><a href="#insurance-unitedhealth-group" data-toggle="tab">UnitedHealth Group</a></li>
-              <li><a href="#insurance-veterans-affairs" data-toggle="tab">Veterans Affairs</a></li>
-              <li><a href="#insurance-wellpoint" data-toggle="tab">Wellpoint</a></li>
-              <li><a href="#insurance-aetna" data-toggle="tab">Aetna</a></li>
-              <li><a href="#insurance-kaiser-permanente" data-toggle="tab">Kaiser Permanente</a></li>
-              <li><a href="#insurance-unitedhealth-group" data-toggle="tab">UnitedHealth Group</a></li>
-              <li><a href="#insurance-veterans-affairs" data-toggle="tab">Veterans Affairs</a></li>
-              <li><a href="#insurance-wellpoint" data-toggle="tab">Wellpoint</a></li>
-              <li><a href="#insurance-aetna" data-toggle="tab">Aetna</a></li>
-              <li><a href="#insurance-kaiser-permanente" data-toggle="tab">Kaiser Permanente</a></li>
-              <li><a href="#insurance-unitedhealth-group" data-toggle="tab">UnitedHealth Group</a></li>
-              <li><a href="#insurance-veterans-affairs" data-toggle="tab">Veterans Affairs</a></li>
-              <li><a href="#insurance-wellpoint" data-toggle="tab">Wellpoint</a></li>
-            </ul>
-            <div class="tab-content col-md-8">
-              <div class="tab-pane no-data active">
-                <h4>Don't see your organization or provider listed?</h4>
-                <h6>You may have a legal right under HIPAA to get your health records electronically.</h6><a href="#" class="not-listed-learn-more btn btn-lg btn-primary">Learn More</a>
-              </div>
-              <div id="insurance-aetna" class="tab-pane offerings">
-                <h3 class="fg-white">What you can expect</h3>
-                <hr class="white hairline">
-                <ul class="dashed">
-                  <li class="h6 fg-white">Medical conditions</li>
-                  <li class="h6 fg-white">List of your physicians</li>
-                  <li class="h6 fg-white">Prescriptions</li>
-                  <li class="h6 fg-white">Procedures</li>
-                  <li class="h6 fg-white">Surgeries</li>
-                  <li class="h6 fg-white">Claims data</li>
-                </ul>
-                <h6 class="fg-white"><a href="companyprofile.html" class="view-profile-btn fw-strong">View Profile</a><span class="or">or</span><a href="#" class="get-data-btn btn btn-large btn-info">Get My Data</a></h6>
-              </div>
-            </div>
+            <h3>loading...</h3>
           </div>
         </div>
         <div id="pharmacy" class="tab-pane">
@@ -134,42 +66,7 @@
             <h4 class="fg-dgrey">Select your pharmacy</h4>
           </div>
           <div class="col-md-8 providers">
-            <ul class="nav nav-pills nav-stacked col-md-4 provider-list">
-              <li><a href="#insurance-aetna" data-toggle="tab">Aetna</a></li>
-              <li><a href="#insurance-kaiser-permanente" data-toggle="tab">Kaiser Permanente</a></li>
-              <li><a href="#insurance-unitedhealth-group" data-toggle="tab">UnitedHealth Group</a></li>
-              <li><a href="#insurance-veterans-affairs" data-toggle="tab">Veterans Affairs</a></li>
-              <li><a href="#insurance-wellpoint" data-toggle="tab">Wellpoint</a></li>
-              <li><a href="#insurance-aetna" data-toggle="tab">Aetna</a></li>
-              <li><a href="#insurance-kaiser-permanente" data-toggle="tab">Kaiser Permanente</a></li>
-              <li><a href="#insurance-unitedhealth-group" data-toggle="tab">UnitedHealth Group</a></li>
-              <li><a href="#insurance-veterans-affairs" data-toggle="tab">Veterans Affairs</a></li>
-              <li><a href="#insurance-wellpoint" data-toggle="tab">Wellpoint</a></li>
-              <li><a href="#insurance-aetna" data-toggle="tab">Aetna</a></li>
-              <li><a href="#insurance-kaiser-permanente" data-toggle="tab">Kaiser Permanente</a></li>
-              <li><a href="#insurance-unitedhealth-group" data-toggle="tab">UnitedHealth Group</a></li>
-              <li><a href="#insurance-veterans-affairs" data-toggle="tab">Veterans Affairs</a></li>
-              <li><a href="#insurance-wellpoint" data-toggle="tab">Wellpoint</a></li>
-            </ul>
-            <div class="tab-content col-md-8">
-              <div class="tab-pane no-data active">
-                <h4>Don't see your organization or provider listed?</h4>
-                <h6>You may have a legal right under HIPAA to get your health records electronically.</h6><a href="#" class="not-listed-learn-more btn btn-lg btn-primary">Learn More</a>
-              </div>
-              <div id="insurance-aetna" class="tab-pane offerings">
-                <h3 class="fg-white">What you can expect</h3>
-                <hr class="white hairline">
-                <ul class="dashed">
-                  <li class="h6 fg-white">Medical conditions</li>
-                  <li class="h6 fg-white">List of your physicians</li>
-                  <li class="h6 fg-white">Prescriptions</li>
-                  <li class="h6 fg-white">Procedures</li>
-                  <li class="h6 fg-white">Surgeries</li>
-                  <li class="h6 fg-white">Claims data</li>
-                </ul>
-                <h6 class="fg-white"><a href="companyprofile.html" class="view-profile-btn fw-strong">View Profile</a><span class="or">or</span><a href="#" class="get-data-btn btn btn-large btn-info">Get My Data</a></h6>
-              </div>
-            </div>
+            <h3>loading...</h3>
           </div>
         </div>
         <div id="immunization" class="tab-pane">
@@ -177,42 +74,7 @@
             <h4 class="fg-dgrey">Select your immunization registry</h4>
           </div>
           <div class="col-md-8 providers">
-            <ul class="nav nav-pills nav-stacked col-md-4 provider-list">
-              <li><a href="#insurance-aetna" data-toggle="tab">Aetna</a></li>
-              <li><a href="#insurance-kaiser-permanente" data-toggle="tab">Kaiser Permanente</a></li>
-              <li><a href="#insurance-unitedhealth-group" data-toggle="tab">UnitedHealth Group</a></li>
-              <li><a href="#insurance-veterans-affairs" data-toggle="tab">Veterans Affairs</a></li>
-              <li><a href="#insurance-wellpoint" data-toggle="tab">Wellpoint</a></li>
-              <li><a href="#insurance-aetna" data-toggle="tab">Aetna</a></li>
-              <li><a href="#insurance-kaiser-permanente" data-toggle="tab">Kaiser Permanente</a></li>
-              <li><a href="#insurance-unitedhealth-group" data-toggle="tab">UnitedHealth Group</a></li>
-              <li><a href="#insurance-veterans-affairs" data-toggle="tab">Veterans Affairs</a></li>
-              <li><a href="#insurance-wellpoint" data-toggle="tab">Wellpoint</a></li>
-              <li><a href="#insurance-aetna" data-toggle="tab">Aetna</a></li>
-              <li><a href="#insurance-kaiser-permanente" data-toggle="tab">Kaiser Permanente</a></li>
-              <li><a href="#insurance-unitedhealth-group" data-toggle="tab">UnitedHealth Group</a></li>
-              <li><a href="#insurance-veterans-affairs" data-toggle="tab">Veterans Affairs</a></li>
-              <li><a href="#insurance-wellpoint" data-toggle="tab">Wellpoint</a></li>
-            </ul>
-            <div class="tab-content col-md-8">
-              <div class="tab-pane no-data active">
-                <h4>Don't see your organization or provider listed?</h4>
-                <h6>You may have a legal right under HIPAA to get your health records electronically.</h6><a href="#" class="not-listed-learn-more btn btn-lg btn-primary">Learn More</a>
-              </div>
-              <div id="insurance-aetna" class="tab-pane offerings">
-                <h3 class="fg-white">What you can expect</h3>
-                <hr class="white hairline">
-                <ul class="dashed">
-                  <li class="h6 fg-white">Medical conditions</li>
-                  <li class="h6 fg-white">List of your physicians</li>
-                  <li class="h6 fg-white">Prescriptions</li>
-                  <li class="h6 fg-white">Procedures</li>
-                  <li class="h6 fg-white">Surgeries</li>
-                  <li class="h6 fg-white">Claims data</li>
-                </ul>
-                <h6 class="fg-white"><a href="companyprofile.html" class="view-profile-btn fw-strong">View Profile</a><span class="or">or</span><a href="#" class="get-data-btn btn btn-large btn-info">Get My Data</a></h6>
-              </div>
-            </div>
+            <h3>loading...</h3>
           </div>
         </div>
       </div>
@@ -231,5 +93,42 @@
         </ul>
       </div>
     </div>
+    <script>
+      $.ajax({
+        //url: 'http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20geo.places%20WHERE%20text%3D%22SFO%22&format=json',
+        url: 'https://script.google.com/macros/s/AKfycbxlbakvkyNWUFFKtWeHE_mAyVNGjV7uX3vapzbZiuOxYtpraAA/exec?format=jsonp',
+        success: onLoadProviderList,
+        dataType: 'jsonp'
+      });
+      
+      function onLoadProviderList(data) {
+        // FIXME move this sorting logic to the "server" eventually
+        var insPros = [];
+        var phyPros = [];
+        var phaPros = [];
+        var immPros = [];
+        console.log(data.results);
+        
+        var numProviders = data.results.length;
+        for (var i=0; i<numProviders; i++) {
+          var pro = data.results[i];
+          if (/insurance/i.test(pro.category)) {
+            insPros.push(pro);
+          } else if (/hospital|physician/i.test(pro.category)) {
+            phyPros.push(pro);
+          } else if (/lab|pharmacy/i.test(pro.category)) {
+            phaPros.push(pro);
+          } else if (/immunization/i.test(pro.category)) {
+            immPros.push(pro);
+          }
+        }
+        
+        $('#insurance .providers').html(providerList_tpl({category:'insurance' , providerList:insPros}));
+        $('#physician .providers').html(providerList_tpl({category:'physician' , providerList:phyPros}));
+        $('#pharmacy .providers').html(providerList_tpl({category:'pharmacy' , providerList:phaPros}));
+        $('#immunization .providers').html(providerList_tpl({category:'immunization' , providerList:immPros}));
+      }
+      
+    </script>
   </body>
 </html>

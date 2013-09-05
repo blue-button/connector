@@ -1,56 +1,5 @@
 extends templates/layout
 block content
   include templates/_topnav
-  .container
-    h1.page-title Get my health records
-    .row
-      .col-md-4.col-sm-12
-        h2 United Health Group
-        h6.fg-daqua: a(href="http://www.unitedhealthgroup.com", target="_blank") www.unitedhealthgroup.com
-        h6.fg-mgrey
-          | P.O. Box 1459
-          br
-          | Minneapolis, MN 55440-1459
-
-        h6.fg-mgrey 800.328.5979
-
-      .col-md-8.col-sm-12
-        .col-md-3.col-sm-3.no-pad
-          a.go-get-em-btn.blockize(href='#', target='_blank')
-            img(src='img/bb-logo-vector.png')
-        .col-md-8.col-sm-9.get-records-prep.col-md-offset-1
-          h3.fg-maqua Get my health records
-          p.fg-maqua After clicking here, you will be redirected to your organization’s website where you can get your health records.
-          p.fg-maqua Don't forget to come back once you have your health records to find apps and services that help you stay at your best.
-          img.arrow-left.hidden-xs(src='img/arrow-left.png')
-
-
-    h3.sub-title Features
-
-    ul.row.clearfix.list-unstyled.text-center
-      li.col-md-2
-        p
-          span.fake-checkbox.checked: em provider is
-          |  Using the Blue Button logo on website
-      li.col-md-2
-        p
-          span.fake-checkbox.checked: em you can
-          |  view your records online
-      li.col-md-2
-        p
-          span.fake-checkbox.checked: em you can
-          |  download your records
-      li.col-md-2
-        p
-          span.fake-checkbox: em you cannot
-          |  Securely send your records to your preferred application
-      li.col-md-2
-        p
-          span.fake-checkbox: em you cannot get
-          |  Automatically receive updates to your health records
-
-    .ask-participate
-      h5.fw-normal.fg-dblue Ask your organization to participate!
-      h6.fg-mgrey If some features are not available, ask them why and request it now.
-      a.btn.btn-primary.btn-lg(href='#') Request
-
+  .container.load-profile
+    h2 loading...

@@ -1,0 +1,66 @@
+h1.page-title Get my health records
+  .row
+    .col-md-4.col-sm-12
+      h2 #{name}
+      h6.fg-daqua: a(href=url, target="_blank") #{url}
+      h6.fg-mgrey
+        | #{address}
+        br
+        | #{city}, #{state} #{zip}
+
+      h6.fg-mgrey #{phone}
+
+    .col-md-8.col-sm-12
+      .col-md-3.col-sm-3.no-pad
+        a.go-get-em-btn.blockize(href='#', target='_blank')
+          img(src='img/bb-logo-vector.png')
+      .col-md-8.col-sm-9.get-records-prep.col-md-offset-1
+        h3.fg-maqua Get my health records
+        p.fg-maqua After clicking here, you will be redirected to your organization’s website where you can get your health records.
+        p.fg-maqua Don't forget to come back once you have your health records to find apps and services that help you stay at your best.
+        img.arrow-left.hidden-xs(src='img/arrow-left.png')
+
+
+  h3.sub-title Features
+
+  ul.row.clearfix.list-unstyled.text-center
+    li.col-md-2
+      p
+        - if (bblogo)
+          span.fake-checkbox.checked: em provider is
+        - else
+          span.fake-checkbox: em provider is not
+        |  Using the Blue Button logo on website
+    li.col-md-2
+      p
+        - if (bbview)
+          span.fake-checkbox.checked: em you can
+        - else
+          span.fake-checkbox: em you cannot
+        |  view your records online
+    li.col-md-2
+      p
+        - if (bbdownload)
+          span.fake-checkbox.checked: em you can
+        - else
+          span.fake-checkbox: em you cannot
+        |  download your records
+    li.col-md-2
+      p
+        - if (bbsend)
+          span.fake-checkbox.checked: em you can
+        - else
+          span.fake-checkbox: em you cannot
+        |  Securely send your records to your preferred application
+    li.col-md-2
+      p
+        - if (bbupdate)
+          span.fake-checkbox.checked: em you can
+        - else
+          span.fake-checkbox: em you cannot
+        |  Automatically receive updates to your health records
+
+  .ask-participate
+    h5.fw-normal.fg-dblue Ask your organization to participate!
+    h6.fg-mgrey If some features are not available, ask them why and request it now.
+    a.btn.btn-primary.btn-lg(href='#') Request

@@ -38,7 +38,7 @@ block content
           h4.fg-dgrey Select your insurance provider
 
         .col-md-8.providers
-          include templates/_provider_list
+          h3 loading...
 
 
       #physician.tab-pane
@@ -46,19 +46,57 @@ block content
           h4.fg-dgrey Select your physician
 
         .col-md-8.providers
-          include templates/_provider_list
+          h3 loading...
 
       #pharmacy.tab-pane
         .col-md-4
           h4.fg-dgrey Select your pharmacy
 
         .col-md-8.providers
-          include templates/_provider_list
+          h3 loading...
 
       #immunization.tab-pane
         .col-md-4
           h4.fg-dgrey Select your immunization registry
 
         .col-md-8.providers
-          include templates/_provider_list
+          h3 loading...
+
+append footer
+  script.
+
+    $.ajax({
+      //url: 'http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20geo.places%20WHERE%20text%3D%22SFO%22&format=json',
+      url: 'https://script.google.com/macros/s/AKfycbxlbakvkyNWUFFKtWeHE_mAyVNGjV7uX3vapzbZiuOxYtpraAA/exec?format=jsonp',
+      success: onLoadProviderList,
+      dataType: 'jsonp'
+    });
+
+    function onLoadProviderList(data) {
+      // FIXME move this sorting logic to the "server" eventually
+      var insPros = [];
+      var phyPros = [];
+      var phaPros = [];
+      var immPros = [];
+      console.log(data.results);
+
+      var numProviders = data.results.length;
+      for (var i=0; i<numProviders; i++) {
+        var pro = data.results[i];
+        if (/insurance/i.test(pro.category)) {
+          insPros.push(pro);
+        } else if (/hospital|physician/i.test(pro.category)) {
+          phyPros.push(pro);
+        } else if (/lab|pharmacy/i.test(pro.category)) {
+          phaPros.push(pro);
+        } else if (/immunization/i.test(pro.category)) {
+          immPros.push(pro);
+        }
+      }
+
+      $('#insurance .providers').html(providerList_tpl({category:'insurance' , providerList:insPros}));
+      $('#physician .providers').html(providerList_tpl({category:'physician' , providerList:phyPros}));
+      $('#pharmacy .providers').html(providerList_tpl({category:'pharmacy' , providerList:phaPros}));
+      $('#immunization .providers').html(providerList_tpl({category:'immunization' , providerList:immPros}));
+    }
 

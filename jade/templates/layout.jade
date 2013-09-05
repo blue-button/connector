@@ -11,21 +11,24 @@ html
 
       script(src='js/jquery.min.js')
       script(src='js/bootstrap.min.js')
+      script(src='js/jade-runtime.js')
+      script(src='js/jade-templates.js')
       script(src='js/bbhub.js')
   body
     block content
 
-    .section.footer
-      .container
-        ul.pull-right.list-inline
-          li: a(href="#").share-icon: i.icon-envelope
-          li: a(href="https://www.facebook.com/bluebuttonhealth").share-icon: i.icon-facebook
-          li: a(href="https://twitter.com/ProjectBlueBtn").share-icon: i.icon-twitter
+    block footer
+      .section.footer
+        .container
+          ul.pull-right.list-inline
+            li: a(href="#").share-icon: i.icon-envelope
+            li: a(href="https://www.facebook.com/bluebuttonhealth").share-icon: i.icon-facebook
+            li: a(href="https://twitter.com/ProjectBlueBtn").share-icon: i.icon-twitter
 
-        p.bb-logotype.inline
-          img.little-logo(src='img/bb-logo-vector.png')
-          | Blue Button
+          p.bb-logotype.inline
+            img.little-logo(src='img/bb-logo-vector.png')
+            | Blue Button
 
-        ul.list-inline.inline
-          li: a(href="#") About
-          li: a(href="#") Partners
+          ul.list-inline.inline
+            li: a(href="#") About
+            li: a(href="#") Partners

@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/jade-runtime.js"></script>
+    <script src="js/jade-templates.js"></script>
     <script src="js/bbhub.js"></script>
   </head>
   <body>
@@ -16,51 +18,13 @@
       <div class="container">
         <div class="navbar-header"><a href="/" class="navbar-brand logo bb-logotype"><img src="img/bb-logo-vector.png" class="little-logo">Blue Button</a></div>
         <ul class="top-nav nav navbar-nav pull-right hidden-xs">
-          <li><a href="#">Get my records</a></li>
-          <li><a href="#">Use my records</a></li>
+          <li><a href="findrecords.html">Get my records</a></li>
+          <li><a href="userecords.html">Use my records</a></li>
         </ul>
       </div>
     </nav>
-    <div class="container">
-      <h1 class="page-title">Get my health records</h1>
-      <div class="row">
-        <div class="col-md-4 col-sm-12">
-          <h2>United Health Group</h2>
-          <h6 class="fg-daqua"><a href="http://www.unitedhealthgroup.com" target="_blank">www.unitedhealthgroup.com</a></h6>
-          <h6 class="fg-mgrey">P.O. Box 1459<br>Minneapolis, MN 55440-1459</h6>
-          <h6 class="fg-mgrey">800.328.5979</h6>
-        </div>
-        <div class="col-md-8 col-sm-12">
-          <div class="col-md-3 col-sm-3 no-pad"><a href="#" target="_blank" class="go-get-em-btn blockize"><img src="img/bb-logo-vector.png"></a></div>
-          <div class="col-md-8 col-sm-9 get-records-prep col-md-offset-1">
-            <h3 class="fg-maqua">Get my health records</h3>
-            <p class="fg-maqua">After clicking here, you will be redirected to your organization’s website where you can get your health records.</p>
-            <p class="fg-maqua">Don't forget to come back once you have your health records to find apps and services that help you stay at your best.</p><img src="img/arrow-left.png" class="arrow-left hidden-xs">
-          </div>
-        </div>
-      </div>
-      <h3 class="sub-title">Features</h3>
-      <ul class="row clearfix list-unstyled text-center">
-        <li class="col-md-2">
-          <p><span class="fake-checkbox checked"><em>provider is</em></span> Using the Blue Button logo on website</p>
-        </li>
-        <li class="col-md-2">
-          <p><span class="fake-checkbox checked"><em>you can</em></span> view your records online</p>
-        </li>
-        <li class="col-md-2">
-          <p><span class="fake-checkbox checked"><em>you can</em></span> download your records</p>
-        </li>
-        <li class="col-md-2">
-          <p><span class="fake-checkbox"><em>you cannot</em></span> Securely send your records to your preferred application</p>
-        </li>
-        <li class="col-md-2">
-          <p><span class="fake-checkbox"><em>you cannot get</em></span> Automatically receive updates to your health records</p>
-        </li>
-      </ul>
-      <div class="ask-participate">
-        <h5 class="fw-normal fg-dblue">Ask your organization to participate!</h5>
-        <h6 class="fg-mgrey">If some features are not available, ask them why and request it now.</h6><a href="#" class="btn btn-primary btn-lg">Request</a>
-      </div>
+    <div class="container load-profile">
+      <h2>loading...</h2>
     </div>
     <div class="section footer">
       <div class="container">
