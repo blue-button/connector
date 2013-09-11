@@ -66,10 +66,10 @@ append footer
   script.
 
     $.ajax({
-      //url: 'http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20geo.places%20WHERE%20text%3D%22SFO%22&format=json',
       url: 'https://script.google.com/macros/s/AKfycbxlbakvkyNWUFFKtWeHE_mAyVNGjV7uX3vapzbZiuOxYtpraAA/exec?format=jsonp',
       success: onLoadProviderList,
-      dataType: 'jsonp'
+      dataType: 'jsonp',
+      crossDomain: true
     });
 
     function onLoadProviderList(data) {
