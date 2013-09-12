@@ -13,15 +13,33 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jade-runtime.js"></script>
     <script src="js/jade-templates.js"></script>
+    <script src="js/jquery.cookie.js"></script>
     <script src="js/bbhub.js"></script>
   </head>
   <body>
+    <div class="alert alert-warning alert-slim"><strong>Note:&nbsp;</strong>This website is work in progress.&nbsp;<a href="#wip-modal" data-toggle="modal" class="alert-link">Read more...</a></div>
     <div id="header" class="bb-onc-header">
       <ul class="top-nav nav nav-pills pull-right hidden-xs">
         <li><a href="findrecords.html">Get my records</a></li>
         <li><a href="userecords.html">Use my records</a></li>
       </ul>
       <h6 class="onc-tagline fg-white"><img src="img/bb-onc.png" class="bb-onc-logo">The Office of the National Coordinator for Health Information Technology</h6>
+    </div>
+    <div id="wip-modal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" data-dismiss="modal" tabindex="-1" role="dialog" aria-hidden="true" class="close">&times;</button>
+            <h4 class="modal-title">Under Construction</h4>
+          </div>
+          <div class="modal-body text-center">
+            <p><img src="/img/digger.gif"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-primary">Okay</button>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="section splash-section">
       <div class="splash-title text-center">
@@ -34,28 +52,28 @@
         <h2 class="h1 fg-white">What is Blue Button?</h2>
         <h2 class="fw-normal fg-white">Blue Button is a way to get your<br>health records electronically so you can&hellip;</h2>
         <div class="row">
-          <div class="col-md-3 col-sm-3 circ-col why-secure text-center">
+          <div class="col-md-3 col-sm-6 circ-col why-secure text-center">
             <div class="wrap-outer-icon">
               <div class="wrap-icon text-center"><i class="circ-icon icon-lock"></i></div>
             </div>
             <h3 class="fg-white">Be Secure</h3>
             <h5 class="fg-white fw-normal">that your records are protected under HIPAA. We do not store or collect your records but send you to organizations do.</h5>
           </div>
-          <div class="col-md-3 col-sm-3 circ-col why-recall text-center">
+          <div class="col-md-3 col-sm-6 circ-col why-recall text-center">
             <div class="wrap-outer-icon">
               <div class="wrap-icon text-center"><i class="circ-icon icon-file-text-alt"></i></div>
             </div>
             <h3 class="fg-white">Reference</h3>
             <h5 class="fg-white fw-normal">your health records to be reminded when you had your last shot, or the exact date of a procedure.</h5>
           </div>
-          <div class="col-md-3 col-sm-3 circ-col why-check text-center">
+          <div class="col-md-3 col-sm-6 circ-col why-check text-center">
             <div class="wrap-outer-icon">
               <div class="wrap-icon text-center"><i class="circ-icon icon-check-sign"></i></div>
             </div>
             <h3 class="fg-white">Check</h3>
             <h5 class="fg-white fw-normal">the accuracy of your records, monitor changes, and stay aware of your health status.</h5>
           </div>
-          <div class="col-md-3 col-sm-3 circ-col why-share text-center">
+          <div class="col-md-3 col-sm-6 circ-col why-share text-center">
             <div class="wrap-outer-icon">
               <div class="wrap-icon text-center"><i class="circ-icon icon-user-md"></i></div>
             </div>
@@ -128,6 +146,16 @@
         </div>
       </div><a href="#header" class="next-btn text-center fg-white"><i class="icon-chevron-up"><br></i>top</a>
     </div>
+    <script>
+      $(function() {
+        if ($.cookie('wipmodalshow') === null) {
+          $('#wip-modal').modal('show');
+          $.cookie("wipmodalshow", "false");
+        }
+      });
+      
+      
+    </script>
     <div class="section footer">
       <div class="container">
         <ul class="pull-right list-inline">

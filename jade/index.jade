@@ -1,6 +1,10 @@
 extends templates/layout
 
 block content
+  .alert.alert-warning.alert-slim
+    strong Note:&nbsp;
+    | This website is work in progress.&nbsp;
+    a.alert-link(href='#wip-modal', data-toggle='modal') Read more...
   #header.bb-onc-header
     ul.top-nav.nav.nav-pills.pull-right.hidden-xs
       li: a(href='findrecords.html') Get my records
@@ -9,6 +13,8 @@ block content
     h6.onc-tagline.fg-white
       img.bb-onc-logo(src='img/bb-onc.png')
       | The Office of the National Coordinator for Health Information Technology
+
+  include templates/_wip
 
   .section.splash-section
     .splash-title.text-center
@@ -28,28 +34,28 @@ block content
         br
         | health records electronically so you can&hellip;
       .row
-        .col-md-3.col-sm-3.circ-col.why-secure.text-center
+        .col-md-3.col-sm-6.circ-col.why-secure.text-center
           .wrap-outer-icon
             .wrap-icon.text-center
               i.circ-icon.icon-lock
           h3.fg-white Be Secure
           h5.fg-white.fw-normal that your records are protected under HIPAA. We do not store or collect your records but send you to organizations do.
 
-        .col-md-3.col-sm-3.circ-col.why-recall.text-center
+        .col-md-3.col-sm-6.circ-col.why-recall.text-center
           .wrap-outer-icon
             .wrap-icon.text-center
               i.circ-icon.icon-file-text-alt
           h3.fg-white Reference
           h5.fg-white.fw-normal your health records to be reminded when you had your last shot, or the exact date of a procedure.
 
-        .col-md-3.col-sm-3.circ-col.why-check.text-center
+        .col-md-3.col-sm-6.circ-col.why-check.text-center
           .wrap-outer-icon
             .wrap-icon.text-center
               i.circ-icon.icon-check-sign
           h3.fg-white Check
           h5.fg-white.fw-normal the accuracy of your records, monitor changes, and stay aware of your health status.
 
-        .col-md-3.col-sm-3.circ-col.why-share.text-center
+        .col-md-3.col-sm-6.circ-col.why-share.text-center
           .wrap-outer-icon
             .wrap-icon.text-center
               i.circ-icon.icon-user-md
@@ -135,3 +141,12 @@ block content
       i.icon-chevron-up
           br
       | top
+  script.
+    $(function() {
+      if ($.cookie('wipmodalshow') === null) {
+        $('#wip-modal').modal('show');
+        $.cookie("wipmodalshow", "false");
+      }
+    });
+
+

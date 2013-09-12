@@ -291,6 +291,10 @@ hr.white {
 .btn-info {
   font-size: 1.2em;
 }
+.alert.alert-slim {
+  padding: 5px;
+  margin-bottom: 0;
+}
 .top-nav {
   margin-top: 15px;
 }
