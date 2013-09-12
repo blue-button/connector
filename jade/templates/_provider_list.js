@@ -1,6 +1,6 @@
 function anonymous(locals) {
 var buf = [];
-var locals_ = (locals || {}),providerList = locals_.providerList,category = locals_.category;buf.push("<ul class=\"nav nav-pills nav-stacked col-md-4 provider-list\">");
+var locals_ = (locals || {}),providerList = locals_.providerList,category = locals_.category;buf.push("<ul class=\"nav nav-pills nav-stacked col-md-4 col-sm-6 provider-list\">");
 // iterate providerList
 ;(function(){
   var $$obj = providerList;
@@ -25,7 +25,7 @@ buf.push("<li><a" + (jade.attrs({ 'href':('#' + category + '-' + safeName), 'dat
   }
 }).call(this);
 
-buf.push("</ul><div class=\"tab-content col-md-8\"><div class=\"tab-pane no-data active\"><h4>Don't see your organization or provider listed?</h4><h6>You may have a legal right under HIPAA to get your health records electronically.</h6><a href=\"#\" class=\"not-listed-learn-more btn btn-lg btn-primary\">Learn More</a></div>");
+buf.push("</ul><div class=\"tab-content col-md-8 col-sm-6\"><div class=\"tab-pane no-data active\"><h4>Don't see your organization or provider listed?</h4><h6>You may have a legal right under HIPAA to get your health records electronically.</h6><a href=\"#\" class=\"not-listed-learn-more btn btn-lg btn-primary\">Learn More</a></div>");
 // iterate providerList
 ;(function(){
   var $$obj = providerList;

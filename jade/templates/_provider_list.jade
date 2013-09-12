@@ -1,9 +1,9 @@
-ul.nav.nav-pills.nav-stacked.col-md-4.provider-list
+ul.nav.nav-pills.nav-stacked.col-md-4.col-sm-6.provider-list
   - each provider in providerList
     - var safeName = provider.name.replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
     li: a(href='#' + category + '-' + safeName, data-toggle='tab') #{provider.name}
 
-.tab-content.col-md-8
+.tab-content.col-md-8.col-sm-6
   .tab-pane.no-data.active
     h4 Don't see your organization or provider listed?
     h6 You may have a legal right under HIPAA to get your health records electronically.
