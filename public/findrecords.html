@@ -27,27 +27,29 @@
     </nav>
     <div class="container">
       <h1 class="page-title">Get my health records</h1>
-      <div class="col-md-4 col-sm-4">
-        <h4 class="fg-dgrey">Select a source</h4>
-        <h6><strong class="fg-maqua">Tip:</strong> You may have records in more than one source.
-           One in three Americans has data available in their health insurance.
-        </h6>
+      <div class="row">
+        <div class="col-md-4 col-sm-4">
+          <h4 class="fg-dgrey">Select a source</h4>
+          <h6><strong class="fg-maqua">Tip:</strong> You may have records in more than one source.
+             One in three Americans has data available in their health insurance.
+          </h6>
+        </div>
+        <div class="col-md-8 col-sm-8">
+          <ul class="row data-sources list-unstyled text-center">
+            <li class="col-md-6 col-sm-6"><a href="#insurance" data-toggle="tab" class="box-link-rapper">
+                <h3 class="fg-white">Health Insurance</h3><i class="insurance-icon icon-umbrella"></i>
+                <h6 class="start-here fg-white">start here</h6></a></li>
+            <li class="col-md-6 col-sm-6"><a href="#physician" data-toggle="tab" class="box-link-rapper">
+                <h3 class="fg-white">Physician or Hospital</h3><i class="icon-user-md"></i></a></li>
+            <li class="col-md-6 col-sm-6"><a href="#pharmacy" data-toggle="tab" class="box-link-rapper">
+                <h3 class="fg-white">Pharmacy or Lab</h3><i class="icon-medkit"></i></a></li>
+            <li class="col-md-6 col-sm-6"><a href="#immunization" data-toggle="tab" class="box-link-rapper">
+                <h3 class="fg-white">Immunization Registry</h3><i class="icon-file-text-alt"></i></a></li>
+          </ul>
+        </div>
       </div>
-      <div class="col-md-8 col-sm-8">
-        <ul class="row data-sources list-unstyled text-center">
-          <li class="col-md-6 col-sm-6"><a href="#insurance" data-toggle="tab" class="box-link-rapper">
-              <h3 class="fg-white">Health Insurance</h3><i class="insurance-icon icon-umbrella"></i>
-              <h6 class="start-here fg-white">start here</h6></a></li>
-          <li class="col-md-6 col-sm-6"><a href="#physician" data-toggle="tab" class="box-link-rapper">
-              <h3 class="fg-white">Physician or Hospital</h3><i class="icon-user-md"></i></a></li>
-          <li class="col-md-6 col-sm-6"><a href="#pharmacy" data-toggle="tab" class="box-link-rapper">
-              <h3 class="fg-white">Pharmacy or Lab</h3><i class="icon-medkit"></i></a></li>
-          <li class="col-md-6 col-sm-6"><a href="#immunization" data-toggle="tab" class="box-link-rapper">
-              <h3 class="fg-white">Immunization Registry</h3><i class="icon-file-text-alt"></i></a></li>
-        </ul>
-      </div>
-      <div class="tab-content">
-        <div id="insurance" class="tab-pane">
+      <div id="select-provider-wrapper" class="tab-content">
+        <div id="insurance" class="tab-pane row">
           <div class="col-md-4">
             <h4 class="fg-dgrey">Select your insurance provider</h4>
           </div>
@@ -55,7 +57,7 @@
             <h3>loading...</h3>
           </div>
         </div>
-        <div id="physician" class="tab-pane">
+        <div id="physician" class="tab-pane row">
           <div class="col-md-4">
             <h4 class="fg-dgrey">Select your physician</h4>
           </div>
@@ -63,7 +65,7 @@
             <h3>loading...</h3>
           </div>
         </div>
-        <div id="pharmacy" class="tab-pane">
+        <div id="pharmacy" class="tab-pane row">
           <div class="col-md-4">
             <h4 class="fg-dgrey">Select your pharmacy</h4>
           </div>
@@ -71,7 +73,7 @@
             <h3>loading...</h3>
           </div>
         </div>
-        <div id="immunization" class="tab-pane">
+        <div id="immunization" class="tab-pane row">
           <div class="col-md-4">
             <h4 class="fg-dgrey">Select your immunization registry</h4>
           </div>

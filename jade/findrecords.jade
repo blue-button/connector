@@ -5,35 +5,36 @@ block content
 
   .container
     h1.page-title Get my health records
-    .col-md-4.col-sm-4
-      h4.fg-dgrey Select a source
-      h6
-        strong.fg-maqua Tip:
-        |  You may have records in more than one source.
-        |  One in three Americans has data available in their health insurance.
+    .row
+      .col-md-4.col-sm-4
+        h4.fg-dgrey Select a source
+        h6
+          strong.fg-maqua Tip:
+          |  You may have records in more than one source.
+          |  One in three Americans has data available in their health insurance.
 
-    .col-md-8.col-sm-8
-      ul.row.data-sources.list-unstyled.text-center
-        li.col-md-6.col-sm-6
-          a.box-link-rapper(href='#insurance', data-toggle='tab')
-            h3.fg-white Health Insurance
-            i.insurance-icon.icon-umbrella
-            h6.start-here.fg-white start here
-        li.col-md-6.col-sm-6
-          a.box-link-rapper(href='#physician', data-toggle='tab')
-            h3.fg-white Physician or Hospital
-            i.icon-user-md
-        li.col-md-6.col-sm-6
-          a.box-link-rapper(href='#pharmacy', data-toggle='tab')
-            h3.fg-white Pharmacy or Lab
-            i.icon-medkit
-        li.col-md-6.col-sm-6
-          a.box-link-rapper(href='#immunization', data-toggle='tab')
-            h3.fg-white Immunization Registry
-            i.icon-file-text-alt
+      .col-md-8.col-sm-8
+        ul.row.data-sources.list-unstyled.text-center
+          li.col-md-6.col-sm-6
+            a.box-link-rapper(href='#insurance', data-toggle='tab')
+              h3.fg-white Health Insurance
+              i.insurance-icon.icon-umbrella
+              h6.start-here.fg-white start here
+          li.col-md-6.col-sm-6
+            a.box-link-rapper(href='#physician', data-toggle='tab')
+              h3.fg-white Physician or Hospital
+              i.icon-user-md
+          li.col-md-6.col-sm-6
+            a.box-link-rapper(href='#pharmacy', data-toggle='tab')
+              h3.fg-white Pharmacy or Lab
+              i.icon-medkit
+          li.col-md-6.col-sm-6
+            a.box-link-rapper(href='#immunization', data-toggle='tab')
+              h3.fg-white Immunization Registry
+              i.icon-file-text-alt
 
-    .tab-content
-      #insurance.tab-pane
+    #select-provider-wrapper.tab-content
+      #insurance.tab-pane.row
         .col-md-4
           h4.fg-dgrey Select your insurance provider
 
@@ -41,21 +42,21 @@ block content
           h3 loading...
 
 
-      #physician.tab-pane
+      #physician.tab-pane.row
         .col-md-4
           h4.fg-dgrey Select your physician
 
         .col-md-8.providers
           h3 loading...
 
-      #pharmacy.tab-pane
+      #pharmacy.tab-pane.row
         .col-md-4
           h4.fg-dgrey Select your pharmacy
 
         .col-md-8.providers
           h3 loading...
 
-      #immunization.tab-pane
+      #immunization.tab-pane.row
         .col-md-4
           h4.fg-dgrey Select your immunization registry
 

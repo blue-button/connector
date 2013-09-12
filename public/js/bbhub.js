@@ -8,4 +8,9 @@
 
 $(function() {
   $('a.next-btn').smoothScroll();
+  $('body').on('click', 'a.box-link-rapper', function(evt) {
+    $.smoothScroll({
+      scrollTarget: '#select-provider-wrapper'
+    });
+  });
 });
