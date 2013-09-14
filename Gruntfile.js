@@ -6,7 +6,7 @@ module.exports = function(grunt) {
       endpoint: "public"
     },
     stylus: {
-      bbhub: {
+      compile: {
         options: {compress: false},
         files: {
             'src/css/bbhub.css': 'src/stylus/bbhub.styl',
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
       },
       css: {
         files: ['src/stylus/*.styl'],
-        tasks: ['stylus:bbhub, concat:css'],
+        tasks: ['stylus:compile', 'concat:css'],
         options: {
           interrupt: true
         }
