@@ -148,16 +148,6 @@
         </div>
       </div><a href="#header" class="next-btn text-center fg-white"><i class="icon-chevron-up"><br></i>top</a>
     </div>
-    <script>
-      $(function() {
-        if ($.cookie('wipmodalshow') === null) {
-          $('#wip-modal').modal('show');
-          $.cookie("wipmodalshow", "false");
-        }
-      });
-      
-      
-    </script>
     <div class="section footer">
       <div class="container">
         <ul class="pull-right list-inline">
@@ -172,5 +162,15 @@
         </ul>
       </div>
     </div>
+    <script>
+      $(function() {
+        if ($.cookie('wipmodalshow') === null) {
+          $('#wip-modal').modal('show');
+          $.cookie("wipmodalshow", "false");
+        }
+      });
+      
+      
+    </script>
   </body>
 </html>
