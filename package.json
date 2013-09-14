@@ -14,6 +14,7 @@
     "grunt-contrib-jade": "~0.8.0",
     "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-stylus": "~0.6.0",
-    "canvas": "~1.1.0"
+    "canvas": "~1.1.0",
+    "grunt-contrib-concat": "~0.3.0"
   }
 }

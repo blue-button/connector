@@ -6,18 +6,17 @@ html
       meta(name='viewport', content='width=device-width, initial-scale=1')
       meta(content='text/html; charset=UTF-8', http-equiv='Content-Type')
       meta(http-equiv='X-UA-Compatible', content='IE=edge')
-      link(rel='stylesheet', href='css/bootstrap.min.css')
-      link(rel='stylesheet', href='css/font-awesome.min.css')
-      link(rel='stylesheet', href='css/bbhub.css')
-      link(rel='shortcut icon', href='favicon.ico')
 
-      script(src='js/respond.js')
-      script(src='js/jquery.min.js')
-      script(src='js/bootstrap.min.js')
-      script(src='js/jade-runtime.js')
-      script(src='js/jade-templates.js')
-      script(src='js/jquery.cookie.js')
-      script(src='js/bbhub.js')
+      link(rel='shortcut icon', href='favicon.ico')
+      link(rel='stylesheet', href='css/bbhub-combined.css')
+      //if IE 7
+        link(rel='stylesheet', href='css/font-awesome-ie7.min.css')
+
+      script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+      script.
+        window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js">\x3C/script>')
+      script(src='js/bbhub-combined.min.js')
+
   body
     block content
 
