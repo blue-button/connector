@@ -12,6 +12,9 @@
   border-radius 0
   border none
 
+.btn-large
+  fs 36px
+
 .btn-primary
   @extend .bg-dblue
   @extend .fw-strong
@@ -37,11 +40,13 @@
   mt 15px
 
 .bb-onc-header
-  @extend .bg-mblue
+  @extend .bg-dblue
   @extend .fg-white
+  position relative
   height 80px
   padding 15px
   img.bb-onc-logo
+    position relative
     width 150px
     mr 20px
     vertical-align bottom
@@ -110,13 +115,6 @@ img.little-logo
   height 36px
   mr 15px
 
-.splash-logo-container
-  overflow  hidden
-  height 150px
-  .splash-logo
-    mb -20px
-    opacity .7
-
 .bb-logotype
   mt 10px
   fs 1.5em
@@ -131,20 +129,29 @@ body
   @extend .bg-white
 
 .splash-section
-  height 700px
-  pt 10px
-  background url('../img/splash-bg.jpg') no-repeat center center fixed
-  background-size cover
-  -ms-filter "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/splash-bg.jpg', sizingMethod='scale')"
-  bgc $mgreyheight 600px
+  height 550px
+  pt 0px
+  background-color #fff
+  .splash-img-wrapper
+    height 262px
+    position relative
+    background-color #3c9ed2
+    image '../img/splash-bg-prog.jpg' 385px 262px
+    background-repeat no-repeat
+    background-position center
 
   .splash-title
-    mt 150px
+    mt 0px
     h1
-      @extend .bg-maqua
-      @extend .fg-white
-      padding 22px 0
+      @extend .bg-white
+      @extend .fg-dblue
+      padding 35px 0 15px
       margin 0 0 12px 0
+
+  .btn-primary
+    @extend .bg-dblue
+    fs 32px
+
 
 .wrap-outer-icon
   .wrap-icon
@@ -195,7 +202,9 @@ body
     .img-header
       @extend .fg-daqua
     .wrap-icon
-      background url('../img/magnify-icon.png') no-repeat
+      image '../img/magnify-icon.png' 130px 129px
+      background-repeat no-repeat
+      background-position center
       bgc $daqua
     .step-num
       line-height 59px
@@ -203,7 +212,9 @@ body
     .img-header
       @extend .fg-mblue
     .wrap-icon
-      background url('../img/bb-thin-outline.png') no-repeat
+      image '../img/bb-thin-outline.png' 130px 128px
+      background-repeat no-repeat
+      background-position center
       bgc $mblue
     .step-num
       line-height 50px
@@ -211,7 +222,9 @@ body
     .img-header
       color #6ea9d3
     .wrap-icon
-      background url('../img/arrow-right-thin-outline.png') no-repeat
+      image '../img/arrow-right-thin-outline.png' 130px 128px
+      background-repeat no-repeat
+      background-position center
       bgc #6ea9d3
     .step-num
       line-height 74px

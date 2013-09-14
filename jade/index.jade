@@ -5,6 +5,7 @@ block content
     strong Note:&nbsp;
     | This website is work in progress.&nbsp;
     a.alert-link(href='#wip-modal', data-toggle='modal') Read more...
+
   #header.bb-onc-header
     ul.top-nav.nav.nav-pills.pull-right.hidden-xs
       li: a(href='findrecords.html') Get my records
@@ -12,18 +13,17 @@ block content
 
     h6.onc-tagline.fg-white
       img.bb-onc-logo(src='img/bb-onc.png')
-      | The Office of the National Coordinator for Health Information Technology
+      //- | The Office of the National Coordinator for Health Information Technology
 
   include templates/_wip
 
   .section.splash-section
+    .splash-img-wrapper
     .splash-title.text-center
-      .splash-logo-container
-        img.splash-logo(src='img/bb-logo-vector.png')
-      h1 Empowering you with your health records
+      h1.h2 Introducing Blue Button:<br>Online access to your health records
       a.btn.btn-lg.btn-primary(href="findrecords.html") Get Started
 
-    a.next-btn.text-center.fg-white(href='#why-bb') next
+    a.next-btn.text-center.fg-dblue(href='#why-bb') next
       br
       i.icon-chevron-down
 
