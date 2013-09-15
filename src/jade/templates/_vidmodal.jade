@@ -1,0 +1,12 @@
+#vid-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', tabindex='-1', role='dialog', aria-hidden='true') &times;
+        h4.modal-title
+      .modal-body.text-center
+        .flex-video.widescreen
+          iframe#vid-frame(src='', frameborder='0', allowfullscreen)
+
+      .modal-footer
+        button.btn(type='button', data-dismiss='modal') Close

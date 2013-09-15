@@ -16,6 +16,7 @@ block content
       //- | The Office of the National Coordinator for Health Information Technology
 
   include templates/_wip
+  include templates/_vidmodal
 
   .section.splash-section
     .splash-img-wrapper
@@ -71,7 +72,7 @@ block content
       h2.h1 Stay in control of your health
       h2.fg-maqua.fw-normal &hellip;in three easy steps:
       .row
-        .col-md-4.col-sm-4.circ-col.start-find
+        .col-sm-4.circ-col.start-find
           .wrap-outer-icon
             .wrap-icon.text-center
               //- i.circ-icon.icon-medkit
@@ -79,7 +80,7 @@ block content
           h3.fg-daqua Find It
           h5.fg-dgrey.fw-normal See if your physician, hospital, pharmacy, lab, or health insurance offers Blue Button.
 
-        .col-md-4.col-sm-4.circ-col.start-download
+        .col-sm-4.circ-col.start-download
           .wrap-outer-icon
             .wrap-icon.text-center
               //- i.circ-icon.icon-user-md
@@ -87,7 +88,7 @@ block content
           h3.fg-dblue Get It
           h5.fg-dgrey.fw-normal Start compiling your health data from your various health care providers.
 
-        .col-md-4.col-sm-4.circ-col.start-use
+        .col-sm-4.circ-col.start-use
           .wrap-outer-icon
             .wrap-icon.text-center
               //- i.circ-icon.icon-check-sign
@@ -104,36 +105,41 @@ block content
   .section.testimonials
     #testimonials.container.text-center
       h2.h1.fg-white Blue Button helped us.
-      h2.fg-white.fw-normal Read and watch how Blue Button helped these individuals.
+      h2.fg-white.fw-normal Read and watch how Blue Button can help you.
 
       .row.centered-row
-        .col-md-3.col-sm-3.img-container
-          img(src='img/testimonial-placeholder-1.png')
-          //- h5.caption Jean,<br>mother of 2
+        a.vid-still(href='http://www.youtube.com/watch?v=lGGnda44Yik', data-ytid='lGGnda44Yik', target='_blank')
+          .col-sm-6.img-container
+            img(src='img/va-bb.jpg')
+            .caption-wrapper
+              h6.caption Use the VA Blue Button <br>to Access Your Personal Health Information
 
-        .col-md-3.col-sm-3.img-container
-          img(src='img/testimonial-placeholder-2.png')
-          //- h5.caption George,<br>diabetes patient
-
-        .col-md-5.col-sm-5.img-container
-          img(src='img/testimonial-placeholder-3.png')
-          //- h5.caption Randy,<br>Vietnam Veteran
-
-      .row.centered-row
-        .col-md-5.col-sm-5.img-container
-          img(src='img/testimonial-placeholder-4.png')
-          //- h5.caption Jean,<br>mother of 2
-
-        .col-md-3.col-sm-3.img-container
-          img(src='img/testimonial-placeholder-5.png')
-          //- h5.caption George,<br>diabetes patient
-
-        .col-md-3.col-sm-3.img-container
-          img(src='img/testimonial-placeholder-6.png')
-          //- h5.caption Randy,<br>Vietnam Veteran
+        a.vid-still(href='http://www.youtube.com/watch?v=UMiPW831b1o', data-ytid='UMiPW831b1o', target='_blank')
+          .col-sm-5.img-container
+            img(src='img/health-it-for-you.jpg')
+            .caption-wrapper
+              h6.caption Health IT For You <br>Giving You Access to Your Medical Records
 
       .row.centered-row
-        .col-md-11.col-sm-11.share-blurb
+        a.vid-still(href='http://www.youtube.com/watch?v=JY1l5s8ED5c', data-ytid='JY1l5s8ED5c', target='_blank')
+          .col-sm-4.img-container
+            img(src='img/right-to-access.jpg')
+            .caption-wrapper
+              h6.caption The Right to Access and Correct Your Health Information
+        a(href='blue-button-beth-schindele.pdf', target='_blank')
+          .col-sm-3.img-container
+            img(src='img/beth-schindele.jpg')
+            .caption-wrapper
+              h6.caption.fg-dgrey Beth Schindele, caregiver and advocate for her father
+        a.vid-still(href='http://www.youtube.com/watch?v=mX-QL9PoePU', data-ytid='mX-QL9PoePU', target='_blank')
+          .col-sm-4.img-container
+            img(src='img/hipaa-omnibus.jpg')
+            .caption-wrapper
+              h6.caption The HIPAA Omnibus Rule
+
+
+      .row.centered-row
+        .col-sm-11.share-blurb
           p.pull-right.text-right.fg-white Share your story on how Blue Button has helped you &rarr;
             a.share-btn.btn.btn-warning.btn-lg SHARE
 

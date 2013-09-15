@@ -194,6 +194,40 @@ body
   h5
     fs 1.1em
 
+.flex-video
+  position relative
+  pt 0
+  pb 67.5%
+  height 0
+  mb 16px
+  overflow hidden
+  iframe, object, embed
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+  &.vimeo
+    pt 0
+  &.widescreen
+    pb 57.25%
+
+// @media only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px)
+//   .flex-video
+//     pt 0
+
+.vid-still
+  position relative
+
+@media screen and (min-width: 768px) and (max-width: 991px)
+  #vid-modal
+    .modal-dialog
+      width 700px
+
+@media screen and (min-width: 992px)
+  #vid-modal
+    .modal-dialog
+      width 800px
 
 
 .section.get-started
@@ -249,18 +283,25 @@ body
   .img-container
     text-align left
     overflow hidden
-    height 200px
     padding 0 3px
     margin 4px 0
     position relative
+    height 200px
     img
       width 100%
       min-height 200px
-    .caption
+    .caption-wrapper
       position absolute
-      bottom 10px
-      left 10px
-      margin 0
+      bottom 0px
+      left 0px
+      padding 0px 3px
+      width 100%
+      .caption
+        padding 6px
+        margin 0
+        bgc rgba(255,255,255,0.7)
+        color #333
+        width 100%
 
 .section.footer
   pt 20px

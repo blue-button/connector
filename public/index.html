@@ -40,6 +40,24 @@
         </div>
       </div>
     </div>
+    <div id="vid-modal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" data-dismiss="modal" tabindex="-1" role="dialog" aria-hidden="true" class="close">&times;</button>
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body text-center">
+            <div class="flex-video widescreen">
+              <iframe id="vid-frame" src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="section splash-section">
       <div class="splash-img-wrapper"></div>
       <div class="splash-title text-center">
@@ -87,7 +105,7 @@
         <h2 class="h1">Stay in control of your health</h2>
         <h2 class="fg-maqua fw-normal">&hellip;in three easy steps:</h2>
         <div class="row">
-          <div class="col-md-4 col-sm-4 circ-col start-find">
+          <div class="col-sm-4 circ-col start-find">
             <div class="wrap-outer-icon">
               <div class="wrap-icon text-center">
                 <h4 class="step-num fg-white">1</h4>
@@ -96,7 +114,7 @@
             <h3 class="fg-daqua">Find It</h3>
             <h5 class="fg-dgrey fw-normal">See if your physician, hospital, pharmacy, lab, or health insurance offers Blue Button.</h5>
           </div>
-          <div class="col-md-4 col-sm-4 circ-col start-download">
+          <div class="col-sm-4 circ-col start-download">
             <div class="wrap-outer-icon">
               <div class="wrap-icon text-center">
                 <h4 class="step-num fg-white">2</h4>
@@ -105,7 +123,7 @@
             <h3 class="fg-dblue">Get It</h3>
             <h5 class="fg-dgrey fw-normal">Start compiling your health data from your various health care providers.</h5>
           </div>
-          <div class="col-md-4 col-sm-4 circ-col start-use">
+          <div class="col-sm-4 circ-col start-use">
             <div class="wrap-outer-icon">
               <div class="wrap-icon text-center">
                 <h4 class="step-num fg-white">3</h4>
@@ -121,25 +139,36 @@
     <div class="section testimonials">
       <div id="testimonials" class="container text-center">
         <h2 class="h1 fg-white">Blue Button helped us.</h2>
-        <h2 class="fg-white fw-normal">Read and watch how Blue Button helped these individuals.</h2>
+        <h2 class="fg-white fw-normal">Read and watch how Blue Button can help you.</h2>
+        <div class="row centered-row"><a href="http://www.youtube.com/watch?v=lGGnda44Yik" data-ytid="lGGnda44Yik" target="_blank" class="vid-still">
+            <div class="col-sm-6 img-container"><img src="img/va-bb.jpg">
+              <div class="caption-wrapper">
+                <h6 class="caption">Use the VA Blue Button <br>to Access Your Personal Health Information</h6>
+              </div>
+            </div></a><a href="http://www.youtube.com/watch?v=UMiPW831b1o" data-ytid="UMiPW831b1o" target="_blank" class="vid-still">
+            <div class="col-sm-5 img-container"><img src="img/health-it-for-you.jpg">
+              <div class="caption-wrapper">
+                <h6 class="caption">Health IT For You <br>Giving You Access to Your Medical Records</h6>
+              </div>
+            </div></a></div>
+        <div class="row centered-row"><a href="http://www.youtube.com/watch?v=JY1l5s8ED5c" data-ytid="JY1l5s8ED5c" target="_blank" class="vid-still">
+            <div class="col-sm-4 img-container"><img src="img/right-to-access.jpg">
+              <div class="caption-wrapper">
+                <h6 class="caption">The Right to Access and Correct Your Health Information</h6>
+              </div>
+            </div></a><a href="blue-button-beth-schindele.pdf" target="_blank">
+            <div class="col-sm-3 img-container"><img src="img/beth-schindele.jpg">
+              <div class="caption-wrapper">
+                <h6 class="caption fg-dgrey">Beth Schindele, caregiver and advocate for her father</h6>
+              </div>
+            </div></a><a href="http://www.youtube.com/watch?v=mX-QL9PoePU" data-ytid="mX-QL9PoePU" target="_blank" class="vid-still">
+            <div class="col-sm-4 img-container"><img src="img/hipaa-omnibus.jpg">
+              <div class="caption-wrapper">
+                <h6 class="caption">The HIPAA Omnibus Rule</h6>
+              </div>
+            </div></a></div>
         <div class="row centered-row">
-          <div class="col-md-3 col-sm-3 img-container"><img src="img/testimonial-placeholder-1.png">
-          </div>
-          <div class="col-md-3 col-sm-3 img-container"><img src="img/testimonial-placeholder-2.png">
-          </div>
-          <div class="col-md-5 col-sm-5 img-container"><img src="img/testimonial-placeholder-3.png">
-          </div>
-        </div>
-        <div class="row centered-row">
-          <div class="col-md-5 col-sm-5 img-container"><img src="img/testimonial-placeholder-4.png">
-          </div>
-          <div class="col-md-3 col-sm-3 img-container"><img src="img/testimonial-placeholder-5.png">
-          </div>
-          <div class="col-md-3 col-sm-3 img-container"><img src="img/testimonial-placeholder-6.png">
-          </div>
-        </div>
-        <div class="row centered-row">
-          <div class="col-md-11 col-sm-11 share-blurb">
+          <div class="col-sm-11 share-blurb">
             <p class="pull-right text-right fg-white">Share your story on how Blue Button has helped you &rarr;<a class="share-btn btn btn-warning btn-lg">SHARE</a></p>
           </div>
         </div>
@@ -152,9 +181,11 @@
           <li><a href="https://www.facebook.com/bluebuttonhealth" class="share-icon"><i class="icon-facebook"></i></a></li>
           <li><a href="https://twitter.com/ProjectBlueBtn" class="share-icon"><i class="icon-twitter"></i></a></li>
         </ul>
-        <p class="bb-logotype inline"><img src="img/bb-logo-vector.png" class="little-logo">Blue Button</p>
+        <p class="bb-logotype inline"><img src="img/bb-logo-vector.png" class="little-logo">
+        </p>
         <ul class="list-inline inline">
           <li><a href="#">About</a></li>
+          <li>|</li>
           <li><a href="supporters.html">Supporters</a></li>
         </ul>
       </div>
