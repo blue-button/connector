@@ -694,6 +694,11 @@ hr.fat {
 hr.white {
   border-bottom-color: #fff;
 }
+html,
+body {
+  width: auto !important;
+  overflow-x: hidden !important;
+}
 .btn {
   -webkit-border-radius: 0;
   border-radius: 0;
