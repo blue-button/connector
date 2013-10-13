@@ -538,11 +538,33 @@ h1,
 .page-title {
   font-size: 48px;
 }
+@media (max-width:767px) {
+  .fs-xxlarge,
+  h1,
+  .h1,
+  .page-title,
+h1,
+.h1,
+.page-title {
+    font-size: 32px;
+  }
+}
 .fs-xlarge,
 h2,
 .h2,
 .sub-title {
   font-size: 30px;
+}
+@media (max-width:767px) {
+  .fs-xlarge,
+  h2,
+  .h2,
+  .sub-title,
+h2,
+.h2,
+.sub-title {
+    font-size: 24px;
+  }
 }
 .fs-large,
 h3,
@@ -554,17 +576,58 @@ h4,
 .main-nav a {
   font-size: 24px;
 }
+@media (max-width:767px) {
+  .fs-large,
+  h3,
+  .h3,
+  .section-title,
+  h4,
+  .h4,
+  .title-description,
+  .main-nav a,
+h3,
+.h3,
+.section-title,
+h4,
+.h4,
+.title-description,
+.main-nav a {
+    font-size: 21px;
+  }
+}
 .fs-medium,
 h5,
 .h5,
 .photo-title {
   font-size: 21px;
 }
+@media (max-width:767px) {
+  .fs-medium,
+  h5,
+  .h5,
+  .photo-title,
+h5,
+.h5,
+.photo-title {
+    font-size: 18px;
+  }
+}
 .fs-small,
 h6,
 .h6,
 .caption-text {
   font-size: 18px;
+}
+@media (max-width:767px) {
+  .fs-small,
+  h6,
+  .h6,
+  .caption-text,
+h6,
+.h6,
+.caption-text {
+    font-size: 16px;
+  }
 }
 .fs-xsmall,
 body,
@@ -760,9 +823,22 @@ body {
   bottom: 20px;
   left: 20px;
 }
+.readable-width {
+  max-width: 620px;
+  margin-right: auto;
+  margin-left: auto;
+}
 .share-blurb {
-  margin-top: 45px;
+  margin-top: 32px;
   padding-right: 0;
+}
+.share-blurb p {
+  line-height: 2em;
+}
+@media (max-width:767px) {
+  .share-blurb {
+    margin-top: 8px;
+  }
 }
 .share-btn {
   margin-left: 10px;
@@ -776,6 +852,14 @@ body {
   text-align: center;
   line-height: 40px;
   font-size: 20px;
+}
+@media (max-width:767px) {
+  .share-icon {
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
+    font-size: 16px;
+  }
 }
 .main-nav {
   border: none;
@@ -802,6 +886,12 @@ img.little-logo {
 .section {
   padding: 80px 0 80px 0;
   position: relative;
+}
+@media (max-width:767px) {
+  .section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 }
 .splash-section {
   height: 550px;
@@ -844,7 +934,7 @@ img.little-logo {
   border: solid 5px #fff;
 }
 .circ-col {
-  padding: 40px;
+  padding: 40px 42px 10px;
 }
 .circ-icon {
   font-size: 600%;
@@ -970,6 +1060,11 @@ img.little-logo {
   background-color: #328cc8;
   color: #fff;
 }
+@media (max-width:767px) {
+  .section.testimonials {
+    padding-bottom: 80px;
+  }
+}
 .section.testimonials .img-container {
   text-align: left;
   overflow: hidden;
@@ -977,6 +1072,11 @@ img.little-logo {
   margin: 4px 0;
   position: relative;
   height: 200px;
+}
+@media (max-width:767px) {
+  .section.testimonials .img-container {
+    margin: 10px 0 18px;
+  }
 }
 .section.testimonials .img-container img {
   width: 100%;

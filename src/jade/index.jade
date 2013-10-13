@@ -1,10 +1,6 @@
 extends templates/layout
 
 block content
-  .alert.alert-warning.alert-slim
-    strong Note:&nbsp;
-    | This is a work in progress.&nbsp;
-    a.alert-link(href='#wip-modal', data-toggle='modal') Read more...
 
   #header.bb-onc-header
     ul.top-nav.nav.nav-pills.pull-right.hidden-xs
@@ -15,7 +11,6 @@ block content
       img.bb-onc-logo(src='img/bb-onc@2x.png')
       //- | The Office of the National Coordinator for Health Information Technology
 
-  include templates/_wip
   include templates/_vidmodal
 
   .section.splash-section
@@ -24,16 +19,14 @@ block content
       h1.h2 Introducing Blue Button:<br>Online access to your health records
       a.btn.btn-lg.btn-primary(href="findrecords.html") Get Started
 
-    a.next-btn.text-center.fg-dblue(href='#why-bb') next
+    a.next-btn.text-center.fg-dblue.hidden-xs(href='#why-bb') next
       br
       i.icon-chevron-down
 
   .section.why-bb
     #why-bb.container.text-center
       h2.h1.fg-white What is Blue Button?
-      h2.fw-normal.fg-white Blue Button is a way to get your
-        br
-        | health records electronically so you can&hellip;
+      h2.fw-normal.fg-white.readable-width Blue Button is a way to get your health records electronically so you can&hellip;
       .row
         .col-md-3.col-sm-6.circ-col.why-secure.text-center
           .wrap-outer-icon
@@ -63,7 +56,7 @@ block content
           h3.fg-white Share
           h5.fg-white.fw-normal with your doctor or someone else you trust, when traveling, seeking a second opinion, moving, switching insurance, or in case of emergency.
 
-    a.next-btn.text-center.fg-white(href='#get-started') next
+    a.next-btn.text-center.fg-white.hidden-xs(href='#get-started') next
       br
       i.icon-chevron-down
 
@@ -98,7 +91,7 @@ block content
 
       h2: a.btn.btn-large.btn-primary(href='findrecords.html') Get started
 
-    a.next-btn.text-center.fg-daqua(href='#testimonials') next
+    a.next-btn.text-center.fg-daqua.hidden-xs(href='#testimonials') next
       br
       i.icon-chevron-down
 
@@ -138,23 +131,14 @@ block content
               h6.caption The HIPAA Omnibus Rule
 
 
-      .row.centered-row
-        .col-sm-11.share-blurb
-          p.pull-right.text-right.fg-white Share your story on how Blue Button has helped you &rarr;
+      .row
+        .col-sm-5.col-sm-offset-7.share-blurb.text-left
+          p.fg-white.fs-medium Has Blue Button helped you?<br>Share your story &rarr;
             a.share-btn.btn.btn-warning.btn-lg SHARE
 
     a.next-btn.text-center.fg-white(href='#header')
       i.icon-chevron-up
           br
       | top
-
-append footer
-  script.
-    $(function() {
-      if ($.cookie('wipmodalshow') === null) {
-        $('#wip-modal').modal('show');
-        $.cookie("wipmodalshow", "false");
-      }
-    });
 
 
