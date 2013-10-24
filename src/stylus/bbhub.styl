@@ -82,8 +82,12 @@ html, body
 
 .readable-width
   max-width 620px
+
+.readable-width-centered
+  max-width 620px
   mr auto
   ml auto
+
 
 .share-blurb
   mt 32px
@@ -128,9 +132,13 @@ html, body
     border-radius none !important
 
 img.little-logo
-  width 36px
-  height 36px
+  width 40px
+  height 40px
   mr 15px
+
+.force-inline
+  @media screen and (min-width: 768px)
+    display inline !important
 
 .bb-logotype
   mt 10px
@@ -384,10 +392,13 @@ body
 
 
 .use-records-description, .app-disclaimer
-  margin 40px
+  margin 40px 0
 
 .app-rapper
-  height 100px
+  mb 40px
+  .app-icon
+    width 128px
+    height 128px
 
 .nav-pills>li
   >a

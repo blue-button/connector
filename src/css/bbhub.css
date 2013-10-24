@@ -412,6 +412,9 @@ body {
 }
 .readable-width {
   max-width: 620px;
+}
+.readable-width-centered {
+  max-width: 620px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -460,9 +463,14 @@ body {
 @media screen and (min-width: 768px) {
 }
 img.little-logo {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   margin-right: 15px;
+}
+@media screen and (min-width: 768px) {
+  .force-inline {
+    display: inline !important;
+  }
 }
 .bb-logotype {
   margin-top: 10px;
@@ -747,10 +755,14 @@ li.active .box-link-rapper {
 }
 .use-records-description,
 .app-disclaimer {
-  margin: 40px;
+  margin: 40px 0;
 }
 .app-rapper {
-  height: 100px;
+  margin-bottom: 40px;
+}
+.app-rapper .app-icon {
+  width: 128px;
+  height: 128px;
 }
 .nav-pills>li >a {
   -webkit-border-radius: 0;
