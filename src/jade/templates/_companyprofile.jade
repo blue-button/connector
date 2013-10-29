@@ -2,13 +2,14 @@ h1.page-title Get my health records
   .row
     .col-md-4.col-sm-12
       h2 #{name}
-      h6.fg-daqua: a(href=url, target="_blank") #{url}
-      h6.fg-mgrey
-        | #{address}
-        br
-        | #{city}, #{state} #{zip}
+      h6.fg-daqua: a(href=bburl, target="_blank") #{url}
+      //- h6.fg-mgrey
+      //-   | #{address}
+      //-   br
+      //-   | #{city}, #{state} #{zip}
 
-      h6.fg-mgrey #{phone}
+      //- h6.fg-mgrey #{phone}
+      p.fg-mgrey!= details
 
     .col-md-8.col-sm-12
       .col-md-3.col-sm-3.no-pad

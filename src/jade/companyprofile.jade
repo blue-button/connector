@@ -1,5 +1,18 @@
 extends templates/layout
 block content
   include templates/_topnav
-  .container.load-profile
-    h2 loading...
+  .container
+    - var bburl = "http://www.aetna.com/individuals-families-health-insurance/index.html"
+    - var bblogo = true
+    - var bbview = true
+    - var bbdownload = true
+    - var category = "Health Insurance"
+    - var details = "Aetna Navigator®, your secure member website, is \"control central.\" Use it to: <br> -See your fund and account balances<br> -View your claims and benefits statements online - go green!<br> -Find doctors, specialists and hospitals in your plan<br> -Compare costs of tests, procedures and medical visits<br> -Change your primary care provider<br> -If you have a pharmacy plan, you can order prescription drugs by mail<br> -If you have a dental plan, you can find dentists and dental specialists<br> -...and much more"
+    - var features = "View your claims and benefits statements online, View your Personal Health Record, Track health care costs "
+    - var name = "Aetna"
+    - var published = "yes"
+    - var status = "Data Holder, Blue Button Pledge, API, Organization"
+
+    include templates/_companyprofile
+  //- .container.load-profile
+  //-   h2 loading...
