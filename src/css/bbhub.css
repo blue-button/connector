@@ -85,6 +85,7 @@ h1,
 h2,
 .h2,
 .sub-title,
+.alt-use a,
 .splash-section .splash-title h1 {
   color: #0070bb;
 }
@@ -417,6 +418,9 @@ body {
   max-width: 620px;
   margin-right: auto;
   margin-left: auto;
+}
+.alt-use a {
+  text-decoration: underline;
 }
 .share-blurb {
   margin-top: 32px;
