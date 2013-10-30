@@ -1,3 +1,4 @@
+//- FIXME THIS IS TEMP. NEED TO DRY THIS AND PROVIE XHR OPTION WHEN PAGING.
 extends templates/layout
 block content
   include templates/_topnav
@@ -9,34 +10,36 @@ block content
       | you reach your health goals and receive recommendations to keep you at your best.
 
     - var apps = []
-    - apps.push({name: 'Microsoft HealthVault', link: 'http://healthvault.com', img: 'healthvault.png'})
-    - apps.push({name: 'Humetrix iBlueButton', link: 'http://www.ibluebutton.com/get-apps/', img: 'ibluebutton.png'})
-    - apps.push({name: 'FollowMyHealth', link: 'https://www.followmyhealth.com/', img: 'followmyhealth.png'})
-    - apps.push({name: 'Quest Gazelle', link: 'http://mygazelleapp.com/', img: 'gazelle.png'})
-    - apps.push({name: 'NoMoreClipboard', link: 'http://www.nomoreclipboard.com/', img: 'nomoreclipboard.png'})
-    - apps.push({name: 'Geanie MD', link: 'http://geniemd.com/', img: 'geaniemd.jpg'})
+    - apps.push({name: 'Hint Health', link: 'http://go.hint.com', img: 'healthvault.png', description:'coming soon'})
+    - apps.push({name: 'Ice Blue Button', link: 'http://www.humetrix.com/icebb.html', img: 'ibluebutton.png', description:'coming soon'})
+    - apps.push({name: 'LyfeChannel', link: 'http://lyfechannel.com/', img: 'followmyhealth.png', description:'coming soon'})
+    - apps.push({name: 'Better', link: 'http://www.getbetter.com/', img: 'gazelle.png', description:'coming soon'})
+    - apps.push({name: 'Prime', link: 'http://stayinyourprime.com/', img: 'nomoreclipboard.png', description:'coming soon'})
 
     ul.row.list-unstyled.text-center
       each app in apps
         li.col-sm-4.app-rapper
           a.text-center(href=app.link)
-            img.app-icon(src='img/apps/' + app.img)
-            h5.fg-maqua= app.name
+            i.app-coming-soon.icon-question-sign.fg-lgrey
+            //- img.app-icon(src='img/apps/' + app.img)
+          h5.fg-maqua= app.name
+          h6.app-description= app.description
 
     .text-center
       ul.pagination.pagination-lg
-        li.disabled
-          a(href='#')!= '&laquo;'
+        li
+          a(href='userecords.html')!= '&laquo;'
+        li
+          a(href='userecords.html') 1
+
         li.active
           a(href='#')
-            | 1
+            | 2
             span.sr-only (current)
-        li
-          a(href='userecords-2.html') 2
         li
           a(href='#') 3
         li
-          a(href='userecords-2.html')!= '&raquo;'
+          a(href='#')!= '&raquo;'
 
     .app-disclaimer
       p
