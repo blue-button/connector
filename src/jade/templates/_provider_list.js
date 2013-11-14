@@ -59,7 +59,7 @@ buf.push("<li class=\"h6 fg-white\">" + (jade.escape(null == (jade.interp = feat
   }
 }).call(this);
 
-buf.push("</ul><h6 class=\"fg-white\"><a" + (jade.attrs({ 'href':(provider.bburl), 'target':("_blank"), "class": [('get-data-btn'),('btn'),('btn-large'),('btn-info')] }, {"href":true,"target":true})) + ">Get My Data</a><span class=\"or\">or</span><a href=\"companyprofile.html\" class=\"view-profile-btn fw-strong\">View Profile</a></h6></div>");
+buf.push("</ul><h6 class=\"fg-white\"><a href=\"companyprofile.html\" class=\"get-data-btn btn btn-large btn-info\">View Aetna's Profile</a></h6></div>");
     }
 
   } else {
@@ -92,7 +92,7 @@ buf.push("<li class=\"h6 fg-white\">" + (jade.escape(null == (jade.interp = feat
   }
 }).call(this);
 
-buf.push("</ul><h6 class=\"fg-white\"><a" + (jade.attrs({ 'href':(provider.bburl), 'target':("_blank"), "class": [('get-data-btn'),('btn'),('btn-large'),('btn-info')] }, {"href":true,"target":true})) + ">Get My Data</a><span class=\"or\">or</span><a href=\"companyprofile.html\" class=\"view-profile-btn fw-strong\">View Profile</a></h6></div>");
+buf.push("</ul><h6 class=\"fg-white\"><a href=\"companyprofile.html\" class=\"get-data-btn btn btn-large btn-info\">View Aetna's Profile</a></h6></div>");
     }
 
   }

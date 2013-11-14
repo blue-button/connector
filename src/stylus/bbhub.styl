@@ -19,6 +19,9 @@ html, body
 .btn-large
   fs 36px
 
+.btn-med
+  fs 24px
+
 .btn-primary
   @extend .bg-dblue
   @extend .fw-strong
@@ -356,12 +359,13 @@ body
   min-height 400px
 
 .fake-checkbox
-  display block
+  // display block
   color $mgrey
+  mr 10px
 
   &:before
-    fs 4em
-    line-height 1.2em
+    fs 2.5em
+    line-height 1.4em
     font-family FontAwesome
     content '\f096'
 
@@ -372,6 +376,9 @@ body
 
   em
     display none
+
+// .feature-title
+//   mt -10px
 
 .box-link-rapper
   display block
@@ -444,18 +451,17 @@ body
   mt 20px
 
 .get-records-prep
-  position relative
   @extend .fg-maqua
-  border solid 1px $maqua
-  padding 0 25px 25px
-  fs 1.3em
+  position relative
   mt 15px
   mb 25px
-  img.arrow-left
+  img.arrow-up
     position absolute
-    top 150px
-    left -140px
+    top -50px
+    right -30px
     z-index 1000
+  p
+    fs 18px
 
 .go-get-em-btn
   mt 25px
@@ -465,6 +471,8 @@ body
 
 .ask-participate
   mb 40px
+  mt 40px
+  border-top solid 1px $lgrey
 
 .offerings
   @extend .bg-maqua
@@ -482,4 +490,10 @@ body
 
 .app-coming-soon
   fs 5em
+
+.privacy-last-section
+  pb 60px
+
+.profile-img
+  width 400px
 
