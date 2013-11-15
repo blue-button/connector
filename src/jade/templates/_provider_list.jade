@@ -7,7 +7,7 @@ ul.nav.nav-pills.nav-stacked.col-md-4.col-sm-6.provider-list
   .tab-pane.no-data.active
     h4 Don't see your organization or provider listed?
     h6 You may have a legal right under HIPAA to get your health records electronically.
-    a.not-listed-learn-more.btn.btn-lg.btn-primary(href='#') Learn More
+    a.not-listed-learn-more.btn.btn-lg.btn-primary(href='mailto:bluebutton@hhs.gov?subject=Request+My+Data+From...&body=Enter+the+name+of+your+provider+in+the+subject+line', target='_blank') Request
 
   - each provider in providerList
     - var safeName = provider.name.replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();

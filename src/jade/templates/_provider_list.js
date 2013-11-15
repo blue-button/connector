@@ -25,7 +25,7 @@ buf.push("<li><a" + (jade.attrs({ 'href':('#' + category + '-' + safeName), 'dat
   }
 }).call(this);
 
-buf.push("</ul><div class=\"tab-content col-md-8 col-sm-6\"><div class=\"tab-pane no-data active\"><h4>Don't see your organization or provider listed?</h4><h6>You may have a legal right under HIPAA to get your health records electronically.</h6><a href=\"#\" class=\"not-listed-learn-more btn btn-lg btn-primary\">Learn More</a></div>");
+buf.push("</ul><div class=\"tab-content col-md-8 col-sm-6\"><div class=\"tab-pane no-data active\"><h4>Don't see your organization or provider listed?</h4><h6>You may have a legal right under HIPAA to get your health records electronically.</h6><a href=\"mailto:bluebutton@hhs.gov?subject=Request+My+Data+From...&amp;body=Enter+the+name+of+your+provider+in+the+subject+line\" target=\"_blank\" class=\"not-listed-learn-more btn btn-lg btn-primary\">Request</a></div>");
 // iterate providerList
 ;(function(){
   var $$obj = providerList;
