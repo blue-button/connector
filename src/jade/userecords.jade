@@ -9,20 +9,21 @@ block content
       | you reach your health goals and receive recommendations to keep you at your best.
 
     - var apps = []
-    - apps.push({name: 'Microsoft HealthVault', link: 'http://healthvault.com', img: 'healthvault.png'})
-    - apps.push({name: 'Humetrix iBlueButton', link: 'http://www.ibluebutton.com/get-apps/', img: 'ibluebutton.png'})
-    - apps.push({name: 'FollowMyHealth', link: 'https://www.followmyhealth.com/', img: 'followmyhealth.png'})
-    - apps.push({name: 'Quest Gazelle', link: 'http://mygazelleapp.com/', img: 'gazelle.png'})
-    - apps.push({name: 'NoMoreClipboard', link: 'http://www.nomoreclipboard.com/', img: 'nomoreclipboard.png'})
-    - apps.push({name: 'Geanie MD', link: 'http://geniemd.com/', img: 'geaniemd.jpg'})
+    - apps.push({name: 'Microsoft HealthVault', link: 'http://healthvault.com', img: 'healthvault.png', description:'This is a short descrption of the app'})
+    - apps.push({name: 'Humetrix iBlueButton', link: 'http://www.ibluebutton.com/get-apps/', img: 'ibluebutton.png', description:'This is a short descrption of the app'})
+    - apps.push({name: 'FollowMyHealth', link: 'https://www.followmyhealth.com/', img: 'followmyhealth.png', description:'This is a short descrption of the app'})
+    - apps.push({name: 'Quest Gazelle', link: 'http://mygazelleapp.com/', img: 'gazelle.png', description:'This is a short descrption of the app'})
+    - apps.push({name: 'NoMoreClipboard', link: 'http://www.nomoreclipboard.com/', img: 'nomoreclipboard.png', description:'This is a short descrption of the app'})
+    - apps.push({name: 'Geanie MD', link: 'http://geniemd.com/', img: 'geaniemd.jpg', description:'This is a short descrption of the app'})
 
     ul.row.list-unstyled.text-center
       each app in apps
         li.col-sm-4.app-rapper
           a.text-center(href=app.link)
             img.app-icon(src='img/apps/' + app.img)
-            h5.fg-maqua= app.name
-
+          h5.fg-maqua= app.name
+          .app-description
+            h6= app.description
     .text-center
       ul.pagination.pagination-lg
         li.disabled

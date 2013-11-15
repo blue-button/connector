@@ -1271,6 +1271,11 @@ li.active .box-link-rapper {
 .app-coming-soon {
   font-size: 5em;
 }
+.app-description {
+  max-width: 220px;
+  margin-right: auto;
+  margin-left: auto;
+}
 .privacy-last-section {
   padding-bottom: 60px;
 }

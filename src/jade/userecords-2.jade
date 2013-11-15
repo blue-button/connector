@@ -10,20 +10,21 @@ block content
       | you reach your health goals and receive recommendations to keep you at your best.
 
     - var apps = []
-    - apps.push({name: 'Hint Health', link: 'http://go.hint.com', img: 'healthvault.png', description:'coming soon'})
-    - apps.push({name: 'Ice Blue Button', link: 'http://www.humetrix.com/icebb.html', img: 'ibluebutton.png', description:'coming soon'})
-    - apps.push({name: 'LyfeChannel', link: 'http://lyfechannel.com/', img: 'followmyhealth.png', description:'coming soon'})
-    - apps.push({name: 'Better', link: 'http://www.getbetter.com/', img: 'gazelle.png', description:'coming soon'})
-    - apps.push({name: 'Prime', link: 'http://stayinyourprime.com/', img: 'nomoreclipboard.png', description:'coming soon'})
+    - apps.push({name: 'Hint Health', link: 'http://go.hint.com', img: 'hinthealth.png', description:'This is a short descrption of the app'})
+    - apps.push({name: 'Ice Blue Button', link: 'http://www.humetrix.com/icebb.html', img: 'icebluebutton.png', description:'This is a short descrption of the app'})
+    - apps.push({name: 'LyfeChannel', link: 'http://lyfechannel.com/', img: 'lyfechannel.png', description:'This is a short descrption of the app'})
+    - apps.push({name: 'Better', link: 'http://www.getbetter.com/', img: 'getbetter.png', description:'This is a short descrption of the app'})
+    - apps.push({name: 'Prime', link: 'http://stayinyourprime.com/', img: 'prime.png', description:'This is a short descrption of the app'})
 
     ul.row.list-unstyled.text-center
       each app in apps
         li.col-sm-4.app-rapper
           a.text-center(href=app.link)
-            i.app-coming-soon.icon-question-sign.fg-lgrey
-            //- img.app-icon(src='img/apps/' + app.img)
+            //- i.app-coming-soon.icon-question-sign.fg-lgrey
+            img.app-icon(src='img/apps/' + app.img)
           h5.fg-maqua= app.name
-          h6.app-description= app.description
+          .app-description
+            h6= app.description
 
     .text-center
       ul.pagination.pagination-lg
