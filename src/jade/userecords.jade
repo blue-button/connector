@@ -8,34 +8,21 @@ block content
       | Take your records with you. Plug them into apps and other services that help
       | you reach your health goals and receive recommendations to keep you at your best.
 
-    - var apps = []
-    - apps.push({name: 'Microsoft HealthVault', link: 'http://healthvault.com', img: 'healthvault.png', description:'This is a short descrption of the app'})
-    - apps.push({name: 'Humetrix iBlueButton', link: 'http://www.ibluebutton.com/get-apps/', img: 'ibluebutton.png', description:'This is a short descrption of the app'})
-    - apps.push({name: 'FollowMyHealth', link: 'https://www.followmyhealth.com/', img: 'followmyhealth.png', description:'This is a short descrption of the app'})
-    - apps.push({name: 'Quest Gazelle', link: 'http://mygazelleapp.com/', img: 'gazelle.png', description:'This is a short descrption of the app'})
-    - apps.push({name: 'NoMoreClipboard', link: 'http://www.nomoreclipboard.com/', img: 'nomoreclipboard.png', description:'This is a short descrption of the app'})
-    - apps.push({name: 'Geanie MD', link: 'http://geniemd.com/', img: 'geaniemd.jpg', description:'This is a short descrption of the app'})
+    ul#receiver-list.row.list-unstyled.text-center
 
-    ul.row.list-unstyled.text-center
-      each app in apps
-        li.col-sm-4.app-rapper
-          a.text-center(href=app.link)
-            img.app-icon(src='img/apps/' + app.img)
-          h5.fg-maqua= app.name
-          .app-description
-            h6= app.description
+    //- FIXME make this dynamic
     .text-center
-      ul.pagination.pagination-lg
+      ul.pagination.pagination-lg.hide
         li.disabled
           a(href='#')!= '&laquo;'
-        li.active
-          a(href='#')
+        li.pagination-link.active
+          a(href='#', data-page='1')
             | 1
             span.sr-only (current)
-        li
-          a(href='userecords-2.html') 2
-        li
-          a(href='#') 3
+        li.pagination-link
+          a(href='#', data-page='2')
+            | 2
+            span.sr-only.hide (current)
         li
           a(href='userecords-2.html')!= '&raquo;'
 
@@ -46,3 +33,76 @@ block content
         | endorse any product, service or general policies of any non-Federal entity nor is
         | responsible for the content of any individual organization’s material or web pages
         | found at these links.
+
+  script.
+
+    'use strict';
+
+    var apps = [];
+    // Add ECMA262-5 Array methods if not supported natively
+    //
+    if (!('indexOf' in Array.prototype)) {
+      Array.prototype.indexOf= function(find, i /*opt*/) {
+        if (i===undefined) i= 0;
+        if (i<0) i+= this.length;
+        if (i<0) i= 0;
+        for (var n= this.length; i<n; i++)
+          if (i in this && this[i]===find)
+            return i;
+        return -1;
+      };
+    }
+    if (!('map' in Array.prototype)) {
+      Array.prototype.map= function(mapper, that /*opt*/) {
+        var other= new Array(this.length);
+        for (var i= 0, n= this.length; i<n; i++)
+          if (i in this)
+            other[i]= mapper.call(that, this[i], i, this);
+        return other;
+      };
+    }
+    if (!('filter' in Array.prototype)) {
+      Array.prototype.filter= function(filter, that /*opt*/) {
+        var other= [], v;
+        for (var i=0, n= this.length; i<n; i++)
+          if (i in this && filter.call(that, v= this[i], i, this))
+            other.push(v);
+        return other;
+      };
+    }
+
+    $.ajax({
+      url: 'https://script.google.com/macros/s/AKfycbxlbakvkyNWUFFKtWeHE_mAyVNGjV7uX3vapzbZiuOxYtpraAA/exec?format=jsonp&list=receivers',
+      success: onLoadReceiverList,
+      dataType: 'jsonp',
+      crossDomain: true
+    });
+
+    $('.pagination-link a').click(function(evt){
+      var $self = $(this);
+      var $childSpan = $self.find('sr-only');
+      var $parentLi = $(this).parent('.pagination-link');
+
+      $parentLi.addClass('active')
+      $('.pagination-link.active').removeClass('active');
+      $parentLi.addClass('active');
+      $('.pagination .sr-only').addClass('hide');
+      $childSpan.removeClass('hide');
+
+      pageReceiverList($self.data('page'));
+      evt.preventDefault();
+      return false
+    });
+
+    function onLoadReceiverList(data) {
+      apps = data.results;
+      $('.pagination').removeClass('hide');
+      pageReceiverList(1);
+    }
+
+    function pageReceiverList(pg) {
+      var offset = parseInt(pg, 10) - 1;
+      var batch = apps.slice(6*offset,6*pg);
+      var fromTemplate = receiverList_tpl({receiverList:batch});
+      $('#receiver-list').html(fromTemplate);
+    }

@@ -27,50 +27,12 @@
         Take your records with you. Plug them into apps and other services that help
         you reach your health goals and receive recommendations to keep you at your best.
       </h4>
-      <ul class="row list-unstyled text-center">
-        <li class="col-sm-4 app-rapper"><a href="http://healthvault.com" class="text-center"><img src="img/apps/healthvault.png" class="app-icon"></a>
-          <h5 class="fg-maqua">Microsoft HealthVault</h5>
-          <div class="app-description">
-            <h6>This is a short descrption of the app</h6>
-          </div>
-        </li>
-        <li class="col-sm-4 app-rapper"><a href="http://www.ibluebutton.com/get-apps/" class="text-center"><img src="img/apps/ibluebutton.png" class="app-icon"></a>
-          <h5 class="fg-maqua">Humetrix iBlueButton</h5>
-          <div class="app-description">
-            <h6>This is a short descrption of the app</h6>
-          </div>
-        </li>
-        <li class="col-sm-4 app-rapper"><a href="https://www.followmyhealth.com/" class="text-center"><img src="img/apps/followmyhealth.png" class="app-icon"></a>
-          <h5 class="fg-maqua">FollowMyHealth</h5>
-          <div class="app-description">
-            <h6>This is a short descrption of the app</h6>
-          </div>
-        </li>
-        <li class="col-sm-4 app-rapper"><a href="http://mygazelleapp.com/" class="text-center"><img src="img/apps/gazelle.png" class="app-icon"></a>
-          <h5 class="fg-maqua">Quest Gazelle</h5>
-          <div class="app-description">
-            <h6>This is a short descrption of the app</h6>
-          </div>
-        </li>
-        <li class="col-sm-4 app-rapper"><a href="http://www.nomoreclipboard.com/" class="text-center"><img src="img/apps/nomoreclipboard.png" class="app-icon"></a>
-          <h5 class="fg-maqua">NoMoreClipboard</h5>
-          <div class="app-description">
-            <h6>This is a short descrption of the app</h6>
-          </div>
-        </li>
-        <li class="col-sm-4 app-rapper"><a href="http://geniemd.com/" class="text-center"><img src="img/apps/geaniemd.jpg" class="app-icon"></a>
-          <h5 class="fg-maqua">Geanie MD</h5>
-          <div class="app-description">
-            <h6>This is a short descrption of the app</h6>
-          </div>
-        </li>
-      </ul>
+      <ul id="receiver-list" class="row list-unstyled text-center"></ul>
       <div class="text-center">
-        <ul class="pagination pagination-lg">
+        <ul class="pagination pagination-lg hide">
           <li class="disabled"><a href="#">&laquo;</a></li>
-          <li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
-          <li><a href="userecords-2.html">2</a></li>
-          <li><a href="#">3</a></li>
+          <li class="pagination-link active"><a href="#" data-page="1">1<span class="sr-only">(current)</span></a></li>
+          <li class="pagination-link"><a href="#" data-page="2">2<span class="sr-only hide">(current)</span></a></li>
           <li><a href="userecords-2.html">&raquo;</a></li>
         </ul>
       </div>
@@ -84,6 +46,78 @@
         </p>
       </div>
     </div>
+    <script>
+      'use strict';
+      
+      var apps = [];
+      // Add ECMA262-5 Array methods if not supported natively
+      //
+      if (!('indexOf' in Array.prototype)) {
+        Array.prototype.indexOf= function(find, i /*opt*/) {
+          if (i===undefined) i= 0;
+          if (i<0) i+= this.length;
+          if (i<0) i= 0;
+          for (var n= this.length; i<n; i++)
+            if (i in this && this[i]===find)
+              return i;
+          return -1;
+        };
+      }
+      if (!('map' in Array.prototype)) {
+        Array.prototype.map= function(mapper, that /*opt*/) {
+          var other= new Array(this.length);
+          for (var i= 0, n= this.length; i<n; i++)
+            if (i in this)
+              other[i]= mapper.call(that, this[i], i, this);
+          return other;
+        };
+      }
+      if (!('filter' in Array.prototype)) {
+        Array.prototype.filter= function(filter, that /*opt*/) {
+          var other= [], v;
+          for (var i=0, n= this.length; i<n; i++)
+            if (i in this && filter.call(that, v= this[i], i, this))
+              other.push(v);
+          return other;
+        };
+      }
+      
+      $.ajax({
+        url: 'https://script.google.com/macros/s/AKfycbxlbakvkyNWUFFKtWeHE_mAyVNGjV7uX3vapzbZiuOxYtpraAA/exec?format=jsonp&list=receivers',
+        success: onLoadReceiverList,
+        dataType: 'jsonp',
+        crossDomain: true
+      });
+      
+      $('.pagination-link a').click(function(evt){
+        var $self = $(this);
+        var $childSpan = $self.find('sr-only');
+        var $parentLi = $(this).parent('.pagination-link');
+        
+        $parentLi.addClass('active')
+        $('.pagination-link.active').removeClass('active');
+        $parentLi.addClass('active');
+        $('.pagination .sr-only').addClass('hide');
+        $childSpan.removeClass('hide');
+        
+        pageReceiverList($self.data('page'));
+        evt.preventDefault();
+        return false
+      });
+      
+      function onLoadReceiverList(data) {
+        apps = data.results;
+        $('.pagination').removeClass('hide');
+        pageReceiverList(1);
+      }
+      
+      function pageReceiverList(pg) {
+        var offset = parseInt(pg, 10) - 1;
+        var batch = apps.slice(6*offset,6*pg);
+        var fromTemplate = receiverList_tpl({receiverList:batch});
+        $('#receiver-list').html(fromTemplate);
+      }
+    </script>
     <div class="section footer">
       <div class="container">
         <ul class="list-inline inline">
