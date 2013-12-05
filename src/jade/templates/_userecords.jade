@@ -1,0 +1,47 @@
+extends layout
+block content
+  include ../includes/_topnav
+  .container
+    h1.page-title Use my health records
+
+    h4.use-records-description.readable-width.fg-dgrey
+      | Take your records with you. Plug them into apps and other services that help
+      | you reach your health goals and receive recommendations to keep you at your best.
+
+    ul#receiver-list.row.list-unstyled.text-center
+      include _receiver_list
+
+    .text-center
+      ul.pagination.pagination-lg
+        if page > 1
+          li
+            a(href='userecords-' + (page-1) + '.html')!= '&laquo;'
+        else
+          li.disabled
+            a(href='#')!= '&laquo;'
+
+        - for (var i = 1; i < totalPages+1; i++)
+          if i === page
+            li.pagination-link.active
+              a(href='userecords-' + i + '.html', data-page=i)
+                | #{i}
+                span.sr-only (current)
+          else
+            li.pagination-link
+              a(href='userecords-' + i + '.html', data-page=i)
+                | #{i}
+
+        if page < totalPages
+          li
+            a(href='userecords-' + (page+1) + '.html')!= '&raquo;'
+        else
+          li.disabled
+            a(href='#')!= '&raquo;'
+
+    .app-disclaimer
+      p
+        | The apps and services above contains just a fraction of the resources available
+        | today. The Department of Health and Human Services or the U.S. Government does not
+        | endorse any product, service or general policies of any non-Federal entity nor is
+        | responsible for the content of any individual organization’s material or web pages
+        | found at these links.

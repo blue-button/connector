@@ -1,4 +1,5 @@
-h1.page-title #{name}
+- var additionalFeatures = true //temp hack
+h2.page-title #{name}
 
 .row
 
@@ -11,40 +12,56 @@ h1.page-title #{name}
           span.fake-checkbox.pull-left.checked: em provider
         - else
           span.fake-checkbox.pull-left: em provider doesn't
-        h6.feature-title Uses Blue Button Logo on website
+        h6.feature-title Displays Blue Button Logo on website
       li.clearfix
         - if (bbview)
-          span.fake-checkbox.pull-left.checked: em provider
+          span.fake-checkbox.pull-left.checked: em you can
         - else
-          span.fake-checkbox.pull-left: em provider doesn't
-        h6.feature-title Enables you to view your records online
+          span.fake-checkbox.pull-left: em you can't
+        h6.feature-title View your records online
       li.clearfix
         - if (bbdownload)
-          span.fake-checkbox.pull-left.checked: em provider
+          span.fake-checkbox.pull-left.checked: em you can
         - else
-          span.fake-checkbox.pull-left: em provider doesn't
-        h6.feature-title Enables you to download your records
+          span.fake-checkbox.pull-left: em you can't
+        h6.feature-title Download your records
       li.clearfix
         - if (bbsend)
-          span.fake-checkbox.pull-left.checked: em provider
+          span.fake-checkbox.pull-left.checked: em you can
         - else
-          span.fake-checkbox.pull-left: em provider doesn't
-        h6.feature-title Enables you to securely send your records to your preferred application
+          span.fake-checkbox.pull-left: em you can't
+        h6.feature-title Securely send your records to your preferred application
       li.clearfix
         - if (bbupdate)
-          span.fake-checkbox.pull-left.checked: em provider
+          span.fake-checkbox.pull-left.checked: em you can
         - else
-          span.fake-checkbox.pull-left: em provider doesn't
-        h6.feature-title Enables you to automatically receive updates to your health records
+          span.fake-checkbox.pull-left: em you can't
+        h6.feature-title Automatically receive updates to your health records
+      li.clearfix
+        - if (additionalFeatures)
+          span.fake-checkbox.pull-left.checked: em there are
+        - else
+          span.fake-checkbox.pull-left: em there are no
+        h6.feature-title Additional features
+        - if (additionalFeatures)
+          ul.additional-features-list
+            li Pay your bills online
+            li Manage your family's health
+            li Act some other cool way
+            li Be excited about our features
+    hr.visible-xs
 
-  .col-sm-4.col-sm-pull-7.col-xs-12.pt-5
-    a(href=bburl, target='_blank')
+  .col-sm-5.col-sm-pull-7.col-xs-12.pt-5
+    a.get-records-wrapper-link(href=bburl, target='_blank')
       //- p.fg-daqua #{bburl}
       p.fg-daqua www.aetna.com
       img.img-thumbnail.img-responsive.profile-img(src='img/' + profileimg)
-    .get-records-prep.hidden-xs
-      p.fg-maqua After clicking here, you will be redirected to your organization's website where you can get your health records.
-      img.arrow-up(src='img/arrow-up.png')
+      .get-records-prep
+        h6.go-get-em-header.fg-maqua.text-center get your health records
+        img.arrow-up.hidden-xs(src='img/arrow-up.png')
+
+    h6.provider-about-header.fs-xsmall.fw-strong.fg-dgrey About Aetna
+    p.provider-description We've been there for you in the past, providing health care for more than 60 years. We're here for you today and in days to come, with our ongoing commitment to quality. And we share this tradition and commitment by reaching out to your community, and promoting health and wellness for all.
 
 .row
   .col-sm-7.col-sm-push-5.col-xs-12

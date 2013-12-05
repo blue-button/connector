@@ -390,6 +390,10 @@ body {
 .top-nav {
   margin-top: 15px;
 }
+.minimal-back-nav {
+  border-bottom: solid 2px #0070bb;
+  padding: 0 15px;
+}
 .bb-onc-header {
   position: relative;
   height: 80px;
@@ -830,26 +834,45 @@ li.active .box-link-rapper {
 .not-listed-learn-more {
   margin-top: 20px;
 }
+.get-records-wrapper-link {
+  padding-right: 40px;
+  display: inline-block;
+}
+.provider-about-header,
+.provider-description {
+  padding-right: 20px;
+}
+ul.additional-features-list {
+  margin-top: 10px;
+  margin-left: 18px;
+}
+ul.additional-features-list li {
+  line-height: 1.5em;
+}
 .get-records-prep {
   position: relative;
-  margin-top: 15px;
+  margin-top: 0;
   margin-bottom: 25px;
 }
 .get-records-prep img.arrow-up {
   position: absolute;
-  top: -50px;
-  right: -30px;
+  top: -60px;
+  right: -25px;
   z-index: 1000;
 }
 .get-records-prep p {
   font-size: 18px;
 }
-.go-get-em-btn {
-  margin-top: 25px;
+.go-get-em-header {
+  font-size: 18px;
+  text-transform: uppercase;
+  padding-top: 0;
+  padding-bottom: 0;
 }
-.go-get-em-btn img {
-  width: 120px;
-  height: 120px;
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .go-get-em-header {
+    font-size: 14px;
+  }
 }
 .ask-participate {
   margin-bottom: 40px;

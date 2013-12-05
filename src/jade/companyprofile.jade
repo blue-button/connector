@@ -1,6 +1,7 @@
 extends templates/layout
 block content
-  include templates/_topnav
+  .minimal-back-nav
+    h6.fs-xsmall.fg-dblue: a(href='findrecords.html') &larr; back to provider list
   .container
     - var bburl = "http://www.aetna.com/individuals-families-health-insurance/index.html"
     - var bblogo = true

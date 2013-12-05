@@ -46,6 +46,10 @@ html, body
 .top-nav
   mt 15px
 
+.minimal-back-nav
+  border-bottom solid 2px $dblue
+  padding 0 15px
+
 .bb-onc-header
   @extend .bg-dblue
   @extend .fg-white
@@ -401,7 +405,6 @@ body
   .start-here
     mt 2px
 
-
 .use-records-description, .app-disclaimer
   margin 40px 0
 
@@ -450,24 +453,43 @@ body
 .not-listed-learn-more
   mt 20px
 
+.get-records-wrapper-link
+  pr 40px
+  display inline-block
+
+.provider-about-header, .provider-description
+  pr 20px
+
+ul.additional-features-list
+  mt 10px
+  ml 18px
+
+  li
+    line-height 1.5em
+
 .get-records-prep
   @extend .fg-maqua
   position relative
-  mt 15px
+  mt 0
   mb 25px
   img.arrow-up
     position absolute
-    top -50px
-    right -30px
+    top -60px
+    right -25px
     z-index 1000
   p
     fs 18px
 
-.go-get-em-btn
-  mt 25px
-  img
-    width 120px
-    height 120px
+.go-get-em-header
+  fs 18px
+  text-transform uppercase
+  pt 0
+  pb 0
+
+  @media screen and (min-width: 768px) and (max-width: 991px)
+    fs 14px
+
+
 
 .ask-participate
   mb 40px
