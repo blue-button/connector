@@ -1,71 +1,81 @@
-- var additionalFeatures = true //temp hack
-h2.page-title #{name}
+extends layout
+block mainstyle
+  link(rel='stylesheet', href='../css/bbhub-combined.css')
+block mainscript
+  script(src='../js/bbhub-combined.min.js')
 
-.row
+block content
+  .minimal-back-nav
+    h6.fs-xsmall.fg-dblue: a(href='../findrecords.html') &larr; back to provider list
+  .container
+    - var additionalFeatures = true //temp hack
+      h2.page-title #{organization}
 
-  .col-sm-7.col-sm-push-5.col-xs-12
-    h3.sub-title Features
+      .row
 
-    ul.feature-list.list-unstyled
-      li.clearfix
-        - if (bblogo)
-          span.fake-checkbox.pull-left.checked: em provider
-        - else
-          span.fake-checkbox.pull-left: em provider doesn't
-        h6.feature-title Displays Blue Button Logo on website
-      li.clearfix
-        - if (bbview)
-          span.fake-checkbox.pull-left.checked: em you can
-        - else
-          span.fake-checkbox.pull-left: em you can't
-        h6.feature-title View your records online
-      li.clearfix
-        - if (bbdownload)
-          span.fake-checkbox.pull-left.checked: em you can
-        - else
-          span.fake-checkbox.pull-left: em you can't
-        h6.feature-title Download your records
-      li.clearfix
-        - if (bbsend)
-          span.fake-checkbox.pull-left.checked: em you can
-        - else
-          span.fake-checkbox.pull-left: em you can't
-        h6.feature-title Securely send your records to your preferred application
-      li.clearfix
-        - if (bbupdate)
-          span.fake-checkbox.pull-left.checked: em you can
-        - else
-          span.fake-checkbox.pull-left: em you can't
-        h6.feature-title Automatically receive updates to your health records
-      li.clearfix
-        - if (additionalFeatures)
-          span.fake-checkbox.pull-left.checked: em there are
-        - else
-          span.fake-checkbox.pull-left: em there are no
-        h6.feature-title Additional features
-        - if (additionalFeatures)
-          ul.additional-features-list
-            li Pay your bills online
-            li Manage your family's health
-            li Act some other cool way
-            li Be excited about our features
-    hr.visible-xs
+        .col-sm-7.col-sm-push-5.col-xs-12
+          h3.sub-title Features
 
-  .col-sm-5.col-sm-pull-7.col-xs-12.pt-5
-    a.get-records-wrapper-link(href=bburl, target='_blank')
-      //- p.fg-daqua #{bburl}
-      p.fg-daqua www.aetna.com
-      img.img-thumbnail.img-responsive.profile-img(src='img/' + profileimg)
-      .get-records-prep
-        h6.go-get-em-header.fg-maqua.text-center get your health records
-        img.arrow-up.hidden-xs(src='img/arrow-up.png')
+          ul.feature-list.list-unstyled
+            li.clearfix
+              - if (bblogo)
+                span.fake-checkbox.pull-left.checked: em provider
+              - else
+                span.fake-checkbox.pull-left: em provider doesn't
+              h6.feature-title Displays Blue Button Logo on website
+            li.clearfix
+              - if (bbview)
+                span.fake-checkbox.pull-left.checked: em you can
+              - else
+                span.fake-checkbox.pull-left: em you can't
+              h6.feature-title View your records online
+            li.clearfix
+              - if (bbdownload)
+                span.fake-checkbox.pull-left.checked: em you can
+              - else
+                span.fake-checkbox.pull-left: em you can't
+              h6.feature-title Download your records
+            li.clearfix
+              - if (bbtransmit)
+                span.fake-checkbox.pull-left.checked: em you can
+              - else
+                span.fake-checkbox.pull-left: em you can't
+              h6.feature-title Securely send your records to your preferred application
+            li.clearfix
+              - if (bbautomatic)
+                span.fake-checkbox.pull-left.checked: em you can
+              - else
+                span.fake-checkbox.pull-left: em you can't
+              h6.feature-title Automatically receive updates to your health records
+            li.clearfix
+              - if (additionalFeatures)
+                span.fake-checkbox.pull-left.checked: em there are
+              - else
+                span.fake-checkbox.pull-left: em there are no
+              h6.feature-title Additional features
+              - if (additionalFeatures)
+                ul.additional-features-list
+                  li Pay your bills online
+                  li Manage your family's health
+                  li Act some other cool way
+                  li Be excited about our features
+          hr.visible-xs
 
-    h6.provider-about-header.fs-xsmall.fw-strong.fg-dgrey About Aetna
-    p.provider-description We've been there for you in the past, providing health care for more than 60 years. We're here for you today and in days to come, with our ongoing commitment to quality. And we share this tradition and commitment by reaching out to your community, and promoting health and wellness for all.
+        .col-sm-5.col-sm-pull-7.col-xs-12.pt-5
+          a.get-records-wrapper-link(href=bburl, target='_blank')
+            //- p.fg-daqua #{bburl}
+            p.fg-daqua login to #{organization}
+            img.img-thumbnail.img-responsive.profile-img(src='../img/providers/' + id + '.png')
+            .get-records-prep
+              h6.go-get-em-header.fg-maqua.text-center get your health records
+              img.arrow-up.hidden-xs(src='../img/arrow-up.png')
 
-.row
-  .col-sm-7.col-sm-push-5.col-xs-12
-    .ask-participate
-      h5.fw-normal.fg-dblue Ask your organization to participate!
-      h6.fg-mgrey If some features are not available, ask them why and request it now.
-      a.btn.btn-primary(href='#') Request
+          h6.provider-about-header.fs-xsmall.fw-strong.fg-dgrey About #{organization}
+          p.provider-description= description
+
+      .row
+        .col-sm-7.col-sm-push-5.col-xs-12
+          .ask-participate
+            h5.fw-normal.fg-dblue Ask #{organization} to participate!
+            h6.fg-mgrey If some features are not available, ask them why and request it now.
+            a.btn.btn-primary(href='#') Request

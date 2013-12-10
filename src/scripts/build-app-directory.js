@@ -26,6 +26,7 @@ rekwest({url:'https://script.google.com/macros/s/AKfycbxlbakvkyNWUFFKtWeHE_mAyVN
       console.log("userecords-" + (j+1) + " built.");
     }
 
+    console.log("DONE.");
     process.exit(0);
 
   } else {

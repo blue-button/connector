@@ -8,12 +8,14 @@ html
       meta(http-equiv='X-UA-Compatible', content='IE=edge')
 
       link(rel='shortcut icon', href='favicon.ico')
-      link(rel='stylesheet', href='css/bbhub-combined.css')
+      block mainstyle
+        link(rel='stylesheet', href='css/bbhub-combined.css')
 
       script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
       script.
         window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js">\x3C/script>')
-      script(src='js/bbhub-combined.min.js')
+      block mainscript
+        script(src='js/bbhub-combined.min.js')
 
   body
     block content

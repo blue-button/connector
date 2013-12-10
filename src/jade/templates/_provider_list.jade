@@ -1,26 +1,9 @@
-ul.nav.nav-pills.nav-stacked.col-md-4.col-sm-6.provider-list
+ul.nav.nav-pills.nav-stacked.col-sm-12.col-md-6.provider-list
   - each provider in providerList
-    - var safeName = provider.name.replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
-    li: a(href='#' + category + '-' + safeName, data-toggle='tab') #{provider.name}
+    li: a(href='providers/' + provider.id + '.html') #{provider.organization}
 
-.tab-content.col-md-8.col-sm-6
+.tab-content.col-sm-12.col-md-6
   .tab-pane.no-data.active
     h4 Don't see your organization or provider listed?
     h6 You may have a legal right under HIPAA to get your health records electronically.
     a.not-listed-learn-more.btn.btn-lg.btn-primary(href='mailto:bluebutton@hhs.gov?subject=Request+My+Data+From...&body=Enter+the+name+of+your+provider+in+the+subject+line', target='_blank') Request
-
-  - each provider in providerList
-    - var safeName = provider.name.replace(/[^a-zA-Z0-9]+/g, '').toLowerCase();
-    div(id=category + '-' + safeName).tab-pane.offerings
-      h3.fg-white What you can expect
-      hr.white.hairline
-      ul.dashed
-        - var featureList = provider.features.split(/[\n,?]+/);
-        - each feature in featureList
-          li.h6.fg-white= feature.replace(/^\s+|\s+$/g, '')
-
-      h6.fg-white
-        a.get-data-btn.btn.btn-large.btn-info(href='companyprofile.html') View Aetna's Profile
-        //- span.or or
-        //- a.view-profile-btn.fw-strong(href='companyprofile.html') View Profile
-

@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         options: {
           separator: ';'
         },
-        src: ['src/js/respond.js', 'src/js/bootstrap.min.js', 'src/js/jade-runtime.js', 'src/js/jade-templates.js', 'src/js/jquery.cookie.js', 'src/js/bbhub.js'],
+        src: ['src/js/respond.js', 'src/js/bootstrap.min.js', 'src/js/jquery.cookie.js', 'src/js/bbhub.js'],
         dest: '<%=meta.endpoint%>/js/bbhub-combined.js',
         nonull: true
       },
