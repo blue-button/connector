@@ -50,19 +50,25 @@
             <h4 class="fg-dgrey">Select your insurance provider</h4>
           </div>
           <div class="col-md-9 col-sm-9 providers">
-<ul class="nav nav-pills nav-stacked col-sm-12 col-md-6 provider-list">
-  <li><a href="providers/advantage-health-solutions--inc-.html">ADVANTAGE Health Solutions, Inc.</a></li>
-  <li><a href="providers/aetna.html">Aetna</a></li>
-  <li><a href="providers/blue-cross-blue-shield-of-florida.html">Blue Cross Blue Shield of Florida</a></li>
-  <li><a href="providers/blue-cross-blue-shield-of-louisiana.html">Blue Cross Blue Shield of Louisiana</a></li>
-  <li><a href="providers/humana.html">Humana</a></li>
-  <li><a href="providers/regence-bluecross-blueshield.html">Regence BlueCross BlueShield</a></li>
-  <li><a href="providers/uha--university-health-alliance-.html">UHA (University Health Alliance)</a></li>
-  <li><a href="providers/united-health-military-west.html">United Health Military West</a></li>
-  <li><a href="providers/unitedhealth.html">UnitedHealth</a></li>
-</ul>
+<div id="insurance-list-wrapper" class="col-sm-12 col-md-6">
+  <label class="fs-medium">Search by name</label>
+  <div class="input-group provider-search-wrapper">
+    <input type="search" placeholder="e.g. Blue Cross" class="form-control input-lg provider-search"/><span class="input-group-addon"><i class="fa fa-search"></i></span>
+  </div>
+  <ul id="insurance-list" class="nav nav-pills nav-stacked provider-list hide list">
+    <li><a href="providers/advantage-health-solutions--inc-.html" class="provider-link">ADVANTAGE Health Solutions, Inc.</a></li>
+    <li><a href="providers/aetna.html" class="provider-link">Aetna</a></li>
+    <li><a href="providers/blue-cross-blue-shield-of-florida.html" class="provider-link">Blue Cross Blue Shield of Florida</a></li>
+    <li><a href="providers/blue-cross-blue-shield-of-louisiana.html" class="provider-link">Blue Cross Blue Shield of Louisiana</a></li>
+    <li><a href="providers/humana.html" class="provider-link">Humana</a></li>
+    <li><a href="providers/regence-bluecross-blueshield.html" class="provider-link">Regence BlueCross BlueShield</a></li>
+    <li><a href="providers/uha--university-health-alliance-.html" class="provider-link">UHA (University Health Alliance)</a></li>
+    <li><a href="providers/united-health-military-west.html" class="provider-link">United Health Military West</a></li>
+    <li><a href="providers/unitedhealth.html" class="provider-link">UnitedHealth</a></li>
+  </ul>
+</div>
 <div class="tab-content col-sm-12 col-md-6">
-  <div class="tab-pane no-data active">
+  <div class="no-data hide">
     <h4>Don't see your organization or provider listed?</h4>
     <h6>You may have a legal right under HIPAA to get your health records electronically.</h6><a href="mailto:bluebutton@hhs.gov?subject=Request+My+Data+From...&amp;body=Enter+the+name+of+your+provider+in+the+subject+line" target="_blank" class="not-listed-learn-more btn btn-lg btn-primary">Request</a>
   </div>
@@ -73,44 +79,50 @@
             <h4 class="fg-dgrey">Select your physician</h4>
           </div>
           <div class="col-md-9 col-sm-9 providers">
-<ul class="nav nav-pills nav-stacked col-sm-12 col-md-6 provider-list">
-  <li><a href="providers/lucile-packard-children-s-hospital.html"> Lucile Packard Children’s Hospital</a></li>
-  <li><a href="providers/aspirus-grand-view.html">Aspirus Grand View</a></li>
-  <li><a href="providers/beth-israel-deaconess-medical-center.html">Beth Israel Deaconess Medical Center</a></li>
-  <li><a href="providers/bon-secours-health-system.html">Bon Secours Health System</a></li>
-  <li><a href="providers/carolinas-healthcare--chs-.html">Carolinas Healthcare (CHS)</a></li>
-  <li><a href="providers/catholic-health-initiatives.html">Catholic Health Initiatives</a></li>
-  <li><a href="providers/chico-heart-medical-clinic.html">Chico Heart Medical Clinic</a></li>
-  <li><a href="providers/children-s-hospital-boston.html">Children's Hospital Boston</a></li>
-  <li><a href="providers/children-s-hospital-colorado.html">Children's Hospital Colorado</a></li>
-  <li><a href="providers/cleveland-clinic.html">Cleveland Clinic</a></li>
-  <li><a href="providers/duininck-chiropractic--pa.html">Duininck Chiropractic, PA</a></li>
-  <li><a href="providers/geisinger-health-system.html">Geisinger Health System</a></li>
-  <li><a href="providers/greenville-health-system.html">Greenville Health System</a></li>
-  <li><a href="providers/harbor-health-services--inc-.html">Harbor Health Services, Inc.</a></li>
-  <li><a href="providers/hudson-river-healthcare.html">Hudson River HealthCare</a></li>
-  <li><a href="providers/john-muir-health.html">John Muir Health</a></li>
-  <li><a href="providers/kaiser-permanente.html">Kaiser Permanente</a></li>
-  <li><a href="providers/lance-michael-kurata--md.html">Lance Michael Kurata, MD</a></li>
-  <li><a href="providers/madigan-healthcare-system.html">Madigan Healthcare System</a></li>
-  <li><a href="providers/mayo-clinic.html">Mayo Clinic</a></li>
-  <li><a href="providers/medical-specialists-of-the-palm-beaches--inc---mspb-.html">Medical Specialists of the Palm Beaches, Inc. (MSPB)</a></li>
-  <li><a href="providers/medstar-health.html">Medstar Health</a></li>
-  <li><a href="providers/moffitt-cancer-center.html">Moffitt Cancer Center</a></li>
-  <li><a href="providers/new-york-hospital-queen-s.html">New York Hospital Queen's</a></li>
-  <li><a href="providers/one-medical-group.html">One Medical Group</a></li>
-  <li><a href="providers/palo-alto-medical-foundation.html">Palo Alto Medical Foundation</a></li>
-  <li><a href="providers/partners-healthcare.html">Partners Healthcare</a></li>
-  <li><a href="providers/petaluma-health-center.html">Petaluma Health Center</a></li>
-  <li><a href="providers/river-falls-medical-clinics.html">River Falls Medical Clinics</a></li>
-  <li><a href="providers/st--mark-s-family-medicine.html">St. Mark's Family Medicine</a></li>
-  <li><a href="providers/texas-health-resources.html">Texas Health Resources</a></li>
-  <li><a href="providers/the-institute-for-family-health.html">The Institute for Family Health</a></li>
-  <li><a href="providers/trihealth.html">Trihealth</a></li>
-  <li><a href="providers/us-department-of-veterans-affairs.html">US Department of Veterans Affairs</a></li>
-</ul>
+<div id="physician-list-wrapper" class="col-sm-12 col-md-6">
+  <label class="fs-medium">Search by name</label>
+  <div class="input-group provider-search-wrapper">
+    <input type="search" placeholder="e.g. Blue Cross" class="form-control input-lg provider-search"/><span class="input-group-addon"><i class="fa fa-search"></i></span>
+  </div>
+  <ul id="physician-list" class="nav nav-pills nav-stacked provider-list hide list">
+    <li><a href="providers/lucile-packard-children-s-hospital.html" class="provider-link"> Lucile Packard Children’s Hospital</a></li>
+    <li><a href="providers/aspirus-grand-view.html" class="provider-link">Aspirus Grand View</a></li>
+    <li><a href="providers/beth-israel-deaconess-medical-center.html" class="provider-link">Beth Israel Deaconess Medical Center</a></li>
+    <li><a href="providers/bon-secours-health-system.html" class="provider-link">Bon Secours Health System</a></li>
+    <li><a href="providers/carolinas-healthcare--chs-.html" class="provider-link">Carolinas Healthcare (CHS)</a></li>
+    <li><a href="providers/catholic-health-initiatives.html" class="provider-link">Catholic Health Initiatives</a></li>
+    <li><a href="providers/chico-heart-medical-clinic.html" class="provider-link">Chico Heart Medical Clinic</a></li>
+    <li><a href="providers/children-s-hospital-boston.html" class="provider-link">Children's Hospital Boston</a></li>
+    <li><a href="providers/children-s-hospital-colorado.html" class="provider-link">Children's Hospital Colorado</a></li>
+    <li><a href="providers/cleveland-clinic.html" class="provider-link">Cleveland Clinic</a></li>
+    <li><a href="providers/duininck-chiropractic--pa.html" class="provider-link">Duininck Chiropractic, PA</a></li>
+    <li><a href="providers/geisinger-health-system.html" class="provider-link">Geisinger Health System</a></li>
+    <li><a href="providers/greenville-health-system.html" class="provider-link">Greenville Health System</a></li>
+    <li><a href="providers/harbor-health-services--inc-.html" class="provider-link">Harbor Health Services, Inc.</a></li>
+    <li><a href="providers/hudson-river-healthcare.html" class="provider-link">Hudson River HealthCare</a></li>
+    <li><a href="providers/john-muir-health.html" class="provider-link">John Muir Health</a></li>
+    <li><a href="providers/kaiser-permanente.html" class="provider-link">Kaiser Permanente</a></li>
+    <li><a href="providers/lance-michael-kurata--md.html" class="provider-link">Lance Michael Kurata, MD</a></li>
+    <li><a href="providers/madigan-healthcare-system.html" class="provider-link">Madigan Healthcare System</a></li>
+    <li><a href="providers/mayo-clinic.html" class="provider-link">Mayo Clinic</a></li>
+    <li><a href="providers/medical-specialists-of-the-palm-beaches--inc---mspb-.html" class="provider-link">Medical Specialists of the Palm Beaches, Inc. (MSPB)</a></li>
+    <li><a href="providers/medstar-health.html" class="provider-link">Medstar Health</a></li>
+    <li><a href="providers/moffitt-cancer-center.html" class="provider-link">Moffitt Cancer Center</a></li>
+    <li><a href="providers/new-york-hospital-queen-s.html" class="provider-link">New York Hospital Queen's</a></li>
+    <li><a href="providers/one-medical-group.html" class="provider-link">One Medical Group</a></li>
+    <li><a href="providers/palo-alto-medical-foundation.html" class="provider-link">Palo Alto Medical Foundation</a></li>
+    <li><a href="providers/partners-healthcare.html" class="provider-link">Partners Healthcare</a></li>
+    <li><a href="providers/petaluma-health-center.html" class="provider-link">Petaluma Health Center</a></li>
+    <li><a href="providers/river-falls-medical-clinics.html" class="provider-link">River Falls Medical Clinics</a></li>
+    <li><a href="providers/st--mark-s-family-medicine.html" class="provider-link">St. Mark's Family Medicine</a></li>
+    <li><a href="providers/texas-health-resources.html" class="provider-link">Texas Health Resources</a></li>
+    <li><a href="providers/the-institute-for-family-health.html" class="provider-link">The Institute for Family Health</a></li>
+    <li><a href="providers/trihealth.html" class="provider-link">Trihealth</a></li>
+    <li><a href="providers/us-department-of-veterans-affairs.html" class="provider-link">US Department of Veterans Affairs</a></li>
+  </ul>
+</div>
 <div class="tab-content col-sm-12 col-md-6">
-  <div class="tab-pane no-data active">
+  <div class="no-data hide">
     <h4>Don't see your organization or provider listed?</h4>
     <h6>You may have a legal right under HIPAA to get your health records electronically.</h6><a href="mailto:bluebutton@hhs.gov?subject=Request+My+Data+From...&amp;body=Enter+the+name+of+your+provider+in+the+subject+line" target="_blank" class="not-listed-learn-more btn btn-lg btn-primary">Request</a>
   </div>
@@ -121,16 +133,22 @@
             <h4 class="fg-dgrey">Select your pharmacy</h4>
           </div>
           <div class="col-md-9 col-sm-9 providers">
-<ul class="nav nav-pills nav-stacked col-sm-12 col-md-6 provider-list">
-  <li><a href="providers/hdl.html">HDL</a></li>
-  <li><a href="providers/labcorp.html">LabCorp</a></li>
-  <li><a href="providers/nms-labs.html">NMS Labs</a></li>
-  <li><a href="providers/quest.html">Quest</a></li>
-  <li><a href="providers/unitedhealth_biolq.html">UnitedHealth_BiolQ</a></li>
-  <li><a href="providers/walgreens.html">Walgreens</a></li>
-</ul>
+<div id="pharmacy-list-wrapper" class="col-sm-12 col-md-6">
+  <label class="fs-medium">Search by name</label>
+  <div class="input-group provider-search-wrapper">
+    <input type="search" placeholder="e.g. Blue Cross" class="form-control input-lg provider-search"/><span class="input-group-addon"><i class="fa fa-search"></i></span>
+  </div>
+  <ul id="pharmacy-list" class="nav nav-pills nav-stacked provider-list hide list">
+    <li><a href="providers/hdl.html" class="provider-link">HDL</a></li>
+    <li><a href="providers/labcorp.html" class="provider-link">LabCorp</a></li>
+    <li><a href="providers/nms-labs.html" class="provider-link">NMS Labs</a></li>
+    <li><a href="providers/quest.html" class="provider-link">Quest</a></li>
+    <li><a href="providers/unitedhealth_biolq.html" class="provider-link">UnitedHealth_BiolQ</a></li>
+    <li><a href="providers/walgreens.html" class="provider-link">Walgreens</a></li>
+  </ul>
+</div>
 <div class="tab-content col-sm-12 col-md-6">
-  <div class="tab-pane no-data active">
+  <div class="no-data hide">
     <h4>Don't see your organization or provider listed?</h4>
     <h6>You may have a legal right under HIPAA to get your health records electronically.</h6><a href="mailto:bluebutton@hhs.gov?subject=Request+My+Data+From...&amp;body=Enter+the+name+of+your+provider+in+the+subject+line" target="_blank" class="not-listed-learn-more btn btn-lg btn-primary">Request</a>
   </div>
@@ -141,19 +159,25 @@
             <h4 class="fg-dgrey">Select your immunization registry</h4>
           </div>
           <div class="col-md-9 col-sm-12">
-<ul class="nav nav-pills nav-stacked col-sm-12 col-md-6 provider-list">
-  <li><a href="providers/alaska.html">Alaska</a></li>
-  <li><a href="providers/arizona.html">Arizona</a></li>
-  <li><a href="providers/indiana.html">Indiana</a></li>
-  <li><a href="providers/louisianna.html">Louisianna </a></li>
-  <li><a href="providers/mississippi.html">Mississippi</a></li>
-  <li><a href="providers/new-york.html">New York </a></li>
-  <li><a href="providers/oregon.html">Oregon </a></li>
-  <li><a href="providers/washington.html">Washington</a></li>
-  <li><a href="providers/west-virginia.html">West Virginia </a></li>
-</ul>
+<div id="immunization-list-wrapper" class="col-sm-12 col-md-6">
+  <label class="fs-medium">Search by name</label>
+  <div class="input-group provider-search-wrapper">
+    <input type="search" placeholder="e.g. Blue Cross" class="form-control input-lg provider-search"/><span class="input-group-addon"><i class="fa fa-search"></i></span>
+  </div>
+  <ul id="immunization-list" class="nav nav-pills nav-stacked provider-list hide list">
+    <li><a href="providers/alaska.html" class="provider-link">Alaska</a></li>
+    <li><a href="providers/arizona.html" class="provider-link">Arizona</a></li>
+    <li><a href="providers/indiana.html" class="provider-link">Indiana</a></li>
+    <li><a href="providers/louisianna.html" class="provider-link">Louisianna </a></li>
+    <li><a href="providers/mississippi.html" class="provider-link">Mississippi</a></li>
+    <li><a href="providers/new-york.html" class="provider-link">New York </a></li>
+    <li><a href="providers/oregon.html" class="provider-link">Oregon </a></li>
+    <li><a href="providers/washington.html" class="provider-link">Washington</a></li>
+    <li><a href="providers/west-virginia.html" class="provider-link">West Virginia </a></li>
+  </ul>
+</div>
 <div class="tab-content col-sm-12 col-md-6">
-  <div class="tab-pane no-data active">
+  <div class="no-data hide">
     <h4>Don't see your organization or provider listed?</h4>
     <h6>You may have a legal right under HIPAA to get your health records electronically.</h6><a href="mailto:bluebutton@hhs.gov?subject=Request+My+Data+From...&amp;body=Enter+the+name+of+your+provider+in+the+subject+line" target="_blank" class="not-listed-learn-more btn btn-lg btn-primary">Request</a>
   </div>

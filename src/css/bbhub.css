@@ -797,17 +797,20 @@ li.active .box-link-rapper {
 }
 .provider-list {
   padding-right: 0px;
-  height: 290px;
-  overflow-y: auto;
 }
 .provider-list.nav-pills>li>a {
   font-size: 16px;
   line-height: 1.3em;
 }
+.provider-search-wrapper {
+  margin-bottom: 10px;
+  margin-top: 6px;
+  border-top: solid 1px #e4e6ea;
+}
 .no-data {
-  margin-top: -10px;
-  padding-left: 10px;
-  border-left: solid 1px #959dac;
+  margin-top: 0px;
+  padding-left: 20px;
+  border-left: solid 1px #e4e6ea;
 }
 .view-profile-btn {
   text-decoration: underline;

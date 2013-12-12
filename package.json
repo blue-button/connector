@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "make test"
+    "build-providers": "node src/scripts/build-provider-directory",
+    "build-receivers": "node src/scripts/build-app-directory"
   },
   "author": "",
   "license": "BSD",
