@@ -804,6 +804,9 @@ li.active .box-link-rapper {
 .nav-pills>li.active>a:focus {
   background-color: #25c2dc;
 }
+#select-provider-wrapper {
+  min-height: 250px;
+}
 .providers {
   padding: 20px 10px;
   border-top: solid 5px #25c2dc;
@@ -814,6 +817,9 @@ li.active .box-link-rapper {
 .provider-list.nav-pills>li>a {
   font-size: 16px;
   line-height: 1.3em;
+}
+.provider-list.nav-pills>li>a.highlight {
+  background-color: #ccc;
 }
 .provider-search-wrapper {
   margin-bottom: 10px;

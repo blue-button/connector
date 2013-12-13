@@ -140,6 +140,19 @@ if(!jQuery)throw new Error("Bootstrap requires jQuery");+function(a){"use strict
 
   var providerList = new List('insurance-list-wrapper', listOptions);
 
+  $('body').on('input keychange', '.provider-search', function(evt) {
+
+    var $toToggle = $(this).parents('.providers').find('.no-data, .provider-list');
+    if ($('.provider-search').val() !== '') {
+      $toToggle.removeClass('hide');
+      // $.smoothScroll({
+      //   scrollTarget: this,
+      // });
+    } else {
+      $toToggle.addClass('hide');
+    }
+  });
+
   $('body').on('click', 'a.vid-still', function(evt) {
     var $self = $(this);
     var $vidmodal = $('#vid-modal');
