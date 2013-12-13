@@ -780,6 +780,26 @@ li.active .box-link-rapper {
 .box-link-rapper .start-here {
   margin-top: 2px;
 }
+@media screen and (max-width: 767px) {
+  .box-link-rapper {
+    text-align: left;
+    padding-left: 65px;
+    margin-bottom: 10px;
+    height: auto;
+  }
+  .box-link-rapper i {
+    font-size: 36px;
+    position: absolute;
+    left: 30px;
+    top: 0px;
+  }
+  .box-link-rapper i.insurance-icon {
+    top: 20px;
+  }
+  .box-link-rapper h3 {
+    margin-top: 10px;
+  }
+}
 .use-records-description,
 .app-disclaimer {
   margin: 40px 0;
@@ -829,7 +849,15 @@ li.active .box-link-rapper {
 .no-data {
   margin-top: 0px;
   padding-left: 20px;
-  border-left: solid 1px #e4e6ea;
+  border-left: solid 1px #959dac;
+}
+@media screen and (max-width: 767px) {
+  .no-data {
+    border-left: none;
+    padding-left: 0px;
+    margin-top: 15px;
+    border-top: solid 1px #474b5a;
+  }
 }
 .view-profile-btn {
   text-decoration: underline;
@@ -841,7 +869,7 @@ li.active .box-link-rapper {
   padding: 0 15px;
 }
 .not-listed-learn-more {
-  margin-top: 20px;
+  text-decoration: underline;
 }
 .get-records-wrapper-link {
   padding-right: 40px;

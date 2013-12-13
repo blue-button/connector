@@ -405,6 +405,22 @@ body
   .start-here
     mt 2px
 
+  @media screen and (max-width: 767px)
+    text-align left
+    pl 65px
+    mb 10px
+    height auto
+    i
+      fs 36px
+      position absolute
+      left 30px
+      top 0px
+      &.insurance-icon
+        top 20px
+    h3
+      mt 10px
+
+
 .use-records-description, .app-disclaimer
   margin 40px 0
 
@@ -449,8 +465,12 @@ body
 .no-data
   mt 0px
   pl 20px
-  border-left solid 1px $lgrey
-
+  border-left solid 1px $mgrey
+  @media screen and (max-width: 767px)
+    border-left none
+    pl 0px
+    mt 15px
+    border-top solid 1px $dgrey
 
 .view-profile-btn
   text-decoration underline
@@ -462,7 +482,7 @@ body
   padding 0 15px
 
 .not-listed-learn-more
-  mt 20px
+  text-decoration underline
 
 .get-records-wrapper-link
   pr 40px
