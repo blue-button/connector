@@ -83,6 +83,15 @@ function buildList(category, providerList) {
     toRender.pretty = true;
     var provHtml = jade.renderFile('src/jade/templates/_companyprofile.jade', toRender);
     fs.writeFileSync('public/providers/' + prov.id + '.html', provHtml);
+    //check to see if image exists
+    if (category != 'immunization') {
+      try {
+        var hasImg = fs.openSync('public/img/providers/'+prov.id+'.png', 'r');
+      } catch (e) {
+        console.warn("IMAGE NOT FOUND FOR " + prov.id);
+      }
+    }
+
   });
 
   return listhtml;
