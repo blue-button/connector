@@ -8,26 +8,43 @@ $(function() {
     });
   });
 
-  var listOptions = {
+
+  var insuranceListOptions = {
     listClass: 'provider-list',
     searchClass: 'provider-search',
     valueNames: [ 'provider-link']
   };
 
-  var providerList = new List('insurance-list-wrapper', listOptions);
+  // var insuranceListOptions = {
+  //   listClass: 'provider-list',
+  //   searchClass: 'provider-search',
+  //   valueNames: [ 'provider-link']
+  // };
 
-  $('body').on('input keychange', '.provider-search', function(evt) {
+  // var insuranceListOptions = {
+  //   listClass: 'provider-list',
+  //   searchClass: 'provider-search',
+  //   valueNames: [ 'provider-link']
+  // };
 
-    var $toToggle = $(this).parents('.providers').find('.no-data, .provider-list');
-    if ($('.provider-search').val() !== '') {
-      $toToggle.removeClass('hide');
-      // $.smoothScroll({
-      //   scrollTarget: this,
-      // });
-    } else {
-      $toToggle.addClass('hide');
-    }
-  });
+  // var insuranceListOptions = {
+  //   listClass: 'provider-list',
+  //   searchClass: 'provider-search',
+  //   valueNames: [ 'provider-link']
+  // };
+
+
+  var insuranceList = new List('insurance-list-wrapper', insuranceListOptions);
+
+  // $('body').on('input keychange', '.provider-search', function(evt) {
+
+    // var $toToggle = $(this).parents('.providers').find('.no-data, .provider-list');
+    // if ($('.provider-search').val() !== '') {
+    //   $toToggle.removeClass('hide');
+    // } else {
+    //   $toToggle.addClass('hide');
+    // }
+  // });
 
   $('body').on('click', 'a.vid-still', function(evt) {
     var $self = $(this);

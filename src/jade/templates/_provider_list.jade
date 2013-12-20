@@ -5,12 +5,12 @@ div(id=category+'-list-wrapper').col-sm-12.col-md-6
     span.input-group-addon
       i.fa.fa-search
 
-  ul(id=category+'-list').nav.nav-pills.nav-stacked.provider-list.hide.list
+  ul(id=category+'-list').nav.nav-pills.nav-stacked.provider-list.list
     each provider in providerList
       li: a.provider-link(href='providers/' + provider.id + '.html') #{provider.organization}
 
 .tab-content.col-sm-12.col-md-6
-  .no-data.hide
+  .no-data
     h4 Don't see your organization or provider listed?
     h6 You may have a legal right under HIPAA to get your health records electronically.
     a.not-listed-learn-more.fw-strong.fs-medium(href='mailto:bluebutton@hhs.gov?subject=Request%20For%20My%20Health%20Data&body=Enter%20the%20name%20of%20your%20provider%20in%20the%20subject%20line', target='_blank') Request by email
