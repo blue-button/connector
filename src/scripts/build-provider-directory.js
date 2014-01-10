@@ -33,10 +33,10 @@ rekwest({url:'https://script.google.com/macros/s/AKfycbyLS-LV_9Vi0KrCLPzQjdPCQVH
 
     var html = {};
 
-    html.insurance = buildList('insurance' , insPros);
-    html.physician = buildList('physician' , phyPros);
-    html.pharmacy = buildList('pharmacy' , phaPros);
-    html.immunization = buildList('immunization' , immPros);
+    html.insurance = buildList('insurance' , insPros, 'Blue Cross');
+    html.physician = buildList('physician' , phyPros, 'Anderson');
+    html.pharmacy = buildList('pharmacy' , phaPros, 'Walgreens');
+    html.immunization = buildList('immunization' , immPros, 'Arizona');
 
     var finalHtml = jade.renderFile('src/jade/templates/_findrecords.jade', {pretty: true, html:html});
     fs.writeFileSync('public/findrecords.html', finalHtml);
@@ -51,9 +51,10 @@ rekwest({url:'https://script.google.com/macros/s/AKfycbyLS-LV_9Vi0KrCLPzQjdPCQVH
   }
 });
 
-function buildList(category, providerList) {
+function buildList(category, providerList, searchPlaceholder) {
+  searchPlaceholder = searchPlaceholder || '';
   console.log("building " + category + " list for " + providerList.length + " providers...");
-  var listhtml = jade.renderFile('src/jade/templates/_provider_list.jade', {pretty: true, providerList:providerList, category:category});
+  var listhtml = jade.renderFile('src/jade/templates/_provider_list.jade', {pretty: true, providerList:providerList, category:category, searchPlaceholder:searchPlaceholder});
 
   providerList.forEach(function(prov, ind) {
     var toRender = {};

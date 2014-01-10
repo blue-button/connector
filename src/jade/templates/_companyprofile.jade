@@ -81,4 +81,8 @@ block content
             h5.fw-normal.fg-dblue Ask #{organization} to participate!
             h6.fg-mgrey If some features are not available, ask them why and request it now.
             - var urlsafeorganization = encodeURIComponent(organization);
-            a.btn.btn-primary(href='mailto:bluebutton@hhs.gov?subject=Features%20Request%20for%20' + urlsafeorganization + '&body=What%20features%20do%20you%20want%20to%20see:', target='_blank') Request
+            a.btn.btn-primary(href='mailto:bluebutton@hhs.gov?subject=Features%20Request%20for%20' + urlsafeorganization + '&body=What%20features%20do%20you%20want%20to%20see:', target='_blank') Request features
+            hr.hairline
+            h5.fw-normal.fg-dblue Is this profile inaccurate?
+            h6.fg-mgrey You can help by suggesting corrections and updates.
+            a.btn.btn-primary(href='/update-provider.html?id=#{id}') Suggest corrections

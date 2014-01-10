@@ -8,36 +8,22 @@ $(function() {
     });
   });
 
-
-  var insuranceListOptions = {
+  //create the filter-able lists
+  //TODO consider optimizing this to work with single instance
+  var listOptions = {
     listClass: 'provider-list',
     searchClass: 'provider-search',
     valueNames: [ 'provider-link']
   };
 
-  // var insuranceListOptions = {
-  //   listClass: 'provider-list',
-  //   searchClass: 'provider-search',
-  //   valueNames: [ 'provider-link']
-  // };
-
-  // var insuranceListOptions = {
-  //   listClass: 'provider-list',
-  //   searchClass: 'provider-search',
-  //   valueNames: [ 'provider-link']
-  // };
-
-  // var insuranceListOptions = {
-  //   listClass: 'provider-list',
-  //   searchClass: 'provider-search',
-  //   valueNames: [ 'provider-link']
-  // };
+  var insuranceList = new List('insurance-list-wrapper', listOptions);
+  var physicianList = new List('physician-list-wrapper', listOptions);
+  var pharmacyList = new List('pharmacy-list-wrapper', listOptions);
+  var immunizationList = new List('immunization-list-wrapper', listOptions);
 
 
-  var insuranceList = new List('insurance-list-wrapper', insuranceListOptions);
-
+  // HIDE/SHOW the list depending on if there is something in the search/filter input
   // $('body').on('input keychange', '.provider-search', function(evt) {
-
     // var $toToggle = $(this).parents('.providers').find('.no-data, .provider-list');
     // if ($('.provider-search').val() !== '') {
     //   $toToggle.removeClass('hide');
