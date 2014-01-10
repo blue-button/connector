@@ -833,6 +833,8 @@ li.active .box-link-rapper {
 }
 .provider-list {
   padding-right: 0px;
+  height: 290px;
+  overflow-y: auto;
 }
 .provider-list.nav-pills>li>a {
   font-size: 16px;
