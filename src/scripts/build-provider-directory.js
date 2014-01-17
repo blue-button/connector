@@ -3,7 +3,7 @@ var jade = require('jade');
 var fs = require('fs');
 
 console.log("Calling 'API'...");
-rekwest({url:'https://script.google.com/macros/s/AKfycbyLS-LV_9Vi0KrCLPzQjdPCQVHvPh326ibr_VTkMTmOKlOiYIjM/exec', json:true}, function(err, response, data) {
+rekwest({url:'https://script.google.com/macros/s/AKfycbyLS-LV_9Vi0KrCLPzQjdPCQVHvPh326ibr_VTkMTmOKlOiYIjM/exec?detailed=1', json:true}, function(err, response, data) {
   if (data && data.results) {
     console.log("Building list for " + data.results.length + " providers...");
 
