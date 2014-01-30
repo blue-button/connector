@@ -74,15 +74,19 @@ block content
 
           h6.provider-about-header.fs-xsmall.fw-strong.fg-dgrey About #{organization}
           p.provider-description= description
+          if (people_reached)
+            p.provider-description.people-reached
+              strong= people_reached.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              |  people can access their data from #{organization}.
 
       .row
         .col-sm-7.col-sm-push-5.col-xs-12
           .ask-participate
             h5.fw-normal.fg-dblue Ask #{organization} to participate!
-            h6.fg-mgrey If some features are not available, ask them why and request it now.
             - var urlsafeorganization = encodeURIComponent(organization);
-            a.btn.btn-primary(href='mailto:bluebutton@hhs.gov?subject=Features%20Request%20for%20' + urlsafeorganization + '&body=What%20features%20do%20you%20want%20to%20see:', target='_blank') Request features
+            h6.fg-mgrey If some features are not available, ask them why and <a class='fg-maqua fw-strong' href='mailto:bluebutton@hhs.gov?subject=Features%20Request%20for%20' + urlsafeorganization + '&body=What%20features%20do%20you%20want%20to%20see:', target='_blank'>request it now</a>.
+            //- a.btn.btn-primary(href='mailto:bluebutton@hhs.gov?subject=Features%20Request%20for%20' + urlsafeorganization + '&body=What%20features%20do%20you%20want%20to%20see:', target='_blank') Request features
             hr.hairline
             h5.fw-normal.fg-dblue Is this profile inaccurate?
-            h6.fg-mgrey You can help by suggesting corrections and updates.
-            a.btn.btn-primary(href='/update-provider.html?id=#{id}') Suggest corrections
+            h6.fg-mgrey This profile was last updated on #{updated}. You can help by <a class='fg-maqua fw-strong' href='/update-provider.html?id=#{id}'>suggesting corrections and updates</a>.
+            //- a.btn.btn-primary(href='/update-provider.html?id=#{id}') Suggest corrections

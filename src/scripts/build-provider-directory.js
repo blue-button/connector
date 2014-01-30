@@ -1,9 +1,10 @@
 var rekwest = require('request');
 var jade = require('jade');
 var fs = require('fs');
+var moment = require('moment');
 
 console.log("Calling 'API'...");
-rekwest({url:'https://script.google.com/macros/s/AKfycbyLS-LV_9Vi0KrCLPzQjdPCQVHvPh326ibr_VTkMTmOKlOiYIjM/exec?detailed=1', json:true}, function(err, response, data) {
+rekwest({url:'http://api.bluebuttonconnector.org/providers?detailed=1', json:true}, function(err, response, data) {
   if (data && data.results) {
     console.log("Building list for " + data.results.length + " providers...");
 
@@ -54,13 +55,15 @@ rekwest({url:'https://script.google.com/macros/s/AKfycbyLS-LV_9Vi0KrCLPzQjdPCQVH
 function buildList(category, providerList, searchPlaceholder) {
   searchPlaceholder = searchPlaceholder || '';
   console.log("building " + category + " list for " + providerList.length + " providers...");
-  var listhtml = jade.renderFile('src/jade/templates/_provider_list.jade', {pretty: true, providerList:providerList, category:category, searchPlaceholder:searchPlaceholder});
+  var listhtml = jade.renderFile('src/jade/templates/_provider-list.jade', {pretty: true, providerList:providerList, category:category, searchPlaceholder:searchPlaceholder});
 
   providerList.forEach(function(prov, ind) {
     var toRender = {};
     toRender.organization = prov.organization;
     toRender.id = prov.id;
     toRender.category = prov.category;
+    toRender.updated = moment(prov.updated).format("MMM Do, YYYY");
+    toRender.people_reached = prov.people_reached;
 
     toRender.bburl = prov.url.login || '#';
 
@@ -82,7 +85,7 @@ function buildList(category, providerList, searchPlaceholder) {
     toRender.description = prov.description || '';
 
     toRender.pretty = true;
-    var provHtml = jade.renderFile('src/jade/templates/_companyprofile.jade', toRender);
+    var provHtml = jade.renderFile('src/jade/templates/_provider-profile.jade', toRender);
     fs.writeFileSync('public/providers/' + prov.id + '.html', provHtml);
     //check to see if image exists
     if (category != 'immunization') {
