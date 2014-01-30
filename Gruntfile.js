@@ -43,7 +43,7 @@ module.exports = function(grunt) {
     uglify: {
       options: {
         // the banner is inserted at the top of the output
-        banner: '/*! Blue Button Hub <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+        // banner: '/*! Blue Button Hub <%= grunt.template.today("dd-mm-yyyy") %> */\n'
       },
       dist: {
         files: {
@@ -73,6 +73,19 @@ module.exports = function(grunt) {
           interrupt: true
         }
       }
+    },
+    clean: {
+      options: {
+        'force': true
+      },
+      dist: ["../gh-pages/*"]
+    },
+    copy: {
+      main: {
+        files: [
+          {expand: true, cwd: 'public/', src: ['**'], dest: '../gh-pages'},
+        ]
+      }
     }
   });
 
@@ -81,7 +94,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
+  grunt.registerTask('dist', ['jade', 'stylus', 'concat', 'uglify', 'clean', 'copy']);
   grunt.registerTask('default', ['jade', 'stylus', 'concat', 'uglify']);
 
 };
