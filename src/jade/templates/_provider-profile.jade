@@ -10,83 +10,115 @@ block content
   .minimal-back-nav
     h6.fs-xsmall.fg-dblue: a(href='../findrecords.html') &larr; back to provider list
   .container
-    - var additionalFeatures = true //temp hack
-      h2.page-title #{organization}
+    h2.page-title #{organization}
 
-      .row
+    .row
 
-        .col-sm-7.col-sm-push-5.col-xs-12
-          h3.sub-title Features
+      .col-sm-7.col-sm-push-5.col-xs-12
+        h3.sub-title Features
 
-          ul.feature-list.list-unstyled
-            li.clearfix
-              - if (bblogo)
-                span.fake-checkbox.pull-left.checked: em provider
-              - else
-                span.fake-checkbox.pull-left: em provider doesn't
-              h6.feature-title Displays Blue Button Logo on website
-            li.clearfix
-              - if (bbview)
-                span.fake-checkbox.pull-left.checked: em you can
-              - else
-                span.fake-checkbox.pull-left: em you can't
-              h6.feature-title View your records online
-            li.clearfix
-              - if (bbdownload)
-                span.fake-checkbox.pull-left.checked: em you can
-              - else
-                span.fake-checkbox.pull-left: em you can't
-              h6.feature-title Download your records
-            li.clearfix
-              - if (bbtransmit)
-                span.fake-checkbox.pull-left.checked: em you can
-              - else
-                span.fake-checkbox.pull-left: em you can't
-              h6.feature-title Securely send your records to your preferred application
-            li.clearfix
-              - if (bbautomatic)
-                span.fake-checkbox.pull-left.checked: em you can
-              - else
-                span.fake-checkbox.pull-left: em you can't
-              h6.feature-title Automatically receive updates to your health records
-            li.clearfix
-              - if (additionalFeatures)
-                span.fake-checkbox.pull-left.checked: em there are
-              - else
-                span.fake-checkbox.pull-left: em there are no
-              h6.feature-title Additional features
-              - if (additionalFeatures)
-                ul.additional-features-list
-                  li Pay your bills online
-                  li Manage your family's health
-                  li Act some other cool way
-                  li Be excited about our features
-          hr.visible-xs
+        ul.feature-list.list-unstyled
+          li.clearfix
+            - if (bb_logo)
+              span.fake-checkbox.pull-left.checked: em provider
+            - else
+              span.fake-checkbox.pull-left: em provider doesn't
+            h6.feature-title Displays Blue Button Logo on website
+          li.clearfix
+            - if (bbview)
+              span.fake-checkbox.pull-left.checked: em you can
+            - else
+              span.fake-checkbox.pull-left: em you can't
+            h6.feature-title View your records online
+          li.clearfix
+            - if (bbdownload)
+              span.fake-checkbox.pull-left.checked: em you can
+            - else
+              span.fake-checkbox.pull-left: em you can't
+            h6.feature-title Download your records
+          li.clearfix
+            - if (bbtransmit)
+              span.fake-checkbox.pull-left.checked: em you can
+            - else
+              span.fake-checkbox.pull-left: em you can't
+            h6.feature-title Securely send your records to your preferred application
+          li.clearfix
+            - if (bbautomatic)
+              span.fake-checkbox.pull-left.checked: em you can
+            - else
+              span.fake-checkbox.pull-left: em you can't
+            h6.feature-title Automatically receive updates to your health records
+          li.clearfix
+            - if (additionalFeatures)
+              span.fake-checkbox.pull-left.checked: em there are
+            - else
+              span.fake-checkbox.pull-left: em there are no
+            h6.feature-title Additional features
+            - if (additionalFeatures)
+              - console.log("features for " + organization);
+              - console.log(services);
+              ul.additional-features-list
+                - if (services.bill_pay)
+                  li Pay bills online
+                - if (services.caregiving)
+                  li Manage health records for family members
+                - if (services.dispute)
+                  li Dispute a claim
+                - if (services.family_prescriptions)
+                  li Manage your family's prescription
+                - if (services.new_prescriptions)
+                  li Request a new prescription
+                - if (services.transfer_prescription)
+                  li Transfer your prescription
+                - if (services.refills)
+                  li Refill your prescription
+                - if (services.automatic_refills)
+                  li Set up automatic refills
+                - if (services.test_request)
+                  li Request a test
+                - if (services.reminders)
+                  li Get test reminders
+                - if (services.scheduling)
+                  li Schedule or manage appointments
+                - if (services.search)
+                  - if (/insurance/i.test(category))
+                    li Search for a doctor in network
+                  - else if (/lab/i.test(category))
+                    li Find a lab location
+                - if (services.secure_messaging)
+                  li Send and receive secure messages
+                - if (services.self_entered)
+                  li Track and record self-reported health data
+                - if (services.shop)
+                  li Shop for a plan
 
-        .col-sm-5.col-sm-pull-7.col-xs-12.pt-5
-          a.get-records-wrapper-link(href=bburl, target='_blank')
-            //- p.fg-daqua #{bburl}
-            p.fg-daqua login to #{organization}
-            img.img-thumbnail.img-responsive.profile-img(src='../img/providers/' + id + '.png')
-            .get-records-prep
-              h6.go-get-em-header.fg-maqua.text-center get your health records
-              img.arrow-up.hidden-xs(src='../img/arrow-up.png')
 
-          h6.provider-about-header.fs-xsmall.fw-strong.fg-dgrey About #{organization}
-          p.provider-description= description
-          if (people_reached)
-            p.provider-description.people-reached
-              strong= people_reached.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-              |  people can access their data from #{organization}.
+        hr.visible-xs
 
-      .row
-        .col-sm-7.col-sm-push-5.col-xs-12
-          .ask-participate
-            h5.fw-normal.fg-dblue Ask #{organization} to participate!
-            - var urlsafeorganization = encodeURIComponent(organization);
-            h6.fg-mgrey If some features are not available, ask them why and <a class='fg-maqua fw-strong' href='mailto:bluebutton@hhs.gov?subject=Features%20Request%20for%20' + urlsafeorganization + '&body=What%20features%20do%20you%20want%20to%20see:', target='_blank'>request it now</a>.
-            //- a.btn.btn-primary(href='mailto:bluebutton@hhs.gov?subject=Features%20Request%20for%20' + urlsafeorganization + '&body=What%20features%20do%20you%20want%20to%20see:', target='_blank') Request features
-            hr.hairline
-            h5.fw-normal.fg-dblue Is this profile inaccurate?
-            h6.fg-mgrey This profile was last updated on #{updated}. You can help by <a class='fg-maqua fw-strong' href='/update-provider.html?id=#{id}'>suggesting corrections and updates</a>.
-            //- a.btn.btn-primary(href='/update-provider.html?id=#{id}') Suggest corrections
+      .col-sm-5.col-sm-pull-7.col-xs-12.pt-5
+        a.get-records-wrapper-link(href=(url.login || '#'), target='_blank')
+          //- p.fg-daqua #{bburl}
+          p.fg-daqua login to #{organization}
+          img.img-thumbnail.img-responsive.profile-img(src='../img/providers/' + id + '.png')
+          .get-records-prep
+            h6.go-get-em-header.fg-maqua.text-center get your health records
+            img.arrow-up.hidden-xs(src='../img/arrow-up.png')
+
+        h6.provider-about-header.fs-xsmall.fw-strong.fg-dgrey About #{organization}
+        p.provider-description= description
+        if (people_reached)
+          p.provider-description.people-reached
+            strong= people_reached.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            |  people can access their data from #{organization}.
+
+    .row
+      .col-sm-7.col-sm-push-5.col-xs-12
+        .ask-participate
+          h5.fw-normal.fg-dblue Ask #{organization} to participate!
+          - var urlsafeorganization = encodeURIComponent(organization);
+          h6.fg-mgrey If some features are not available, ask them why and <a class='fg-maqua fw-strong' href='mailto:bluebutton@hhs.gov?subject=Features%20Request%20for%20' + urlsafeorganization + '&body=What%20features%20do%20you%20want%20to%20see:', target='_blank'>request it now</a>.
+          //- a.btn.btn-primary(href='mailto:bluebutton@hhs.gov?subject=Features%20Request%20for%20' + urlsafeorganization + '&body=What%20features%20do%20you%20want%20to%20see:', target='_blank') Request features
+          hr.hairline
+          h5.fw-normal.fg-dblue Is this profile inaccurate?
+          h6.fg-mgrey This profile was last updated on #{updated}. You can help by <a class='fg-maqua fw-strong' href='/update-provider.html?id=#{id}'>suggesting corrections and updates</a>.
+          //- a.btn.btn-primary(href='/update-provider.html?id=#{id}') Suggest corrections

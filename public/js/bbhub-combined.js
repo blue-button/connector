@@ -132,6 +132,21 @@ if(!jQuery)throw new Error("Bootstrap requires jQuery");+function(a){"use strict
     });
   });
 
+  var fontFile = navigator.userAgent.match(/msie|trident/i) ? '/fonts/fontawesome-webfont.eot'
+    : '/fonts/FontAwesome.otf';
+  var cssFile = '/css/font-awesome.min.css'
+  $.ajax({
+    url: fontFile,
+    beforeSend: function ( xhr ) {
+    xhr.overrideMimeType("application/octet-stream");
+    }
+  }).done(function (data) {
+    $("<link />")
+      .appendTo(jQuery('head'))
+      .attr({type : 'text/css', rel : 'stylesheet'})
+      .attr('href', cssFile);
+  });
+
   //create the filter-able lists
   //TODO consider optimizing this to work with single instance
   var listOptions = {

@@ -58,17 +58,9 @@ function buildList(category, providerList, searchPlaceholder) {
   var listhtml = jade.renderFile('src/jade/templates/_provider-list.jade', {pretty: true, providerList:providerList, category:category, searchPlaceholder:searchPlaceholder});
 
   providerList.forEach(function(prov, ind) {
-    var toRender = {};
-    toRender.organization = prov.organization;
-    toRender.id = prov.id;
-    toRender.category = prov.category;
+    var toRender = prov;
+    toRender.category = category;
     toRender.updated = moment(prov.updated).format("MMM Do, YYYY");
-    toRender.people_reached = prov.people_reached;
-
-    toRender.bburl = prov.url.login || '#';
-
-    toRender.bblogo = false;
-    if (prov.bb_logo) toRender.bblogo = true;
 
     toRender.bbview = false;
     if (prov.view.active_prescriptions || prov.view.allergies  || prov.view.appointment_history  || prov.view.claims || prov.view.clinical_notes || prov.view.diagnostics  || prov.view.family_history || prov.view.imaging  || prov.view.immunizations  || prov.view.lab_results  || prov.view.medical_history  || prov.view.medications  || prov.view.pathology  || prov.view.prescriptions  || prov.view.problems || prov.view.visit_history || prov.view.vitals) toRender.bbview = true;
@@ -82,7 +74,8 @@ function buildList(category, providerList, searchPlaceholder) {
     toRender.bbautomatic = false;
     if (prov.transmit.automation) toRender.bbautomatic = true;
 
-    toRender.description = prov.description || '';
+    toRender.additionalFeatures = false;
+    if (prov.services.bill_pay || prov.services.caregiving || prov.services.dispute || prov.services.family_prescriptions || prov.services.new_prescriptions || prov.services.transfer_prescription || prov.services.refills || prov.services.automatic_refills || prov.services.test_request || prov.services.reminders || prov.services.scheduling || prov.services.search) toRender.additionalFeatures = true;
 
     toRender.pretty = true;
     var provHtml = jade.renderFile('src/jade/templates/_provider-profile.jade', toRender);
