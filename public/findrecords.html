@@ -51,20 +51,77 @@
           </div>
           <div class="col-md-9 col-sm-9 providers">
 <div id="insurance-list-wrapper" class="col-sm-12 col-md-6">
-  <label class="fs-medium">Search by name</label>
+  <label class="fs-medium">Search by state</label>
+  <div class="provider-search-wrapper">
+    <select class="form-control input-lg provider-search-state">
+      <option value="false">Choose a state...</option>
+      <option value="alaska">Alaska</option>
+      <option value="alabama">Alabama</option>
+      <option value="arkansas">Arkansas</option>
+      <option value="arizona">Arizona</option>
+      <option value="california">California</option>
+      <option value="colorado">Colorado</option>
+      <option value="connecticut">Connecticut</option>
+      <option value="delaware">Delaware</option>
+      <option value="district of columbia">District of Columbia</option>
+      <option value="florida">Florida</option>
+      <option value="georgia">Georgia</option>
+      <option value="hawaii">Hawaii</option>
+      <option value="iowa">Iowa</option>
+      <option value="idaho">Idaho</option>
+      <option value="illinois">Illinois</option>
+      <option value="indiana">Indiana</option>
+      <option value="kansas">Kansas</option>
+      <option value="kentucky">Kentucky</option>
+      <option value="louisiana">Louisiana</option>
+      <option value="massachusetts">Massachusetts</option>
+      <option value="maryland">Maryland</option>
+      <option value="maine">Maine</option>
+      <option value="michigan">Michigan</option>
+      <option value="minnesota">Minnesota</option>
+      <option value="mississippi">Mississippi</option>
+      <option value="missouri">Missouri</option>
+      <option value="montana">Montana</option>
+      <option value="north carolina">North Carolina</option>
+      <option value="north dakota">North Dakota</option>
+      <option value="nebraska">Nebraska</option>
+      <option value="new hampshire">New Hampshire</option>
+      <option value="new jersey">New Jersey</option>
+      <option value="new mexico">New Mexico</option>
+      <option value="nevada">Nevada</option>
+      <option value="new york">New York</option>
+      <option value="ohio">Ohio</option>
+      <option value="oklahoma">Oklahoma</option>
+      <option value="oregon">Oregon</option>
+      <option value="pennsylvania">Pennsylvania</option>
+      <option value="rhode island">Rhode Island</option>
+      <option value="south carolina">South Carolina</option>
+      <option value="south dakota">South Dakota</option>
+      <option value="tennessee">Tennessee</option>
+      <option value="texas">Texas</option>
+      <option value="utah">Utah</option>
+      <option value="virginia">Virginia</option>
+      <option value="vermont">Vermont</option>
+      <option value="washington">Washington</option>
+      <option value="wisconsin">Wisconsin</option>
+      <option value="west virginia">West Virginia</option>
+      <option value="wyoming">Wyoming</option>
+    </select>
+  </div>
+  <label class="fs-medium">or search by name</label>
   <div class="input-group provider-search-wrapper">
-    <input type="search" placeholder="e.g. Blue Cross" class="form-control input-lg provider-search"/><span class="input-group-addon"><i class="fa fa-search"></i></span>
+    <input type="search" placeholder="e.g. Blue Cross" class="form-control input-lg provider-search-name"/><span class="input-group-addon"><i class="fa fa-search"></i></span>
   </div>
   <ul id="insurance-list" class="nav nav-pills nav-stacked provider-list list">
-    <li><a href="providers/advantage-health-solutions--inc-.html" class="provider-link">ADVANTAGE Health Solutions, Inc.</a></li>
-    <li><a href="providers/aetna.html" class="provider-link">Aetna</a></li>
-    <li><a href="providers/blue-cross-blue-shield-of-florida.html" class="provider-link">Blue Cross Blue Shield of Florida</a></li>
+    <li><a data-state="Indiana" href="providers/advantage-health-solutions--inc-.html" class="provider-link">ADVANTAGE Health Solutions, Inc.</a></li>
+    <li><a data-state="Connecticut" href="providers/aetna.html" class="provider-link">Aetna</a></li>
+    <li><a data-state="Florida" href="providers/blue-cross-blue-shield-of-florida.html" class="provider-link">Blue Cross Blue Shield of Florida</a></li>
     <li><a href="providers/blue-cross-blue-shield-of-louisiana.html" class="provider-link">Blue Cross Blue Shield of Louisiana</a></li>
-    <li><a href="providers/humana.html" class="provider-link">Humana</a></li>
+    <li><a data-state="Kentuky" href="providers/humana.html" class="provider-link">Humana</a></li>
     <li><a href="providers/regence-bluecross-blueshield.html" class="provider-link">Regence BlueCross BlueShield</a></li>
-    <li><a href="providers/uha--university-health-alliance-.html" class="provider-link">UHA (University Health Alliance)</a></li>
+    <li><a data-state="Hawaii" href="providers/uha--university-health-alliance-.html" class="provider-link">UHA (University Health Alliance)</a></li>
     <li><a href="providers/united-health-military-west.html" class="provider-link">United Health Military West</a></li>
-    <li><a href="providers/unitedhealth.html" class="provider-link">UnitedHealth</a></li>
+    <li><a data-state="Minnesota" href="providers/unitedhealth.html" class="provider-link">UnitedHealth</a></li>
   </ul>
 </div>
 <div class="tab-content col-sm-12 col-md-6">
@@ -80,43 +137,100 @@
           </div>
           <div class="col-md-9 col-sm-9 providers">
 <div id="physician-list-wrapper" class="col-sm-12 col-md-6">
-  <label class="fs-medium">Search by name</label>
+  <label class="fs-medium">Search by state</label>
+  <div class="provider-search-wrapper">
+    <select class="form-control input-lg provider-search-state">
+      <option value="false">Choose a state...</option>
+      <option value="alaska">Alaska</option>
+      <option value="alabama">Alabama</option>
+      <option value="arkansas">Arkansas</option>
+      <option value="arizona">Arizona</option>
+      <option value="california">California</option>
+      <option value="colorado">Colorado</option>
+      <option value="connecticut">Connecticut</option>
+      <option value="delaware">Delaware</option>
+      <option value="district of columbia">District of Columbia</option>
+      <option value="florida">Florida</option>
+      <option value="georgia">Georgia</option>
+      <option value="hawaii">Hawaii</option>
+      <option value="iowa">Iowa</option>
+      <option value="idaho">Idaho</option>
+      <option value="illinois">Illinois</option>
+      <option value="indiana">Indiana</option>
+      <option value="kansas">Kansas</option>
+      <option value="kentucky">Kentucky</option>
+      <option value="louisiana">Louisiana</option>
+      <option value="massachusetts">Massachusetts</option>
+      <option value="maryland">Maryland</option>
+      <option value="maine">Maine</option>
+      <option value="michigan">Michigan</option>
+      <option value="minnesota">Minnesota</option>
+      <option value="mississippi">Mississippi</option>
+      <option value="missouri">Missouri</option>
+      <option value="montana">Montana</option>
+      <option value="north carolina">North Carolina</option>
+      <option value="north dakota">North Dakota</option>
+      <option value="nebraska">Nebraska</option>
+      <option value="new hampshire">New Hampshire</option>
+      <option value="new jersey">New Jersey</option>
+      <option value="new mexico">New Mexico</option>
+      <option value="nevada">Nevada</option>
+      <option value="new york">New York</option>
+      <option value="ohio">Ohio</option>
+      <option value="oklahoma">Oklahoma</option>
+      <option value="oregon">Oregon</option>
+      <option value="pennsylvania">Pennsylvania</option>
+      <option value="rhode island">Rhode Island</option>
+      <option value="south carolina">South Carolina</option>
+      <option value="south dakota">South Dakota</option>
+      <option value="tennessee">Tennessee</option>
+      <option value="texas">Texas</option>
+      <option value="utah">Utah</option>
+      <option value="virginia">Virginia</option>
+      <option value="vermont">Vermont</option>
+      <option value="washington">Washington</option>
+      <option value="wisconsin">Wisconsin</option>
+      <option value="west virginia">West Virginia</option>
+      <option value="wyoming">Wyoming</option>
+    </select>
+  </div>
+  <label class="fs-medium">or search by name</label>
   <div class="input-group provider-search-wrapper">
-    <input type="search" placeholder="e.g. Anderson" class="form-control input-lg provider-search"/><span class="input-group-addon"><i class="fa fa-search"></i></span>
+    <input type="search" placeholder="e.g. Anderson" class="form-control input-lg provider-search-name"/><span class="input-group-addon"><i class="fa fa-search"></i></span>
   </div>
   <ul id="physician-list" class="nav nav-pills nav-stacked provider-list list">
-    <li><a href="providers/aspirus-grand-view.html" class="provider-link">Aspirus Grand View</a></li>
-    <li><a href="providers/beth-israel-deaconess-medical-center.html" class="provider-link">Beth Israel Deaconess Medical Center</a></li>
-    <li><a href="providers/bon-secours-health-system.html" class="provider-link">Bon Secours Health System</a></li>
-    <li><a href="providers/carolinas-healthcare--chs-.html" class="provider-link">Carolinas Healthcare (CHS)</a></li>
-    <li><a href="providers/children-s-hospital-boston.html" class="provider-link">Children's Hospital Boston</a></li>
-    <li><a href="providers/children-s-hospital-colorado.html" class="provider-link">Children's Hospital Colorado</a></li>
-    <li><a href="providers/cleveland-clinic.html" class="provider-link">Cleveland Clinic</a></li>
-    <li><a href="providers/duininck-chiropractic--pa.html" class="provider-link">Duininck Chiropractic, PA</a></li>
-    <li><a href="providers/geisinger-health-system.html" class="provider-link">Geisinger Health System</a></li>
-    <li><a href="providers/greenville-health-system.html" class="provider-link">Greenville Health System</a></li>
-    <li><a href="providers/harbor-health-services--inc-.html" class="provider-link">Harbor Health Services, Inc.</a></li>
-    <li><a href="providers/hudson-river-healthcare.html" class="provider-link">Hudson River HealthCare</a></li>
-    <li><a href="providers/john-muir-health.html" class="provider-link">John Muir Health</a></li>
-    <li><a href="providers/kaiser-permanente.html" class="provider-link">Kaiser Permanente</a></li>
-    <li><a href="providers/lance-michael-kurata--md.html" class="provider-link">Lance Michael Kurata, MD</a></li>
-    <li><a href="providers/lucile-packard-children-s-hospital.html" class="provider-link">Lucile Packard Children’s Hospital</a></li>
-    <li><a href="providers/madigan-healthcare-system.html" class="provider-link">Madigan Healthcare System</a></li>
-    <li><a href="providers/mayo-clinic.html" class="provider-link">Mayo Clinic</a></li>
-    <li><a href="providers/medical-specialists-of-the-palm-beaches--inc---mspb-.html" class="provider-link">Medical Specialists of the Palm Beaches, Inc. (MSPB)</a></li>
-    <li><a href="providers/medstar-health.html" class="provider-link">Medstar Health</a></li>
-    <li><a href="providers/moffitt-cancer-center.html" class="provider-link">Moffitt Cancer Center</a></li>
-    <li><a href="providers/new-york-hospital-queen-s.html" class="provider-link">New York Hospital Queen's</a></li>
-    <li><a href="providers/one-medical-group.html" class="provider-link">One Medical Group</a></li>
-    <li><a href="providers/palo-alto-medical-foundation.html" class="provider-link">Palo Alto Medical Foundation</a></li>
-    <li><a href="providers/partners-healthcare.html" class="provider-link">Partners Healthcare</a></li>
-    <li><a href="providers/petaluma-health-center.html" class="provider-link">Petaluma Health Center</a></li>
-    <li><a href="providers/river-falls-medical-clinics.html" class="provider-link">River Falls Medical Clinics</a></li>
-    <li><a href="providers/st--mark-s-family-medicine.html" class="provider-link">St. Mark's Family Medicine</a></li>
-    <li><a href="providers/texas-health-resources.html" class="provider-link">Texas Health Resources</a></li>
-    <li><a href="providers/the-institute-for-family-health.html" class="provider-link">The Institute for Family Health</a></li>
-    <li><a href="providers/trihealth.html" class="provider-link">Trihealth</a></li>
-    <li><a href="providers/us-department-of-veterans-affairs.html" class="provider-link">US Department of Veterans Affairs</a></li>
+    <li><a data-state="Wisconsin" href="providers/aspirus-grand-view.html" class="provider-link">Aspirus Grand View</a></li>
+    <li><a data-state="Massachusetts" href="providers/beth-israel-deaconess-medical-center.html" class="provider-link">Beth Israel Deaconess Medical Center</a></li>
+    <li><a data-state="Virginia " href="providers/bon-secours-health-system.html" class="provider-link">Bon Secours Health System</a></li>
+    <li><a data-state="North Carolina South Carolina" href="providers/carolinas-healthcare--chs-.html" class="provider-link">Carolinas Healthcare (CHS)</a></li>
+    <li><a data-state="Massachusetts" href="providers/children-s-hospital-boston.html" class="provider-link">Children's Hospital Boston</a></li>
+    <li><a data-state="Colorado" href="providers/children-s-hospital-colorado.html" class="provider-link">Children's Hospital Colorado</a></li>
+    <li><a data-state="Ohio" href="providers/cleveland-clinic.html" class="provider-link">Cleveland Clinic</a></li>
+    <li><a data-state="Minnesota" href="providers/duininck-chiropractic--pa.html" class="provider-link">Duininck Chiropractic, PA</a></li>
+    <li><a data-state="Pennsylvania" href="providers/geisinger-health-system.html" class="provider-link">Geisinger Health System</a></li>
+    <li><a data-state="South Carolina" href="providers/greenville-health-system.html" class="provider-link">Greenville Health System</a></li>
+    <li><a data-state="Massachusetts" href="providers/harbor-health-services--inc-.html" class="provider-link">Harbor Health Services, Inc.</a></li>
+    <li><a data-state="New York" href="providers/hudson-river-healthcare.html" class="provider-link">Hudson River HealthCare</a></li>
+    <li><a data-state="California " href="providers/john-muir-health.html" class="provider-link">John Muir Health</a></li>
+    <li><a data-state="California " href="providers/kaiser-permanente.html" class="provider-link">Kaiser Permanente</a></li>
+    <li><a data-state="Hawaii" href="providers/lance-michael-kurata--md.html" class="provider-link">Lance Michael Kurata, MD</a></li>
+    <li><a data-state="California " href="providers/lucile-packard-children-s-hospital.html" class="provider-link">Lucile Packard Children’s Hospital</a></li>
+    <li><a data-state="Washington" href="providers/madigan-healthcare-system.html" class="provider-link">Madigan Healthcare System</a></li>
+    <li><a data-state="Minnesota" href="providers/mayo-clinic.html" class="provider-link">Mayo Clinic</a></li>
+    <li><a data-state="Florida" href="providers/medical-specialists-of-the-palm-beaches--inc---mspb-.html" class="provider-link">Medical Specialists of the Palm Beaches, Inc. (MSPB)</a></li>
+    <li><a data-state="Maryland" href="providers/medstar-health.html" class="provider-link">Medstar Health</a></li>
+    <li><a data-state="Florida" href="providers/moffitt-cancer-center.html" class="provider-link">Moffitt Cancer Center</a></li>
+    <li><a data-state="New York" href="providers/new-york-hospital-queen-s.html" class="provider-link">New York Hospital Queen's</a></li>
+    <li><a data-state="California " href="providers/one-medical-group.html" class="provider-link">One Medical Group</a></li>
+    <li><a data-state="California" href="providers/palo-alto-medical-foundation.html" class="provider-link">Palo Alto Medical Foundation</a></li>
+    <li><a data-state="Massachusetts" href="providers/partners-healthcare.html" class="provider-link">Partners Healthcare</a></li>
+    <li><a data-state="California" href="providers/petaluma-health-center.html" class="provider-link">Petaluma Health Center</a></li>
+    <li><a data-state="Wisconsin" href="providers/river-falls-medical-clinics.html" class="provider-link">River Falls Medical Clinics</a></li>
+    <li><a data-state="Utah" href="providers/st--mark-s-family-medicine.html" class="provider-link">St. Mark's Family Medicine</a></li>
+    <li><a data-state="Texas" href="providers/texas-health-resources.html" class="provider-link">Texas Health Resources</a></li>
+    <li><a data-state="New York" href="providers/the-institute-for-family-health.html" class="provider-link">The Institute for Family Health</a></li>
+    <li><a data-state="Ohio" href="providers/trihealth.html" class="provider-link">Trihealth</a></li>
+    <li><a data-state="DC" href="providers/us-department-of-veterans-affairs.html" class="provider-link">US Department of Veterans Affairs</a></li>
   </ul>
 </div>
 <div class="tab-content col-sm-12 col-md-6">
@@ -132,9 +246,66 @@
           </div>
           <div class="col-md-9 col-sm-9 providers">
 <div id="pharmacy-list-wrapper" class="col-sm-12 col-md-6">
-  <label class="fs-medium">Search by name</label>
+  <label class="fs-medium">Search by state</label>
+  <div class="provider-search-wrapper">
+    <select class="form-control input-lg provider-search-state">
+      <option value="false">Choose a state...</option>
+      <option value="alaska">Alaska</option>
+      <option value="alabama">Alabama</option>
+      <option value="arkansas">Arkansas</option>
+      <option value="arizona">Arizona</option>
+      <option value="california">California</option>
+      <option value="colorado">Colorado</option>
+      <option value="connecticut">Connecticut</option>
+      <option value="delaware">Delaware</option>
+      <option value="district of columbia">District of Columbia</option>
+      <option value="florida">Florida</option>
+      <option value="georgia">Georgia</option>
+      <option value="hawaii">Hawaii</option>
+      <option value="iowa">Iowa</option>
+      <option value="idaho">Idaho</option>
+      <option value="illinois">Illinois</option>
+      <option value="indiana">Indiana</option>
+      <option value="kansas">Kansas</option>
+      <option value="kentucky">Kentucky</option>
+      <option value="louisiana">Louisiana</option>
+      <option value="massachusetts">Massachusetts</option>
+      <option value="maryland">Maryland</option>
+      <option value="maine">Maine</option>
+      <option value="michigan">Michigan</option>
+      <option value="minnesota">Minnesota</option>
+      <option value="mississippi">Mississippi</option>
+      <option value="missouri">Missouri</option>
+      <option value="montana">Montana</option>
+      <option value="north carolina">North Carolina</option>
+      <option value="north dakota">North Dakota</option>
+      <option value="nebraska">Nebraska</option>
+      <option value="new hampshire">New Hampshire</option>
+      <option value="new jersey">New Jersey</option>
+      <option value="new mexico">New Mexico</option>
+      <option value="nevada">Nevada</option>
+      <option value="new york">New York</option>
+      <option value="ohio">Ohio</option>
+      <option value="oklahoma">Oklahoma</option>
+      <option value="oregon">Oregon</option>
+      <option value="pennsylvania">Pennsylvania</option>
+      <option value="rhode island">Rhode Island</option>
+      <option value="south carolina">South Carolina</option>
+      <option value="south dakota">South Dakota</option>
+      <option value="tennessee">Tennessee</option>
+      <option value="texas">Texas</option>
+      <option value="utah">Utah</option>
+      <option value="virginia">Virginia</option>
+      <option value="vermont">Vermont</option>
+      <option value="washington">Washington</option>
+      <option value="wisconsin">Wisconsin</option>
+      <option value="west virginia">West Virginia</option>
+      <option value="wyoming">Wyoming</option>
+    </select>
+  </div>
+  <label class="fs-medium">or search by name</label>
   <div class="input-group provider-search-wrapper">
-    <input type="search" placeholder="e.g. Walgreens" class="form-control input-lg provider-search"/><span class="input-group-addon"><i class="fa fa-search"></i></span>
+    <input type="search" placeholder="e.g. Walgreens" class="form-control input-lg provider-search-name"/><span class="input-group-addon"><i class="fa fa-search"></i></span>
   </div>
   <ul id="pharmacy-list" class="nav nav-pills nav-stacked provider-list list">
     <li><a href="providers/cvs-caremark.html" class="provider-link">CVS Caremark</a></li>
@@ -142,7 +313,7 @@
     <li><a href="providers/labcorp.html" class="provider-link">LabCorp</a></li>
     <li><a href="providers/quest.html" class="provider-link">Quest</a></li>
     <li><a href="providers/rite-aid.html" class="provider-link">RITE AID</a></li>
-    <li><a href="providers/unitedhealth_biolq.html" class="provider-link">UnitedHealth_BiolQ</a></li>
+    <li><a data-state="MN" href="providers/unitedhealth_biolq.html" class="provider-link">UnitedHealth_BiolQ</a></li>
     <li><a href="providers/walgreens.html" class="provider-link">Walgreens</a></li>
   </ul>
 </div>
@@ -159,9 +330,66 @@
           </div>
           <div class="col-md-9 col-sm-12">
 <div id="immunization-list-wrapper" class="col-sm-12 col-md-6">
-  <label class="fs-medium">Search by name</label>
+  <label class="fs-medium">Search by state</label>
+  <div class="provider-search-wrapper">
+    <select class="form-control input-lg provider-search-state">
+      <option value="false">Choose a state...</option>
+      <option value="alaska">Alaska</option>
+      <option value="alabama">Alabama</option>
+      <option value="arkansas">Arkansas</option>
+      <option value="arizona">Arizona</option>
+      <option value="california">California</option>
+      <option value="colorado">Colorado</option>
+      <option value="connecticut">Connecticut</option>
+      <option value="delaware">Delaware</option>
+      <option value="district of columbia">District of Columbia</option>
+      <option value="florida">Florida</option>
+      <option value="georgia">Georgia</option>
+      <option value="hawaii">Hawaii</option>
+      <option value="iowa">Iowa</option>
+      <option value="idaho">Idaho</option>
+      <option value="illinois">Illinois</option>
+      <option value="indiana">Indiana</option>
+      <option value="kansas">Kansas</option>
+      <option value="kentucky">Kentucky</option>
+      <option value="louisiana">Louisiana</option>
+      <option value="massachusetts">Massachusetts</option>
+      <option value="maryland">Maryland</option>
+      <option value="maine">Maine</option>
+      <option value="michigan">Michigan</option>
+      <option value="minnesota">Minnesota</option>
+      <option value="mississippi">Mississippi</option>
+      <option value="missouri">Missouri</option>
+      <option value="montana">Montana</option>
+      <option value="north carolina">North Carolina</option>
+      <option value="north dakota">North Dakota</option>
+      <option value="nebraska">Nebraska</option>
+      <option value="new hampshire">New Hampshire</option>
+      <option value="new jersey">New Jersey</option>
+      <option value="new mexico">New Mexico</option>
+      <option value="nevada">Nevada</option>
+      <option value="new york">New York</option>
+      <option value="ohio">Ohio</option>
+      <option value="oklahoma">Oklahoma</option>
+      <option value="oregon">Oregon</option>
+      <option value="pennsylvania">Pennsylvania</option>
+      <option value="rhode island">Rhode Island</option>
+      <option value="south carolina">South Carolina</option>
+      <option value="south dakota">South Dakota</option>
+      <option value="tennessee">Tennessee</option>
+      <option value="texas">Texas</option>
+      <option value="utah">Utah</option>
+      <option value="virginia">Virginia</option>
+      <option value="vermont">Vermont</option>
+      <option value="washington">Washington</option>
+      <option value="wisconsin">Wisconsin</option>
+      <option value="west virginia">West Virginia</option>
+      <option value="wyoming">Wyoming</option>
+    </select>
+  </div>
+  <label class="fs-medium">or search by name</label>
   <div class="input-group provider-search-wrapper">
-    <input type="search" placeholder="e.g. Arizona" class="form-control input-lg provider-search"/><span class="input-group-addon"><i class="fa fa-search"></i></span>
+    <input type="search" placeholder="e.g. Arizona" class="form-control input-lg provider-search-name"/><span class="input-group-addon"><i class="fa fa-search"></i></span>
   </div>
   <ul id="immunization-list" class="nav nav-pills nav-stacked provider-list list">
     <li><a href="providers/alaska.html" class="provider-link">Alaska</a></li>

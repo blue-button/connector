@@ -128,7 +128,7 @@ if(!jQuery)throw new Error("Bootstrap requires jQuery");+function(a){"use strict
   $('body').on('click', 'a.box-link-rapper', function(evt) {
     $.smoothScroll({
       scrollTarget: '#select-provider-wrapper',
-      afterScroll: function(){ $('#select-provider-wrapper > .active .provider-search').focus(); }
+      // afterScroll: function(){ $('#select-provider-wrapper > .active .provider-search').focus(); }
     });
   });
 
@@ -136,7 +136,7 @@ if(!jQuery)throw new Error("Bootstrap requires jQuery");+function(a){"use strict
   //TODO consider optimizing this to work with single instance
   var listOptions = {
     listClass: 'provider-list',
-    searchClass: 'provider-search',
+    searchClass: 'provider-search-name',
     valueNames: [ 'provider-link']
   };
 
@@ -155,6 +155,27 @@ if(!jQuery)throw new Error("Bootstrap requires jQuery");+function(a){"use strict
     //   $toToggle.addClass('hide');
     // }
   // });
+
+  $('body').on('change', '.provider-search-state', function(evt) {
+    var $self = $(this);
+    var selState = $self.val();
+    //TODO standardize on DC vs District of Columbia
+    if (selState == 'false') {
+      eval($self.closest('.tab-pane').attr('id') + 'List.filter()');
+      return false;
+    }
+    if (selState == "district of columbia") selState = "dc"
+    var filterByState = function(item) {
+      var leState = $(item.elm).find('a').attr('data-state');
+      if (leState && selState == leState.toLowerCase()) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    eval($self.closest('.tab-pane').attr('id') + 'List.filter(filterByState)');
+    return false;
+  });
 
   $('body').on('click', 'a.vid-still', function(evt) {
     var $self = $(this);
