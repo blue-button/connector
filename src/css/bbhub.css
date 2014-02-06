@@ -477,9 +477,10 @@ body {
 @media screen and (min-width: 768px) {
 }
 img.little-logo {
-  width: 40px;
-  height: 40px;
-  margin-right: 15px;
+  width: 56px;
+  height: 56px;
+  margin-right: 8px;
+  margin-left: -5px;
 }
 @media screen and (min-width: 768px) {
   .force-inline {
