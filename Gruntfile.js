@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         nonull: true
       },
       css: {
-        src: ['src/css/bootstrap.min.css', 'src/css/bbhub.css'],
+        src: ['src/css/bootstrap.min.css', 'src/css/font-awesome.min.css', 'src/css/bbhub.css'],
         dest: '<%=meta.endpoint%>/css/bbhub-combined.css',
         nonull: true
       }
