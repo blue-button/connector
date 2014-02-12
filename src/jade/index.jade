@@ -2,15 +2,6 @@ extends templates/layout
 
 block content
 
-  #header.bb-onc-header
-    ul.top-nav.nav.nav-pills.pull-right.hidden-xs
-      li: a(href='findrecords.html') Get my records
-      li: a(href='userecords-1.html') Use my records
-
-    h6.onc-tagline.fg-white
-      img.bb-onc-logo(src='img/bb-onc@2x.png')
-      //- | The Office of the National Coordinator for Health Information Technology
-
   include includes/_vidmodal
 
   .section.splash-section
@@ -18,8 +9,8 @@ block content
     .splash-title.text-center
       h1.h2 Introducing Blue Button Connector:<br>Online access to your health records
       a.btn.btn-lg.btn-primary(href="findrecords.html") Get Started
-      h6.h6.alt-use.visible-xs or&nbsp;
-        a.show-xs(href='userecords-1.html') use my records
+      h6.h6.alt-use or&nbsp;
+        a.fw-strong(href='userecords-1.html') view 3rd party apps
 
     a.next-btn.text-center.fg-dblue.hidden-xs(href='#why-bb') next
       br
