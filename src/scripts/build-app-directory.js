@@ -3,9 +3,10 @@ var jade = require('jade');
 var fs = require('fs');
 
 console.log("Calling 'API'...");
-rekwest({url:'https://script.google.com/macros/s/AKfycbxlbakvkyNWUFFKtWeHE_mAyVNGjV7uX3vapzbZiuOxYtpraAA/exec?format=json&list=receivers', json:true}, function(err, response, body) {
+rekwest({url:'https://script.google.com/macros/s/AKfycbyLS-LV_9Vi0KrCLPzQjdPCQVHvPh326ibr_VTkMTmOKlOiYIjM/exec?format=json&list=receivers', json:true}, function(err, response, body) {
   if (body && body.results) {
     console.log("Building pages for " + body.results.length + " apps...");
+    // console.log(body.results);
     var pg = 0;
     var pgSize = 6;
     var apps = body.results;

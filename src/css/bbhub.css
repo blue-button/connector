@@ -383,6 +383,9 @@ body.modal-open {
 }
 .top-nav {
   margin-top: 15px;
+  margin-right: 10px;
+  position: relative;
+  z-index: 2;
 }
 .minimal-back-nav {
   border-bottom: solid 2px #0070bb;
@@ -529,6 +532,11 @@ img.little-logo {
     -webkit-background-size: 385px 262px;
     -moz-background-size: 385px 262px;
     background-size: 385px 262px;
+  }
+}
+@media (max-width:767px) {
+  .splash-section .splash-img-wrapper {
+    height: 320px;
   }
 }
 .splash-section .splash-title {
@@ -793,8 +801,11 @@ li.active .box-link-rapper {
 .nav-pills>li >a {
   -webkit-border-radius: 0;
   border-radius: 0;
-  color: #474b5a;
+  color: #fff;
   font-size: 18px;
+}
+.nav-pills>li >a:hover {
+  color: #474b5a;
 }
 .nav-pills>li.active>a {
   background-color: #25c2dc;
@@ -816,6 +827,7 @@ li.active .box-link-rapper {
   overflow-y: auto;
 }
 .provider-list.nav-pills>li>a {
+  color: #959dac;
   font-size: 16px;
   line-height: 1.3em;
 }

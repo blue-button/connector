@@ -48,6 +48,9 @@ body.modal-open
 
 .top-nav
   mt 15px
+  mr 10px
+  position relative
+  z-index 2
 
 .minimal-back-nav
   border-bottom solid 2px $dblue
@@ -182,6 +185,8 @@ body
     image '../img/splash-bg-prog.jpg' 385px 262px
     background-repeat no-repeat
     background-position bottom center
+    @media(max-width:767px)
+      height 320px
 
   .splash-title
     mt 0px
@@ -441,8 +446,10 @@ body
 .nav-pills>li
   >a
     border-radius 0
-    color $dgrey
+    color #fff
     fs 18px
+    &:hover
+      color $dgrey
   &.active>a
     bgc $maqua
     &:hover, &:focus
@@ -460,6 +467,7 @@ body
   height 290px
   overflow-y auto
   &.nav-pills>li>a
+    color $mgrey
     fs 16px
     line-height 1.3em
     &.highlight
