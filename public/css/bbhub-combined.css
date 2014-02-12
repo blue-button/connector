@@ -366,6 +366,9 @@ body {
   width: auto !important;
   overflow-x: hidden !important;
 }
+body.modal-open {
+  margin-right: 0px;
+}
 .btn {
   -webkit-border-radius: 0;
   border-radius: 0;

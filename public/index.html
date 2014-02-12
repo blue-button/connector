@@ -12,6 +12,7 @@
     <script src="js/bbhub-combined.min.js"></script>
   </head>
   <body>
+    <div class="alert alert-warning alert-slim">This website is work in progress.&nbsp;<a href="#wip-modal" data-toggle="modal" class="alert-link">Read more...</a></div>
     <div id="vid-modal" class="modal fade">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -26,6 +27,22 @@
           </div>
           <div class="modal-footer">
             <button type="button" data-dismiss="modal" class="btn">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="wip-modal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" data-dismiss="modal" tabindex="-1" role="dialog" aria-hidden="true" class="close">&times;</button>
+            <h4 class="modal-title">Under Construction</h4>
+          </div>
+          <div class="modal-body text-center">
+            <p><img src="img/digger.gif"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-primary">Okay</button>
           </div>
         </div>
       </div>

@@ -2,7 +2,23 @@ extends templates/layout
 
 block content
 
+  .alert.alert-warning.alert-slim
+    | This website is work in progress.&nbsp;
+    a.alert-link(href='#wip-modal', data-toggle='modal') Read more...
+
   include includes/_vidmodal
+
+  #wip-modal.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', tabindex='-1', role='dialog', aria-hidden='true') &times;
+          h4.modal-title Under Construction
+        .modal-body.text-center
+          p
+            img(src='img/digger.gif')
+        .modal-footer
+          button.btn.btn-primary(type='button', data-dismiss='modal') Okay
 
   .section.splash-section
     .splash-img-wrapper
@@ -98,5 +114,3 @@ block content
       i.fa.fa-chevron-up
       br
       | top
-
-

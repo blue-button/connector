@@ -181,7 +181,6 @@ if(!jQuery)throw new Error("Bootstrap requires jQuery");+function(a){"use strict
     var $self = $(this);
     var $vidmodal = $('#vid-modal');
     $('#vid-frame').data('yturl', '//www.youtube.com/embed/' + $self.data('ytid') + '?rel=0&theme=dark&modestbranding=0&color=white&controls=1&autohide=1&showinfo=0&hd=1&autoplay=1');
-    // $vidmodal.find('.modal-title').html($self.find('.caption').text())
     $vidmodal.modal('show');
     evt.preventDefault();
     return false;
@@ -198,5 +197,11 @@ if(!jQuery)throw new Error("Bootstrap requires jQuery");+function(a){"use strict
     $vidframe.attr('src', $vidframe.data('yturl'));
   });
 
+  $(function() {
+    if ($.cookie('betamodalshow') === null) {
+      $('#wip-modal').modal('show');
+      $.cookie("betamodalshow", "false");
+    }
+  });
 
 });
