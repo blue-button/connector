@@ -262,6 +262,9 @@ h4,
 .main-nav a {
   font-weight: 200;
 }
+.td-underline {
+  text-decoration: underline;
+}
 h1,
 .h1,
 .page-title {

@@ -116,9 +116,8 @@ block content
         .ask-participate
           h5.fw-normal.fg-dblue Ask #{organization} to participate!
           - var urlsafeorganization = encodeURIComponent(organization);
-          h6.fg-mgrey If some features are not available, ask them why and <a class='fg-maqua fw-strong' href='mailto:bluebutton@hhs.gov?subject=Features%20Request%20for%20' + urlsafeorganization + '&body=What%20features%20do%20you%20want%20to%20see:', target='_blank'>request it now</a>.
-          //- a.btn.btn-primary(href='mailto:bluebutton@hhs.gov?subject=Features%20Request%20for%20' + urlsafeorganization + '&body=What%20features%20do%20you%20want%20to%20see:', target='_blank') Request features
-          hr.hairline
-          h5.fw-normal.fg-dblue Is this profile inaccurate?
-          h6.fg-mgrey This profile was last updated on #{updated}. You can help by <a class='fg-maqua fw-strong' href='/update-provider.html?id=#{id}'>suggesting corrections and updates</a>.
+          h6.fg-mgrey If some features are not available, ask them why with <a class='fg-maqua fw-strong' href='../blue-button-request.pdf', target='_blank'>this form letter (PDF)</a>.
+          //- hr.hairline
+          //- h5.fw-normal.fg-dblue Is this profile inaccurate?
+          //- h6.fg-mgrey This profile was last updated on #{updated}. You can help by <a class='fg-maqua fw-strong' href='/update-provider.html?id=#{id}'>suggesting corrections and updates</a>.
           //- a.btn.btn-primary(href='/update-provider.html?id=#{id}') Suggest corrections
