@@ -212,6 +212,47 @@ body
   fs 600%
   padding 10px
 
+.fa
+  display inline-block
+  background-repeat no-repeat
+  background-position center center
+  background-size 100% 100%
+
+//TODO base64 encode these guys once we're settled
+.fa-chevron-up
+  background-image: url(../img/icons/chevron-up.png);
+  background-image: url("data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='64' height='64' viewBox='0 0 100 100'><g transform='translate(10,70)'><g transform='scale(0.05,-0.05)'><path fill='#ffffff' d='M1611 320q0 -53 -37 -90l-75 -75q-38 -38 -91 -38q-54 0 -90 38l-486 485l-486 -485q-36 -38 -90 -38t-90 38l-75 75q-38 36 -38 90q0 53 38 91l651 651q37 37 90 37q52 0 91 -37l650 -651q38 -38 38 -91z' /></g></g></svg>"), none;
+
+.fa-lock
+  background-image: url("data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='96' height='96' viewBox='0 0 100 100'><g transform='translate(20,75)'><g transform='scale(0.05,-0.05)'><path fill='#ffffff' d='M320 768h512v192q0 106 -75 181t-181 75t-181 -75t-75 -181v-192zM1152 672v-576q0 -40 -28 -68t-68 -28h-960q-40 0 -68 28t-28 68v576q0 40 28 68t68 28h32v192q0 184 132 316t316 132t316 -132t132 -316v-192h32q40 0 68 -28t28 -68z' /></g></g></svg>"), none;
+
+.fa-file-text-o
+  background-image: url("data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='96' height='96' viewBox='0 0 100 100'><g transform='translate(20,75)'><g transform='scale(0.05,-0.05)'><path fill='#ffffff' d='M1024 352v-64q0 -14 -9 -23t-23 -9h-704q-14 0 -23 9t-9 23v64q0 14 9 23t23 9h704q14 0 23 -9t9 -23zM1024 608v-64q0 -14 -9 -23t-23 -9h-704q-14 0 -23 9t-9 23v64q0 14 9 23t23 9h704q14 0 23 -9t9 -23zM128 0h1024v768h-416q-40 0 -68 28t-28 68v416h-512v-1280z M768 896h376q-10 29 -22 41l-313 313q-12 12 -41 22v-376zM1280 864v-896q0 -40 -28 -68t-68 -28h-1088q-40 0 -68 28t-28 68v1344q0 40 28 68t68 28h640q40 0 88 -20t76 -48l312 -312q28 -28 48 -76t20 -88z' /></g></g></svg>"), none;
+
+.fa-user-md
+  background-image: url("data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='96' height='96' viewBox='0 0 100 100'><g transform='translate(15,75)'><g transform='scale(0.05,-0.05)'><path fill='#ffffff' d='M384 192q0 -26 -19 -45t-45 -19t-45 19t-19 45t19 45t45 19t45 -19t19 -45zM1408 131q0 -121 -73 -190t-194 -69h-874q-121 0 -194 69t-73 190q0 68 5.5 131t24 138t47.5 132.5t81 103t120 60.5q-22 -52 -22 -120v-203q-58 -20 -93 -70t-35 -111q0 -80 56 -136t136 -56 t136 56t56 136q0 61 -35.5 111t-92.5 70v203q0 62 25 93q132 -104 295 -104t295 104q25 -31 25 -93v-64q-106 0 -181 -75t-75 -181v-89q-32 -29 -32 -71q0 -40 28 -68t68 -28t68 28t28 68q0 42 -32 71v89q0 52 38 90t90 38t90 -38t38 -90v-89q-32 -29 -32 -71q0 -40 28 -68 t68 -28t68 28t28 68q0 42 -32 71v89q0 68 -34.5 127.5t-93.5 93.5q0 10 0.5 42.5t0 48t-2.5 41.5t-7 47t-13 40q68 -15 120 -60.5t81 -103t47.5 -132.5t24 -138t5.5 -131zM1088 1024q0 -159 -112.5 -271.5t-271.5 -112.5t-271.5 112.5t-112.5 271.5t112.5 271.5t271.5 112.5 t271.5 -112.5t112.5 -271.5z' /></g></g></svg>"), none;
+
+.fa-check-square
+  background-image: url("data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='96' height='96' viewBox='0 0 100 100'><g transform='translate(10,80)'><g transform='scale(0.05,-0.05)'><path fill='#ffffff' d='M1408 606v-318q0 -119 -84.5 -203.5t-203.5 -84.5h-832q-119 0 -203.5 84.5t-84.5 203.5v832q0 119 84.5 203.5t203.5 84.5h832q63 0 117 -25q15 -7 18 -23q3 -17 -9 -29l-49 -49q-10 -10 -23 -10q-3 0 -9 2q-23 6 -45 6h-832q-66 0 -113 -47t-47 -113v-832 q0 -66 47 -113t113 -47h832q66 0 113 47t47 113v254q0 13 9 22l64 64q10 10 23 10q6 0 12 -3q20 -8 20 -29zM1639 1095l-814 -814q-24 -24 -57 -24t-57 24l-430 430q-24 24 -24 57t24 57l110 110q24 24 57 24t57 -24l263 -263l647 647q24 24 57 24t57 -24l110 -110 q24 -24 24 -57t-24 -57z' /></g></g></svg>"), none;
+
+.fa-umbrella
+  background-image: url("data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='36' height='36' viewBox='0 0 100 100'><g transform='translate(10,80)'><g transform='scale(0.05,-0.05)'><path fill='#ffffff' d='M896 708v-580q0 -104 -76 -180t-180 -76t-180 76t-76 180q0 26 19 45t45 19t45 -19t19 -45q0 -50 39 -89t89 -39t89 39t39 89v580q33 11 64 11t64 -11zM1664 681q0 -13 -9.5 -22.5t-22.5 -9.5q-11 0 -23 10q-49 46 -93 69t-102 23q-68 0 -128 -37t-103 -97 q-7 -10 -17.5 -28t-14.5 -24q-11 -17 -28 -17q-18 0 -29 17q-4 6 -14.5 24t-17.5 28q-43 60 -102.5 97t-127.5 37t-127.5 -37t-102.5 -97q-7 -10 -17.5 -28t-14.5 -24q-11 -17 -29 -17q-17 0 -28 17q-4 6 -14.5 24t-17.5 28q-43 60 -103 97t-128 37q-58 0 -102 -23t-93 -69 q-12 -10 -23 -10q-13 0 -22.5 9.5t-9.5 22.5q0 5 1 7q45 183 172.5 319.5t298 204.5t360.5 68q140 0 274.5 -40t246.5 -113.5t194.5 -187t115.5 -251.5q1 -2 1 -7zM896 1408v-98q-42 2 -64 2t-64 -2v98q0 26 19 45t45 19t45 -19t19 -45z' /></g></g></svg>"), none;
+
+.fa-medkit
+  background-image: url("data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='36' height='36' viewBox='0 0 100 100'><g transform='translate(10,80)'><g transform='scale(0.05,-0.05)'><path fill='#ffffff' d='M1280 416v192q0 14 -9 23t-23 9h-224v224q0 14 -9 23t-23 9h-192q-14 0 -23 -9t-9 -23v-224h-224q-14 0 -23 -9t-9 -23v-192q0 -14 9 -23t23 -9h224v-224q0 -14 9 -23t23 -9h192q14 0 23 9t9 23v224h224q14 0 23 9t9 23zM640 1152h512v128h-512v-128zM256 1152v-1280h-32 q-92 0 -158 66t-66 158v832q0 92 66 158t158 66h32zM1440 1152v-1280h-1088v1280h160v160q0 40 28 68t68 28h576q40 0 68 -28t28 -68v-160h160zM1792 928v-832q0 -92 -66 -158t-158 -66h-32v1280h32q92 0 158 -66t66 -158z' /></g></g></svg>"), none;
+
+.isize-36
+  width 36px
+  height 36px
+
+.isize-48
+  width 48px
+  height 48px
+
+.isize-96
+  width 96px
+  height 96px
+
 .centered-row
   text-align center
   [class*='col-']
@@ -271,40 +312,6 @@ body
   #vid-modal
     .modal-dialog
       width 800px
-
-
-.section.get-started
-
-  .start-find
-    .img-header
-      @extend .fg-daqua
-    .wrap-icon
-      image '../img/magnify-icon.png' 130px 129px
-      background-repeat no-repeat
-      background-position center
-      bgc $daqua
-    .step-num
-      line-height 59px
-  .start-download
-    .img-header
-      @extend .fg-mblue
-    .wrap-icon
-      image '../img/bb-thin-outline.png' 130px 128px
-      background-repeat no-repeat
-      background-position center
-      bgc $mblue
-    .step-num
-      line-height 50px
-  .start-use
-    .img-header
-      color #6ea9d3
-    .wrap-icon
-      image '../img/arrow-right-thin-outline.png' 130px 128px
-      background-repeat no-repeat
-      background-position center
-      bgc #6ea9d3
-    .step-num
-      line-height 74px
 
   h2.big-header, .lead
     color $maqua
@@ -410,8 +417,8 @@ body
     i
       fs 36px
       position absolute
-      left 30px
-      top 0px
+      left 22px
+      top 4px
       &.insurance-icon
         top 20px
     h3

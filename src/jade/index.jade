@@ -2,9 +2,9 @@ extends templates/layout
 
 block content
 
-  .alert.alert-warning.alert-slim
-    | This website is work in progress.&nbsp;
-    a.alert-link(href='#wip-modal', data-toggle='modal') Read more...
+  //- .alert.alert-warning.alert-slim
+  //-   | This website is work in progress.&nbsp;
+  //-   a.alert-link(href='#wip-modal', data-toggle='modal') Read more...
 
   include includes/_vidmodal
 
@@ -13,24 +13,20 @@ block content
       .modal-content
         .modal-header
           button.close(type='button', data-dismiss='modal', tabindex='-1', role='dialog', aria-hidden='true') &times;
-          h4.modal-title Under Construction
+          h4.modal-title Thank you for visiting the Connector.
         .modal-body.text-center
-          p
-            img(src='img/digger.gif')
+          p.fw-bold  We're live, but still in "Beta."
+          p We will have more organizations on the Connector shortly.
         .modal-footer
-          button.btn.btn-primary(type='button', data-dismiss='modal') Okay
+          button.btn.btn-primary(type='button', data-dismiss='modal') Got it
 
   .section.splash-section
     .splash-img-wrapper
     .splash-title.text-center
-      h1.h2 Introducing Blue Button Connector:<br>Online access to your health records
+      h1.h2 Blue Button Connector
       a.btn.btn-lg.btn-primary(href="findrecords.html") Get Started
       h6.h6.alt-use or&nbsp;
         a.fw-strong(href='userecords-1.html') view 3rd party apps
-
-    a.next-btn.text-center.fg-dblue.hidden-xs(href='#why-bb') next
-      br
-      i.fa.fa-chevron-down
 
   .section.why-bb
     #why-bb.container.text-center
@@ -40,34 +36,30 @@ block content
         .col-md-3.col-sm-6.circ-col.why-secure.text-center
           .wrap-outer-icon
             .wrap-icon.text-center.big-icon
-              i.fa.fa-lock
+              i.fa.fa-lock.isize-96
           h3.fg-white Be Secure
           h5.fg-white.fw-normal that your records are protected under HIPAA. We do not store or collect your records but send you to organizations do.
 
         .col-md-3.col-sm-6.circ-col.why-recall.text-center
           .wrap-outer-icon
             .wrap-icon.text-center.big-icon
-              i.fa.fa-file-text-o
+              i.fa.fa-file-text-o.isize-96
           h3.fg-white Reference
           h5.fg-white.fw-normal your health records to be reminded when you had your last shot, or the exact date of a procedure.
 
         .col-md-3.col-sm-6.circ-col.why-check.text-center
           .wrap-outer-icon
             .wrap-icon.text-center.big-icon
-              i.fa.fa-check-square
+              i.fa.fa-check-square.isize-96
           h3.fg-white Check
           h5.fg-white.fw-normal the accuracy of your records, monitor changes, and stay aware of your health status.
 
         .col-md-3.col-sm-6.circ-col.why-share.text-center
           .wrap-outer-icon
             .wrap-icon.text-center.big-icon
-              i.fa.fa-user-md
+              i.fa.fa-user-md.isize-96
           h3.fg-white Share
           h5.fg-white.fw-normal with your doctor or someone else you trust, when traveling, seeking a second opinion, moving, switching insurance, or in case of emergency.
-
-    a.next-btn.text-center.fg-white.hidden-xs(href='#testimonials') next
-      br
-      i.fa.fa-chevron-down
 
   .section.testimonials
     #testimonials.container.text-center
@@ -111,6 +103,14 @@ block content
             a.share-btn.btn.btn-warning.btn-lg(href='mailto:bluebutton@hhs.gov?subject=Blue%20Button%20helped%20me&body=Here%20is%20my%20story:', target='_blank') SHARE
 
     a.next-btn.text-center.fg-white(href='#header')
-      i.fa.fa-chevron-up
+      i.isize-36.fa.fa-chevron-up
       br
       | top
+
+  script.
+    $(function() {
+      //- if ($.cookie('betamodalshow') === null) {
+        $('#wip-modal').modal('show');
+      //-  $.cookie("betamodalshow", "false");
+      //- }
+    });

@@ -197,11 +197,4 @@ if(!jQuery)throw new Error("Bootstrap requires jQuery");+function(a){"use strict
     $vidframe.attr('src', $vidframe.data('yturl'));
   });
 
-  $(function() {
-    if ($.cookie('betamodalshow') === null) {
-      $('#wip-modal').modal('show');
-      $.cookie("betamodalshow", "false");
-    }
-  });
-
 });

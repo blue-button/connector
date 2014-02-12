@@ -73,11 +73,4 @@ $(function() {
     $vidframe.attr('src', $vidframe.data('yturl'));
   });
 
-  $(function() {
-    if ($.cookie('betamodalshow') === null) {
-      $('#wip-modal').modal('show');
-      $.cookie("betamodalshow", "false");
-    }
-  });
-
 });
