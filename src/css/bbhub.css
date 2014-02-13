@@ -539,7 +539,7 @@ img.little-logo {
 }
 @media (max-width:767px) {
   .splash-section .splash-img-wrapper {
-    height: 320px;
+    height: 300px;
   }
 }
 .splash-section .splash-title {
@@ -932,9 +932,6 @@ ul.additional-features-list li {
 }
 .app-coming-soon {
   font-size: 5em;
-}
-.app-description {
-  max-width: 340px;
 }
 .privacy-last-section {
   padding-bottom: 60px;
