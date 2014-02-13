@@ -20,39 +20,51 @@ block content
         ul.feature-list.list-unstyled
           li.clearfix
             - if (bb_logo)
-              span.fake-checkbox.pull-left.checked: em provider
+              i.fa.fa-check-square-dark.isize-48.pull-left
+                em provider
             - else
-              span.fake-checkbox.pull-left: em provider doesn't
+              i.fa.fa-uncheck-square.isize-48.pull-left
+                em provider doesn't
             h6.feature-title Displays Blue Button Logo on website
           li.clearfix
             - if (bbview)
-              span.fake-checkbox.pull-left.checked: em you can
+              i.fa.fa-check-square-dark.isize-48.pull-left
+                em you can
             - else
-              span.fake-checkbox.pull-left: em you can't
+              i.fa.fa-uncheck-square.isize-48.pull-left
+                em you can't
             h6.feature-title View your records online
           li.clearfix
             - if (bbdownload)
-              span.fake-checkbox.pull-left.checked: em you can
+              i.fa.fa-check-square-dark.isize-48.pull-left
+                em you can
             - else
-              span.fake-checkbox.pull-left: em you can't
+              i.fa.fa-uncheck-square.isize-48.pull-left
+                em you can't
             h6.feature-title Download your records
           li.clearfix
             - if (bbtransmit)
-              span.fake-checkbox.pull-left.checked: em you can
+              i.fa.fa-check-square-dark.isize-48.pull-left
+                em you can
             - else
-              span.fake-checkbox.pull-left: em you can't
+              i.fa.fa-uncheck-square.isize-48.pull-left
+                em you can't
             h6.feature-title Securely send your records to your preferred application
           li.clearfix
             - if (bbautomatic)
-              span.fake-checkbox.pull-left.checked: em you can
+              i.fa.fa-check-square-dark.isize-48.pull-left
+                em you can
             - else
-              span.fake-checkbox.pull-left: em you can't
+              i.fa.fa-uncheck-square.isize-48.pull-left
+                em you can't
             h6.feature-title Automatically receive updates to your health records
           li.clearfix
             - if (additionalFeatures)
-              span.fake-checkbox.pull-left.checked: em there are
+              i.fa.fa-check-square-dark.isize-48.pull-left
+                em there are
             - else
-              span.fake-checkbox.pull-left: em there are no
+              i.fa.fa-uncheck-square.isize-48.pull-left
+                em there are no
             h6.feature-title Additional features
             - if (additionalFeatures)
               - console.log("features for " + organization);
