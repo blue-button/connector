@@ -175,7 +175,9 @@ body
   @extend .bg-white
 
 .splash-section
-  height 550px
+  height 485px
+  @media(max-width:767px)
+      height 530px
   pt 0px
   background-color #fff
   .splash-img-wrapper
@@ -267,9 +269,10 @@ body
 
 
 .section.why-bb
-  @extend .bg-maqua
-  @extend .fg-white
+  @extend .fg-maqua
+  @extend .bg-white
 
+  pt 40px
   .why-share, .why-secure
     .wrap-icon
       @extend .bg-lblue
@@ -333,7 +336,7 @@ body
 
 
 .section.testimonials
-  bgc $mblue
+  bgc $daqua
   color #fff
   @media(max-width:767px)
     pb 80px
@@ -561,9 +564,7 @@ ul.additional-features-list
   fs 5em
 
 .app-description
-  max-width 220px
-  mr auto
-  ml auto
+  max-width 340px
 
 .privacy-last-section
   pb 60px

@@ -67,7 +67,6 @@ h4,
   color: #0a94bb;
 }
 .bg-maqua,
-.section.why-bb,
 .offerings {
   background-color: #25c2dc;
 }
@@ -76,6 +75,7 @@ h1,
 .h1,
 .page-title,
 .main-nav a,
+.section.why-bb,
 .get-records-prep {
   color: #25c2dc;
 }
@@ -117,7 +117,8 @@ h2,
 }
 .bg-white,
 body,
-.splash-section .splash-title h1 {
+.splash-section .splash-title h1,
+.section.why-bb {
   background-color: #fff;
 }
 .fg-white,
@@ -126,7 +127,6 @@ h5,
 .photo-title,
 .bb-onc-header,
 .share-icon,
-.section.why-bb,
 .offerings {
   color: #fff;
 }
@@ -523,9 +523,14 @@ img.little-logo {
   }
 }
 .splash-section {
-  height: 550px;
+  height: 485px;
   padding-top: 0px;
   background-color: #fff;
+}
+@media (max-width:767px) {
+  .splash-section {
+    height: 530px;
+  }
 }
 .splash-section .splash-img-wrapper {
   height: 280px;
@@ -624,6 +629,9 @@ img.little-logo {
   float: none;
   display: inline-block;
 }
+.section.why-bb {
+  padding-top: 40px;
+}
 .section.why-bb h5 {
   font-size: 1.1em;
 }
@@ -679,7 +687,7 @@ img.little-logo {
   font-size: 28px;
 }
 .section.testimonials {
-  background-color: #328cc8;
+  background-color: #0a94bb;
   color: #fff;
 }
 @media (max-width:767px) {
@@ -933,9 +941,7 @@ ul.additional-features-list li {
   font-size: 5em;
 }
 .app-description {
-  max-width: 220px;
-  margin-right: auto;
-  margin-left: auto;
+  max-width: 340px;
 }
 .privacy-last-section {
   padding-bottom: 60px;
