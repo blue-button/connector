@@ -175,35 +175,29 @@ body
   @extend .bg-white
 
 .splash-section
-  pt 0px
-  background-color #3c9ed2
+  pt 0
   pb 0
-  .splash-row
-    pt 20px
-  .splash-img-wrapper
-    height 280px
-    position relative
-    image '../img/splash-bg.jpg' 385px 262px
-    background-repeat no-repeat
-    background-position bottom center
-    @media(max-width:767px)
-      height 300px
-
+  background-color #3c9ed2
   .splash-title
-    background-color #3c9ed2
-    mt 25px
-    mb 10px
+    pt 50px
+    mb 25px
     h1
       padding 35px 0 0
       margin 0 0 0px 0
     h4
       mt 5px
       mb 25px
-    @media(max-width:767px)
-      text-align center
 
   .btn-primary
     fs 32px
+
+  .splash-img-wrapper
+    height 280px
+    position relative
+    image '../img/splash-bg.jpg' 385px 262px
+    background-repeat no-repeat
+    background-position bottom center
+
 
 
 .wrap-outer-icon
@@ -281,6 +275,7 @@ body
   @extend .fg-maqua
   @extend .bg-white
 
+  pt 40px
   .why-share, .why-secure
     .wrap-icon
       @extend .bg-lblue
@@ -344,7 +339,7 @@ body
 
 
 .section.testimonials
-  bgc $dblue
+  bgc $daqua
   color #fff
   @media(max-width:767px)
     pb 80px

@@ -524,12 +524,24 @@ img.little-logo {
   }
 }
 .splash-section {
-  padding-top: 0px;
-  background-color: #3c9ed2;
+  padding-top: 0;
   padding-bottom: 0;
+  background-color: #3c9ed2;
 }
-.splash-section .splash-row {
-  padding-top: 20px;
+.splash-section .splash-title {
+  padding-top: 50px;
+  margin-bottom: 25px;
+}
+.splash-section .splash-title h1 {
+  padding: 35px 0 0;
+  margin: 0 0 0px 0;
+}
+.splash-section .splash-title h4 {
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+.splash-section .btn-primary {
+  font-size: 32px;
 }
 .splash-section .splash-img-wrapper {
   height: 280px;
@@ -545,32 +557,6 @@ img.little-logo {
     -moz-background-size: 385px 262px;
     background-size: 385px 262px;
   }
-}
-@media (max-width:767px) {
-  .splash-section .splash-img-wrapper {
-    height: 300px;
-  }
-}
-.splash-section .splash-title {
-  background-color: #3c9ed2;
-  margin-top: 25px;
-  margin-bottom: 10px;
-}
-.splash-section .splash-title h1 {
-  padding: 35px 0 0;
-  margin: 0 0 0px 0;
-}
-.splash-section .splash-title h4 {
-  margin-top: 5px;
-  margin-bottom: 25px;
-}
-@media (max-width:767px) {
-  .splash-section .splash-title {
-    text-align: center;
-  }
-}
-.splash-section .btn-primary {
-  font-size: 32px;
 }
 .wrap-outer-icon .wrap-icon {
   height: 140px;
@@ -644,6 +630,9 @@ img.little-logo {
   float: none;
   display: inline-block;
 }
+.section.why-bb {
+  padding-top: 40px;
+}
 .section.why-bb h5 {
   font-size: 1.1em;
 }
@@ -699,7 +688,7 @@ img.little-logo {
   font-size: 28px;
 }
 .section.testimonials {
-  background-color: #0070bb;
+  background-color: #0a94bb;
   color: #fff;
 }
 @media (max-width:767px) {
