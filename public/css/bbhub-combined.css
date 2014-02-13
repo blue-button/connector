@@ -942,6 +942,9 @@ ul.additional-features-list li {
 .app-coming-soon {
   font-size: 5em;
 }
+.app-description {
+  margin: 0 5px 0 20px;
+}
 .privacy-last-section {
   padding-bottom: 60px;
 }
