@@ -175,31 +175,34 @@ body
   @extend .bg-white
 
 .splash-section
-  height 485px
-  @media(max-width:767px)
-      height 530px
   pt 0px
-  background-color #fff
+  background-color #3c9ed2
+  pb 0
+  .splash-row
+    pt 20px
   .splash-img-wrapper
     height 280px
     position relative
-    background-color #3c9ed2
-    image '../img/splash-bg-prog.jpg' 385px 262px
+    image '../img/splash-bg.jpg' 385px 262px
     background-repeat no-repeat
     background-position bottom center
     @media(max-width:767px)
       height 320px
 
   .splash-title
-    mt 0px
+    background-color #3c9ed2
+    mt 25px
+    mb 10px
     h1
-      @extend .bg-white
-      @extend .fg-dblue
-      padding 35px 0 15px
-      margin 0 0 12px 0
+      padding 35px 0 0
+      margin 0 0 0px 0
+    h4
+      mt 5px
+      mb 25px
+    @media(max-width:767px)
+      text-align center
 
   .btn-primary
-    @extend .bg-dblue
     fs 32px
 
 
@@ -278,7 +281,6 @@ body
   @extend .fg-maqua
   @extend .bg-white
 
-  pt 40px
   .why-share, .why-secure
     .wrap-icon
       @extend .bg-lblue
@@ -342,7 +344,7 @@ body
 
 
 .section.testimonials
-  bgc $daqua
+  bgc $dblue
   color #fff
   @media(max-width:767px)
     pb 80px
