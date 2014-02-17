@@ -4,13 +4,14 @@ var fs = require('fs');
 var moment = require('moment');
 
 console.log("Calling 'API'...");
-rekwest({url:'http://api.bluebuttonconnector.org/providers?detailed=1', json:true}, function(err, response, data) {
+rekwest({url:'http://api.bluebuttonconnector.org/providers?limit=100&detailed=1', json:true}, function(err, response, data) {
   if (data && data.results) {
     console.log("Building list for " + data.results.length + " providers...");
 
     var insPros = [];
     var phyPros = [];
     var phaPros = [];
+    var labPros = [];
     var immPros = [];
     // var stateList = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
     // for (var i=0; i<stateList.length; i++) {
@@ -25,7 +26,9 @@ rekwest({url:'http://api.bluebuttonconnector.org/providers?detailed=1', json:tru
         insPros.push(pro);
       } else if (/hospital|physician|provider/i.test(pro.category)) {
         phyPros.push(pro);
-      } else if (/lab|pharmacy/i.test(pro.category)) {
+      } else if (/lab/i.test(pro.category)) {
+        labPros.push(pro);
+      } else if (/pharmacy/i.test(pro.category)) {
         phaPros.push(pro);
       } else if (/immunization/i.test(pro.category)) {
         immPros.push(pro);
@@ -34,10 +37,11 @@ rekwest({url:'http://api.bluebuttonconnector.org/providers?detailed=1', json:tru
 
     var html = {};
 
-    html.insurance = buildList('insurance' , insPros, 'Blue Cross');
-    html.physician = buildList('physician' , phyPros, 'Anderson');
-    html.pharmacy = buildList('pharmacy' , phaPros, 'Walgreens');
-    html.immunization = buildList('immunization' , immPros, 'Arizona');
+    html.insurance = buildList({category:'insurance', providerList: insPros, searchPlaceholder: 'Blue Cross'});
+    html.physician = buildList({category:'physician', providerList: phyPros, searchPlaceholder: 'Anderson'});
+    html.pharmacy = buildList({category:'pharmacy', providerList: phaPros, searchPlaceholder: 'Walgreens'});
+    html.lab = buildList({category:'lab', providerList: labPros, searchPlaceholder: 'Walgreens'});
+    html.immunization = buildList({category:'immunization', providerList: immPros, searchPlaceholder: 'Arizona'});
 
     var finalHtml = jade.renderFile('src/jade/templates/_findrecords.jade', {pretty: true, html:html});
     fs.writeFileSync('public/findrecords.html', finalHtml);
@@ -52,8 +56,12 @@ rekwest({url:'http://api.bluebuttonconnector.org/providers?detailed=1', json:tru
   }
 });
 
-function buildList(category, providerList, searchPlaceholder) {
+function buildList(opt) {
+  console.log(opt);
   searchPlaceholder = searchPlaceholder || '';
+  var category = opt.category;
+  var providerList = opt.providerList;
+  var searchPlaceholder = opt.searchPlaceholder;
   var unitedStates = [{data: "AK", label: "Alaska"},{data: "AL", label: "Alabama"},{data: "AR", label: "Arkansas"},{data: "AZ", label: "Arizona"},{data: "CA", label: "California"},{data: "CO", label: "Colorado"},{data: "CT", label: "Connecticut"},{data: "DE", label: "Delaware"},{data: "DC", label: "District of Columbia"},{data: "FL", label: "Florida"},{data: "GA", label: "Georgia"},{data: "HI", label: "Hawaii"},{data: "IA", label: "Iowa"},{data: "ID", label: "Idaho"},{data: "IL", label: "Illinois"},{data: "IN", label: "Indiana"},{data: "KS", label: "Kansas"},{data: "KY", label: "Kentucky"},{data: "LA", label: "Louisiana"},{data: "MA", label: "Massachusetts"},{data: "MD", label: "Maryland"},{data: "ME", label: "Maine"},{data: "MI", label: "Michigan"},{data: "MN", label: "Minnesota"},{data: "MS", label: "Mississippi"},{data: "MO", label: "Missouri"},{data: "MT", label: "Montana"},{data: "NC", label: "North Carolina"},{data: "ND", label: "North Dakota"},{data: "NE", label: "Nebraska"},{data: "NH", label: "New Hampshire"},{data: "NJ", label: "New Jersey"},{data: "NM", label: "New Mexico"},{data: "NV", label: "Nevada"},{data: "NY", label: "New York"},{data: "OH", label: "Ohio"},{data: "OK", label: "Oklahoma"},{data: "OR", label: "Oregon"},{data: "PA", label: "Pennsylvania"},{data: "RI", label: "Rhode Island"},{data: "SC", label: "South Carolina"},{data: "SD", label: "South Dakota"},{data: "TN", label: "Tennessee"},{data: "TX", label: "Texas"},{data: "UT", label: "Utah"},{data: "VA", label: "Virginia"},{data: "VT", label: "Vermont"},{data: "WA", label: "Washington"},{data: "WI", label: "Wisconsin"},{data: "WV", label: "West Virginia"},{data: "WY", label: "Wyoming"}];
   console.log("building " + category + " list for " + providerList.length + " providers...");
   var listhtml = jade.renderFile('src/jade/templates/_provider-list.jade', {pretty: true, providerList:providerList, category:category, searchPlaceholder:searchPlaceholder, unitedStates:unitedStates});
