@@ -19,6 +19,7 @@ $(function() {
   var insuranceList = new List('insurance-list-wrapper', listOptions);
   var physicianList = new List('physician-list-wrapper', listOptions);
   var pharmacyList = new List('pharmacy-list-wrapper', listOptions);
+  var labList = new List('lab-list-wrapper', listOptions);
   var immunizationList = new List('immunization-list-wrapper', listOptions);
 
 
@@ -32,12 +33,20 @@ $(function() {
     // }
   // });
 
+  $('body').on('input keychange', '.provider-search-name', function(evt) {
+    var $pvs = $('.provider-search-state')
+    if ($pvs.val() !== 'false') {
+      $pvs.val('false');
+      physicianList.filter();
+    }
+  });
+
   $('body').on('change', '.provider-search-state', function(evt) {
     var $self = $(this);
     var selState = $self.val();
     //TODO standardize on DC vs District of Columbia
     if (selState == 'false') {
-      eval($self.closest('.tab-pane').attr('id') + 'List.filter()');
+      physicianList.filter();
       return false;
     }
     if (selState == "district of columbia") selState = "dc"
