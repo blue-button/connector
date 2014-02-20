@@ -13,6 +13,7 @@ rekwest({url:'http://api.bluebuttonconnector.org/providers?limit=100&detailed=1'
     var phaPros = [];
     var labPros = [];
     var immPros = [];
+    var hiePros = [];
     // var stateList = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
     // for (var i=0; i<stateList.length; i++) {
     //   immPros.push({name:stateList[i], bburl:'#', features:''});
@@ -32,6 +33,8 @@ rekwest({url:'http://api.bluebuttonconnector.org/providers?limit=100&detailed=1'
         phaPros.push(pro);
       } else if (/immunization/i.test(pro.category)) {
         immPros.push(pro);
+      } else if (/hie/i.test(pro.category)) {
+        hiePros.push(pro);
       }
     }
 
@@ -40,8 +43,9 @@ rekwest({url:'http://api.bluebuttonconnector.org/providers?limit=100&detailed=1'
     html.insurance = buildList({category:'insurance', providerList: insPros, searchPlaceholder: 'Blue Cross'});
     html.physician = buildList({category:'physician', providerList: phyPros, searchPlaceholder: 'Anderson'});
     html.pharmacy = buildList({category:'pharmacy', providerList: phaPros, searchPlaceholder: 'Walgreens'});
-    html.lab = buildList({category:'lab', providerList: labPros, searchPlaceholder: 'Walgreens'});
+    html.lab = buildList({category:'lab', providerList: labPros, searchPlaceholder: 'Quest Diagnostics'});
     html.immunization = buildList({category:'immunization', providerList: immPros, searchPlaceholder: 'Arizona'});
+    html.hie = buildList({category:'hie', providerList: hiePros, searchPlaceholder: 'New Jersey'});
 
     var finalHtml = jade.renderFile('src/jade/templates/_findrecords.jade', {pretty: true, html:html});
     fs.writeFileSync('public/findrecords.html', finalHtml);
@@ -57,7 +61,7 @@ rekwest({url:'http://api.bluebuttonconnector.org/providers?limit=100&detailed=1'
 });
 
 function buildList(opt) {
-  console.log(opt);
+  // console.log(opt);
   searchPlaceholder = searchPlaceholder || '';
   var category = opt.category;
   var providerList = opt.providerList;
@@ -90,7 +94,7 @@ function buildList(opt) {
     var provHtml = jade.renderFile('src/jade/templates/_provider-profile.jade', toRender);
     fs.writeFileSync('public/providers/' + prov.id + '.html', provHtml);
     //check to see if image exists
-    if (category != 'immunization') {
+    if (category !== 'immunization' && category !== 'hie') {
       try {
         var hasImg = fs.openSync('public/img/providers/'+prov.id+'.png', 'r');
       } catch (e) {

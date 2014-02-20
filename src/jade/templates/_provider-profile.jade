@@ -67,8 +67,8 @@ block content
                 em there are no
             h6.feature-title Additional features
             - if (additionalFeatures)
-              - console.log("features for " + organization);
-              - console.log(services);
+              //- - console.log("features for " + organization);
+              //- - console.log(services);
               ul.additional-features-list
                 - if (services.bill_pay)
                   li Pay bills online
@@ -128,7 +128,9 @@ block content
         .ask-participate
           h5.fw-normal.fg-dblue Ask #{organization} to participate!
           - var urlsafeorganization = encodeURIComponent(organization);
-          h6.fg-mgrey If some features are not available, ask them why with <a class='fg-maqua fw-strong' href='../blue-button-request.pdf', target='_blank'>this form letter (PDF)</a>.
+          h6.fg-mgrey
+            | If some features are not available, ask them why with&nbsp;
+            include ../includes/_request-records
           //- hr.hairline
           //- h5.fw-normal.fg-dblue Is this profile inaccurate?
           //- h6.fg-mgrey This profile was last updated on #{updated}. You can help by <a class='fg-maqua fw-strong' href='/update-provider.html?id=#{id}'>suggesting corrections and updates</a>.

@@ -21,6 +21,7 @@ $(function() {
   var pharmacyList = new List('pharmacy-list-wrapper', listOptions);
   var labList = new List('lab-list-wrapper', listOptions);
   var immunizationList = new List('immunization-list-wrapper', listOptions);
+  var hieList = new List('hie-list-wrapper', listOptions);
 
 
   // HIDE/SHOW the list depending on if there is something in the search/filter input
@@ -34,6 +35,7 @@ $(function() {
   // });
 
   $('body').on('input keychange', '.provider-search-name', function(evt) {
+    //when free text searching, clear out the state filter (which is only on physicianList)
     var $pvs = $('.provider-search-state')
     if ($pvs.val() !== 'false') {
       $pvs.val('false');

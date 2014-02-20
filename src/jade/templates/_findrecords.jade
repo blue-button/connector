@@ -35,36 +35,40 @@ block content
             a.box-link-rapper(href='#immunization', data-toggle='tab')
               h3.fg-white Immunization Registry
               i.fa.fa-file-text-o.isize-48
+          li.col-sm-6
+            a.box-link-rapper(href='#hie', data-toggle='tab')
+              h3.fg-white Health Information Exchange Portals
+              i.fa.fa-random.isize-48
 
     #select-provider-wrapper.tab-content
+
       #insurance.tab-pane.row
         .col-md-3.col-sm-12
           h4.fg-dgrey Select your insurance provider
-
         .col-md-9.col-sm-9.providers!= html.insurance
-
 
       #physician.tab-pane.row
         .col-md-3.col-sm-12
           h4.fg-dgrey Select your physician
-
         .col-md-9.col-sm-9.providers!= html.physician
 
       #pharmacy.tab-pane.row
         .col-md-3.col-sm-12
           h4.fg-dgrey Select your pharmacy
-
         .col-md-9.col-sm-9.providers!= html.pharmacy
 
       #lab.tab-pane.row
         .col-md-3.col-sm-12
           h4.fg-dgrey Select your lab
-
         .col-md-9.col-sm-9.providers!= html.lab
 
       #immunization.tab-pane.row
         .col-md-3.col-sm-12
           h4.fg-dgrey Select your immunization registry
+        .col-md-9.col-sm-9.providers!= html.immunization
 
-        .col-md-9.col-sm-12!= html.immunization
+      #hie.tab-pane.row
+        .col-md-3.col-sm-12
+          h4.fg-dgrey Select your exchange portal
+        .col-md-9.col-sm-9.providers!= html.hie
 
