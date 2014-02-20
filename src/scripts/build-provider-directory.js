@@ -4,7 +4,7 @@ var fs = require('fs');
 var moment = require('moment');
 
 console.log("Calling 'API'...");
-rekwest({url:'http://api.bluebuttonconnector.org/providers?limit=100&detailed=1', json:true}, function(err, response, data) {
+rekwest({url:'http://api.bluebuttonconnector.healthit.gov/providers?limit=100&detailed=1', json:true}, function(err, response, data) {
   if (data && data.results) {
     console.log("Building list for " + data.results.length + " providers...");
 
