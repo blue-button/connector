@@ -1,15 +1,17 @@
 extends templates/layout
+append vars
+  - pgTitle = 'Blue Button Connector | Developers'
 block content
   include includes/_topnav
   .container
     h1.page-title Resources for developers
 
     h3.fg-mblue API
-    p.readable-width.fg-dgrey The Blue Button Connector provides a free, public, read-only API to access the directory of providers and receivers (apps).
+    p.readable-width.fg-dgrey The Blue Button Connector provides a free, public, read-only API to access the directory of organizations and apps.
     a.btn.btn-primary(href='http://api.bluebuttonconnector.healthit.gov') API documentation & examples
 
     h3.fg-mblue Adding data to the Connector
-    p.readable-width.fg-dgrey To add new providers or update data on an existing provider, <a class='fw-strong' href='mailto:bluebutton@hhs.gov?subject=Adding%20provider%20data%20to%20the%20Connector', target='_blank'>send us an email</a>.
+    p.readable-width.fg-dgrey To add new organization or update an existing organization, <a class='fw-strong' href='mailto:bluebutton@hhs.gov?subject=Adding%20organizations%20to%20the%20Connector', target='_blank'>send us an email</a>.
     //- p.readable-width.fg-dgrey Although the public API is currently read-only, you can use the web form to add a new <a class='fw-strong' href='/update-provider.html'>provider</a> or <a class='fw-strong' href='/update-receiver.html'>receiver</a>. You'll find a link at the bottom of each provider profile page that you can use to suggest corrections to existing providers.
     //- p.readable-width.fg-dgrey If your addition or correction is approved, it will appear on the website and in the API.
 
@@ -17,7 +19,7 @@ block content
     p.readable-width.fg-dgrey This Connector website has been built in the open. You can find the <a class='fw-strong' href='https://github.com/blue-button/connector'>source files on Guthub</a>.
 
     h3.fg-mblue Blue Button+
-    p.readable-width.fg-dgrey If you'd like to learn more about becoming a Blue Button provider or building an app that uses Blue Button data, check out the <a class='fw-strong' href="http://bluebutton.net">Blue Button+ website</a>.
+    p.readable-width.fg-dgrey If you'd like to learn more about implementing Blue Button+, check out the <a class='fw-strong' href="http://bluebuttonplus.org">Blue Button+ website</a>.
 
     h3.fg-mblue Questions or Suggestions?
     p.readable-width.fg-dgrey Just <a class='fw-strong' href='mailto:bluebutton@hhs.gov', target='_blank'>send us an email</a>.

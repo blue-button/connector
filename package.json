@@ -4,8 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build-providers": "node src/scripts/build-provider-directory",
-    "build-receivers": "node src/scripts/build-app-directory"
+    "build-organizations": "node src/scripts/build-organization-directory",
+    "build-apps": "node src/scripts/build-app-directory",
+    "build-organizations-nocache": "node src/scripts/build-organization-directory --clearcache"
   },
   "author": "",
   "license": "BSD",
@@ -22,6 +23,7 @@
     "jade": "~0.35.0",
     "moment": "~2.5.1",
     "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-clean": "~0.5.0"
+    "grunt-contrib-clean": "~0.5.0",
+    "minimist": "0.0.8"
   }
 }

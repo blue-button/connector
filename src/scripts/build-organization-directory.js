@@ -1,0 +1,126 @@
+var rekwest = require('request');
+var jade = require('jade');
+var fs = require('fs');
+var moment = require('moment');
+var argv = require('minimist')(process.argv.slice(2));
+
+if (argv.clearcache) {
+  //first refresh the cache
+  console.log("clearing the Google ScriptDB cache...")
+  rekwest({url:'http://api.bluebuttonconnector.healthit.gov/organizations?action=refreshcache'}, function(err, response, data) {
+    if (err) return console.log(err);
+    console.log(data);
+  });
+} else {
+  getEm();
+}
+
+function getEm(){
+  console.log("Calling 'API'...");
+  rekwest({url:'http://api.bluebuttonconnector.healthit.gov/organizations?limit=100&detailed=1', json:true}, function(err, response, data) {
+    if (data && data.results) {
+      console.log("Building list for " + data.results.length + " organizations...");
+      //TODO make it handle more than 100!
+      if (data.results.length > 99) {
+        throw Error("This script can't handle more than 100 organizations!")
+      }
+
+      var insOrgs = [];
+      var phyOrgs = [];
+      var phaOrgs = [];
+      var labOrgs = [];
+      var immOrgs = [];
+      var hieOrgs = [];
+      // var stateList = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+      // for (var i=0; i<stateList.length; i++) {
+      //   immOrgs.push({name:stateList[i], bburl:'#', features:''});
+      // }
+        //- console.log(data.results);
+
+      var numOrgs = data.results.length;
+      for (var i=0; i<numOrgs; i++) {
+        var org = data.results[i];
+        if (/insurance/i.test(org.category)) {
+          insOrgs.push(org);
+        } else if (/hospital|physician|provider/i.test(org.category)) {
+          phyOrgs.push(org);
+        } else if (/lab/i.test(org.category)) {
+          labOrgs.push(org);
+        } else if (/pharmacy/i.test(org.category)) {
+          phaOrgs.push(org);
+        } else if (/immunization/i.test(org.category)) {
+          immOrgs.push(org);
+        } else if (/hie/i.test(org.category)) {
+          hieOrgs.push(org);
+        }
+      }
+
+      var html = {};
+
+      html.insurance = buildList({category:'insurance', orgList: insOrgs, searchPlaceholder: 'Blue Cross'});
+      html.physician = buildList({category:'physician', orgList: phyOrgs, searchPlaceholder: 'Anderson'});
+      html.pharmacy = buildList({category:'pharmacy', orgList: phaOrgs, searchPlaceholder: 'Walgreens'});
+      html.lab = buildList({category:'lab', orgList: labOrgs, searchPlaceholder: 'Quest Diagnostics'});
+      html.immunization = buildList({category:'immunization', orgList: immOrgs, searchPlaceholder: 'Arizona'});
+      html.hie = buildList({category:'hie', orgList: hieOrgs, searchPlaceholder: 'New Jersey'});
+
+      var finalHtml = jade.renderFile('src/jade/templates/_organizations.jade', {pretty: true, html:html});
+      fs.writeFileSync('public/records.html', finalHtml);
+      console.log("DONE.");
+      process.exit(0);
+
+    } else {
+      console.warn("PROBLEM CONNECTING TO API!");
+      console.log("Error: ", err);
+      console.log("Response: ", response);
+      process.exit(1);
+    }
+  });
+}
+
+function buildList(opt) {
+  // console.log(opt);
+  searchPlaceholder = searchPlaceholder || '';
+  var category = opt.category;
+  var orgList = opt.orgList;
+  var searchPlaceholder = opt.searchPlaceholder;
+  var unitedStates = [{data: "AK", label: "Alaska"},{data: "AL", label: "Alabama"},{data: "AR", label: "Arkansas"},{data: "AZ", label: "Arizona"},{data: "CA", label: "California"},{data: "CO", label: "Colorado"},{data: "CT", label: "Connecticut"},{data: "DE", label: "Delaware"},{data: "DC", label: "District of Columbia"},{data: "FL", label: "Florida"},{data: "GA", label: "Georgia"},{data: "HI", label: "Hawaii"},{data: "IA", label: "Iowa"},{data: "ID", label: "Idaho"},{data: "IL", label: "Illinois"},{data: "IN", label: "Indiana"},{data: "KS", label: "Kansas"},{data: "KY", label: "Kentucky"},{data: "LA", label: "Louisiana"},{data: "MA", label: "Massachusetts"},{data: "MD", label: "Maryland"},{data: "ME", label: "Maine"},{data: "MI", label: "Michigan"},{data: "MN", label: "Minnesota"},{data: "MS", label: "Mississippi"},{data: "MO", label: "Missouri"},{data: "MT", label: "Montana"},{data: "NC", label: "North Carolina"},{data: "ND", label: "North Dakota"},{data: "NE", label: "Nebraska"},{data: "NH", label: "New Hampshire"},{data: "NJ", label: "New Jersey"},{data: "NM", label: "New Mexico"},{data: "NV", label: "Nevada"},{data: "NY", label: "New York"},{data: "OH", label: "Ohio"},{data: "OK", label: "Oklahoma"},{data: "OR", label: "Oregon"},{data: "PA", label: "Pennsylvania"},{data: "RI", label: "Rhode Island"},{data: "SC", label: "South Carolina"},{data: "SD", label: "South Dakota"},{data: "TN", label: "Tennessee"},{data: "TX", label: "Texas"},{data: "UT", label: "Utah"},{data: "VA", label: "Virginia"},{data: "VT", label: "Vermont"},{data: "WA", label: "Washington"},{data: "WI", label: "Wisconsin"},{data: "WV", label: "West Virginia"},{data: "WY", label: "Wyoming"}];
+  console.log("building " + category + " list for " + orgList.length + " organizations...");
+  var listhtml = jade.renderFile('src/jade/templates/_organization-list.jade', {pretty: true, orgList:orgList, category:category, searchPlaceholder:searchPlaceholder, unitedStates:unitedStates});
+
+  orgList.forEach(function(org, ind) {
+    var toRender = org;
+    toRender.category = category;
+    toRender.updated = moment(org.updated).format("MMM Do, YYYY");
+
+    toRender.bbview = false;
+    if (org.view.active_prescriptions || org.view.allergies  || org.view.appointment_history  || org.view.claims || org.view.clinical_notes || org.view.diagnostics  || org.view.family_history || org.view.imaging  || org.view.immunizations  || org.view.lab_results  || org.view.medical_history  || org.view.medications  || org.view.pathology  || org.view.prescriptions  || org.view.problems || org.view.visit_history || org.view.vitals) toRender.bbview = true;
+
+    toRender.bbdownload = false;
+    if (org.download.text || org.download.pdf || org.download.c32 || org.download.ccda || org.download.other) toRender.bbdownload = true;
+
+    toRender.bbtransmit = false;
+    if (org.transmit.automation || org.transmit.direct.enabled || org.transmit.direct.trust_bundles.patient || org.transmit.direct.trust_bundles.orgider  || org.transmit.direct.trust_bundles.other || org.transmit.rest.enabled || org.transmit.rest.registries) toRender.transmit = true;
+
+    toRender.bbautomatic = false;
+    if (org.transmit.automation) toRender.bbautomatic = true;
+
+    toRender.additionalFeatures = false;
+    if (org.services.bill_pay || org.services.caregiving || org.services.dispute || org.services.family_prescriptions || org.services.new_prescriptions || org.services.transfer_prescription || org.services.refills || org.services.automatic_refills || org.services.test_request || org.services.reminders || org.services.scheduling || org.services.search) toRender.additionalFeatures = true;
+
+    toRender.pretty = true;
+    var orgHtml = jade.renderFile('src/jade/templates/_organization-profile.jade', toRender);
+    fs.writeFileSync('public/organizations/' + org.id + '.html', orgHtml);
+    //check to see if image exists
+    if (category !== 'immunization' && category !== 'hie') {
+      try {
+        var hasImg = fs.openSync('public/img/organizations/'+org.id+'.png', 'r');
+      } catch (e) {
+        console.warn("IMAGE NOT FOUND FOR " + org.id);
+      }
+    }
+
+  });
+
+  return listhtml;
+}

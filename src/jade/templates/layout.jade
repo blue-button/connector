@@ -1,10 +1,11 @@
 block vars
   - var nestLevel = ''
+  - var pgTitle = 'Blue Button Connector | Use Your Health Records'
 !!! 5
 html
   block head
     head
-      title Blue Button Connector | Download Your Health Information
+      title= pgTitle
       meta(name='viewport', content='width=device-width, initial-scale=1')
       meta(content='text/html; charset=UTF-8', http-equiv='Content-Type')
       meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -41,7 +42,7 @@ html
             li:  a(href='http://www.hhs.gov/Disclaimer.html') Disclaimer
             li.hidden-xs.force-inline:  |
             li: a(href='mailto:bluebutton@hhs.gov?subject=Feedback%20on%20Blue%20Button%20Connector', target='_blank') Feedback
-          p.fs-xxsmall This project was funded by a contract from the <a class='td-underline' href="http://www.hhs.gov/healthit/">Office of the National Coordinator for Health Information Technology (ONC)</a>
+          p.fs-xxsmall This project was funded by the Office of the National Coordinator for Health Information Technology (ONC)
       script.
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
