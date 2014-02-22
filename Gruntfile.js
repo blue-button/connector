@@ -9,8 +9,7 @@ module.exports = function(grunt) {
       compile: {
         options: {compress: false},
         files: {
-            'src/css/bbhub.css': 'src/stylus/bbhub.styl',
-            '<%=meta.endpoint%>/css/styleguide.css': 'src/stylus/styleguide.styl'
+            'src/css/bbhub.css': 'src/stylus/bbhub.styl'
           }
       }
     },
