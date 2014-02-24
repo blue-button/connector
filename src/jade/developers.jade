@@ -11,11 +11,69 @@ block content
     a.btn.btn-primary(href='http://api.bluebuttonconnector.healthit.gov') API documentation & examples
 
     h3.fg-mblue Adding data to the Connector
-    p.readable-width.fg-dgrey To add new organization or update an existing organization, <a class='fw-strong' href='mailto:bluebutton@hhs.gov?subject=Adding%20organizations%20to%20the%20Connector', target='_blank'>send us an email</a>.
-    //- p.readable-width.fg-dgrey Although the public API is currently read-only, you can use the web form to add a new <a class='fw-strong' href='/update-provider.html'>provider</a> or <a class='fw-strong' href='/update-receiver.html'>receiver</a>. You'll find a link at the bottom of each provider profile page that you can use to suggest corrections to existing providers.
-    //- p.readable-width.fg-dgrey If your addition or correction is approved, it will appear on the website and in the API.
-    p Here's the current data model for organizations. Note that some properties are not applicable to some categories.
-    script(src="https://gist.github.com/blacktm/7668417.js")
+    p.readable-width.fg-dgrey Although the public API is currently read-only, you can use the web form to add a new <a class='fw-strong' href='/update-organization.html'>organization</a> or <a class='fw-strong' href='/update-app.html'>app</a>. You'll find a link at the bottom of each organization profile page that you can use to suggest corrections to existing organizations.
+    p.readable-width.fg-dgrey If your addition or correction is approved, it will appear on the website and in the API.
+
+    h3.fg-mblue Data we're collecting for organizations
+    p.readable-width Note that some properties are not applicable to some categories.
+    #what-info.container
+      .row
+        .col-sm-4
+          h4.fg-mblue Basics
+          ul.dashed
+            li name and description
+            li contact and location
+            li link to website
+            li category
+          h4.fg-mblue Additional features
+          ul.dashed
+            li Schedule or manage appointments
+            li Send and receive secure messages
+            li Manage health records for family members
+            li Track and record self-reported health data
+            li Search for a doctor in network
+            li Dispute a claim
+            li Shop for a plan
+            li Refill your prescription
+            li Set up automatic refills
+            li Manage your family's prescription
+            li Transfer your prescription
+            li Request a new prescription
+        .col-sm-4
+          h4.fg-mblue Download formats
+          ul.dashed
+            li text
+            li PDF
+            li C-CDA
+            li C32
+            li other
+          h4.fg-mblue Data transmission
+          ul.dashed
+            li Project DIRECT (e.g. secure email)
+            li Patient Trust Bundle (sharing data with patients/consumers)
+            li Provider Trust Bundle (sharing data with other healthcare orgs)
+            li Participation in other trust bundles
+        .col-sm-4
+          h4.fg-mblue Viewable online
+          ul.dashed
+            li appointments
+            li allergies
+            li claims
+            li clinical notes
+            li diagnostics
+            li family history
+            li imaging
+            li immunizations
+            li lab results
+            li medical history
+            li medications
+            li pathology
+            li prescriptions
+            li problems
+            li visit history
+            li vitals
+            li BlueButton+ REST API (Pull) enabled
+
 
     h3.fg-mblue Connector website files
     p.readable-width.fg-dgrey This Connector website has been built in the open. You can find the <a class='fw-strong' href='https://github.com/blue-button/connector'>source files on Guthub</a>.

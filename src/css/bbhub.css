@@ -731,6 +731,9 @@ img.little-logo {
   color: #fff;
   width: 100%;
 }
+#what-info ul li {
+  margin-top: 4px;
+}
 .img-subtext {
   font-weight: normal;
   line-height: 1.2em;
