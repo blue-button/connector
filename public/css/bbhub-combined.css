@@ -844,6 +844,7 @@ li.active .box-link-rapper {
 }
 .provider-list {
   padding-right: 0px;
+  padding-bottom: 20px;
   height: 290px;
   overflow-y: auto;
 }
@@ -952,6 +953,10 @@ ul.additional-features-list li {
 }
 .profile-img {
   width: 400px;
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 0;
 }
 .section.footer {
   padding-top: 20px;
