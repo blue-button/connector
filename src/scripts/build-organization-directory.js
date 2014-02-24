@@ -11,6 +11,7 @@ if (argv.clearcache) {
   rekwest({url:'http://api.bluebuttonconnector.healthit.gov/organizations?action=refreshcache'}, function(err, response, data) {
     if (err) return console.log(err);
     console.log(data);
+    getEm();
   });
 } else {
   getEm();
@@ -134,7 +135,7 @@ function buildList(opt) {
     var orgHtml = jade.renderFile('src/jade/templates/_organization-profile.jade', toRender);
     fs.writeFileSync('public/organizations/' + org.id + '.html', orgHtml);
     //check to see if image exists
-    if (category !== 'immunization' && category !== 'hie') {
+    if (category !== 'hie') {
       try {
         var hasImg = fs.openSync('public/img/organizations/'+org.id+'.png', 'r');
       } catch (e) {
