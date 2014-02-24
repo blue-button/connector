@@ -24,6 +24,7 @@
     "moment": "~2.5.1",
     "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-clean": "~0.5.0",
-    "minimist": "0.0.8"
+    "minimist": "0.0.8",
+    "async": "~0.2.10"
   }
 }

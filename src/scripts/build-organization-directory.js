@@ -2,6 +2,7 @@ var rekwest = require('request');
 var jade = require('jade');
 var fs = require('fs');
 var moment = require('moment');
+var async = require('async');
 var argv = require('minimist')(process.argv.slice(2));
 
 if (argv.clearcache) {
@@ -17,65 +18,83 @@ if (argv.clearcache) {
 
 function getEm(){
   console.log("Calling 'API'...");
-  rekwest({url:'http://api.bluebuttonconnector.healthit.gov/organizations?limit=100&detailed=1', json:true}, function(err, response, data) {
-    if (data && data.results) {
-      console.log("Building list for " + data.results.length + " organizations...");
-      //TODO make it handle more than 100!
-      if (data.results.length > 99) {
-        throw Error("This script can't handle more than 100 organizations!")
-      }
-
-      var insOrgs = [];
-      var phyOrgs = [];
-      var phaOrgs = [];
-      var labOrgs = [];
-      var immOrgs = [];
-      var hieOrgs = [];
-      // var stateList = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-      // for (var i=0; i<stateList.length; i++) {
-      //   immOrgs.push({name:stateList[i], bburl:'#', features:''});
-      // }
-        //- console.log(data.results);
-
-      var numOrgs = data.results.length;
-      for (var i=0; i<numOrgs; i++) {
-        var org = data.results[i];
-        if (/insurance/i.test(org.category)) {
-          insOrgs.push(org);
-        } else if (/hospital|physician|provider/i.test(org.category)) {
-          phyOrgs.push(org);
-        } else if (/lab/i.test(org.category)) {
-          labOrgs.push(org);
-        } else if (/pharmacy/i.test(org.category)) {
-          phaOrgs.push(org);
-        } else if (/immunization/i.test(org.category)) {
-          immOrgs.push(org);
-        } else if (/hie/i.test(org.category)) {
-          hieOrgs.push(org);
+  //TODO: THIS IS A TEMP HACK BECAUSE WE'RE LAUNCHING TOMORROW INSTEAD OF WEDNESDAY. AND I'M TIRED.
+  async.parallel([
+    function(cb){
+      rekwest({url:'http://api.bluebuttonconnector.healthit.gov/organizations?limit=100&detailed=1', json:true}, function(err, response, data) {
+        if (data && data.results) {
+          cb(null, data.results);
+        } else {
+          cb(err);
         }
+      });
+    },
+    function(cb){
+      rekwest({url:'http://api.bluebuttonconnector.healthit.gov/organizations?limit=100&offset=100&detailed=1', json:true}, function(err, response, data) {
+        if (data && data.results) {
+          cb(null, data.results);
+        } else {
+          cb(err);
+        }
+      });
+    }],
+    function(err, r){
+      if (err) {
+        console.warn("PROBLEM CONNECTING TO API!");
+        console.log("Error: ", err);
+        process.exit(1);
       }
-
-      var html = {};
-
-      html.insurance = buildList({category:'insurance', orgList: insOrgs, searchPlaceholder: 'Blue Cross'});
-      html.physician = buildList({category:'physician', orgList: phyOrgs, searchPlaceholder: 'Anderson'});
-      html.pharmacy = buildList({category:'pharmacy', orgList: phaOrgs, searchPlaceholder: 'Walgreens'});
-      html.lab = buildList({category:'lab', orgList: labOrgs, searchPlaceholder: 'Quest Diagnostics'});
-      html.immunization = buildList({category:'immunization', orgList: immOrgs, searchPlaceholder: 'Arizona'});
-      html.hie = buildList({category:'hie', orgList: hieOrgs, searchPlaceholder: 'New Jersey'});
-
-      var finalHtml = jade.renderFile('src/jade/templates/_organizations.jade', {pretty: true, html:html});
-      fs.writeFileSync('public/records.html', finalHtml);
-      console.log("DONE.");
-      process.exit(0);
-
-    } else {
-      console.warn("PROBLEM CONNECTING TO API!");
-      console.log("Error: ", err);
-      console.log("Response: ", response);
-      process.exit(1);
+      var leOrgs = r[0].concat(r[1]);
+      processOrgs(leOrgs);
     }
-  });
+  );
+}
+
+function processOrgs(orgs) {
+  console.log("Building list for " + orgs.length + " organizations...");
+  var insOrgs = [];
+  var phyOrgs = [];
+  var phaOrgs = [];
+  var labOrgs = [];
+  var immOrgs = [];
+  var hieOrgs = [];
+  // var stateList = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+  // for (var i=0; i<stateList.length; i++) {
+  //   immOrgs.push({name:stateList[i], bburl:'#', features:''});
+  // }
+    //- console.log(data.results);
+
+  var numOrgs = orgs.length;
+  for (var i=0; i<numOrgs; i++) {
+    var org = orgs[i];
+    if (/insurance/i.test(org.category)) {
+      insOrgs.push(org);
+    } else if (/hospital|physician|provider/i.test(org.category)) {
+      phyOrgs.push(org);
+    } else if (/lab/i.test(org.category)) {
+      labOrgs.push(org);
+    } else if (/pharmacy/i.test(org.category)) {
+      phaOrgs.push(org);
+    } else if (/immunization/i.test(org.category)) {
+      immOrgs.push(org);
+    } else if (/hie/i.test(org.category)) {
+      hieOrgs.push(org);
+    }
+  }
+
+  var html = {};
+
+  html.insurance = buildList({category:'insurance', orgList: insOrgs, searchPlaceholder: 'Blue Cross'});
+  html.physician = buildList({category:'physician', orgList: phyOrgs, searchPlaceholder: 'Anderson'});
+  html.pharmacy = buildList({category:'pharmacy', orgList: phaOrgs, searchPlaceholder: 'Walgreens'});
+  html.lab = buildList({category:'lab', orgList: labOrgs, searchPlaceholder: 'Quest Diagnostics'});
+  html.immunization = buildList({category:'immunization', orgList: immOrgs, searchPlaceholder: 'Arizona'});
+  html.hie = buildList({category:'hie', orgList: hieOrgs, searchPlaceholder: 'New Jersey'});
+
+  var finalHtml = jade.renderFile('src/jade/templates/_organizations.jade', {pretty: true, html:html});
+  fs.writeFileSync('public/records.html', finalHtml);
+  console.log("DONE.");
+  process.exit(0);
 }
 
 function buildList(opt) {
@@ -89,6 +108,9 @@ function buildList(opt) {
   var listhtml = jade.renderFile('src/jade/templates/_organization-list.jade', {pretty: true, orgList:orgList, category:category, searchPlaceholder:searchPlaceholder, unitedStates:unitedStates});
 
   orgList.forEach(function(org, ind) {
+    if (!org.id) {
+      console.log("Missing ID for " + org.organization);
+    }
     var toRender = org;
     toRender.category = category;
     toRender.updated = moment(org.updated).format("MMM Do, YYYY");
