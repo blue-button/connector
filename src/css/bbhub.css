@@ -444,7 +444,8 @@ body.modal-open {
   text-decoration: underline;
 }
 .share-blurb {
-  margin-top: 32px;
+  margin-top: 12px;
+  margin-bottom: 32px;
   padding-right: 0;
 }
 .share-blurb p {
