@@ -18,7 +18,7 @@ block content
       include _app-list
 
     .text-center
-      ul.pagination.pagination-lg
+      ul.app-pagination.pagination.pagination-lg
         if page > 1
           li
             a(href='apps-' + (page-1) + '.html#app-list')!= '&laquo;'
@@ -29,7 +29,7 @@ block content
         - for (var i = 1; i < totalPages+1; i++)
           if i === page
             li.pagination-link.active
-              a(href='apps-' + i + '.html#app-list', data-page=i)
+              span
                 | #{i}
                 span.sr-only (current)
           else
@@ -42,7 +42,7 @@ block content
             a(href='apps-' + (page+1) + '.html#app-list')!= '&raquo;'
         else
           li.disabled
-            a(href='#')!= '&raquo;'
+            span!= '&raquo;'
 
     hr.hairline
     h5.fw-normal.fg-dblue Know an app that should be listed?

@@ -1,6 +1,31 @@
 $(function() {
   $('a.next-btn').smoothScroll();
   var isMac = false;
+  if (navigator.userAgent.indexOf('Mac OS X') != -1) {
+    isMac = true;
+  }
+  var canPush = false;
+  if (!!(window.history && history.pushState)) {
+    canPush = true;
+    $('body').on('click', '.app-pagination a', function(evt) {
+      var link = $(this).attr('href');
+      $.get(link, function(data) {
+        var $data = $(data);
+        var $appList = $('#app-list');
+        var appHTML = $data.find('#app-list').html();
+        var $appPagination = $('.app-pagination');
+        var paginationHTML = $data.find('.app-pagination').html();
+        $appList.html(appHTML);
+        $appPagination.html(paginationHTML);
+      });
+      history.pushState(null, '', link);
+      $.smoothScroll({
+        scrollTarget: '#app-list'
+      });
+      evt.preventDefault();
+      return false;
+    });
+  }
 
   $('body').on('click', 'a.box-link-rapper', function(evt) {
     $.smoothScroll({
@@ -16,6 +41,7 @@ $(function() {
       }, 300)
     }
   });
+
 
   //create the filter-able lists
   //TODO consider optimizing this to work with single instance
@@ -94,8 +120,16 @@ $(function() {
   });
 
   // Mac users won't have a very good indication that the list of orgs is scrollable. Show the arrow if we need it.
-  if (navigator.userAgent.indexOf('Mac OS X') != -1) {
-    isMac = true;
+  var determineShowScrollHint = function(pl) {
+    var $scrollHint = pl.next().find('.scroll-hint');
+    if (pl[0].scrollHeight - pl.scrollTop() < pl.outerHeight() + 30) {
+      $scrollHint.addClass('no-show');
+    } else {
+      $scrollHint.removeClass('no-show');
+    }
+  }
+
+  if (isMac) {
     var scrollTimer;
     $('.provider-list').scroll(function(evt) {
       var pl = $(this);
@@ -106,12 +140,4 @@ $(function() {
     });
   }
 
-  var determineShowScrollHint = function(pl) {
-    var $scrollHint = pl.next().find('.scroll-hint');
-    if (pl[0].scrollHeight - pl.scrollTop() < pl.outerHeight() + 30) {
-      $scrollHint.addClass('no-show');
-    } else {
-      $scrollHint.removeClass('no-show');
-    }
-  }
 });
