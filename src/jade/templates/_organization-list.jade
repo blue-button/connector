@@ -22,11 +22,13 @@ div(id=category+'-list-wrapper').col-sm-12.col-md-6
     ul(id=category+'-list').nav.nav-pills.nav-stacked.provider-list.list
       each org in orgList
         li: a.provider-link(data-state=org.location.state, href='organizations/' + org.id + '.html') #{org.organization}
-  img.scroll-hint(src='img/transparent-white-gradient.png', width='100%', height='25px')
+    .scroll-hint-wrapper
+      .scroll-hint.fa.fa-chevron-down.isize-24.no-show
 
 .tab-content.col-sm-12.col-md-6
   .no-data
     h4 Don't see your organization listed?
     h6
-      | You may have a legal right under HIPAA to get your health records electronically. Download and send&nbsp;
-      include ../includes/_request-records
+      | Let them know you have a legal right to your records under HIPAA (
+      a.not-listed-learn-more.fw-strong.fg-mblue(href='http://www.hhs.gov/ocr/privacy/hipaa/understanding/consumers/righttoaccessmemo.pdf', target='_blank') see this letter for details
+      | ).

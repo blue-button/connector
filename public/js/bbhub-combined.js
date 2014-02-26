@@ -209,4 +209,19 @@ if(!jQuery)throw new Error("Bootstrap requires jQuery");+function(a){"use strict
     $vidframe.attr('src', $vidframe.data('yturl'));
   });
 
+  if (navigator.userAgent.indexOf('Mac OS X') != -1) {
+    var scrollTimer;
+    $('.provider-list').scroll(function(evt) {
+      var pl = $(this);
+      if (scrollTimer) { clearTimeout(scrollTimer); }
+      scrollTimer = setTimeout(function() {
+        var $scrollHint = pl.find('.scroll-hint');
+        if (pl[0].scrollHeight - pl.scrollTop() < pl.outerHeight() + 20) {
+          $scrollHint.removeClass('no-show');
+        } else {
+          $scrollHint.addClass('no-show');
+        }
+      }, 200);
+    });
+  }
 });
