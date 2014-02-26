@@ -1,11 +1,20 @@
 $(function() {
   $('a.next-btn').smoothScroll();
+  var isMac = false;
 
   $('body').on('click', 'a.box-link-rapper', function(evt) {
     $.smoothScroll({
-      scrollTarget: '#select-provider-wrapper',
+      scrollTarget: '#select-provider-wrapper'
       // afterScroll: function(){ $('#select-provider-wrapper > .active .provider-search').focus(); }
     });
+    if (isMac) {
+      var $leList = $($(this).attr('href')).find('.provider-list');
+      setTimeout(function(){
+        if ($leList[0].clientHeight < $leList[0].scrollHeight) {
+          $leList.next().find('.scroll-hint').removeClass('no-show');
+        }
+      }, 300)
+    }
   });
 
   //create the filter-able lists
@@ -81,23 +90,28 @@ $(function() {
 
   $('#vid-modal').on('shown.bs.modal', function () {
     var $vidframe = $('#vid-frame');
-    console.log($vidframe.data('yturl'));
     $vidframe.attr('src', $vidframe.data('yturl'));
   });
 
+  // Mac users won't have a very good indication that the list of orgs is scrollable. Show the arrow if we need it.
   if (navigator.userAgent.indexOf('Mac OS X') != -1) {
+    isMac = true;
     var scrollTimer;
     $('.provider-list').scroll(function(evt) {
       var pl = $(this);
       if (scrollTimer) { clearTimeout(scrollTimer); }
       scrollTimer = setTimeout(function() {
-        var $scrollHint = pl.find('.scroll-hint');
-        if (pl[0].scrollHeight - pl.scrollTop() < pl.outerHeight() + 20) {
-          $scrollHint.removeClass('no-show');
-        } else {
-          $scrollHint.addClass('no-show');
-        }
+        determineShowScrollHint(pl)
       }, 200);
     });
+  }
+
+  var determineShowScrollHint = function(pl) {
+    var $scrollHint = pl.next().find('.scroll-hint');
+    if (pl[0].scrollHeight - pl.scrollTop() < pl.outerHeight() + 30) {
+      $scrollHint.addClass('no-show');
+    } else {
+      $scrollHint.removeClass('no-show');
+    }
   }
 });

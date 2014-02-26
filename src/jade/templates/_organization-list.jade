@@ -22,7 +22,7 @@ div(id=category+'-list-wrapper').col-sm-12.col-md-6
     ul(id=category+'-list').nav.nav-pills.nav-stacked.provider-list.list
       each org in orgList
         li: a.provider-link(data-state=org.location.state, href='organizations/' + org.id + '.html') #{org.organization}
-    .scroll-hint-wrapper
+    .scroll-hint-wrapper.text-center
       .scroll-hint.fa.fa-chevron-down.isize-24.no-show
 
 .tab-content.col-sm-12.col-md-6
