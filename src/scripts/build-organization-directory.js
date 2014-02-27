@@ -4,6 +4,7 @@ var fs = require('fs');
 var moment = require('moment');
 var async = require('async');
 var argv = require('minimist')(process.argv.slice(2));
+var json2csv = require('json2csv');
 
 var leOrgs = [];
 var initPathname = '/organizations?limit=100&detailed=1';
@@ -82,8 +83,19 @@ function buildEm(orgs) {
 
   var finalHtml = jade.renderFile('src/jade/templates/_organizations.jade', {pretty: true, html:html});
   fs.writeFileSync('public/records.html', finalHtml);
-  console.log("DONE.");
-  process.exit(0);
+  buildDataDumpFiles(orgs);
+}
+
+function buildDataDumpFiles(orgs){
+  console.log("Saving JSON file...");
+  fs.writeFileSync('public/data/organizations.json', JSON.stringify(orgs));
+  console.log("Fetching CSV data...");
+  rekwest({url:'https://docs.google.com/spreadsheet/pub?key=0Al6qrvXQwr4edGF1eHRLVGV2c3JNWWlJWGpTamZsVEE&single=true&gid=0&output=csv'}, function(err, response, body) {
+    console.log("Saving CSV file...");
+    fs.writeFileSync('public/data/organizations.csv', body);
+    console.log("DONE.");
+    process.exit(0);
+  });
 }
 
 function buildList(opt) {

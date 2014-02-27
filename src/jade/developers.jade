@@ -7,8 +7,22 @@ block content
     h1.page-title Resources for developers
 
     h3.fg-mblue API
-    p.readable-width.fg-dgrey The Blue Button Connector provides a free, public, read-only API to access the directory of organizations and apps.
+    p.readable-width.fg-dgrey The Blue Button Connector provides a free, public, read-only API to access the directory of organizations and apps. It supports CORS and JSONP.
     a.btn.btn-primary(href='http://api.bluebuttonconnector.healthit.gov') API documentation & examples
+
+    h3.fg-mblue Bulk Downloads
+    p
+      | Organizations: &nbsp;
+      a(href='/data/organizations.json') JSON
+      |  |&nbsp;
+      a(href='/data/organizations.csv') CSV
+    p
+      | Apps: &nbsp;
+      a(href='/data/apps.json') JSON
+      |  |&nbsp;
+      a(href='/data/apps.csv') CSV
+
+
 
     h3.fg-mblue Data being made available on the Connector API
     p.readable-width Note that some properties are not applicable to some categories.

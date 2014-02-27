@@ -25,6 +25,7 @@
     "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-clean": "~0.5.0",
     "minimist": "0.0.8",
-    "async": "~0.2.10"
+    "async": "~0.2.10",
+    "json2csv": "~2.2.1"
   }
 }
