@@ -123,6 +123,7 @@ block content
           p.provider-description.people-reached
             strong= people_reached.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             |  people can access their data from #{organization}.
+        p.fg-mgrey This profile was last updated on #{updated}.
 
     .row
       .col-sm-7.col-sm-push-5.col-xs-12
@@ -135,5 +136,5 @@ block content
             |  describes your rights to your health data.
           //- hr.hairline
           //- h5.fw-normal.fg-dblue Is this profile inaccurate?
-          //- h6.fg-mgrey This profile was last updated on #{updated}. You can help by <a class='fg-maqua fw-strong' href='/update-organization.html?id=#{id}'>suggesting corrections and updates</a>.
+          //- You can help by <a class='fg-maqua fw-strong' href='/update-organization.html?id=#{id}'>suggesting corrections and updates</a>.
           //- a.btn.btn-primary(href='/update-organization.html?id=#{id}') Suggest corrections
