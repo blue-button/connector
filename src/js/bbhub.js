@@ -27,21 +27,38 @@ $(function() {
     });
   }
 
-  $('body').on('click', 'a.box-link-rapper', function(evt) {
+  var showOrgList = function(el){
     $.smoothScroll({
       scrollTarget: '#select-provider-wrapper'
       // afterScroll: function(){ $('#select-provider-wrapper > .active .provider-search').focus(); }
     });
     if (isMac) {
-      var $leList = $($(this).attr('href')).find('.provider-list');
+      var $leList = $($(el).attr('href')).find('.provider-list');
+      //TODO hie doesn't have provider-list yet. It will...
+      if (!$leList.length) return;
       setTimeout(function(){
         if ($leList[0].clientHeight < $leList[0].scrollHeight) {
           $leList.next().find('.scroll-hint').removeClass('no-show');
         }
       }, 300)
     }
+  }
+
+  $('body').on('click', 'a.box-link-rapper', function(evt, wasTriggered) {
+    if (canPush && !wasTriggered) {
+      history.pushState(null, '', window.location.pathname + this.hash);
+    }
+    showOrgList(this);
   });
 
+  $('body').on('click', 'a.provider-link', function(evt) {
+    if (canPush) {
+      var nameSearchInput = $(this).parents('.providers').find('.provider-search-name').val();
+      if (nameSearchInput.length) {
+        history.pushState(null, '', window.location.pathname + window.location.hash + '?q=' + nameSearchInput);
+      }
+    }
+  });
 
   //create the filter-able lists
   //TODO consider optimizing this to work with single instance
@@ -51,42 +68,34 @@ $(function() {
     valueNames: [ 'provider-link']
   };
 
-  var insuranceList = new List('insurance-list-wrapper', listOptions);
-  var physicianList = new List('physician-list-wrapper', listOptions);
-  var pharmacyList = new List('pharmacy-list-wrapper', listOptions);
-  var labList = new List('lab-list-wrapper', listOptions);
-  var immunizationList = new List('immunization-list-wrapper', listOptions);
+  var catLists = {
+    insuranceList: new List('insurance-list-wrapper', listOptions),
+    physicianList: new List('physician-list-wrapper', listOptions),
+    pharmacyList: new List('pharmacy-list-wrapper', listOptions),
+    labList: new List('lab-list-wrapper', listOptions),
+    immunizationList: new List('immunization-list-wrapper', listOptions)
+  }
+
   //TODO bring this back once we replace the "coming soon" with actual HIE listings
   // var hieList = new List('hie-list-wrapper', listOptions);
-
-
-  // HIDE/SHOW the list depending on if there is something in the search/filter input
-  // $('body').on('input keychange', '.provider-search', function(evt) {
-    // var $toToggle = $(this).parents('.providers').find('.no-data, .provider-list');
-    // if ($('.provider-search').val() !== '') {
-    //   $toToggle.removeClass('hide');
-    // } else {
-    //   $toToggle.addClass('hide');
-    // }
-  // });
 
   $('body').on('input keychange', '.provider-search-name', function(evt) {
     //when free text searching, clear out the state filter (which is only on physicianList)
     var $pvs = $('.provider-search-state')
     if ($pvs.val() !== 'false') {
       $pvs.val('false');
-      physicianList.filter();
+      catLists.physicianList.filter();
     }
   });
 
   $('body').on('change', '.provider-search-state', function(evt) {
     var $self = $(this);
     var selState = $self.val();
-    //TODO standardize on DC vs District of Columbia
     if (selState == 'false') {
-      physicianList.filter();
+      catLists.physicianList.filter();
       return false;
     }
+    //TODO standardize on DC vs District of Columbia
     if (selState == "district of columbia") selState = "dc"
     var filterByState = function(item) {
       var leState = $(item.elm).find('a').attr('data-state');
@@ -96,7 +105,8 @@ $(function() {
         return false;
       }
     }
-    eval($self.closest('.tab-pane').attr('id') + 'List.filter(filterByState)');
+    $('#physician-list-wrapper .provider-search-name').val('');
+    catLists[$self.closest('.tab-pane').attr('id') + 'List'].search().filter(filterByState);
     return false;
   });
 
@@ -138,6 +148,34 @@ $(function() {
         determineShowScrollHint(pl)
       }, 200);
     });
+  }
+
+  var parseQueryString = function(queryString) {
+    var params = {}, queries, temp, i, l;
+    // Split into key/value pairs
+    queries = queryString.split("&");
+    // Convert the array of strings into an object
+    for ( i = 0, l = queries.length; i < l; i++ ) {
+        temp = queries[i].split('=');
+        params[temp[0]] = temp[1];
+    }
+
+    return params;
+  };
+  //check for fragment on records page
+  if (window.location.pathname === '/records.html' && window.location.hash.length) {
+    var frags = window.location.hash.split('?');
+    var $selCatLink = $('a.box-link-rapper[href=' + frags[0] + ']');
+    $selCatLink.trigger('click', true);
+    //now check to see if they've got a search
+
+    if (frags.length > 1) {
+      var params = parseQueryString(frags[1]);
+      if (params.q && params.q !== '') {
+        $($selCatLink.attr('href')+'-list-wrapper').find('.provider-search-name').val(params.q);
+        catLists[$selCatLink.attr('href').substring(1)+'List'].search(params.q);
+      }
+    }
   }
 
 });
