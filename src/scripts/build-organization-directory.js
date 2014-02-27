@@ -5,53 +5,42 @@ var moment = require('moment');
 var async = require('async');
 var argv = require('minimist')(process.argv.slice(2));
 
+var leOrgs = [];
+var initPathname = '/organizations?limit=100&detailed=1';
+
 if (argv.clearcache) {
   //first refresh the cache
   console.log("clearing the Google ScriptDB cache...")
   rekwest({url:'http://api.bluebuttonconnector.healthit.gov/organizations?action=refreshcache'}, function(err, response, data) {
     if (err) return console.log(err);
-    console.log(data);
-    getEm();
+    console.log(data + ", cache cleared.");
+    console.log("Calling 'API'...");
+    getEm(initPathname);
   });
 } else {
-  getEm();
-}
-
-function getEm(){
   console.log("Calling 'API'...");
-  //TODO: THIS IS A TEMP HACK BECAUSE WE'RE LAUNCHING TOMORROW INSTEAD OF WEDNESDAY. AND I'M TIRED.
-  async.parallel([
-    function(cb){
-      rekwest({url:'http://api.bluebuttonconnector.healthit.gov/organizations?limit=100&detailed=1', json:true}, function(err, response, data) {
-        if (data && data.results) {
-          cb(null, data.results);
-        } else {
-          cb(err);
-        }
-      });
-    },
-    function(cb){
-      rekwest({url:'http://api.bluebuttonconnector.healthit.gov/organizations?limit=100&offset=100&detailed=1', json:true}, function(err, response, data) {
-        if (data && data.results) {
-          cb(null, data.results);
-        } else {
-          cb(err);
-        }
-      });
-    }],
-    function(err, r){
-      if (err) {
-        console.warn("PROBLEM CONNECTING TO API!");
-        console.log("Error: ", err);
-        process.exit(1);
-      }
-      var leOrgs = r[0].concat(r[1]);
-      processOrgs(leOrgs);
-    }
-  );
+  getEm(initPathname);
 }
 
-function processOrgs(orgs) {
+function getEm(pathname){
+  console.log("Fetching " + pathname + "...");
+  rekwest({url:'http://api.bluebuttonconnector.healthit.gov'+pathname, json:true}, function(err, response, body) {
+    if (body && body.results) {
+      leOrgs = leOrgs.concat(body.results);
+      if (body.meta.next){
+        getEm(body.meta.next);
+      } else {
+        buildEm(leOrgs);
+      }
+    } else {
+      console.warn("PROBLEM CONNECTING TO API!");
+      console.log("Error: ", err);
+      process.exit(1);
+    }
+  });
+}
+
+function buildEm(orgs) {
   console.log("Building list for " + orgs.length + " organizations...");
   var insOrgs = [];
   var phyOrgs = [];
@@ -63,7 +52,6 @@ function processOrgs(orgs) {
   // for (var i=0; i<stateList.length; i++) {
   //   immOrgs.push({name:stateList[i], bburl:'#', features:''});
   // }
-    //- console.log(data.results);
 
   var numOrgs = orgs.length;
   for (var i=0; i<numOrgs; i++) {
