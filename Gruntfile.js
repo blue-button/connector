@@ -28,7 +28,7 @@ module.exports = function(grunt) {
         options: {
           separator: ';'
         },
-        src: ['src/js/respond.js', 'src/js/bootstrap.min.js', 'src/js/jquery.cookie.js', 'src/js/smoothscroll.min.js', 'src/js/list.min.js', 'src/js/bbhub.js'],
+        src: ['src/js/respond.js', 'src/js/bootstrap.min.js', 'src/js/jquery.cookie.js', 'src/js/smoothscroll.min.js', 'src/js/list.min.js', 'src/js/fastclick.min.js', 'src/js/bbhub.js'],
         dest: '<%=meta.endpoint%>/js/bbhub-combined.js',
         nonull: true
       },
