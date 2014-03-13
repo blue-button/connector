@@ -106,7 +106,9 @@ $(function() {
       }
     }
     $('#physician-list-wrapper .provider-search-name').val('');
-    catLists[$self.closest('.tab-pane').attr('id') + 'List'].search().filter(filterByState);
+    var selCatList = catLists[$self.closest('.tab-pane').attr('id') + 'List'];
+    selCatList.search();
+    selCatList.filter(filterByState);
     return false;
   });
 
