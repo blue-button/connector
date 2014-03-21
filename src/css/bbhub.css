@@ -562,6 +562,23 @@ img.little-logo {
 .circ-col {
   padding: 40px 42px 10px;
 }
+.little-circ {
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  position: relative;
+  width: 75px;
+  height: 75px;
+}
+.little-circ .circ-label {
+  margin: auto;
+  position: absolute;
+  top: 25px;
+  left: 0;
+  right: 0;
+}
+.privacy-list {
+  margin-left: 80px;
+}
 .big-icon {
   font-size: 600%;
   padding: 10px;
@@ -921,6 +938,10 @@ ul.additional-features-list li {
   .go-get-em-header {
     font-size: 14px;
   }
+}
+p.fs-medium {
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 .ask-participate {
   margin-bottom: 40px;
