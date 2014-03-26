@@ -9,16 +9,13 @@ html
       meta(name='viewport', content='width=device-width, initial-scale=1')
       meta(content='text/html; charset=UTF-8', http-equiv='Content-Type')
       meta(http-equiv='X-UA-Compatible', content='IE=edge')
-
       link(rel='shortcut icon', href='#{nestLevel}favicon.ico')
-      block mainstyle
-        link(rel='stylesheet', href='#{nestLevel}css/bbhub-combined.css')
 
       script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
       script.
         window.jQuery || document.write('<script src="#{nestLevel}js/jquery-1.10.2.min.js">\x3C/script>')
-      block mainscript
-        script(src='#{nestLevel}js/bbhub-combined.min.js')
+      block mainstyle
+        link(rel='stylesheet', href='#{nestLevel}css/bbhub-combined.css')
 
   body
     block content
@@ -43,11 +40,13 @@ html
             li.hidden-xs.force-inline:  |
             li: a(href='mailto:bluebutton@hhs.gov?subject=Feedback%20on%20Blue%20Button%20Connector', target='_blank') Feedback
           p.fs-xxsmall This project was funded by the Office of the National Coordinator for Health Information Technology (ONC)
-      script.
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    block mainscript
+      script(src='#{nestLevel}js/bbhub-combined.min.js')
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-44323000-1', 'bluebuttonconnector.healthit.gov');
-        ga('send', 'pageview');
+      ga('create', 'UA-44323000-1', 'bluebuttonconnector.healthit.gov');
+      ga('send', 'pageview');

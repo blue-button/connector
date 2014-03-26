@@ -12,7 +12,6 @@ block content
     .modal-dialog
       .modal-content
         .modal-header
-          button.close(type='button', data-dismiss='modal', tabindex='-1', role='dialog', aria-hidden='true') &times;
           h4.modal-title Thank you for visiting the Connector.
         .modal-body.text-center
           p This early release is an invitation to help us improve and populate the site before it is more widely marketed.
@@ -20,50 +19,48 @@ block content
         .modal-footer
           button.btn.btn-primary(type='button', data-dismiss='modal') Got it
 
-  .section.splash-section
+  .section.splash-section.bg-white
+    img.logo-big(src='img/bb-logo-depth.jpg')
     ul.top-nav.nav.nav-pills.pull-right
-      li: a.fg-white(href='records.html') Health Records
-      li: a.fg-white(href='apps-1.html') Apps
+      li: a(href='records.html') Health Records
+      li: a(href='apps-1.html') Apps
     .splash-title.text-center
-      h1.h2.fg-white Blue Button<sup>&#174;</sup> Connector
-      h4.fg-white A Way to Help You Find Your Health Data
+      h1.fg-mblue Blue Button<sup>&#174;</sup> Connector
+      h3.fg-mblue A Way to Help You Find Your Health Data
       a.btn.btn-lg.btn-primary(href="records.html") Get Started
-    .splash-img-wrapper
-      //- h6.h6.alt-use or&nbsp;
-      //-   a.fw-strong(href='userecords-1.html') view 3rd party apps
 
   .section.why-bb
     #why-bb.container.text-center
-      h2.h1.fg-maqua What is Blue Button?
-      h2.fw-normal.fg-maqua.readable-width-centered Blue Button is a way to get your health records electronically so you can&hellip;
+      h2.h1.fg-white What is Blue Button?
+      h2.fw-normal.readable-width-centered.fg-white Blue Button is a way to get your health records electronically so you can&hellip;
       .row
         .col-md-3.col-sm-6.circ-col.why-recall.text-center
           .wrap-outer-icon
             .wrap-icon.text-center.big-icon
               i.fa.fa-file-text-o.isize-96
-          h3.fg-maqua Reference
-          h5.fg-mgrey.fw-normal your health records to be reminded when you had your last shot, or the exact date of a procedure.
+          h3.fg-white Reference
+          h5.fg-white.fw-normal your health records to be reminded when you had your last shot, or the exact date of a procedure.
 
         .col-md-3.col-sm-6.circ-col.why-check.text-center
           .wrap-outer-icon
             .wrap-icon.text-center.big-icon
               i.fa.fa-check-square.isize-96
-          h3.fg-maqua Check
-          h5.fg-mgrey.fw-normal the accuracy of your records, monitor changes, and stay aware of your health status.
+          h3.fg-white Check
+          h5.fg-white.fw-normal the accuracy of your records, monitor changes, and stay aware of your health status.
 
         .col-md-3.col-sm-6.circ-col.why-share.text-center
           .wrap-outer-icon
             .wrap-icon.text-center.big-icon
               i.fa.fa-user-md.isize-96
-          h3.fg-maqua Share
-          h5.fg-mgrey.fw-normal with your doctor or someone else you trust, when traveling, seeking a second opinion, moving, switching insurance, or in case of emergency.
+          h3.fg-white Share
+          h5.fg-white.fw-normal with your doctor or someone else you trust, when traveling, seeking a second opinion, moving, switching insurance, or in case of emergency.
 
         .col-md-3.col-sm-6.circ-col.why-apps.text-center
           .wrap-outer-icon
             .wrap-icon.text-center.big-icon
               i.fa.fa-mobile.isize-96
-          h3.fg-maqua Use Apps
-          h5.fg-mgrey.fw-normal to help better manage and coordinate your healthcare to achieve your health goals.
+          h3.fg-white Use Apps
+          h5.fg-white.fw-normal to help better manage and coordinate your healthcare to achieve your health goals.
 
   .section.testimonials
     #testimonials.container.text-center
@@ -73,22 +70,25 @@ block content
       .row.centered-row
         a.vid-still(href='http://www.youtube.com/watch?v=lGGnda44Yik', data-ytid='lGGnda44Yik', target='_blank')
           .col-sm-6.img-container
-            img(src='img/va-bb.jpg')
+            img.vid-cover(src='img/va-bb.jpg')
             .caption-wrapper
               h6.caption Use the VA Blue Button <br>to Access Your Personal Health Information
+            img.play-btn-img(src='img/play-button.png')
 
         a.vid-still(href='http://www.youtube.com/watch?v=UMiPW831b1o', data-ytid='UMiPW831b1o', target='_blank')
           .col-sm-5.img-container
-            img(src='img/health-it-for-you.jpg')
+            img.vid-cover(src='img/health-it-for-you.jpg')
             .caption-wrapper
               h6.caption Health IT For You <br>Giving You Access to Your Medical Records
+            img.play-btn-img(src='img/play-button.png')
 
       .row.centered-row
         a.vid-still(href='http://www.youtube.com/watch?v=JY1l5s8ED5c', data-ytid='JY1l5s8ED5c', target='_blank')
           .col-sm-5.img-container
-            img(src='img/right-to-access.jpg')
+            img.vid-cover(src='img/right-to-access.jpg')
             .caption-wrapper
               h6.caption The Right to Access and Correct Your Health Information
+            img.play-btn-img(src='img/play-button.png')
         //- a(href='blue-button-beth-schindele.pdf', target='_blank')
         //-   .col-sm-3.img-container
         //-     img(src='img/beth-schindele.jpg')
@@ -96,15 +96,16 @@ block content
         //-       h6.caption.fg-dgrey Beth Schindele, caregiver and advocate for her father
         a.vid-still(href='http://www.youtube.com/watch?v=mX-QL9PoePU', data-ytid='mX-QL9PoePU', target='_blank')
           .col-sm-6.img-container
-            img(src='img/hipaa-omnibus.jpg')
+            img.vid-cover(src='img/hipaa-omnibus.jpg')
             .caption-wrapper
               h6.caption The HIPAA Omnibus Rule
+            img.play-btn-img(src='img/play-button.png')
 
 
       .row.centered-row
         .col-sm-11.share-blurb.text-right
           p.fg-white.fs-xsmall Has Blue Button helped you?&nbsp;
-            a.btn.share-btn.bg-dblue.fg-white.fs-xsmall(href='mailto:bluebutton@hhs.gov?subject=Blue%20Button%20helped%20me&body=Here%20is%20my%20story:', target='_blank') Share your story
+            a.btn.share-btn.bg-mblue.fg-white.fs-xsmall(href='mailto:bluebutton@hhs.gov?subject=Blue%20Button%20helped%20me&body=Here%20is%20my%20story:', target='_blank') Share your story
 
       a.btn.fs-xlarge.fg-dblue.bg-white.fw-strong(href="records.html") Get Started
     a.next-btn.text-center.fg-white(href='#header')
@@ -112,10 +113,11 @@ block content
       br
       | top
 
-  script.
-    $(function() {
-      //- if ($.cookie('betamodalshow') === null) {
-        $('#wip-modal').modal('show');
-      //-  $.cookie("betamodalshow", "false");
-      //- }
-    });
+  append mainscript
+    script.
+      $(function() {
+        //- if ($.cookie('betamodalshow') === null) {
+          $('#wip-modal').modal('show');
+        //-  $.cookie("betamodalshow", "false");
+        //- }
+      });

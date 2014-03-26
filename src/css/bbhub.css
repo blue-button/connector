@@ -56,6 +56,9 @@ h4,
   color: #e4e6ea;
 }
 .bg-daqua,
+.section.why-bb .why-share .wrap-icon,
+.section.why-bb .why-apps .wrap-icon,
+.section.why-bb .why-check .wrap-icon,
 .section.why-bb .why-recall .wrap-icon {
   background-color: #0a94bb;
 }
@@ -64,6 +67,7 @@ h4,
   color: #0a94bb;
 }
 .bg-maqua,
+.section.why-bb,
 .offerings {
   background-color: #25c2dc;
 }
@@ -72,7 +76,6 @@ h1,
 .h1,
 .page-title,
 .main-nav a,
-.section.why-bb,
 .get-records-prep {
   color: #25c2dc;
 }
@@ -84,8 +87,7 @@ h1,
   color: #a7e6f0;
 }
 .bg-dblue,
-.btn-primary,
-.bb-onc-header {
+.btn-primary {
   background-color: #0070bb;
 }
 .fg-dblue,
@@ -95,32 +97,28 @@ h2,
 .alt-use a {
   color: #0070bb;
 }
-.bg-mblue,
-.section.why-bb .why-check .wrap-icon {
+.bg-mblue {
   background-color: #328cc8;
 }
 .fg-mblue {
   color: #328cc8;
 }
-.bg-lblue,
-.section.why-bb .why-share .wrap-icon,
-.section.why-bb .why-apps .wrap-icon {
+.bg-lblue {
   background-color: #80c0dd;
 }
 .fg-lblue {
   color: #80c0dd;
 }
 .bg-white,
-body,
-.section.why-bb {
+body {
   background-color: #fff;
 }
 .fg-white,
 h5,
 .h5,
 .photo-title,
-.bb-onc-header,
 .share-icon,
+.section.why-bb,
 .offerings {
   color: #fff;
 }
@@ -335,8 +333,9 @@ ul.dashed li:before {
   margin-right: 10px;
 }
 sup {
-  font-size: 55%;
+  font-size: 30%;
   font-weight: 100;
+  top: -1.4em;
 }
 .page-title {
   padding-bottom: 30px;
@@ -404,30 +403,13 @@ body.modal-open {
   border-bottom: solid 2px #0070bb;
   padding: 0 15px;
 }
-.bb-onc-header {
-  position: relative;
-  height: 80px;
-  padding: 15px;
-}
-.bb-onc-header img.bb-onc-logo {
-  position: relative;
-  width: 150px;
-  margin-right: 20px;
-  vertical-align: bottom;
-}
-.bb-onc-header .onc-tagline {
-  line-height: 1em;
-  font-size: 1.1em;
-  margin-top: 0;
-}
-.bb-onc-header .top-nav {
-  padding-top: 2px;
-}
-.bb-onc-header .top-nav li a {
-  color: #fff;
-}
-.bb-onc-header .top-nav li a:hover {
-  color: #474b5a;
+.logo-big {
+  width: 213px;
+  height: 211px;
+  position: absolute;
+  left: 50%;
+  margin-left: -106px;
+  top: 10px;
 }
 .next-btn {
   position: absolute;
@@ -530,37 +512,25 @@ img.little-logo {
 .splash-section {
   padding-top: 0;
   padding-bottom: 0;
-  background-color: #3c9ed2;
-}
-.splash-section .splash-title {
-  padding-top: 50px;
-  margin-bottom: 25px;
 }
 .splash-section .splash-title h1 {
-  padding: 35px 0 0;
-  margin: 0 0 0px 0;
+  padding: 235px 0 0;
+  margin: 0;
 }
 .splash-section .splash-title h4 {
   margin-top: 5px;
-  margin-bottom: 25px;
+  margin-bottom: 50px;
 }
 .splash-section .btn-primary {
   font-size: 32px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
-.splash-section .splash-img-wrapper {
-  height: 280px;
-  position: relative;
-  background-image: url("../img/splash-bg.jpg");
-  background-repeat: no-repeat;
-  background-position: bottom center;
+.splash-section .top-nav.nav-pills >li >a {
+  color: #0070bb;
 }
-@media all and (-webkit-min-device-pixel-ratio:1.5),(min--moz-device-pixel-ratio:1.5),(-o-min-device-pixel-ratio:1.5/1),(min-device-pixel-ratio:1.5),(min-resolution:138dpi),(min-resolution:1.5dppx) {
-  .splash-section .splash-img-wrapper {
-    background-image: url("../img/splash-bg@2x.jpg");
-    -webkit-background-size: 385px 262px;
-    -moz-background-size: 385px 262px;
-    background-size: 385px 262px;
-  }
+.splash-section .top-nav.nav-pills >li >a:hover {
+  color: #25c2dc;
 }
 .wrap-outer-icon .wrap-icon {
   height: 140px;
@@ -698,6 +668,14 @@ img.little-logo {
 .vid-still {
   position: relative;
 }
+.play-btn-img {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
 @media screen and (min-width: 768px) and (max-width: 991px) {
   #vid-modal .modal-dialog {
     width: 700px;
@@ -724,7 +702,7 @@ img.little-logo {
   font-size: 28px;
 }
 .section.testimonials {
-  background-color: #0a94bb;
+  background-color: #0070bb;
   color: #fff;
 }
 @media (max-width:767px) {
@@ -745,7 +723,7 @@ img.little-logo {
     margin: 10px 0 18px;
   }
 }
-.section.testimonials .img-container img {
+.section.testimonials .img-container img.vid-cover {
   width: 100%;
   min-height: 200px;
 }

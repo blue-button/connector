@@ -56,28 +56,13 @@ body.modal-open
   border-bottom solid 2px $dblue
   padding 0 15px
 
-.bb-onc-header
-  @extend .bg-dblue
-  @extend .fg-white
-  position relative
-  height 80px
-  padding 15px
-  img.bb-onc-logo
-    position relative
-    width 150px
-    mr 20px
-    vertical-align bottom
-  .onc-tagline
-    line-height 1em
-    fs 1.1em
-    mt 0
-  .top-nav
-    pt 2px
-    li
-      a
-        color #fff
-        &:hover
-          color $dgrey
+.logo-big
+  width 213px
+  height 211px
+  position absolute
+  left 50%
+  ml -106px
+  top 10px
 
 .next-btn
   position absolute
@@ -178,28 +163,25 @@ body
 .splash-section
   pt 0
   pb 0
-  background-color #3c9ed2
   .splash-title
-    pt 50px
-    mb 25px
     h1
-      padding 35px 0 0
-      margin 0 0 0px 0
+      padding 235px 00 0
+      margin 0
     h4
       mt 5px
-      mb 25px
+      mb 50px
 
   .btn-primary
     fs 32px
+    mt 50px
+    mb 50px
 
-  .splash-img-wrapper
-    height 280px
-    position relative
-    image '../img/splash-bg.jpg' 385px 262px
-    background-repeat no-repeat
-    background-position bottom center
-
-
+  .top-nav.nav-pills
+    >li
+      >a
+        color $dblue
+        &:hover
+          color $maqua
 
 .wrap-outer-icon
   .wrap-icon
@@ -306,16 +288,16 @@ body
 
 
 .section.why-bb
-  @extend .fg-maqua
-  @extend .bg-white
+  @extend .fg-white
+  @extend .bg-maqua
 
   pt 40px
   .why-share, .why-apps
     .wrap-icon
-      @extend .bg-lblue
+      @extend .bg-daqua
   .why-check
     .wrap-icon
-      @extend .bg-mblue
+      @extend .bg-daqua
   .why-recall
     .wrap-icon
       @extend .bg-daqua
@@ -348,6 +330,14 @@ body
 .vid-still
   position relative
 
+.play-btn-img
+  position absolute
+  top 20px
+  left 0
+  right 0
+  mr auto
+  ml auto
+
 @media screen and (min-width: 768px) and (max-width: 991px)
   #vid-modal
     .modal-dialog
@@ -373,7 +363,7 @@ body
 
 
 .section.testimonials
-  bgc $daqua
+  bgc $dblue
   color #fff
   @media(max-width:767px)
     pb 80px
@@ -386,7 +376,7 @@ body
     height 200px
     @media(max-width:767px)
       margin 10px 0 18px
-    img
+    img.vid-cover
       width 100%
       min-height 200px
     .caption-wrapper
