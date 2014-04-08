@@ -17,33 +17,6 @@ block content
     ul#app-list.row.list-unstyled
       include _app-list
 
-    .text-center
-      ul.app-pagination.pagination.pagination-lg
-        if page > 1
-          li
-            a(href='apps-' + (page-1) + '.html#app-list')!= '&laquo;'
-        else
-          li.disabled
-            a(href='#')!= '&laquo;'
-
-        - for (var i = 1; i < totalPages+1; i++)
-          if i === page
-            li.pagination-link.active
-              span
-                | #{i}
-                span.sr-only (current)
-          else
-            li.pagination-link
-              a(href='apps-' + i + '.html#app-list', data-page=i)
-                | #{i}
-
-        if page < totalPages
-          li
-            a(href='apps-' + (page+1) + '.html#app-list')!= '&raquo;'
-        else
-          li.disabled
-            span!= '&raquo;'
-
     hr.hairline
     h5.fw-normal.fg-dblue Know an app that should be listed?
     h6.fg-mgrey Tell us about it or suggest corrections.

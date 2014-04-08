@@ -30,21 +30,11 @@ function buildEm(apps) {
   var pg = 0;
   var pgSize = 6;
   var numApps = apps.length;
-  var batches = [];
+  var batches = [apps];
 
-  for (var i = 0; i < numApps ; i++) {
-    if (i%pgSize === 0) {
-      pg ++;
-      batches.push(apps.slice((pg-1)*pgSize,pg*pgSize));
-    }
-  }
-
-  for (var j = 0; j<batches.length; j++) {
-    var curBatch = batches[j];
-    var html = jade.renderFile('src/jade/templates/_apps.jade', {pretty: true, appList:curBatch, page: j+1, totalPages:batches.length});
-    fs.writeFileSync('public/apps-' + (j+1) + '.html', html);
-    console.log("apps-" + (j+1) + " built.");
-  }
+  var html = jade.renderFile('src/jade/templates/_apps.jade', {pretty: true, appList:apps});
+  fs.writeFileSync('public/apps.html', html);
+  console.log("apps.html built.");
 
   buildDataDumpFiles(apps);
 }

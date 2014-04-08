@@ -823,6 +823,11 @@ li.active .box-link-rapper {
   width: 128px;
   height: 128px;
 }
+@media (max-width:767px) {
+  .app-rapper {
+    border-bottom: solid 1px #999;
+  }
+}
 .nav-pills>li >a {
   -webkit-border-radius: 0;
   border-radius: 0;

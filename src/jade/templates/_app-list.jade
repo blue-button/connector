@@ -1,3 +1,4 @@
+//- split into groups of 3 for easy row building
 - var appsGrouped = appList.reduce(function (prev, item, i) { if(i % 3 === 0){prev.push([item]);} else {prev[prev.length - 1].push(item);} return prev; }, []);
 
 each group in appsGrouped
