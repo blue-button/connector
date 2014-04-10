@@ -6,70 +6,77 @@ block content
 
   .container
     h1.page-title Locate your records
+
     .row
-      .col-md-3.col-sm-3
-        h4.fg-dgrey Select a source
+
+      .col-sm-4
+        h4.fg-mgrey Select a source
         h6
           strong.fg-maqua Tip:
           |  You may have records from more than one source.
 
-      .col-sm-9
-        ul.row.data-sources.list-unstyled.text-center
-          li.col-sm-6
+        ul.data-sources.list-unstyled.clearfix
+          li
             a.box-link-rapper(href='#insurance', data-toggle='tab')
-              h3.fg-white Health Insurance
-              i.insurance-icon.fa.fa-umbrella.isize-48
-              h6.start-here.fg-white start here
-          li.col-sm-6
+              .wrap-source-icon
+                i.insurance-icon.fa.fa-umbrella.isize-36
+              p.data-source-title.fs-small.fg-maqua.fw-strong Health Insurance
+              //- p.hide.rarr &gt;
+              //- h6.start-here.fg-white start here
+          li
             a.box-link-rapper(href='#physician', data-toggle='tab')
-              h3.fg-white Physician or Hospital
-              i.fa.fa-user-md.isize-48
-          li.col-sm-6
+              .wrap-source-icon
+                i.fa.fa-user-md.isize-36
+              p.data-source-title.fs-small.fg-maqua.fw-strong Physician or Hospital
+              //- p.hide.rarr &gt;
+          li
             a.box-link-rapper(href='#pharmacy', data-toggle='tab')
-              h3.fg-white Pharmacy
-              i.fa.fa-medkit.isize-48
-          li.col-sm-6
+              .wrap-source-icon.wrap-pharmacy-icon
+                i.fa.fa-medkit.isize-36
+              p.data-source-title.fs-small.fg-maqua.fw-strong Pharmacy
+              //- p.hide.rarr &gt;
+          li
             a.box-link-rapper(href='#lab', data-toggle='tab')
-              h3.fg-white Lab
-              i.fa.fa-flask.isize-48
-          li.col-sm-6
+              .wrap-source-icon
+                i.fa.fa-flask.isize-36
+              p.data-source-title.fs-small.fg-maqua.fw-strong Lab
+              //- p.hide.rarr &gt;
+          li
             a.box-link-rapper(href='#immunization', data-toggle='tab')
-              h3.fg-white Immunization Registry
-              i.fa.fa-file-text-o.isize-48
-          li.col-sm-6
+              .wrap-source-icon
+                i.fa.fa-file-text-o.isize-36
+              p.data-source-title.fs-small.fg-maqua.fw-strong Immunization Registry
+              //- p.hide.rarr &gt;
+          li
             a.box-link-rapper(href='#hie', data-toggle='tab')
-              h3.fg-white Health Information Exchange Portals
-              i.fa.fa-random.isize-48
+              .wrap-source-icon
+                i.fa.fa-random.isize-36
+              p.data-source-title.fs-small.fg-maqua.fw-strong Health Information Exchange Portals
+              //- p.hide.rarr &gt;
 
-    #select-provider-wrapper.tab-content
+      #select-provider-wrapper.tab-content.col-sm-8
 
-      #insurance.tab-pane.row
-        .col-md-3.col-sm-12
-          h4.fg-dgrey Select your insurance provider
-        .col-md-9.col-sm-9.providers!= html.insurance
+        #insurance.tab-pane
+          h4.fg-mgrey Select your insurance provider
+          .row.providers!= html.insurance
 
-      #physician.tab-pane.row
-        .col-md-3.col-sm-12
-          h4.fg-dgrey Select your physician
-        .col-md-9.col-sm-9.providers!= html.physician
+        #physician.tab-pane
+          h4.fg-mgrey Select your physician
+          .row.providers!= html.physician
 
-      #pharmacy.tab-pane.row
-        .col-md-3.col-sm-12
-          h4.fg-dgrey Select your pharmacy
-        .col-md-9.col-sm-9.providers!= html.pharmacy
+        #pharmacy.tab-pane
+          h4.fg-mgrey Select your pharmacy
+          .row.providers!= html.pharmacy
 
-      #lab.tab-pane.row
-        .col-md-3.col-sm-12
-          h4.fg-dgrey Select your lab
-        .col-md-9.col-sm-9.providers!= html.lab
+        #lab.tab-pane
+          h4.fg-mgrey Select your lab
+          .row.providers!= html.lab
 
-      #immunization.tab-pane.row
-        .col-md-3.col-sm-12
-          h4.fg-dgrey Select your immunization registry
-        .col-md-9.col-sm-9.providers!= html.immunization
+        #immunization.tab-pane
+          h4.fg-mgrey Select your immunization registry
+          .row.providers!= html.immunization
 
-      #hie.tab-pane.row
-        .col-md-3.col-sm-12
-          h4.fg-dgrey Select your exchange portal
-        .col-md-9.col-sm-9.providers!= html.hie
+        #hie.tab-pane
+          h4.fg-mgrey Select your exchange portal
+          .row.providers!= html.hie
 

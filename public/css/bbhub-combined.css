@@ -418,6 +418,11 @@ body.modal-open {
   margin-left: -106px;
   top: 10px;
 }
+@media (max-width:767px) {
+  .logo-big {
+    top: 45px;
+  }
+}
 .next-btn {
   position: absolute;
   bottom: 40px;
@@ -489,6 +494,11 @@ body.modal-open {
 }
 @media screen and (min-width: 768px) {
 }
+@media (max-width:767px) {
+  .navbar-brand {
+    margin-bottom: 5px;
+  }
+}
 img.little-logo {
   width: 56px;
   height: 56px;
@@ -523,6 +533,11 @@ img.little-logo {
 .splash-section .splash-title h1 {
   padding: 235px 0 0;
   margin: 0;
+}
+@media (max-width:767px) {
+  .splash-section .splash-title h1 {
+    padding-top: 260px;
+  }
 }
 .splash-section .splash-title h4 {
   margin-top: 5px;
@@ -770,50 +785,38 @@ img.little-logo {
   color: #474b5a;
 }
 .box-link-rapper {
-  display: block;
-  margin-bottom: 30px;
-  padding: 5px;
   text-decoration: none;
-  height: 150px;
+  margin-bottom: 10px;
+  display: table;
+}
+.box-link-rapper .wrap-source-icon {
   background-color: #25c2dc;
-  color: #fff;
+  height: 56px;
+  width: 56px;
+  -webkit-border-radius: 28px;
+  border-radius: 28px;
+  margin-right: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.box-link-rapper .wrap-source-icon.wrap-pharmacy-icon {
+  padding-left: 8px;
+}
+.box-link-rapper .data-source-title {
+  display: table-cell;
+  vertical-align: middle;
 }
 .box-link-rapper:hover,
 li.active .box-link-rapper {
-  color: #fff;
   text-decoration: none;
+}
+.box-link-rapper:hover .data-source-title,
+li.active .box-link-rapper .data-source-title {
+  color: #0a94bb;
+}
+.box-link-rapper:hover .wrap-source-icon,
+li.active .box-link-rapper .wrap-source-icon {
   background-color: #0a94bb;
-}
-.box-link-rapper i {
-  display: inline-block !important;
-  font-size: 48px;
-  padding-top: 8px;
-}
-.box-link-rapper .insurance-icon {
-  padding-top: 0;
-}
-.box-link-rapper .start-here {
-  margin-top: 2px;
-}
-@media screen and (max-width: 767px) {
-  .box-link-rapper {
-    text-align: left;
-    padding-left: 65px;
-    margin-bottom: 10px;
-    height: auto;
-  }
-  .box-link-rapper i {
-    font-size: 36px;
-    position: absolute;
-    left: 22px;
-    top: 4px;
-  }
-  .box-link-rapper i.insurance-icon {
-    top: 20px;
-  }
-  .box-link-rapper h3 {
-    margin-top: 10px;
-  }
 }
 .use-records-description {
   color: #25c2dc;
@@ -856,12 +859,19 @@ li.active .box-link-rapper {
 }
 .providers {
   padding: 20px 10px;
-  border-top: solid 5px #25c2dc;
+}
+.provider-list-wrapper {
+  border-left: solid 1px #959dac;
+}
+@media (max-width:767px) {
+  .provider-list-wrapper {
+    border-left: none;
+  }
 }
 .provider-list {
   padding-right: 0px;
   padding-bottom: 5px;
-  height: 300px;
+  height: 350px;
   overflow-y: auto;
 }
 .provider-list.nav-pills>li>a {
@@ -879,7 +889,6 @@ li.active .box-link-rapper {
 .no-data {
   margin-top: 0px;
   padding-left: 20px;
-  border-left: solid 1px #959dac;
 }
 @media screen and (max-width: 767px) {
   .no-data {

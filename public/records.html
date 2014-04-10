@@ -23,35 +23,35 @@
     <div class="container">
       <h1 class="page-title">Locate your records</h1>
       <div class="row">
-        <div class="col-md-3 col-sm-3">
-          <h4 class="fg-dgrey">Select a source</h4>
+        <div class="col-sm-4">
+          <h4 class="fg-mgrey">Select a source</h4>
           <h6><strong class="fg-maqua">Tip:</strong> You may have records from more than one source.</h6>
-        </div>
-        <div class="col-sm-9">
-          <ul class="row data-sources list-unstyled text-center">
-            <li class="col-sm-6"><a href="#insurance" data-toggle="tab" class="box-link-rapper">
-                <h3 class="fg-white">Health Insurance</h3><i class="insurance-icon fa fa-umbrella isize-48"></i>
-                <h6 class="start-here fg-white">start here</h6></a></li>
-            <li class="col-sm-6"><a href="#physician" data-toggle="tab" class="box-link-rapper">
-                <h3 class="fg-white">Physician or Hospital</h3><i class="fa fa-user-md isize-48"></i></a></li>
-            <li class="col-sm-6"><a href="#pharmacy" data-toggle="tab" class="box-link-rapper">
-                <h3 class="fg-white">Pharmacy</h3><i class="fa fa-medkit isize-48"></i></a></li>
-            <li class="col-sm-6"><a href="#lab" data-toggle="tab" class="box-link-rapper">
-                <h3 class="fg-white">Lab</h3><i class="fa fa-flask isize-48"></i></a></li>
-            <li class="col-sm-6"><a href="#immunization" data-toggle="tab" class="box-link-rapper">
-                <h3 class="fg-white">Immunization Registry</h3><i class="fa fa-file-text-o isize-48"></i></a></li>
-            <li class="col-sm-6"><a href="#hie" data-toggle="tab" class="box-link-rapper">
-                <h3 class="fg-white">Health Information Exchange Portals</h3><i class="fa fa-random isize-48"></i></a></li>
+          <ul class="data-sources list-unstyled clearfix">
+            <li><a href="#insurance" data-toggle="tab" class="box-link-rapper">
+                <div class="wrap-source-icon"><i class="insurance-icon fa fa-umbrella isize-36"></i></div>
+                <p class="data-source-title fs-small fg-maqua fw-strong">Health Insurance</p></a></li>
+            <li><a href="#physician" data-toggle="tab" class="box-link-rapper">
+                <div class="wrap-source-icon"><i class="fa fa-user-md isize-36"></i></div>
+                <p class="data-source-title fs-small fg-maqua fw-strong">Physician or Hospital</p></a></li>
+            <li><a href="#pharmacy" data-toggle="tab" class="box-link-rapper">
+                <div class="wrap-source-icon wrap-pharmacy-icon"><i class="fa fa-medkit isize-36"></i></div>
+                <p class="data-source-title fs-small fg-maqua fw-strong">Pharmacy</p></a></li>
+            <li><a href="#lab" data-toggle="tab" class="box-link-rapper">
+                <div class="wrap-source-icon"><i class="fa fa-flask isize-36"></i></div>
+                <p class="data-source-title fs-small fg-maqua fw-strong">Lab</p></a></li>
+            <li><a href="#immunization" data-toggle="tab" class="box-link-rapper">
+                <div class="wrap-source-icon"><i class="fa fa-file-text-o isize-36"></i></div>
+                <p class="data-source-title fs-small fg-maqua fw-strong">Immunization Registry</p></a></li>
+            <li><a href="#hie" data-toggle="tab" class="box-link-rapper">
+                <div class="wrap-source-icon"><i class="fa fa-random isize-36"></i></div>
+                <p class="data-source-title fs-small fg-maqua fw-strong">Health Information Exchange Portals</p></a></li>
           </ul>
         </div>
-      </div>
-      <div id="select-provider-wrapper" class="tab-content">
-        <div id="insurance" class="tab-pane row">
-          <div class="col-md-3 col-sm-12">
-            <h4 class="fg-dgrey">Select your insurance provider</h4>
-          </div>
-          <div class="col-md-9 col-sm-9 providers">
-<div id="insurance-list-wrapper" class="col-sm-12 col-md-6">
+        <div id="select-provider-wrapper" class="tab-content col-sm-8">
+          <div id="insurance" class="tab-pane">
+            <h4 class="fg-mgrey">Select your insurance provider</h4>
+            <div class="row providers">
+<div id="insurance-list-wrapper" class="provider-list-wrapper col-sm-12 col-md-6">
   <label class="fs-medium">Search by name</label>
   <div class="input-group provider-search-wrapper">
     <input type="text" placeholder="e.g. Blue Cross" class="form-control input-lg provider-search-name"/><span class="input-group-addon"><i class="fa fa-search isize-24"></i></span>
@@ -107,13 +107,11 @@
     <h6>Let them know you have a legal right to your records under HIPAA (<a href="/right-to-access-memo.html" class="not-listed-learn-more fw-strong fg-mblue">see this letter for details</a>).</h6>
   </div>
 </div></div>
-        </div>
-        <div id="physician" class="tab-pane row">
-          <div class="col-md-3 col-sm-12">
-            <h4 class="fg-dgrey">Select your physician</h4>
           </div>
-          <div class="col-md-9 col-sm-9 providers">
-<div id="physician-list-wrapper" class="col-sm-12 col-md-6">
+          <div id="physician" class="tab-pane">
+            <h4 class="fg-mgrey">Select your physician</h4>
+            <div class="row providers">
+<div id="physician-list-wrapper" class="provider-list-wrapper col-sm-12 col-md-6">
   <label class="fs-medium">Search by state</label>
   <div class="provider-search-wrapper">
     <select class="form-control input-lg provider-search-state">
@@ -275,13 +273,11 @@
     <h6>Let them know you have a legal right to your records under HIPAA (<a href="/right-to-access-memo.html" class="not-listed-learn-more fw-strong fg-mblue">see this letter for details</a>).</h6>
   </div>
 </div></div>
-        </div>
-        <div id="pharmacy" class="tab-pane row">
-          <div class="col-md-3 col-sm-12">
-            <h4 class="fg-dgrey">Select your pharmacy</h4>
           </div>
-          <div class="col-md-9 col-sm-9 providers">
-<div id="pharmacy-list-wrapper" class="col-sm-12 col-md-6">
+          <div id="pharmacy" class="tab-pane">
+            <h4 class="fg-mgrey">Select your pharmacy</h4>
+            <div class="row providers">
+<div id="pharmacy-list-wrapper" class="provider-list-wrapper col-sm-12 col-md-6">
   <label class="fs-medium">Search by name</label>
   <div class="input-group provider-search-wrapper">
     <input type="text" placeholder="e.g. Walgreens" class="form-control input-lg provider-search-name"/><span class="input-group-addon"><i class="fa fa-search isize-24"></i></span>
@@ -305,13 +301,11 @@
     <h6>Let them know you have a legal right to your records under HIPAA (<a href="/right-to-access-memo.html" class="not-listed-learn-more fw-strong fg-mblue">see this letter for details</a>).</h6>
   </div>
 </div></div>
-        </div>
-        <div id="lab" class="tab-pane row">
-          <div class="col-md-3 col-sm-12">
-            <h4 class="fg-dgrey">Select your lab</h4>
           </div>
-          <div class="col-md-9 col-sm-9 providers">
-<div id="lab-list-wrapper" class="col-sm-12 col-md-6">
+          <div id="lab" class="tab-pane">
+            <h4 class="fg-mgrey">Select your lab</h4>
+            <div class="row providers">
+<div id="lab-list-wrapper" class="provider-list-wrapper col-sm-12 col-md-6">
   <label class="fs-medium">Search by name</label>
   <div class="input-group provider-search-wrapper">
     <input type="text" placeholder="e.g. Quest Diagnostics" class="form-control input-lg provider-search-name"/><span class="input-group-addon"><i class="fa fa-search isize-24"></i></span>
@@ -332,13 +326,11 @@
     <h6>Let them know you have a legal right to your records under HIPAA (<a href="/right-to-access-memo.html" class="not-listed-learn-more fw-strong fg-mblue">see this letter for details</a>).</h6>
   </div>
 </div></div>
-        </div>
-        <div id="immunization" class="tab-pane row">
-          <div class="col-md-3 col-sm-12">
-            <h4 class="fg-dgrey">Select your immunization registry</h4>
           </div>
-          <div class="col-md-9 col-sm-9 providers">
-<div id="immunization-list-wrapper" class="col-sm-12 col-md-6">
+          <div id="immunization" class="tab-pane">
+            <h4 class="fg-mgrey">Select your immunization registry</h4>
+            <div class="row providers">
+<div id="immunization-list-wrapper" class="provider-list-wrapper col-sm-12 col-md-6">
   <label class="fs-medium">Search by name</label>
   <div class="input-group provider-search-wrapper">
     <input type="text" placeholder="e.g. Arizona" class="form-control input-lg provider-search-name"/><span class="input-group-addon"><i class="fa fa-search isize-24"></i></span>
@@ -358,13 +350,11 @@
     <h6>Let them know you have a legal right to your records under HIPAA (<a href="/right-to-access-memo.html" class="not-listed-learn-more fw-strong fg-mblue">see this letter for details</a>).</h6>
   </div>
 </div></div>
-        </div>
-        <div id="hie" class="tab-pane row">
-          <div class="col-md-3 col-sm-12">
-            <h4 class="fg-dgrey">Select your exchange portal</h4>
           </div>
-          <div class="col-md-9 col-sm-9 providers">
-<div id="hie-list-wrapper" class="col-sm-12 col-md-6">
+          <div id="hie" class="tab-pane">
+            <h4 class="fg-mgrey">Select your exchange portal</h4>
+            <div class="row providers">
+<div id="hie-list-wrapper" class="provider-list-wrapper col-sm-12 col-md-6">
   <p class="fs-medium">Coming soon...</p>
 </div>
 <div class="tab-content col-sm-12 col-md-6">
@@ -373,6 +363,7 @@
     <h6>Let them know you have a legal right to your records under HIPAA (<a href="/right-to-access-memo.html" class="not-listed-learn-more fw-strong fg-mblue">see this letter for details</a>).</h6>
   </div>
 </div></div>
+          </div>
         </div>
       </div>
     </div>

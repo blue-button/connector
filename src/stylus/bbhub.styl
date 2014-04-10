@@ -63,6 +63,8 @@ body.modal-open
   left 50%
   ml -106px
   top 10px
+  @media(max-width:767px)
+    top 45px
 
 .next-btn
   position absolute
@@ -134,6 +136,10 @@ body.modal-open
   @media screen and (min-width: 768px)
     border-radius none !important
 
+.navbar-brand
+  @media(max-width:767px)
+    mb 5px
+
 img.little-logo
   width 56px
   height 56px
@@ -167,6 +173,8 @@ body
     h1
       padding 235px 00 0
       margin 0
+      @media(max-width:767px)
+        pt 260px
     h4
       mt 5px
       mb 50px
@@ -415,42 +423,32 @@ body
     h6
       color $dgrey
 
-
 .box-link-rapper
-  display block
-  mb 30px
-  padding 5px
   text-decoration none
-  height 150px
-  bgc $maqua
-  color #fff
-  &:hover, li.active &
-    color #fff
-    text-decoration none
-    bgc $daqua
-  i
-    display inline-block !important
-    fs 48px
-    pt 8px
-  .insurance-icon
-    pt 0
-  .start-here
-    mt 2px
+  mb 10px
+  display table
+  // height 150px
+  .wrap-source-icon
+    bgc $maqua
+    height 56px
+    width 56px
+    border-radius 28px
+    mr 10px
+    pl 10px
+    pt 10px
+    &.wrap-pharmacy-icon
+      pl 8px
 
-  @media screen and (max-width: 767px)
-    text-align left
-    pl 65px
-    mb 10px
-    height auto
-    i
-      fs 36px
-      position absolute
-      left 22px
-      top 4px
-      &.insurance-icon
-        top 20px
-    h3
-      mt 10px
+  .data-source-title
+    display table-cell
+    vertical-align middle
+
+  &:hover, li.active &
+    text-decoration none
+    .data-source-title
+      color $daqua
+    .wrap-source-icon
+      bgc $daqua
 
 .use-records-description
   color $maqua
@@ -481,17 +479,23 @@ body
     &:hover, &:focus
       bgc $maqua
 
+
 #select-provider-wrapper
   min-height 250px
 
 .providers
   padding 20px 10px
-  border-top solid 5px $maqua
+  // border-top solid 5px $maqua
+
+.provider-list-wrapper
+  border-left solid 1px #959dac
+  @media(max-width:767px)
+    border-left none
 
 .provider-list
   pr 0px
   pb 5px
-  height 300px
+  height 350px
   overflow-y auto
   &.nav-pills>li>a
     color $mgrey
@@ -508,7 +512,6 @@ body
 .no-data
   mt 0px
   pl 20px
-  border-left solid 1px $mgrey
   @media screen and (max-width: 767px)
     border-left none
     pl 0px
