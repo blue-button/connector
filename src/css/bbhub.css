@@ -943,6 +943,10 @@ ul.additional-features-list li {
     font-size: 14px;
   }
 }
+.open-notes-learn-more {
+  color: #999;
+  margin-left: 5px;
+}
 p.fs-medium {
   margin-top: 10px;
   margin-bottom: 20px;
