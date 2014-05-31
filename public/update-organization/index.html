@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blue Button Connector | Use Your Health Records</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/jquery-1.10.2.min.js">\x3C/script>')</script>
+    <link rel="stylesheet" href="../css/bbhub-combined.css">
+  </head>
+  <body>
+    <nav class="main-nav navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header"><a href="../" class="navbar-brand logo bb-logotype"><img src="../img/bb-logo-depth-small.jpg" class="little-logo">Blue Button Connector</a></div>
+        <ul class="top-nav nav navbar-nav pull-right hidden-xs">
+          <li><a href="../records">Health Records</a></li>
+          <li><a href="../apps">Apps</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <h1 class="page-title"></h1>
+      <div class="row">
+        <div class="col-sm-6">
+          <div id="wufoo-z12mdm9y05ujdkm">One moment please...<br><br>(you may also fill out this form <a href="https://limechile.wufoo.com/forms/z12mdm9y05ujdkm">here</a>).<br><br></div>
+          <script>
+            var z12mdm9y05ujdkm;
+            function onGetWuVals(res) {
+              setupWu(document, 'script', res.wuParams);
+            }
+            function setupWu(d, t, wuParams) {
+              $('.page-title').remove();
+              var s = d.createElement(t), options = {
+              'userName':'limechile',
+              'formHash':'z12mdm9y05ujdkm',
+              'autoResize':true,
+              'height':'1090',
+              'async':true,
+              'host':'wufoo.com',
+              'header':'show',
+              'defaultValues': wuParams,
+              'ssl':true};
+              s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
+              s.onload = s.onreadystatechange = function() {
+                var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+                try {
+                  z12mdm9y05ujdkm = new WufooForm();
+                  z12mdm9y05ujdkm.initialize(options);
+                  z12mdm9y05ujdkm.display();
+                } catch (e) {}
+              };
+              var scr = d.getElementsByTagName(t)[0], par = scr.parentNode;
+              par.insertBefore(s, scr);
+            };
+            var urlParams;
+            (window.onpopstate = function () {
+                var match,
+                    pl     = /\+/g,  // Regex for replacing addition symbol with a space
+                    search = /([^&=]+)=?([^&]*)/g,
+                    decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+                    query  = window.location.search.substring(1);
+                    
+                urlParams = {};
+                while (match = search.exec(query))
+                   urlParams[decode(match[1])] = decode(match[2]);
+            })();
+            
+            if (typeof urlParams.id === "undefined") {
+              setupWu(document, 'script', '')
+            } else {
+              $('.page-title').text("Loading...");
+              $.ajax({
+                url: "https://script.google.com/macros/s/AKfycbyLS-LV_9Vi0KrCLPzQjdPCQVHvPh326ibr_VTkMTmOKlOiYIjM/exec",
+                dataType: "jsonp",
+                data: {
+                  action: "getwuprovider",
+                  id: urlParams.id,
+                  format: "jsonp"
+                },
+                
+                // work with the response
+                success: onGetWuVals
+              });
+            }
+          </script>
+        </div>
+      </div>
+    </div>
+    <div class="section footer">
+      <div class="container">
+        <ul class="footer-links list-inline inline">
+          <li class="hidden-xs force-inline"><img src="../img/bb-logo-depth-small-greybg.jpg" class="little-logo"></li>
+          <li><a href="../supporters">Supporters</a></li>
+          <li class="hidden-xs force-inline">|</li>
+          <li><a href="../developers">Developers</a></li>
+          <li class="hidden-xs force-inline">|</li>
+          <li><a href="../privacy">Privacy</a></li>
+          <li class="hidden-xs force-inline">|</li>
+          <li><a href="http://www.hhs.gov/Disclaimer.html">Disclaimer</a></li>
+          <li class="hidden-xs force-inline">|</li>
+          <li><a href="mailto:bluebutton@hhs.gov?subject=Feedback%20on%20Blue%20Button%20Connector" target="_blank">Feedback</a></li>
+        </ul>
+        <p class="fs-xxsmall">This project was funded by the Office of the National Coordinator for Health Information Technology (ONC)</p>
+      </div>
+    </div>
+    <script src="../js/bbhub-combined.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-44323000-1', 'bluebuttonconnector.healthit.gov');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

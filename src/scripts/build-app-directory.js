@@ -33,8 +33,8 @@ function buildEm(apps) {
   var batches = [apps];
 
   var html = jade.renderFile('src/jade/templates/_apps.jade', {pretty: true, appList:apps});
-  fs.writeFileSync('public/apps.html', html);
-  console.log("apps.html built.");
+  fs.writeFileSync('public/apps/index.html', html);
+  console.log("apps/index.html built.");
 
   buildDataDumpFiles(apps);
 }

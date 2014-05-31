@@ -1,12 +1,12 @@
 extends layout
 append vars
-  - nestLevel = '../'
+  - nestLevel = '../../'
   - pgTitle = organization + ' | Blue Button Connector '
 
 block content
   include ../includes/_topnav
   //- .minimal-back-nav
-  //-   h6.fs-xsmall.fg-dblue: a(href='../records.html') &larr; back to provider list
+  //-   h6.fs-xsmall.fg-dblue: a(href='../records') &larr; back to provider list
   .container
     h2.page-title #{organization}
 
@@ -115,10 +115,10 @@ block content
         a.get-records-wrapper-link(href=(url.login || '#'), target='_blank')
           //- p.fg-daqua #{bburl}
           p.fg-daqua login to #{organization}
-          img.img-thumbnail.img-responsive.profile-img(src='../img/organizations/' + id + '.png')
+          img.img-thumbnail.img-responsive.profile-img(src=nestLevel+'img/organizations/' + id + '.png')
           .get-records-prep
             h6.go-get-em-header.fg-maqua.text-center get your health records
-            img.arrow-up.hidden-xs(src='../img/arrow-up.png')
+            img.arrow-up.hidden-xs(src=nestLevel+'img/arrow-up.png')
 
         h6.provider-about-header.fs-xsmall.fw-strong.fg-dgrey About #{organization}
         p.provider-description= description
@@ -135,9 +135,9 @@ block content
 
           - var urlsafeorganization = encodeURIComponent(organization);
           h6.fg-mgrey
-            a.not-listed-learn-more.fw-strong.fg-mblue(href='/right-to-access-memo.html') This letter
+            a.not-listed-learn-more.fw-strong.fg-mblue(href='/right-to-access-memo') This letter
             |  describes your rights to your health data.
           //- hr.hairline
           //- h5.fw-normal.fg-dblue Is this profile inaccurate?
-          //- You can help by <a class='fg-maqua fw-strong' href='/update-organization.html?id=#{id}'>suggesting corrections and updates</a>.
-          //- a.btn.btn-primary(href='/update-organization.html?id=#{id}') Suggest corrections
+          //- You can help by <a class='fg-maqua fw-strong' href='/update-organization?id=#{id}'>suggesting corrections and updates</a>.
+          //- a.btn.btn-primary(href='/update-organization?id=#{id}') Suggest corrections

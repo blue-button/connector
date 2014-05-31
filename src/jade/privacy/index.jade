@@ -1,0 +1,98 @@
+extends ../templates/layout
+append vars
+  - nestLevel = '../'
+  - pgTitle = 'Blue Button Connector | Privacy'
+block content
+  include ../includes/_topnav
+  .container
+    h1.page-title Privacy
+
+  .container
+    .readable-width
+      p.fs-small The ability to download and share your health information offers you unique opportunities to stay in control of your health, but it is also important to keep that information safe.
+      h5.fg-dgrey.mt-25 Who is responsible for protecting my health information?
+      .row.clearfix
+        .col-sm-6.mb-25.mt-25
+          .little-circ.bg-maqua.pull-left
+            h6.circ-label.fg-white.text-center HIPPA
+          ul.privacy-list
+            li physician offices
+            li hospitals
+            li health insurance
+            li pharmacies
+        .col-sm-6.mb-25.mt-25
+          .little-circ.bg-dblue.pull-left
+            h6.circ-label.fg-white.text-center YOU
+          ul.privacy-list
+            li a mobile app
+            li a mobile device, such as a smartphone or tablet
+            li shared over social media or health-related websites
+
+      p.fs-small HIPAA protects health information that is kept by health care providers and health plans. However, there is information not covered under HIPAA which you need to keep secure. The following tips will help keep your health information private and secure.
+
+      h5.fg-dgrey.mt-25 Types of health information
+      hr
+      ul.privacy-health-info-types.dashed.fs-medium.fg-mgrey
+        li
+          | Physical records &nbsp;
+          span.fw-normal (e.g. paper copies, film, CDs, DVDs)
+        li
+          | Electronic records copied or download to your personal computer, tablet, or other device
+        li
+          | Electronic records kept on the Internet or "in the cloud"
+        li
+          | "Records" you create yourself
+
+      h5.fg-dgrey.mt-25 Security tips
+      hr
+
+      h4.fs-small Physical security
+      ul.breathable
+        li
+          | Keep important paper records and other physical media like CDs and DVDs
+          | in a locked filing cabinet or fire safe, and keep the key separate from the
+          | storage unit.
+        li
+          | Don't keep unnecessary copies. For example, if you print out an extra copy of
+          | a record to use during a phone conversation, lock it away or destroy it after
+          | the fact.
+        li
+          | Avoid keeping written copies of passwords.
+        li
+          | If you have a Flash drive or hard drive with private records, detach it from
+          | your computer when not in use to prevent unauthorized access. Consider
+          | storing the drive in a fire safe.
+
+      h4.fs-small General computer and network security
+      ul.breathable
+        li
+          | Turn your computer off when not in use.
+        li
+          | Create a password for your WiFi network, or use software to segment your
+        li
+          | WiFi network to prevent guests from accessing other computers and devices on the same network.
+        li
+          | Do not join unfamiliar or untrusted WiFi networks.
+        li
+          | If you have a Flash drive or hard drive with private records, detach it from your computer when not in use to prevent unauthorized access. Consider storing the drive in a fire safe.
+
+      h4.fs-small Password and authentication security
+      ul.breathable
+        li Protect your computer with a password, and require use of the password to start up the computer or wake the computer from sleep.
+        li Protect your smartphone or tablet with a password or passcode to protect your information even if the devices are lost or stolen. Require use of the password or passcode when starting the device or after short periods of inactivity.
+        li Choose passwords that are easy for you to remember but difficult for others to guess. Avoid using personal information in passwords like familiar phone numbers and birthdays. In general, a longer password is more secure than a shorter password.
+
+  //- .container.privacy-last-section
+  //-   h3.section-title.readable-width Other resources for keeping your private information private
+
+  //-   p.readable-width.fs-medium The Federal government provides several resources to help citizens maintain their privacy and keep their personal data secure. Visit the following sites to learn more:
+
+  //-   ul
+  //-     li
+  //-       a(href='http://www.consumer.ftc.gov/topics/privacy-identity') Federal Trade Commission consumer page on privacy and identity
+  //-     li
+  //-       a(href='http://www.onguardonline.gov/') OnGuardOnline, a Federal Trade Commission page on general computer safety.
+  //-     li
+  //-       a(href='http://www.hhs.gov/ocr/privacy/hipaa/understanding/consumers/medicalrecords.html') U.S. Department of Health and Human Services page on HIPAA
+
+

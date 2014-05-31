@@ -6,7 +6,7 @@ each group in appsGrouped
     each app in group
       li.col-sm-4.app-rapper.text-center
         a(href=app.url, target='_blank')
-          img.app-icon(src='img/apps/' + app.img)
+          img.app-icon(src='#{nestLevel}img/apps/' + app.img)
           h5.fg-maqua= app.name
         .app-description.text-left
           h6.fs-xsmall= app.description

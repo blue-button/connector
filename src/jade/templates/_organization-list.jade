@@ -9,7 +9,7 @@ div(id=category+'-list-wrapper').provider-list-wrapper.col-sm-12.col-md-6
         select.form-control.input-lg.provider-search-state
           option(value='false') Choose a state...
           each st in unitedStates
-            option(value=st.label.toLowerCase())= st.label
+            option(value=st.data)= st.label
       label.fs-medium or search by name
     else
       label.fs-medium Search by name
@@ -21,7 +21,7 @@ div(id=category+'-list-wrapper').provider-list-wrapper.col-sm-12.col-md-6
 
     ul(id=category+'-list').nav.nav-pills.nav-stacked.provider-list.list
       each org in orgList
-        li: a.provider-link(data-state=org.location.state, href='organizations/' + org.id + '.html') #{org.organization}
+        li: a.provider-link(data-state=org.states.join(','), href='/organizations/' + org.id) #{org.organization}
     .scroll-hint-wrapper.text-center
       .scroll-hint.fa.fa-chevron-down.isize-24.no-show
 
@@ -30,5 +30,5 @@ div(id=category+'-list-wrapper').provider-list-wrapper.col-sm-12.col-md-6
     h4 Don't see your organization listed?
     h6
       | Let them know you have a legal right to your records under HIPAA (
-      a.not-listed-learn-more.fw-strong.fg-mblue(href='/right-to-access-memo.html') see this letter for details
+      a.not-listed-learn-more.fw-strong.fg-mblue(href='/right-to-access-memo') see this letter for details
       | ).

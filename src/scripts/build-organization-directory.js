@@ -9,19 +9,7 @@ var json2csv = require('json2csv');
 var leOrgs = [];
 var initPathname = '/organizations?limit=100&detailed=1';
 
-if (argv.clearcache) {
-  //first refresh the cache
-  console.log("clearing the Google ScriptDB cache...")
-  rekwest({url:'http://api.bluebuttonconnector.healthit.gov/organizations?action=refreshcache'}, function(err, response, data) {
-    if (err) return console.log(err);
-    console.log(data + ", cache cleared.");
-    console.log("Calling 'API'...");
-    getEm(initPathname);
-  });
-} else {
-  console.log("Calling 'API'...");
-  getEm(initPathname);
-}
+getEm(initPathname);
 
 function getEm(pathname){
   console.log("Fetching " + pathname + "...");
@@ -75,27 +63,28 @@ function buildEm(orgs) {
   var html = {};
 
   html.insurance = buildList({category:'insurance', orgList: insOrgs, searchPlaceholder: 'Blue Cross'});
-  html.physician = buildList({category:'physician', orgList: phyOrgs, searchPlaceholder: 'Anderson'});
+  html.physician = buildList({category:'physician', orgList: phyOrgs, searchPlaceholder: 'Mayo Clinic'});
   html.pharmacy = buildList({category:'pharmacy', orgList: phaOrgs, searchPlaceholder: 'Walgreens'});
   html.lab = buildList({category:'lab', orgList: labOrgs, searchPlaceholder: 'Quest Diagnostics'});
   html.immunization = buildList({category:'immunization', orgList: immOrgs, searchPlaceholder: 'Arizona'});
   html.hie = buildList({category:'hie', orgList: hieOrgs, searchPlaceholder: 'New Jersey'});
 
   var finalHtml = jade.renderFile('src/jade/templates/_organizations.jade', {pretty: true, html:html});
-  fs.writeFileSync('public/records.html', finalHtml);
+  fs.writeFileSync('public/records/index.html', finalHtml);
   buildDataDumpFiles(orgs);
 }
 
 function buildDataDumpFiles(orgs){
   console.log("Saving JSON file...");
   fs.writeFileSync('public/data/organizations.json', JSON.stringify(orgs));
-  console.log("Fetching CSV data...");
-  rekwest({url:'https://docs.google.com/spreadsheet/pub?key=0Al6qrvXQwr4edGF1eHRLVGV2c3JNWWlJWGpTamZsVEE&single=true&gid=0&output=csv'}, function(err, response, body) {
-    console.log("Saving CSV file...");
-    fs.writeFileSync('public/data/organizations.csv', body);
-    console.log("DONE.");
-    process.exit(0);
-  });
+  // console.log("Fetching CSV data...");
+  // rekwest({url:'https://docs.google.com/spreadsheet/pub?key=0Al6qrvXQwr4edGF1eHRLVGV2c3JNWWlJWGpTamZsVEE&single=true&gid=0&output=csv'}, function(err, response, body) {
+  //   console.log("Saving CSV file...");
+  //   fs.writeFileSync('public/data/organizations.csv', body);
+  //   console.log("DONE.");
+  //   process.exit(0);
+  // });
+  process.exit(0);
 }
 
 function buildList(opt) {
@@ -123,7 +112,7 @@ function buildList(opt) {
     if (org.download.text || org.download.pdf || org.download.c32 || org.download.ccda || org.download.other) toRender.bbdownload = true;
 
     toRender.bbtransmit = false;
-    if (org.transmit.automation || org.transmit.direct.enabled || org.transmit.direct.trust_bundles.patient || org.transmit.direct.trust_bundles.orgider  || org.transmit.direct.trust_bundles.other || org.transmit.rest.enabled || org.transmit.rest.registries) toRender.transmit = true;
+    if (org.transmit.automation || org.transmit.direct.enabled || org.transmit.direct.trust_bundles.patient || org.transmit.direct.trust_bundles.provider  || org.transmit.direct.trust_bundles.other ) toRender.transmit = true;
 
     toRender.bbautomatic = false;
     if (org.transmit.automation) toRender.bbautomatic = true;
@@ -133,7 +122,8 @@ function buildList(opt) {
 
     toRender.pretty = true;
     var orgHtml = jade.renderFile('src/jade/templates/_organization-profile.jade', toRender);
-    fs.writeFileSync('public/organizations/' + org.id + '.html', orgHtml);
+    if (!fs.existsSync('public/organizations/' + org.id)) fs.mkdirSync('public/organizations/' + org.id);
+    fs.writeFileSync('public/organizations/' + org.id + '/index.html', orgHtml);
     //check to see if image exists
     if (category !== 'hie') {
       try {

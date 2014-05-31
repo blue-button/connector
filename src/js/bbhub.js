@@ -95,15 +95,17 @@ $(function() {
       catLists.physicianList.filter();
       return false;
     }
-    //TODO standardize on DC vs District of Columbia
-    if (selState == "district of columbia") selState = "dc"
     var filterByState = function(item) {
-      var leState = $(item.elm).find('a').attr('data-state');
-      if (leState && selState == leState.toLowerCase()) {
-        return true;
-      } else {
-        return false;
+      var leStates = $(item.elm).find('a').attr('data-state').split(',');
+      var sLen = leStates.length;
+      var include = false;
+      for (var i=0; i<sLen; i++) {
+        if (selState === "all" || selState == leStates[i]) {
+          include = true;
+          break;
+        }
       }
+      return include;
     }
     $('#physician-list-wrapper .provider-search-name').val('');
     var selCatList = catLists[$self.closest('.tab-pane').attr('id') + 'List'];
@@ -165,7 +167,7 @@ $(function() {
     return params;
   };
   //check for fragment on records page
-  if (window.location.pathname === '/records.html' && window.location.hash.length) {
+  if (window.location.pathname === '/records/' && window.location.hash.length) {
     var frags = window.location.hash.split('?');
     var $selCatLink = $('a.box-link-rapper[href=' + frags[0] + ']');
     $selCatLink.trigger('click', true);

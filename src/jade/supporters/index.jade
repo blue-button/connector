@@ -1,0 +1,38 @@
+extends ../templates/layout
+append vars
+  - nestLevel = '../'
+  - pgTitle = 'Blue Button Connector | Supporters'
+block content
+  include ../includes/_topnav
+  .container
+    h1.page-title Criteria to be listed on the Blue Button Connector
+
+    .partners-lists-container
+
+        h2.fg-mblue For organizations to be listed under "Health Records"
+        ul.partners-list
+          li
+            h6 Enable patients/members/customers to view and download their records online
+          li
+            h6 <a class="fg-daqua fw-strong" href='/update-organization'>Add your organization to the Connector</a>.
+
+          //- li
+          //-   h6 Enable patients/members to securely send their records to their preferred application
+
+          //- li
+          //-   h6 Enable patients/members to automatically receive updates to their health records
+
+          //- li
+          //-   h6 Use the Blue Button Logo on your site and follow the
+          //-     a.fg-daqua.fw-strong(href='http://www.healthit.gov/patients-families/blue-button/blue-button-image')  logo usage guidelines
+
+        h2.fg-mblue For apps
+        ul.partners-list
+          li
+            h6 Receive or transmit C-CDA or claims data
+          //- li
+          //-   h6 Use Direct protocols for data transmission
+          li
+            h6 App must be transparent with user about data security/privacy
+          li
+            h6 <a class="fg-daqua fw-strong" href='/update-app'>Add your app to the Connector</a>
