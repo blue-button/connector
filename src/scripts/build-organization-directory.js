@@ -4,7 +4,6 @@ var fs = require('fs');
 var moment = require('moment');
 var async = require('async');
 var argv = require('minimist')(process.argv.slice(2));
-var json2csv = require('json2csv');
 
 var leOrgs = [];
 var initPathname = '/organizations?limit=100&detailed=1';
@@ -30,14 +29,17 @@ function getEm(pathname){
 }
 
 function buildEm(orgs) {
-  console.log("Building list for " + orgs.length + " organizations...");
+  console.log("TOTAL ORGANIZATION COUNT: " + orgs.length);
+
+  buildDataDumpFiles(orgs);
+
   var insOrgs = [];
   var phyOrgs = [];
   var phaOrgs = [];
   var labOrgs = [];
   var immOrgs = [];
   var hieOrgs = [];
-  // var stateList = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+  // var stateList = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
   // for (var i=0; i<stateList.length; i++) {
   //   immOrgs.push({name:stateList[i], bburl:'#', features:''});
   // }
@@ -71,20 +73,57 @@ function buildEm(orgs) {
 
   var finalHtml = jade.renderFile('src/jade/templates/_organizations.jade', {pretty: true, html:html});
   fs.writeFileSync('public/records/index.html', finalHtml);
-  buildDataDumpFiles(orgs);
+  console.log("DONE.");
+  process.exit(0);
 }
 
 function buildDataDumpFiles(orgs){
   console.log("Saving JSON file...");
   fs.writeFileSync('public/data/organizations.json', JSON.stringify(orgs));
-  // console.log("Fetching CSV data...");
-  // rekwest({url:'https://docs.google.com/spreadsheet/pub?key=0Al6qrvXQwr4edGF1eHRLVGV2c3JNWWlJWGpTamZsVEE&single=true&gid=0&output=csv'}, function(err, response, body) {
-  //   console.log("Saving CSV file...");
-  //   fs.writeFileSync('public/data/organizations.csv', body);
-  //   console.log("DONE.");
-  //   process.exit(0);
-  // });
-  process.exit(0);
+
+  var toWrite = ''
+  var flatFields = [];
+  var sampleOrg = orgs[0];
+  var eol = '\n';
+
+  listProps(sampleOrg, '', flatFields);
+  toWrite +=  '"' + flatFields.join('","') + '"';
+  orgs.forEach(function(org) {
+    if (org && Object.getOwnPropertyNames(org).length > 0) {
+      var line = '';
+      flatFields.forEach(function(prop) {
+        var keyBits = prop.split('.');
+        var evalable = "org";
+        for (var i=0; i<keyBits.length; i++) {
+          evalable+= '["' + keyBits[i] + '"]';
+        }
+        var evalHack = eval(evalable);
+        if (typeof evalHack !== "undefined") {
+          line += JSON.stringify(evalHack);
+        }
+        line += ',';
+      });
+      //remove last delimeter
+      line = line.substring(0, line.length - 1);
+      line = line.replace(/\\"/g, '""');
+      toWrite += eol + line;
+    }
+  });
+
+
+  fs.writeFileSync('public/data/organizations.csv', toWrite);
+
+  function listProps(obj, prefix, flat) {
+    for (var p in obj) {
+      var propName = (prefix == '') ? p : prefix+"."+p;
+      if (Object.prototype.toString.call(obj[p]) == "[object Object]") {
+        listProps(obj[p], propName, flat);
+      } else {
+        flat.push(propName);
+      }
+    }
+  }
+
 }
 
 function buildList(opt) {
@@ -94,7 +133,7 @@ function buildList(opt) {
   var orgList = opt.orgList;
   var searchPlaceholder = opt.searchPlaceholder;
   var unitedStates = [{data: "AK", label: "Alaska"},{data: "AL", label: "Alabama"},{data: "AR", label: "Arkansas"},{data: "AZ", label: "Arizona"},{data: "CA", label: "California"},{data: "CO", label: "Colorado"},{data: "CT", label: "Connecticut"},{data: "DE", label: "Delaware"},{data: "DC", label: "District of Columbia"},{data: "FL", label: "Florida"},{data: "GA", label: "Georgia"},{data: "HI", label: "Hawaii"},{data: "IA", label: "Iowa"},{data: "ID", label: "Idaho"},{data: "IL", label: "Illinois"},{data: "IN", label: "Indiana"},{data: "KS", label: "Kansas"},{data: "KY", label: "Kentucky"},{data: "LA", label: "Louisiana"},{data: "MA", label: "Massachusetts"},{data: "MD", label: "Maryland"},{data: "ME", label: "Maine"},{data: "MI", label: "Michigan"},{data: "MN", label: "Minnesota"},{data: "MS", label: "Mississippi"},{data: "MO", label: "Missouri"},{data: "MT", label: "Montana"},{data: "NC", label: "North Carolina"},{data: "ND", label: "North Dakota"},{data: "NE", label: "Nebraska"},{data: "NH", label: "New Hampshire"},{data: "NJ", label: "New Jersey"},{data: "NM", label: "New Mexico"},{data: "NV", label: "Nevada"},{data: "NY", label: "New York"},{data: "OH", label: "Ohio"},{data: "OK", label: "Oklahoma"},{data: "OR", label: "Oregon"},{data: "PA", label: "Pennsylvania"},{data: "RI", label: "Rhode Island"},{data: "SC", label: "South Carolina"},{data: "SD", label: "South Dakota"},{data: "TN", label: "Tennessee"},{data: "TX", label: "Texas"},{data: "UT", label: "Utah"},{data: "VA", label: "Virginia"},{data: "VT", label: "Vermont"},{data: "WA", label: "Washington"},{data: "WI", label: "Wisconsin"},{data: "WV", label: "West Virginia"},{data: "WY", label: "Wyoming"}];
-  console.log("building " + category + " list for " + orgList.length + " organizations...");
+  console.log("Building " + orgList.length + " " + category + " organizations...");
   var listhtml = jade.renderFile('src/jade/templates/_organization-list.jade', {pretty: true, orgList:orgList, category:category, searchPlaceholder:searchPlaceholder, unitedStates:unitedStates});
 
   orgList.forEach(function(org, ind) {

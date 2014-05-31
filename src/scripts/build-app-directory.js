@@ -5,6 +5,7 @@ var json2csv = require('json2csv');
 
 console.log("Calling 'API'...");
 var leApps = [];
+//TODO handle case of more than 100 apps (see build-organization-directory.js)
 getEm('/apps?limit=100');
 
 function getEm(pathname) {
@@ -28,7 +29,6 @@ function getEm(pathname) {
 function buildEm(apps) {
   console.log("Building HTML files for " + apps.length + " apps...");
   var pg = 0;
-  var pgSize = 6;
   var numApps = apps.length;
   var batches = [apps];
 

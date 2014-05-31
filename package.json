@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build-organizations": "node src/scripts/build-organization-directory",
-    "build-apps": "node src/scripts/build-app-directory",
-    "build-organizations-nocache": "node src/scripts/build-organization-directory --clearcache"
+    "build-apps": "node src/scripts/build-app-directory"
   },
   "author": "",
   "license": "BSD",
