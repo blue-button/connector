@@ -72,11 +72,9 @@
             } else {
               $('.page-title').text("Loading...");
               $.ajax({
-                url: "https://script.google.com/macros/s/AKfycbyLS-LV_9Vi0KrCLPzQjdPCQVHvPh326ibr_VTkMTmOKlOiYIjM/exec",
+                url: "http://api.bluebuttonconnector.healthit.gov/wufoo/apps/" + urlParams.id,
                 dataType: "jsonp",
                 data: {
-                  action: "getwureceiver",
-                  id: urlParams.id,
                   format: "jsonp"
                 },
                 
