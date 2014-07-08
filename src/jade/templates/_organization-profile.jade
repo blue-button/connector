@@ -55,7 +55,7 @@ block content
             - else
               i.fa.fa-uncheck-square.isize-48.pull-left
                 em you can't
-            h6.feature-title Automatically receive updates to your health records
+            h6.feature-title Receive automatic updates to your personal health record or preferred application
           li.clearfix
             - if (additionalFeatures)
               i.fa.fa-check-square-dark.isize-48.pull-left
@@ -107,6 +107,8 @@ block content
                   li Track and record self-reported health data
                 - if (services.shop)
                   li Shop for a plan
+                - if (services.email_alerts)
+                  li Email alerts for health record updates
 
 
         hr.visible-xs
