@@ -12,8 +12,7 @@ getEm(initPathname);
 
 function getEm(pathname){
   console.log("Fetching " + pathname + "...");
-  //rekwest({url:'http://api.bluebuttonconnector.healthit.gov'+pathname, json:true}, function(err, response, body) {
-     rekwest({url:'http://localhost:5000'+pathname, json:true}, function(err, response, body) {
+  rekwest({url:'http://api.bluebuttonconnector.healthit.gov'+pathname, json:true}, function(err, response, body) {
     if (body && body.results) {
       leOrgs = leOrgs.concat(body.results);
       if (body.meta.next){
