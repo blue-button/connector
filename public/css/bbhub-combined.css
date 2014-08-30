@@ -195,7 +195,8 @@ h4,
 .fs-medium,
 h5,
 .h5,
-.photo-title {
+.photo-title,
+.main-nav a {
   font-size: 21px;
 }
 @media (max-width:767px) {
@@ -203,9 +204,11 @@ h5,
   h5,
   .h5,
   .photo-title,
+  .main-nav a,
 h5,
 .h5,
-.photo-title {
+.photo-title,
+.main-nav a {
     font-size: 18px;
   }
 }
