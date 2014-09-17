@@ -2,6 +2,8 @@ extends ../templates/layout
 append vars
   - nestLevel = '../'
 block content
+  .pra-title.pull-right
+    p.fs-xxsmall.fg-mgrey!= 'Form Approved <br> OMB No. 0955-XXX'
   include ../includes/_topnav
   .container
     h1.page-title
