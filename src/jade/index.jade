@@ -2,22 +2,7 @@ extends templates/layout
 
 block content
 
-  //- .alert.alert-warning.alert-slim
-  //-   | This website is work in progress.&nbsp;
-  //-   a.alert-link(href='#wip-modal', data-toggle='modal') Read more...
-
   include includes/_vidmodal
-
-  #wip-modal.modal.fade
-    .modal-dialog
-      .modal-content
-        .modal-header
-          h4.modal-title Thank you for visiting the Connector.
-        .modal-body.text-center
-          p This early release is an invitation to help us improve and populate the site before it is more widely marketed.
-          p Please share your input at BlueButton@hhs.gov
-        .modal-footer
-          button.btn.btn-primary(type='button', data-dismiss='modal') Got it
 
   .section.splash-section.bg-white
     img.logo-big(src='img/bb-logo-depth.jpg')
@@ -90,18 +75,13 @@ block content
             .caption-wrapper
               h6.caption The Right to Access and Correct Your Health Information
             img.play-btn-img(src='img/play-button.png')
-        //- a(href='blue-button-beth-schindele.pdf', target='_blank')
-        //-   .col-sm-3.img-container
-        //-     img(src='img/beth-schindele.jpg')
-        //-     .caption-wrapper
-        //-       h6.caption.fg-dgrey Beth Schindele, caregiver and advocate for her father
+
         a.vid-still(href='http://www.youtube.com/watch?v=mX-QL9PoePU', data-ytid='mX-QL9PoePU', target='_blank')
           .col-sm-6.img-container
             img.vid-cover(src='img/hipaa-omnibus.jpg')
             .caption-wrapper
               h6.caption The HIPAA Omnibus Rule
             img.play-btn-img(src='img/play-button.png')
-
 
       .row.centered-row
         .col-sm-11.share-blurb.text-right
@@ -113,12 +93,3 @@ block content
       i.isize-36.fa.fa-chevron-up
       br
       | top
-
-  append mainscript
-    script.
-      $(function() {
-        //- if ($.cookie('betamodalshow') === null) {
-          $('#wip-modal').modal('show');
-        //-  $.cookie("betamodalshow", "false");
-        //- }
-      });
