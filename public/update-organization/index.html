@@ -54,7 +54,7 @@
               'async':true,
               'host':'wufoo.com',
               'header':'show',
-              'defaultValues': wuParams,
+              'defaultValues': wuParams.replace('%2F', '%252F'),
               'ssl':true};
               s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
               s.onload = s.onreadystatechange = function() {
