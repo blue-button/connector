@@ -1,21 +1,21 @@
 block vars
   - var nestLevel = ''
   - var pgTitle = 'Blue Button Connector | Use Your Health Records'
-!!! 5
+doctype html
 html
   block head
     head
       title= pgTitle
-      meta(name='viewport', content='width=device-width, initial-scale=1')
-      meta(content='text/html; charset=UTF-8', http-equiv='Content-Type')
-      meta(http-equiv='X-UA-Compatible', content='IE=edge')
-      link(rel='shortcut icon', href='#{nestLevel}favicon.ico')
+      meta(name='viewport' content='width=device-width, initial-scale=1')
+      meta(content='text/html; charset=UTF-8' http-equiv='Content-Type')
+      meta(http-equiv='X-UA-Compatible' content='IE=edge')
+      link(rel='shortcut icon' href='#{nestLevel}favicon.ico')
 
       script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
       script.
         window.jQuery || document.write('<script src="#{nestLevel}js/jquery-1.10.2.min.js">\x3C/script>')
       block mainstyle
-        link(rel='stylesheet', href='#{nestLevel}css/bbhub-combined.css')
+        link(rel='stylesheet' href='#{nestLevel}css/bbhub-combined.css')
       script.
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -38,15 +38,15 @@ html
 
           ul.footer-links.list-inline.inline
             li.hidden-xs.force-inline: img.little-logo(src='#{nestLevel}img/bb-logo-depth-small-greybg.jpg')
-            li:  a(href='#{nestLevel}supporters') Supporters
-            li.hidden-xs.force-inline:  |
-            li:  a(href='#{nestLevel}developers') Developers
-            li.hidden-xs.force-inline:  |
-            li:  a(href='#{nestLevel}privacy') Privacy
-            li.hidden-xs.force-inline:  |
-            li:  a(href='http://www.hhs.gov/Disclaimer.html') Disclaimer
-            li.hidden-xs.force-inline:  |
-            li: a(href='mailto:bluebutton@hhs.gov?subject=Feedback%20on%20Blue%20Button%20Connector', target='_blank') Feedback
+            li: a(href='#{nestLevel}supporters') Supporters
+            li.hidden-xs.force-inline |
+            li: a(href='#{nestLevel}developers') Developers
+            li.hidden-xs.force-inline |
+            li: a(href='#{nestLevel}privacy') Privacy
+            li.hidden-xs.force-inline |
+            li: a(href='http://www.hhs.gov/Disclaimer.html') Disclaimer
+            li.hidden-xs.force-inline |
+            li: a(href='mailto:bluebutton@hhs.gov?subject=Feedback%20on%20Blue%20Button%20Connector' target='_blank') Feedback
           p.fs-xxsmall This project was funded by the Office of the National Coordinator for Health Information Technology (ONC)
     block mainscript
       script(src='#{nestLevel}js/bbhub-combined.min.js')

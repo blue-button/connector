@@ -490,6 +490,9 @@ body.modal-open {
 }
 @media screen and (min-width: 768px) {
 }
+.navbar-brand img.little-logo {
+  display: inline;
+}
 @media (max-width:767px) {
   .navbar-brand {
     margin-bottom: 5px;
