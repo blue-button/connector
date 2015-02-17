@@ -9,14 +9,15 @@ var STAGE2_JSON_OUT = __dirname + "/../../public/data/stage2.json";
 function renameProperties(data) {
   if (data['STAGE NUMBER'] == 'Stage 2') {
     var betterPropNames = {};
+    if (data['PROVIDER ZIP 5 CD'].length < 5) data['PROVIDER ZIP 5 CD'] = '0'+data['PROVIDER ZIP 5 CD']
     if (typeof data['PROVIDER / ORG NAME'] !== "undefined") betterPropNames.name = data['PROVIDER / ORG NAME'];
     if (typeof data['PROVIDER NAME'] !== "undefined") betterPropNames.name = data['PROVIDER NAME'];
-    betterPropNames.state = data['PROVIDER STATE'];
+    betterPropNames.state = stateAbbrev(data['PROVIDER STATE']);
     betterPropNames.city = data['PROVIDER CITY'];
     betterPropNames.address = data['PROVIDER  ADDRESS']; //yes, that's a double space in there. Blame the original source CSV...
-    betterPropNames.zip = data['PROVIDER ZIP 5 CD'];
+    betterPropNames.zip = ''+data['PROVIDER ZIP 5 CD']; //don't let it auto-convert to a number, or we lose the first digit of the 0 zip codes.
     betterPropNames.phone = data['PROVIDER PHONE NUM'];
-    betterPropNames.payment = data['CALC PAYMENT  AMT ($)'];
+    betterPropNames.payment = numerize(data['CALC PAYMENT  AMT ($)']);
     betterPropNames.npi = data['PROVIDER NPI'];
     return betterPropNames;
   } else {
@@ -41,6 +42,21 @@ jsonFileOutStream.on("finish", function(){
   console.log("JSON WRITE FINISHED");
   checkDone();
 });
+
+function stateAbbrev(st) {
+  if (typeof st !== "string") return '';
+  st = st.toLowerCase();
+  var unitedStates = [{data: "AK", label: "Alaska"},{data: "AL", label: "Alabama"},{data: "AR", label: "Arkansas"},{data: "AZ", label: "Arizona"},{data: "CA", label: "California"},{data: "CO", label: "Colorado"},{data: "CT", label: "Connecticut"},{data: "DE", label: "Delaware"},{data: "DC", label: "District of Columbia"},{data: "FL", label: "Florida"},{data: "GA", label: "Georgia"},{data: "HI", label: "Hawaii"},{data: "IA", label: "Iowa"},{data: "ID", label: "Idaho"},{data: "IL", label: "Illinois"},{data: "IN", label: "Indiana"},{data: "KS", label: "Kansas"},{data: "KY", label: "Kentucky"},{data: "LA", label: "Louisiana"},{data: "MA", label: "Massachusetts"},{data: "MD", label: "Maryland"},{data: "ME", label: "Maine"},{data: "MI", label: "Michigan"},{data: "MN", label: "Minnesota"},{data: "MS", label: "Mississippi"},{data: "MO", label: "Missouri"},{data: "MT", label: "Montana"},{data: "NC", label: "North Carolina"},{data: "ND", label: "North Dakota"},{data: "NE", label: "Nebraska"},{data: "NH", label: "New Hampshire"},{data: "NJ", label: "New Jersey"},{data: "NM", label: "New Mexico"},{data: "NV", label: "Nevada"},{data: "NY", label: "New York"},{data: "OH", label: "Ohio"},{data: "OK", label: "Oklahoma"},{data: "OR", label: "Oregon"},{data: "PA", label: "Pennsylvania"},{data: "RI", label: "Rhode Island"},{data: "SC", label: "South Carolina"},{data: "SD", label: "South Dakota"},{data: "TN", label: "Tennessee"},{data: "TX", label: "Texas"},{data: "UT", label: "Utah"},{data: "VA", label: "Virginia"},{data: "VT", label: "Vermont"},{data: "WA", label: "Washington"},{data: "WI", label: "Wisconsin"},{data: "WV", label: "West Virginia"},{data: "WY", label: "Wyoming"}];
+  var len = unitedStates.length;
+  for (var i=0; i<len; i++) {
+    if (unitedStates[i].label.toLowerCase() == st) return unitedStates[i].data;
+  }
+  return '';
+}
+
+function numerize(dollars) {
+  return parseFloat(dollars.slice(1).replace(/,/g, ''));
+}
 
 function parseProviderFile(filepath, cb) {  
   var counter = 0;
