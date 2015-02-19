@@ -8,20 +8,25 @@ block content
     h1.page-title Resources for developers
 
     h3.fg-mblue API
-    p.readable-width.fg-dgrey The Blue Button Connector provides a free, public, read-only API to access the directory of organizations and apps. It supports CORS and JSONP.
+    p.readable-width.fg-dgrey The Blue Button Connector provides a free, public, read-only API to access the directory of organizations and apps that are featured on the Connector site, as well as a an updated list of hospitals and providers that have reached <a class='fw-strong' href="http://www.cms.gov/Regulations-and-Guidance/Legislation/EHRIncentivePrograms/Stage_2.html">Stage 2 of meaningful use</a> under the Medicare and Medicaid EHR Incentive Program. The API supports CORS and JSONP.
     a.btn.btn-primary(href='http://api.bluebuttonconnector.healthit.gov') API documentation & examples
 
     h3.fg-mblue Bulk Downloads
     p
       | Organizations: &nbsp;
-      a(href='/data/organizations.json') JSON
+      a.fw-strong(href='/data/organizations.json') JSON
       |  |&nbsp;
-      a(href='/data/organizations.csv') CSV
+      a.fw-strong(href='/data/organizations.csv') CSV
     p
       | Apps: &nbsp;
-      a(href='/data/apps.json') JSON
+      a.fw-strong(href='/data/apps.json') JSON
       |  |&nbsp;
-      a(href='/data/apps.csv') CSV
+      a.fw-strong(href='/data/apps.csv') CSV
+    p
+      | Meaningful Use Stage 2: &nbsp;
+      a.fw-strong(href='/data/stage2.json') JSON
+      |  |&nbsp;
+      a.fw-strong(href='/data/stage2.csv') CSV
 
 
 
