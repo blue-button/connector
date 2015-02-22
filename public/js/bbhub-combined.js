@@ -149,7 +149,33 @@ FastClick.prototype.onClick=function(a){if(this.trackingClick)return this.target
 FastClick.prototype.destroy=function(){var a=this.layer;deviceIsAndroid&&(a.removeEventListener("mouseover",this.onMouse,!0),a.removeEventListener("mousedown",this.onMouse,!0),a.removeEventListener("mouseup",this.onMouse,!0));a.removeEventListener("click",this.onClick,!0);a.removeEventListener("touchstart",this.onTouchStart,!1);a.removeEventListener("touchmove",this.onTouchMove,!1);a.removeEventListener("touchend",this.onTouchEnd,!1);a.removeEventListener("touchcancel",this.onTouchCancel,!1)};
 FastClick.notNeeded=function(a){var b,c;if("undefined"===typeof window.ontouchstart)return!0;if(c=+(/Chrome\/([0-9]+)/.exec(navigator.userAgent)||[,0])[1])if(deviceIsAndroid){if((b=document.querySelector("meta[name=viewport]"))&&(-1!==b.content.indexOf("user-scalable=no")||31<c&&window.innerWidth<=window.screen.width))return!0}else return!0;return"none"===a.style.msTouchAction?!0:!1};FastClick.attach=function(a){return new FastClick(a)};
 "undefined"!==typeof define&&define.amd?define(function(){return FastClick}):"undefined"!==typeof module&&module.exports?(module.exports=FastClick.attach,module.exports.FastClick=FastClick):window.FastClick=FastClick;
-;$(function() {
+;/*
+  * To Title Case 2.1 – http://individed.com/code/to-title-case/
+  * Copyright © 2008–2013 David Gouch. Licensed under the MIT License.
+ */
+
+String.prototype.toTitleCase = function(){
+  var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|vs?\.?|via)$/i;
+
+  return this.replace(/[A-Za-z0-9\u00C0-\u00FF]+[^\s-]*/g, function(match, index, title){
+    if (index > 0 && index + match.length !== title.length &&
+      match.search(smallWords) > -1 && title.charAt(index - 2) !== ":" &&
+      (title.charAt(index + match.length) !== '-' || title.charAt(index - 1) === '-') &&
+      title.charAt(index - 1).search(/[^\s-]/) < 0) {
+      return match.toLowerCase();
+    }
+
+    if (match.substr(1).search(/[A-Z]|\../) > -1) {
+      return match;
+    }
+
+    return match.charAt(0).toUpperCase() + match.substr(1);
+  });
+};
+
+/* BlueButton Connector */
+
+$(function() {
   $('a.next-btn').smoothScroll();
   var isMac = false;
   if (navigator.userAgent.indexOf('Mac OS X') != -1) {
@@ -158,23 +184,34 @@ FastClick.notNeeded=function(a){var b,c;if("undefined"===typeof window.ontouchst
   var canPush = false;
   if (!!(window.history && history.pushState)) {
     canPush = true;
-    $('body').on('click', '.app-pagination a', function(evt) {
-      var link = $(this).attr('href');
-      $.get(link, function(data) {
-        var $data = $(data);
-        var $appList = $('#app-list');
-        var appHTML = $data.find('#app-list').html();
-        var $appPagination = $('.app-pagination');
-        var paginationHTML = $data.find('.app-pagination').html();
-        $appList.html(appHTML);
-        $appPagination.html(paginationHTML);
-      });
-      history.pushState(null, '', link);
-      $.smoothScroll({
-        scrollTarget: '#app-list'
-      });
-      evt.preventDefault();
-      return false;
+    // we dropped the pagination of apps. Might need to bring it back when we got a lotta apps
+
+    // $('body').on('click', '.app-pagination a', function(evt) {
+    //   var link = $(this).attr('href');
+    //   $.get(link, function(data) {
+    //     var $data = $(data);
+    //     var $appList = $('#app-list');
+    //     var appHTML = $data.find('#app-list').html();
+    //     var $appPagination = $('.app-pagination');
+    //     var paginationHTML = $data.find('.app-pagination').html();
+    //     $appList.html(appHTML);
+    //     $appPagination.html(paginationHTML);
+    //   });
+    //   history.pushState(null, '', link);
+    //   $.smoothScroll({
+    //     scrollTarget: '#app-list'
+    //   });
+    //   evt.preventDefault();
+    //   return false;
+    // });
+
+    // only place we're using XHR is for retrieving MU Stage2 listings.
+    // TODO get smarter about handling provider types auto-selecting when using browser back-and-forth
+    window.addEventListener("popstate", function(e) {
+      var bits = window.location.hash.split("?");
+      if (bits[0] == "#provider") {
+        fetchStage2('/stage2?' + bits[1], false);
+      }
     });
   }
 
@@ -204,11 +241,24 @@ FastClick.notNeeded=function(a){var b,c;if("undefined"===typeof window.ontouchst
 
   $('body').on('click', 'a.provider-link', function(evt) {
     if (canPush) {
+      var hashNoQuery = stripQueryFromHash(window.location.hash);
       var nameSearchInput = $(this).parents('.providers').find('.provider-search-name').val();
       if (nameSearchInput.length) {
-        history.pushState(null, '', window.location.pathname + window.location.hash + '?q=' + nameSearchInput);
+        history.pushState(null, '', window.location.pathname + hashNoQuery + '?q=' + nameSearchInput);
+      } else {
+        var stateSearchInput = $(this).parents('.providers').find('.provider-search-state').val();
+        if (stateSearchInput.length && stateSearchInput !== 'false') {
+          history.pushState(null, '', window.location.pathname + hashNoQuery + '?state=' + stateSearchInput);
+        }
       }
     }
+  });
+
+  $('body').on('click', '.listing-pagination a', function(evt) {
+    clearMU2();
+    fetchStage2($(this).attr('href'), true);
+    evt.preventDefault();
+    return false;
   });
 
   //create the filter-able lists
@@ -230,38 +280,142 @@ FastClick.notNeeded=function(a){var b,c;if("undefined"===typeof window.ontouchst
   //TODO bring this back once we replace the "coming soon" with actual HIE listings
   // var hieList = new List('hie-list-wrapper', listOptions);
 
+  function clearStateSelection() {
+    var $pvs = $('.provider-search-state');
+    $pvs.each(function(){
+      if ($(this).val() !== 'false') {
+        $(this).val('false');
+      }
+    });
+
+    for (var a in catLists) {
+      catLists[a].filter();
+    }
+  }
+
+  function clearMU2() {
+    $('#provider .filter-by-last-name').addClass('hide');
+    $('#provider .no-results').addClass('hide');
+    $('#provider-list').html('');
+    $('#provider .total-listings').removeClass('in');
+  }
+
+  function stripQueryFromHash(h) {
+    var bits = h.split('?');
+    return bits[0];
+  }
+
+  function searchMU2(attr, val) {
+    fetchStage2('/stage2?' + attr + '=' + val, true);
+  }
+
+  function parseQueryString(queryString) {
+    var params = {}, queries, temp, i, l;
+    // Split into key/value pairs
+    queries = queryString.split("&");
+    // Convert the array of strings into an object
+    for ( i = 0, l = queries.length; i < l; i++ ) {
+        temp = queries[i].split('=');
+        params[temp[0]] = temp[1];
+    }
+
+    return params;
+  };
+
+  function fetchStage2(pathAndQuery, historyPush) {
+    if (canPush && historyPush) {
+      var bits = pathAndQuery.split("?");
+      var hashNoQuery = stripQueryFromHash(window.location.hash);
+      history.pushState(null, '', window.location.pathname + hashNoQuery + '?' + bits[1]);
+    }
+
+    $.get('http://api.bluebuttonconnector.healthit.gov' + pathAndQuery, function( res ) {
+      if (!res.results || res.results.length == 0) {
+        clearMU2();
+        $('#provider .no-results').removeClass('hide');
+      } else {
+        $('#provider .filter-by-last-name').removeClass('hide');
+        $('#provider .no-results').addClass('hide');
+
+        var totalListingsHTML = '';
+        if (res.meta.prev) totalListingsHTML += '<span class="listing-pagination pull-left"><a class="prev fs-xsmall fg-mblue" href="'+ res.meta.prev +'">&larr; prev</a></span>';
+        if (res.meta.total_results > 30) {
+          totalListingsHTML += (res.meta.offset + 1) + '-' + (res.meta.offset + res.results.length) + ' of ' + res.meta.total_results;
+        } else {
+          totalListingsHTML += res.meta.total_results+' listings';
+        }
+        if (res.meta.next) totalListingsHTML += '<span class="listing-pagination pull-right"><a class="next fs-xsmall fg-mblue" href="'+ res.meta.next +'">next &rarr;</a></span>';
+
+        $('#provider .total-listings').addClass('in').html(totalListingsHTML);
+
+        var providerListHTML = '';
+        for (var i=0; i<res.results.length; i++) {
+          var tooltipContent = "Just a test";
+          leProvider = res.results[i];
+          var leID = 'provder-' + i + '-contact';
+          providerListHTML += '<li><a href="#'+leID+'" data-toggle="collapse" aria-expanded="false" aria-controls="'+leID+'" class="stage2-link" tab-index="'+i+'">' + leProvider.name.toLowerCase().replace('llc', 'LLC').toTitleCase();
+          providerListHTML +=  '<div id="'+leID+'" class="provider-contact-details collapse"><p>';
+          if (leProvider.phone && leProvider.phone !== '') providerListHTML += leProvider.phone + '</p><p>';
+          if (leProvider.address && leProvider.address !== '') providerListHTML += leProvider.address + '</p><p>';
+          if (leProvider.city && leProvider.city !== '') providerListHTML += ' ' + leProvider.city + ' ' + leProvider.zip;
+          providerListHTML += '</p></div></a></li>';
+        }
+        $('#provider-list').html(providerListHTML);
+        $('#provider-list a.stage2-link').tooltip();
+      }
+    });
+  }
+
   $('body').on('input keychange', '.provider-search-name', function(evt) {
     //when free text searching, clear out the state filter (which is only on physicianList)
-    var $pvs = $('.provider-search-state')
-    if ($pvs.val() !== 'false') {
-      $pvs.val('false');
-      catLists.physicianList.filter();
+    clearStateSelection();
+  });
+
+  $('body').on('input keychange', '.provider-search-zip', function(evt) {
+    //when free text searching, clear out the state filter (which is only on physicianList)
+    clearStateSelection();
+    var zip = $(this).val();
+    if (zip.length == 5) {
+      $('#provider .provider-search-state').val('false');
+      searchMU2('zip', zip);
+    } else {
+      clearMU2();
     }
   });
 
   $('body').on('change', '.provider-search-state', function(evt) {
     var $self = $(this);
+    var selSource = $self.closest('.tab-pane').attr('id');
     var selState = $self.val();
-    if (selState == 'false') {
-      catLists.physicianList.filter();
-      return false;
-    }
-    var filterByState = function(item) {
-      var leStates = $(item.elm).find('a').attr('data-state').split(',');
-      var sLen = leStates.length;
-      var include = false;
-      for (var i=0; i<sLen; i++) {
-        if (selState === "all" || selState == leStates[i]) {
-          include = true;
-          break;
-        }
+    if (selSource === "provider") {
+      $('#provider .provider-search-zip').val('');
+      if (selState !== 'false') {
+        searchMU2('state', selState);
       }
-      return include;
+    } else {
+      var selCatList = catLists[$self.closest('.tab-pane').attr('id') + 'List'];
+      if (selState == 'false') {
+        selCatList.filter();
+        return false;
+      }
+      var filterByState = function(item) {
+        var leStates = $(item.elm).find('a').attr('data-state').split(',');
+        var sLen = leStates.length;
+        var include = false;
+        for (var i=0; i<sLen; i++) {
+          if (selState === "all" || selState == leStates[i]) {
+            include = true;
+            break;
+          }
+        }
+        return include;
+      }
+
+      $('#physician-list-wrapper .provider-search-name').val('');
+      selCatList.search();
+      selCatList.filter(filterByState);
     }
-    $('#physician-list-wrapper .provider-search-name').val('');
-    var selCatList = catLists[$self.closest('.tab-pane').attr('id') + 'List'];
-    selCatList.search();
-    selCatList.filter(filterByState);
+
     return false;
   });
 
@@ -305,18 +459,6 @@ FastClick.notNeeded=function(a){var b,c;if("undefined"===typeof window.ontouchst
     });
   }
 
-  var parseQueryString = function(queryString) {
-    var params = {}, queries, temp, i, l;
-    // Split into key/value pairs
-    queries = queryString.split("&");
-    // Convert the array of strings into an object
-    for ( i = 0, l = queries.length; i < l; i++ ) {
-        temp = queries[i].split('=');
-        params[temp[0]] = temp[1];
-    }
-
-    return params;
-  };
   //check for fragment on records page
   if (window.location.pathname === '/records/' && window.location.hash.length) {
     var frags = window.location.hash.split('?');
@@ -329,6 +471,9 @@ FastClick.notNeeded=function(a){var b,c;if("undefined"===typeof window.ontouchst
       if (params.q && params.q !== '') {
         $($selCatLink.attr('href')+'-list-wrapper').find('.provider-search-name').val(params.q);
         catLists[$selCatLink.attr('href').substring(1)+'List'].search(params.q);
+      } else if (params.state && params.state !== '') {
+        $($selCatLink.attr('href')+'-list-wrapper').find('.provider-search-state').val(params.state).trigger('change');
+
       }
     }
   }

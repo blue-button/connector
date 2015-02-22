@@ -66,6 +66,7 @@ function buildEm(orgs) {
 
   html.insurance = buildList({category:'insurance', orgList: insOrgs, searchPlaceholder: 'Blue Cross'});
   html.physician = buildList({category:'physician', orgList: phyOrgs, searchPlaceholder: 'Mayo Clinic'});
+  html.provider = buildList({category:'provider', orgList: [], searchPlaceholder: 'Doe, Jane'});
   html.pharmacy = buildList({category:'pharmacy', orgList: phaOrgs, searchPlaceholder: 'Walgreens'});
   html.lab = buildList({category:'lab', orgList: labOrgs, searchPlaceholder: 'Quest Diagnostics'});
   html.immunization = buildList({category:'immunization', orgList: immOrgs, searchPlaceholder: 'Arizona'});
