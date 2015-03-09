@@ -300,6 +300,10 @@ body
     float none
     display inline-block
 
+.row.row-keep-margin
+  mr 0
+  ml 0
+
 
 .section.why-bb
   @extend .fg-white
@@ -472,13 +476,65 @@ body
 .app-disclaimer
   margin 40px 0
 
+#app-list
+  mt 20px
+  bgc #eee
+  padding 14px
+
 .app-rapper
   mb 40px
+
+.app-card
+  position relative
+  height 260px
+  pt 10px
+  bgc white
+  .app-description
+    margin 0 5px 0 20px
+    p
+      mr 15px
+      line-height 1.2
+      overflow hidden
+      position relative
+      max-height 6em /*display ellipsis after 3 lines*/
+      &:before
+        font-weight bold
+        font-size 14px
+        // text-decoration underline
+        // color $daqua
+        color $mgrey
+        background #fff
+        bottom 0
+        position absolute
+        right 0
+        content '\2026'
+      &:after
+        content ''
+        background #fff
+        position absolute
+        height 50px
+        width 100%
+        z-index 1
   .app-icon
-    width 128px
-    height 128px
+    // width 128px
+    height 64px
   @media(max-width:767px)
     border-bottom solid 1px #999
+  .apple-logo
+    width 16px
+    mr 8px
+  .android-logo
+    width 16px
+    mr 8px
+  .app-reviews
+    pl 20px
+    width 100%
+    position absolute
+    bottom 0
+    border-top solid 1px $lblue
+    pt 6px
+    .review
+      mb 6px
 
 
 .nav-pills>li
@@ -626,9 +682,6 @@ p.fs-medium
 
 .app-coming-soon
   fs 5em
-
-.app-description
-  margin 0 5px 0 20px
 
 .privacy-last-section
   pb 60px

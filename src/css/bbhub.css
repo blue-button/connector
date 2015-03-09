@@ -660,6 +660,10 @@ img.little-logo {
   float: none;
   display: inline-block;
 }
+.row.row-keep-margin {
+  margin-right: 0;
+  margin-left: 0;
+}
 .section.why-bb {
   padding-top: 40px;
 }
@@ -838,17 +842,75 @@ li.active .box-link-rapper .wrap-source-icon {
 .app-disclaimer {
   margin: 40px 0;
 }
+#app-list {
+  margin-top: 20px;
+  background-color: #eee;
+  padding: 14px;
+}
 .app-rapper {
   margin-bottom: 40px;
 }
-.app-rapper .app-icon {
-  width: 128px;
-  height: 128px;
+.app-card {
+  position: relative;
+  height: 260px;
+  padding-top: 10px;
+  background-color: #fff;
+}
+.app-card .app-description {
+  margin: 0 5px 0 20px;
+}
+.app-card .app-description p {
+  margin-right: 15px;
+  line-height: 1.2;
+  overflow: hidden;
+  position: relative;
+  max-height: 6em;
+/*display ellipsis after 3 lines*/
+}
+.app-card .app-description p:before {
+  font-weight: bold;
+  font-size: 14px;
+  color: #959dac;
+  background: #fff;
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  content: '\2026';
+}
+.app-card .app-description p:after {
+  content: '';
+  background: #fff;
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  z-index: 1;
+}
+.app-card .app-icon {
+  height: 64px;
 }
 @media (max-width:767px) {
-  .app-rapper {
+  .app-card {
     border-bottom: solid 1px #999;
   }
+}
+.app-card .apple-logo {
+  width: 16px;
+  margin-right: 8px;
+}
+.app-card .android-logo {
+  width: 16px;
+  margin-right: 8px;
+}
+.app-card .app-reviews {
+  padding-left: 20px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  border-top: solid 1px #80c0dd;
+  padding-top: 6px;
+}
+.app-card .app-reviews .review {
+  margin-bottom: 6px;
 }
 .nav-pills>li >a {
   -webkit-border-radius: 0;
@@ -1007,9 +1069,6 @@ p.fs-medium {
 }
 .app-coming-soon {
   font-size: 5em;
-}
-.app-description {
-  margin: 0 5px 0 20px;
 }
 .privacy-last-section {
   padding-bottom: 60px;
