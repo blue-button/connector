@@ -103,7 +103,7 @@ $(function() {
     }
   });
 
-  $('body').on('click', '.listing-pagination a', function(evt) {
+  $('body').on('click', '.listing-pagination', function(evt) {
     clearMU2();
     fetchStage2($(this).attr('href'), true);
     evt.preventDefault();
@@ -154,10 +154,6 @@ $(function() {
     return bits[0];
   }
 
-  function searchMU2(attr, val) {
-    fetchStage2('/stage2?' + attr + '=' + val, true);
-  }
-
   function parseQueryString(queryString) {
     var params = {}, queries, temp, i, l;
     // Split into key/value pairs
@@ -174,6 +170,7 @@ $(function() {
   function fetchStage2(pathAndQuery, historyPush) {
     if (canPush && historyPush) {
       var bits = pathAndQuery.split("?");
+      var searchBits = bits[1].split("=");
       var hashNoQuery = stripQueryFromHash(window.location.hash);
       history.pushState(null, '', window.location.pathname + hashNoQuery + '?' + bits[1]);
     }
@@ -187,13 +184,19 @@ $(function() {
         $('#provider .no-results').addClass('hide');
 
         var totalListingsHTML = '';
-        if (res.meta.prev) totalListingsHTML += '<span class="listing-pagination pull-left"><a class="prev fs-xsmall fg-mblue" href="'+ res.meta.prev +'">&larr; prev</a></span>';
+        if (res.meta.prev) {
+          if (!/total_results/.test(res.meta.prev)) res.meta.prev += '&total_results=' + res.meta.total_results;
+          totalListingsHTML += '<a class="listing-pagination pull-left prev fs-xsmall fg-mblue" href="'+ res.meta.prev +'">&larr; prev</a>';
+        }
         if (res.meta.total_results > 30) {
           totalListingsHTML += (res.meta.offset + 1) + '-' + (res.meta.offset + res.results.length) + ' of ' + res.meta.total_results;
         } else {
           totalListingsHTML += res.meta.total_results+' listings';
         }
-        if (res.meta.next) totalListingsHTML += '<span class="listing-pagination pull-right"><a class="next fs-xsmall fg-mblue" href="'+ res.meta.next +'">next &rarr;</a></span>';
+        if (res.meta.next) {
+          if (!/total_results/.test(res.meta.next)) res.meta.next += '&total_results=' + res.meta.total_results;
+          totalListingsHTML += '<a class="listing-pagination pull-right next fs-xsmall fg-mblue" href="'+ res.meta.next +'">next &rarr;</a>';
+        }
 
         $('#provider .total-listings').addClass('in').html(totalListingsHTML);
 
@@ -215,10 +218,18 @@ $(function() {
     });
   }
 
-  $('body').on('input keychange', '.provider-search-name', function(evt) {
-    //when free text searching, clear out the state filter (which is only on physicianList)
+  $('body').on('input keychange', '.provider-search-name', $.debounce(750, function(evt) {
+    //when free text searching, clear out the state filter
     clearStateSelection();
-  });
+    var $self = $(this);
+    var selSource = $self.closest('.tab-pane').attr('id');
+    if (selSource === "provider") {
+      var nameSearch = $self.val();
+      if (nameSearch.length < 3) return false;
+      $('#provider .provider-search-zip').val('');
+      fetchStage2('/stage2?name=' + encodeURIComponent($self.val()), true);
+    }
+  }));
 
   $('body').on('input keychange', '.provider-search-zip', function(evt) {
     //when free text searching, clear out the state filter (which is only on physicianList)
@@ -226,7 +237,7 @@ $(function() {
     var zip = $(this).val();
     if (zip.length == 5) {
       $('#provider .provider-search-state').val('false');
-      searchMU2('zip', zip);
+      fetchStage2('/stage2?zip=' + zip, true);
     } else {
       clearMU2();
     }
@@ -239,7 +250,7 @@ $(function() {
     if (selSource === "provider") {
       $('#provider .provider-search-zip').val('');
       if (selState !== 'false') {
-        searchMU2('state', selState);
+        fetchStage2('/stage2?state=' + selState, true);
       }
     } else {
       var selCatList = catLists[$self.closest('.tab-pane').attr('id') + 'List'];
@@ -322,7 +333,8 @@ $(function() {
         catLists[$selCatLink.attr('href').substring(1)+'List'].search(params.q);
       } else if (params.state && params.state !== '') {
         $($selCatLink.attr('href')+'-list-wrapper').find('.provider-search-state').val(params.state).trigger('change');
-
+      } else if (params.name && params.name !== '') { //this is the name search for muStage2 providers
+        $('#provider-list-wrapper').find('.provider-search-name').val(params.name).trigger('keychange');
       }
     }
   }

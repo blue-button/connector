@@ -963,6 +963,11 @@ li.active .box-link-rapper .wrap-source-icon {
 .provider-list.nav-pills>li>a.highlight {
   background-color: #ccc;
 }
+@media (max-width:767px) {
+  .provider-list {
+    height: auto;
+  }
+}
 .total-listings {
   margin-top: 10px;
 }

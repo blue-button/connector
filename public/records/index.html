@@ -34,7 +34,7 @@
     <div class="container">
       <h1 class="page-title">Locate your records</h1>
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-5">
           <h4 class="fg-mgrey">Select a source</h4>
           <h6><strong class="fg-maqua">Tip:</strong> You may have records from more than one source.</h6>
           <ul class="data-sources list-unstyled clearfix">
@@ -58,7 +58,7 @@
                 <p class="data-source-title fs-small fg-maqua fw-strong">Immunization Registry</p></a></li>
           </ul>
         </div>
-        <div id="select-provider-wrapper" class="tab-content col-sm-8">
+        <div id="select-provider-wrapper" class="tab-content col-sm-7">
           <div id="insurance" class="tab-pane">
             <h4 class="fg-mgrey">Select your insurance provider</h4>
             <div class="row providers">
@@ -459,6 +459,10 @@
   <div class="input-group provider-search-wrapper">
     <input type="text" placeholder="e.g. 84057" class="form-control input-lg provider-search-zip"/><span class="input-group-addon"><i class="fa fa-search isize-24"></i></span>
   </div>
+  <label class="fs-medium">or search by name</label>
+  <div class="input-group provider-search-wrapper">
+    <input type="text" placeholder="e.g. Doe, Jane" class="form-control input-lg provider-search-name"/><span class="input-group-addon"><i class="fa fa-search isize-24"></i></span>
+  </div>
   <h6 class="total-listings fade text-center fg-dgrey fw-light"></h6>
   <h4 class="fw-light no-results hide">no listings</h4>
   <ul id="provider-list" class="nav nav-pills nav-stacked provider-list list">
@@ -466,6 +470,7 @@
   <div class="scroll-hint-wrapper text-center">
     <div class="scroll-hint fa fa-chevron-down isize-24 no-show"></div>
   </div>
+  <h6 class="total-listings fade text-center fg-dgrey fw-light visible-xs-block"></h6>
 </div>
 <div class="tab-content col-sm-12 col-md-6">
   <div class="no-data">
