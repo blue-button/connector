@@ -2,6 +2,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    cnf: grunt.file.readJSON('config.json'),
     meta: {
       endpoint: "public"
     },
@@ -46,7 +47,7 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'public/js/bbhub-combined.min.js': ['<%= concat.js.dest %>']
+          '<%= cnf.MASTER_DIR %>public/js/bbhub-combined.min.js': ['<%= concat.js.dest %>']
         }
       }
     },
@@ -77,12 +78,12 @@ module.exports = function(grunt) {
       options: {
         'force': true
       },
-      dist: ["../gh-pages/*"]
+      dist: ["<%= cnf.GHPAGES_DIR %>*"]
     },
     copy: {
       main: {
         files: [
-          {expand: true, cwd: 'public/', src: ['**'], dest: '../gh-pages'},
+          {expand: true, cwd: '<%= cnf.MASTER_DIR %>public/', src: ['**'], dest: '<%= cnf.GHPAGES_DIR %>'},
         ]
       }
     }
