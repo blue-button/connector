@@ -494,7 +494,7 @@ $(function() {
       } else if (params.state && params.state !== '') {
         $($selCatLink.attr('href')+'-list-wrapper').find('.provider-search-state').val(params.state).trigger('change');
       } else if (params.name && params.name !== '') { //this is the name search for muStage2 providers
-        $('#provider-list-wrapper').find('.provider-search-name').val(params.name).trigger('keychange');
+        $('#provider-list-wrapper').find('.provider-search-name').val(decodeURIComponent(params.name)).trigger('keychange');
       }
     }
   }
