@@ -1,4 +1,4 @@
 node_modules/
 src/scripts/medicaldatame.js
-src/scripts/build-listener.js
 npm-debug.log
+config.json

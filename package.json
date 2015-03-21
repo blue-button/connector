@@ -4,13 +4,13 @@
   "description": "",
   "main": "",
   "scripts": {
+    "start": "node build-listener.js",
     "build-organizations": "node src/scripts/build-organization-directory",
     "build-apps": "node src/scripts/build-app-directory"
   },
   "author": "",
   "license": "BSD",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "async": "~0.2.10",
     "canvas": "~1.1.0",
     "fast-csv": "^0.5.5",
@@ -26,6 +26,9 @@
     "json2csv": "~2.2.1",
     "minimist": "0.0.8",
     "moment": "~2.5.1",
+    "nconf": "^0.7.1",
     "request": "~2.27.0"
+  },
+  "devDependencies": {
   }
 }
