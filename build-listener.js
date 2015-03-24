@@ -20,17 +20,14 @@ app.get('/build', function (req, res) {
       res.end('</body></html>');
     } else {
       logIt('Committing changes to master branch...');
-      logIt('cd ' + config.get('GHPAGES_DIR') + '; git pull origin gh-pages; cd ' + config.get('MASTER_DIR') + '; grunt dist; git add --all; git commit -am "update data for one or more profiles"; git push origin master;');
+      // logIt('cd ' + config.get('GHPAGES_DIR') + '; git pull origin gh-pages; cd ' + config.get('MASTER_DIR') + '; grunt dist; git add --all; git commit -am "update data for one or more profiles"; git push origin master;');
       exec('cd ' + config.get('GHPAGES_DIR') + '; git pull origin gh-pages; cd ' + config.get('MASTER_DIR') + '; grunt dist; git add --all; git commit -am "update data for one or more profiles"; git push origin master;', function(error, stdout, stderr){
-      // exec('cd ' + config.get('GHPAGES_DIR') + '; git pull origin gh-pages; cd ' + config.get('MASTER_DIR') + '; grunt dist; git status;', function(error, stdout, stderr){
         logIt(stdout);
         logIt('Committing changes to gh-pages branch...');
-        logIt('cd ' + config.get('GHPAGES_DIR') + '; git add --all; git commit -am "update data for one or more profiles"; git push origin gh-pages;')
+        // logIt('cd ' + config.get('GHPAGES_DIR') + '; git add --all; git commit -am "update data for one or more profiles"; git push origin gh-pages;')
         exec('cd ' + config.get('GHPAGES_DIR') + '; git add --all; git commit -am "update data for one or more profiles"; git push origin gh-pages;', function(error, stdout, stderr){
-        // exec('cd ' + config.get('GHPAGES_DIR') + '; git status;', function(error, stdout, stderr){
           logIt(stdout);
-          logIt("DONE");
-          res.end('</body></html>')
+          res.end('<h1>DONE</h1></body></html>')
         });
       });
     }
@@ -38,7 +35,7 @@ app.get('/build', function (req, res) {
 
   function logIt(m) {
     console.log(m);
-    res.write('<code>' + m + '</code>');
+    res.write('<br><pre><code>' + m + '</code></pre>');
   }
 });
 
