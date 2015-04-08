@@ -3,3 +3,5 @@ src/scripts/medicaldatame.js
 npm-debug.log
 config.json
 blue-button-builder.pem
+ec2-scheduled-build.sh
+aws-autoscale.cfg
