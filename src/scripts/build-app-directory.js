@@ -30,7 +30,7 @@ function getAppStoreReviews(apps) {
   var googleReviewsLeft = 0;
 
   apps.forEach(function(app) {
-    app.reviews = {};
+    app.reviews = {apple: null, google: null};
     if (app.apple_url) {
       appleReviewsLeft ++;
       getAppleReview(app, checkReviewsDone);
