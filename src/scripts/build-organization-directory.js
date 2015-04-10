@@ -4,9 +4,12 @@ var fs = require('fs');
 var moment = require('moment');
 var async = require('async');
 var argv = require('minimist')(process.argv.slice(2));
+var Pageres = require('pageres');
+var lwip = require('lwip');
 
 var leOrgs = [];
 var initPathname = '/organizations?limit=100&detailed=1';
+var missingScreenshots = [];
 
 getEm(initPathname);
 
@@ -74,8 +77,11 @@ function buildEm(orgs) {
 
   var finalHtml = jade.renderFile('src/jade/templates/_organizations.jade', {pretty: true, html:html});
   fs.writeFileSync('public/records/index.html', finalHtml);
-  console.log("DONE.");
-  process.exit(0);
+  handleMissingScreenshots(function(err){
+    if (err) console.warn("PROBLEM with screenshots")
+    console.log("DONE.");
+    process.exit(0);
+  })
 }
 
 function buildDataDumpFiles(orgs){
@@ -164,16 +170,68 @@ function buildList(opt) {
     var orgHtml = jade.renderFile('src/jade/templates/_organization-profile.jade', toRender);
     if (!fs.existsSync('public/organizations/' + org.id)) fs.mkdirSync('public/organizations/' + org.id);
     fs.writeFileSync('public/organizations/' + org.id + '/index.html', orgHtml);
+
     //check to see if image exists
-    if (category !== 'hie') {
-      try {
-        var hasImg = fs.openSync('public/img/organizations/'+org.id+'.png', 'r');
-      } catch (e) {
-        console.warn("IMAGE NOT FOUND FOR " + org.id);
-      }
+    if (category !== 'hie' && !fs.existsSync('public/img/organizations/'+org.id+'.png')) {
+      console.warn("IMAGE NOT FOUND FOR " + org.id);
+      // queue it up for later processing, since we're living in sync land right now
+      missingScreenshots.push({id: org.id, url: org.url.web || org.url.login});
     }
+
+    return listhtml;
 
   });
 
-  return listhtml;
+}
+
+
+function handleMissingScreenshots(cb) {
+  if (missingScreenshots.length == 0) return cb(null);
+  console.log("Fetching screenshots...", missingScreenshots);
+  var pageres = new Pageres({delay: 3});
+  missingScreenshots.forEach(function(ss){
+    pageres.src(ss.url, ['1200x768'], {filename: ss.id, crop: true});
+  });
+
+  //temp directory for full-size screenshots:
+  if (!fs.existsSync('tmpscreenshots')) fs.mkdirSync('tmpscreenshots');
+  pageres.dest('tmpscreenshots');
+  pageres.run(function (err) {
+    console.log('finished screenshots for: ', missingScreenshots);
+    resizeScreenshots(cb, []);
+  });
+
+}
+
+function resizeScreenshots(cb, errs) {
+  if (missingScreenshots.length < 1) return cb();
+  var errors = errs || [];
+  var nextSS = missingScreenshots.pop();
+  console.log("nextImage: " + nextSS.id);
+
+  // oh async callbacks in a recursive function, you so crazy.
+  lwip.open('tmpscreenshots/'+nextSS.id+'.png', function(err, image){
+    if (err) {
+      errors.push(err);
+      console.log("lwip.open error: ", err);
+      resizeScreenshots(cb, errors);
+    } else {
+      image.scale(0.666666667, function(err, image){
+        if (err) {
+          errors.push(err);
+          console.log("lwip.scale error: ", err);
+          resizeScreenshots(cb, errors);
+        } else {
+          image.writeFile('public/img/organizations/'+nextSS.id+'.png', function(err){
+            if (err) {
+              errors.push(err);
+              console.log("lwip.writeFile error: ", err);
+            }
+            resizeScreenshots(cb, errors);
+          });
+        }
+      });
+    }
+
+  });
 }
