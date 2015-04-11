@@ -834,7 +834,7 @@ li.active .box-link-rapper .data-source-title {
 .box-link-rapper:hover .data-source-title:after,
 li.active .box-link-rapper .data-source-title:after {
   content: " \003E";
-  padding-left: 10px;
+  padding-left: 3px;
   font-weight: bold;
 }
 .box-link-rapper:hover .wrap-source-icon,
