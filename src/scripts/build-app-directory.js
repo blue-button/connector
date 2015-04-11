@@ -82,7 +82,7 @@ function getAppStoreReviews(apps, cb) {
   }
 
   function checkReviewsDone() {
-    if (appleReviewsLeft == 0 && googleReviewsLeft == 0) cb();
+    if (appleReviewsLeft == 0 && googleReviewsLeft == 0) cb(apps);
   }
 }
 

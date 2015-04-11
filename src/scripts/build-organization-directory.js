@@ -81,7 +81,7 @@ function buildEm(orgs) {
     if (err) console.warn("PROBLEM with screenshots")
     console.log("DONE.");
     process.exit(0);
-  })
+  });
 }
 
 function buildDataDumpFiles(orgs){
@@ -134,13 +134,11 @@ function buildDataDumpFiles(orgs){
 }
 
 function buildList(opt) {
-  // console.log(opt);
   searchPlaceholder = searchPlaceholder || '';
   var category = opt.category;
   var orgList = opt.orgList;
   var searchPlaceholder = opt.searchPlaceholder;
   var unitedStates = [{data: "AK", label: "Alaska"},{data: "AL", label: "Alabama"},{data: "AR", label: "Arkansas"},{data: "AZ", label: "Arizona"},{data: "CA", label: "California"},{data: "CO", label: "Colorado"},{data: "CT", label: "Connecticut"},{data: "DE", label: "Delaware"},{data: "DC", label: "District of Columbia"},{data: "FL", label: "Florida"},{data: "GA", label: "Georgia"},{data: "HI", label: "Hawaii"},{data: "IA", label: "Iowa"},{data: "ID", label: "Idaho"},{data: "IL", label: "Illinois"},{data: "IN", label: "Indiana"},{data: "KS", label: "Kansas"},{data: "KY", label: "Kentucky"},{data: "LA", label: "Louisiana"},{data: "MA", label: "Massachusetts"},{data: "MD", label: "Maryland"},{data: "ME", label: "Maine"},{data: "MI", label: "Michigan"},{data: "MN", label: "Minnesota"},{data: "MS", label: "Mississippi"},{data: "MO", label: "Missouri"},{data: "MT", label: "Montana"},{data: "NC", label: "North Carolina"},{data: "ND", label: "North Dakota"},{data: "NE", label: "Nebraska"},{data: "NH", label: "New Hampshire"},{data: "NJ", label: "New Jersey"},{data: "NM", label: "New Mexico"},{data: "NV", label: "Nevada"},{data: "NY", label: "New York"},{data: "OH", label: "Ohio"},{data: "OK", label: "Oklahoma"},{data: "OR", label: "Oregon"},{data: "PA", label: "Pennsylvania"},{data: "RI", label: "Rhode Island"},{data: "SC", label: "South Carolina"},{data: "SD", label: "South Dakota"},{data: "TN", label: "Tennessee"},{data: "TX", label: "Texas"},{data: "UT", label: "Utah"},{data: "VA", label: "Virginia"},{data: "VT", label: "Vermont"},{data: "WA", label: "Washington"},{data: "WI", label: "Wisconsin"},{data: "WV", label: "West Virginia"},{data: "WY", label: "Wyoming"}];
-  console.log("Building " + orgList.length + " " + category + " organizations...");
   var listhtml = jade.renderFile('src/jade/templates/_organization-list.jade', {pretty: true, orgList:orgList, category:category, searchPlaceholder:searchPlaceholder, unitedStates:unitedStates});
 
   orgList.forEach(function(org, ind) {
@@ -178,9 +176,9 @@ function buildList(opt) {
       missingScreenshots.push({id: org.id, url: org.url.web || org.url.login});
     }
 
-    return listhtml;
-
   });
+
+  return listhtml;
 
 }
 
