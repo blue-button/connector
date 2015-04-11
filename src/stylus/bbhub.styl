@@ -132,9 +132,10 @@ body.modal-open
 
 .navbar
   border-radius none !important
-
   @media screen and (min-width: 768px)
     border-radius none !important
+  @media(max-width:320px)
+    mb 10px
 
 .navbar-brand
   img.little-logo
@@ -483,10 +484,14 @@ body
 
 .app-rapper
   mb 40px
+  @media(max-width:320px)
+    mb 20px
 
 .app-card
   position relative
   height 260px
+  @media(max-width:320px)
+    height 245px
   pt 10px
   bgc white
   .app-description
@@ -518,8 +523,6 @@ body
   .app-icon
     // width 128px
     height 64px
-  @media(max-width:767px)
-    border-bottom solid 1px #999
   .apple-logo
     width 16px
     mr 8px
