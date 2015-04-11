@@ -194,8 +194,8 @@ function handleMissingScreenshots(cb) {
   });
 
   //temp directory for full-size screenshots:
-  if (!fs.existsSync('tmpscreenshots')) fs.mkdirSync('tmpscreenshots');
-  pageres.dest('tmpscreenshots');
+  if (!fs.existsSync('tmp')) fs.mkdirSync('tmp');
+  pageres.dest('tmp');
   pageres.run(function (err) {
     console.log('finished screenshots for: ', missingScreenshots);
     resizeScreenshots(cb, []);
@@ -210,7 +210,7 @@ function resizeScreenshots(cb, errs) {
   console.log("nextImage: " + nextSS.id);
 
   // oh async callbacks in a recursive function, you so crazy.
-  lwip.open('tmpscreenshots/'+nextSS.id+'.png', function(err, image){
+  lwip.open('tmp/'+nextSS.id+'.png', function(err, image){
     if (err) {
       errors.push(err);
       console.log("lwip.open error: ", err);

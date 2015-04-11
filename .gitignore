@@ -1,5 +1,5 @@
 node_modules/
-tmpscreenshots
+tmp
 src/scripts/medicaldatame.js
 npm-debug.log
 config.json

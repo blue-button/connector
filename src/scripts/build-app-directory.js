@@ -2,6 +2,7 @@ var rekwest = require('request');
 var jade = require('jade');
 var fs = require('fs');
 var json2csv = require('json2csv');
+var async = require('async');
 
 console.log("Calling 'API'...");
 var leApps = [];
@@ -15,7 +16,13 @@ function getEm(pathname) {
       if (body.meta.next) {
         getEm(body.meta.next);
       } else {
-        getAppStoreReviews(leApps);
+        getAppStoreReviews(leApps, function(apps){
+          async.each(apps, checkLogo, function(err){
+            if (err) console.log("APP LOGO ERROR: ", err);
+            console.log("Logo Checking Done.");
+            buildEm(apps);
+          });
+        });
       }
     } else {
       console.warn("PROBLEM CONNECTING TO API!");
@@ -24,7 +31,7 @@ function getEm(pathname) {
   });
 }
 
-function getAppStoreReviews(apps) {
+function getAppStoreReviews(apps, cb) {
   console.log("Fetching app store reviews...");
   var appleReviewsLeft = 0;
   var googleReviewsLeft = 0;
@@ -75,8 +82,56 @@ function getAppStoreReviews(apps) {
   }
 
   function checkReviewsDone() {
-    if (appleReviewsLeft == 0 && googleReviewsLeft == 0) buildEm(apps);
+    if (appleReviewsLeft == 0 && googleReviewsLeft == 0) cb();
   }
+}
+
+function checkLogo(app, cb) {
+  console.log("checking: " + app.id);
+  if (/^http/.test(app.img)) {
+    console.log("...fetching: " + app.img);
+    rekwest(app.img, {encoding: 'binary'}, function(error, response, body) {
+      if (error) {
+        console.log("ERROR FETCHING LOGO: ", error);
+        return cb();
+      }
+      //temp directory
+      if (!fs.existsSync('tmp')) fs.mkdirSync('tmp');
+      var ext = app.img.split(".").pop();
+      var filepath = 'tmp/'+app.id + '.' + ext;
+      fs.writeFileSync(filepath, body, 'binary');
+      fitLogo(filepath, app, cb);
+    });
+  } else {
+    cb();
+  }
+};
+
+function fitLogo(filepath, app, cb) {
+  console.log("opening " + filepath);
+  lwip.open(filepath, function(err, image){
+    if (err) {
+      console.log("lwip.open error: ", err);
+      return cb();
+    }
+    console.log("...containing logo");
+    image.contain(256, 128, {r: 0, g: 0, b: 0, a: 0}, function(err, image){
+      if (err) {
+        console.log("lwip.contain error: ", err);
+        return cb();
+      }
+      console.log('...writing logo to public/img/apps/'+app.id+'.png');
+      image.writeFile('public/img/apps/128-height/'+app.id+'.png', function(err){
+        if (err) {
+          console.log("lwip.writeFile error: ", err);
+        } else {
+          app.img = app.id + '.png';
+        }
+        cb();
+      });
+    });
+
+  });
 }
 
 function buildEm(apps) {
