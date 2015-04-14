@@ -124,8 +124,8 @@ $(function() {
     });
     if (isMac) {
       var $leList = $($(el).attr('href')).find('.provider-list');
-      // Only show the scroll-down indicator if we need it
-      if (!$leList.length || ($leList.innerHeight() > $leList[0].scrollHeight)) return;
+      //TODO hie doesn't have provider-list yet. It will...
+      if (!$leList.length) return;
       setTimeout(function(){
         if ($leList[0].clientHeight < $leList[0].scrollHeight) {
           $leList.next().find('.scroll-hint').removeClass('no-show');

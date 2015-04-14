@@ -286,6 +286,9 @@ li,
 .fs-xxsmall {
   font-size: 12px;
 }
+.fs-xxxsmall {
+  font-size: 10px;
+}
 .fw-strong,
 h1,
 .h1,
@@ -1192,4 +1195,10 @@ p.fs-medium {
 }
 .pra-title {
   margin: 15px;
+}
+.form-group {
+  margin-bottom: 25px;
+}
+.require-message {
+  padding: 6px;
 }

@@ -34,72 +34,79 @@
         </ul>
       </div>
     </nav>
-    <div class="container">
-      <h1 class="page-title"></h1>
+    <div id="app" class="container mb-25"></div>
+    <script id="app_tpl" type="text/ractive">{{#if _loading}}
+      <h1 class="page-title">Loading...</h1>{{elseif _saved}}
+      <h2>Thank you for helping us update the Connector!</h2>
+      <h4>The information will be available on the web site as soon as it is approved.</h4>
+      <p class="pt-5 mb-25"><a href="http://bluebuttonconnector.healthit.gov/" class="btn btn-primary">Back to Connector home</a></p>{{else}}
       <div class="row">
-        <div class="col-sm-6">
-          <div id="wufoo-z1a79ga3024pxln">One moment please...<br><br>(you may also fill out this form <a href="https://limechile.wufoo.com/forms/z1a79ga3024pxln">here</a>).<br><br></div>
-          <script>
-            var z1a79ga3024pxln;
-            function onGetWuVals(res) {
-              setupWu(document, 'script', res.wuParams);
-            }
-            function setupWu(d, t, wuParams) {
-              $('.page-title').remove();
-              var s = d.createElement(t), options = {
-              'userName':'limechile',
-              'formHash':'z1a79ga3024pxln',
-              'autoResize':true,
-              'height':'1090',
-              'async':true,
-              'host':'wufoo.com',
-              'header':'show',
-              'defaultValues': wuParams.replace('%2F', '%252F'),
-              'ssl':true};
-              s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
-              s.onload = s.onreadystatechange = function() {
-                var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
-                try {
-                  z1a79ga3024pxln = new WufooForm();
-                  z1a79ga3024pxln.initialize(options);
-                  z1a79ga3024pxln.display();
-                } catch (e) {}
-              };
-              var scr = d.getElementsByTagName(t)[0], par = scr.parentNode;
-              par.insertBefore(s, scr);
-            };
-            var urlParams;
-            (window.onpopstate = function () {
-                var match,
-                    pl     = /\+/g,  // Regex for replacing addition symbol with a space
-                    search = /([^&=]+)=?([^&]*)/g,
-                    decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
-                    query  = window.location.search.substring(1);
-            
-                urlParams = {};
-                while (match = search.exec(query))
-                   urlParams[decode(match[1])] = decode(match[2]);
-            })();
-            
-            if (typeof urlParams.id === "undefined") {
-              setupWu(document, 'script', '')
-            } else {
-              $('.page-title').text("Loading...");
-              $.ajax({
-                url: "http://api.bluebuttonconnector.healthit.gov/wufoo/apps/" + urlParams.id,
-                dataType: "jsonp",
-                data: {
-                  format: "jsonp"
-                },
-            
-                // work with the response
-                success: onGetWuVals
-              });
-            }
-          </script>
+        <div class="col-sm-12 col-md-8 col-lg-6">
+          <form action="http://api.bluebuttonconnector.healthit.gov/apps" method="post" class="form-horizontal">
+            <div class="form-group">
+              <label for="email" class="control-label col-sm-4">Your email address</label>
+              <div class="col-sm-8">
+                <input id="email" type="email" name="email" value="{{email}}" class="form-control">
+                <p class="help-block fs-xxsmall">so we can follow-up if there are questions</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="name" class="control-label col-sm-4">App name</label>
+              <div class="col-sm-8">
+                <input id="name" type="text" name="name" value="{{name}}" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description" class="control-label col-sm-4">Very short description</label>
+              <div class="col-sm-8">
+                <textarea id="description" name="description" value="{{description}}" rows="4" class="form-control"></textarea>
+                <p class="help-block fs-xxsmall">50 words maximum</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="url" class="control-label col-sm-4">Link to learn more</label>
+              <div class="col-sm-8">
+                <input id="url" type="text" name="url" value="{{url}}" placeholder="http://myapp.com/" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="logo" class="control-label col-sm-4">Link to logo</label>
+              <div class="col-sm-8">
+                <input id="logo" type="text" name="img" value="{{img}}" placeholder="http://myapp.com/logo.png" class="form-control">
+                <p class="help-block fs-xxsmall">will be resized to fit 256x128 pixels</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="organization" class="control-label col-sm-4">Organization</label>
+              <div class="col-sm-8">
+                <input id="organization" type="text" name="organization" value="{{organization}}" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="apple_url" class="control-label col-sm-4">Link to Apple App Store page</label>
+              <div class="col-sm-8">
+                <input id="apple_url" type="text" name="apple_url" value="{{apple_url}}" class="form-control">
+                <p class="help-block fs-xxsmall">if applicable</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="google_url" class="control-label col-sm-4">Link to Google Play page</label>
+              <div class="col-sm-8">
+                <input id="google_url" type="text" name="google_url" value="{{google_url}}" class="form-control">
+                <p class="help-block fs-xxsmall">if applicable</p>
+              </div>
+            </div>
+            <div class="col-sm-8 col-sm-push-4">{{^formReady}}
+              <p intro-outro="slide" class="bg-danger require-message">all fields are required except app store links</p>{{/}}
+              <p>
+                <button on-tap="submitForm" type="submit" disabled="{{!formReady}}" class="btn btn-primary btn-lg">Send</button>
+              </p>
+              <p class="fg-mgrey fw-light fs-xxxsmall">According to the Paperwork Reduction Act of 1995, an agency may not conduct or sponsor, and a person is not required to respond to, a collection of information unless it displays a valid OMB control number. The valid OMB control number for this information collection is 0955-0016. The time required to complete this information collection is estimated to average 3 minutes per response, including the time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information.</p>
+            </div>
+          </form>
         </div>
-      </div>
-    </div>
+      </div>{{/if}}
+    </script>
     <div class="section footer">
       <div class="container">
         <ul class="footer-links list-inline inline">
@@ -117,6 +124,7 @@
         <p class="fs-xxsmall">This project was funded by the Office of the National Coordinator for Health Information Technology (ONC)</p>
       </div>
     </div>
-    <script src="../js/bbhub-combined.min.js"></script>
+    <script src="../js/ractive-legacy.min.js"></script>
+    <script src="../js/bb-forms.min.js"></script>
   </body>
 </html>

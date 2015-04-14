@@ -5,65 +5,80 @@ block content
   .pra-title.pull-right
     p.fs-xxsmall.fg-mgrey!= 'Form Approved <br> OMB No. 0955-0016'
   include ../includes/_topnav
-  .container
-    h1.page-title
+
+  #app.container.mb-25
+
+  script#app_tpl(type='text/ractive')
+    {{#if _loading}}
+    h1.page-title Loading...
+    {{elseif _saved}}
+    h2 Thank you for helping us update the Connector!
+    h4 The information will be available on the web site as soon as it is approved.
+    p.pt-5.mb-25
+      a.btn.btn-primary(href='http://bluebuttonconnector.healthit.gov/') Back to Connector home
+    {{else}}
     .row
-      .col-sm-6
-        #wufoo-z1a79ga3024pxln One moment please...<br><br>(you may also fill out this form <a href="https://limechile.wufoo.com/forms/z1a79ga3024pxln">here</a>).<br><br>
-        script.
-          var z1a79ga3024pxln;
-          function onGetWuVals(res) {
-            setupWu(document, 'script', res.wuParams);
-          }
-          function setupWu(d, t, wuParams) {
-            $('.page-title').remove();
-            var s = d.createElement(t), options = {
-            'userName':'limechile',
-            'formHash':'z1a79ga3024pxln',
-            'autoResize':true,
-            'height':'1090',
-            'async':true,
-            'host':'wufoo.com',
-            'header':'show',
-            'defaultValues': wuParams.replace('%2F', '%252F'),
-            'ssl':true};
-            s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
-            s.onload = s.onreadystatechange = function() {
-              var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
-              try {
-                z1a79ga3024pxln = new WufooForm();
-                z1a79ga3024pxln.initialize(options);
-                z1a79ga3024pxln.display();
-              } catch (e) {}
-            };
-            var scr = d.getElementsByTagName(t)[0], par = scr.parentNode;
-            par.insertBefore(s, scr);
-          };
-          var urlParams;
-          (window.onpopstate = function () {
-              var match,
-                  pl     = /\+/g,  // Regex for replacing addition symbol with a space
-                  search = /([^&=]+)=?([^&]*)/g,
-                  decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
-                  query  = window.location.search.substring(1);
+      .col-sm-12.col-md-8.col-lg-6
+        form.form-horizontal(action='http://api.bluebuttonconnector.healthit.gov/apps' method='post')
 
-              urlParams = {};
-              while (match = search.exec(query))
-                 urlParams[decode(match[1])] = decode(match[2]);
-          })();
+          .form-group
+            label.control-label.col-sm-4(for='email') Your email address
+            .col-sm-8
+              input#email.form-control(type='email' name='email' value='{{email}}')
+              p.help-block.fs-xxsmall so we can follow-up if there are questions
 
-          if (typeof urlParams.id === "undefined") {
-            setupWu(document, 'script', '')
-          } else {
-            $('.page-title').text("Loading...");
-            $.ajax({
-              url: "http://api.bluebuttonconnector.healthit.gov/wufoo/apps/" + urlParams.id,
-              dataType: "jsonp",
-              data: {
-                format: "jsonp"
-              },
+          .form-group
+            label.control-label.col-sm-4(for='name') App name
+            .col-sm-8
+              input#name.form-control(type='text' name='name' value='{{name}}')
 
-              // work with the response
-              success: onGetWuVals
-            });
-          }
+          .form-group
+            label.control-label.col-sm-4(for='description') Very short description
+            .col-sm-8
+              textarea#description.form-control(name='description' value='{{description}}' rows='4')
+              p.help-block.fs-xxsmall 50 words maximum
+
+          .form-group
+            label.control-label.col-sm-4(for='url') Link to learn more
+            .col-sm-8
+              input#url.form-control(type='text' name='url' value='{{url}}' placeholder='http://myapp.com/')
+
+          .form-group
+            label.control-label.col-sm-4(for='logo') Link to logo
+            .col-sm-8
+              input#logo.form-control(type='text' name='img' value='{{img}}' placeholder='http://myapp.com/logo.png')
+              p.help-block.fs-xxsmall will be resized to fit 256x128 pixels
+
+          .form-group
+            label.control-label.col-sm-4(for='organization') Organization
+            .col-sm-8
+              input#organization.form-control(type='text' name='organization' value='{{organization}}')
+
+          .form-group
+            label.control-label.col-sm-4(for='apple_url') Link to Apple App Store page
+            .col-sm-8
+              input#apple_url.form-control(type='text' name='apple_url' value='{{apple_url}}')
+              p.help-block.fs-xxsmall if applicable
+
+          .form-group
+            label.control-label.col-sm-4(for='google_url') Link to Google Play page
+            .col-sm-8
+              input#google_url.form-control(type='text' name='google_url' value='{{google_url}}')
+              p.help-block.fs-xxsmall if applicable
+
+
+          .col-sm-8.col-sm-push-4
+            {{^formReady}}
+            p.bg-danger.require-message(intro-outro='slide') all fields are required except app store links
+            {{/}}
+
+            p
+              button.btn.btn-primary.btn-lg(on-tap='submitForm' type='submit' disabled='{{!formReady}}') Send
+
+            p.fg-mgrey.fw-light.fs-xxxsmall
+              | According to the Paperwork Reduction Act of 1995, an agency may not conduct or sponsor, and a person is not required to respond to, a collection of information unless it displays a valid OMB control number. The valid OMB control number for this information collection is 0955-0016. The time required to complete this information collection is estimated to average 3 minutes per response, including the time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information.
+    {{/if}}
+
+block mainscript
+  script(src='#{nestLevel}js/ractive-legacy.min.js')
+  script(src='#{nestLevel}js/bb-forms.min.js')

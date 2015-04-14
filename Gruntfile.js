@@ -47,7 +47,8 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          '<%= cnf.MASTER_DIR %>public/js/bbhub-combined.min.js': ['<%= concat.js.dest %>']
+          '<%= cnf.MASTER_DIR %>public/js/bbhub-combined.min.js': ['<%= concat.js.dest %>'],
+          '<%= cnf.MASTER_DIR %>public/js/bb-forms.min.js': ['<%= cnf.MASTER_DIR %>src/js/hammer.js','<%= cnf.MASTER_DIR %>src/js/ractive-plugins.js', '<%= cnf.MASTER_DIR %>src/js/bb-forms.js']
         }
       }
     },
