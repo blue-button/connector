@@ -1,5 +1,6 @@
+Ractive.DEBUG = false;
 var formType, rac, urlParams, apiUrl;
-var apiBase = 'http://localhost:5000/';
+var apiBase = 'http://api.bluebuttonconnector.healthit.gov/';
 if (/app/.test(window.location.pathname)) {
   formType = 'app';
   apiUrl = apiBase + 'apps/';
