@@ -87,7 +87,6 @@ function getAppStoreReviews(apps, cb) {
 }
 
 function checkLogo(app, cb) {
-  console.log("checking: " + app.id);
   if (/^http/.test(app.img)) {
     console.log("...fetching: " + app.img);
     rekwest(app.img, {encoding: 'binary'}, function(error, response, body) {
@@ -96,9 +95,9 @@ function checkLogo(app, cb) {
         return cb();
       }
       //temp directory
-      if (!fs.existsSync('tmp')) fs.mkdirSync('tmp');
+      if (!fs.existsSync(__dirname +'/../tmp')) fs.mkdirSync(__dirname +'/../tmp');
       var ext = app.img.split(".").pop();
-      var filepath = 'tmp/'+app.id + '.' + ext;
+      var filepath = __dirname +'/../tmp/'+app.id + '.' + ext;
       fs.writeFileSync(filepath, body, 'binary');
       fitLogo(filepath, app, cb);
     });
@@ -120,8 +119,8 @@ function fitLogo(filepath, app, cb) {
         console.log("lwip.contain error: ", err);
         return cb();
       }
-      console.log('...writing logo to public/img/apps/'+app.id+'.png');
-      image.writeFile('public/img/apps/128-height/'+app.id+'.png', function(err){
+      console.log('...writing logo to' + __dirname + '/../../public/img/apps/'+app.id+'.png');
+      image.writeFile(__dirname +'/../../public/img/apps/128-height/'+app.id+'.png', function(err){
         if (err) {
           console.log("lwip.writeFile error: ", err);
         } else {
@@ -140,8 +139,8 @@ function buildEm(apps) {
   var numApps = apps.length;
   var batches = [apps];
 
-  var html = jade.renderFile('src/jade/templates/_apps.jade', {pretty: true, appList:apps});
-  fs.writeFileSync('public/apps/index.html', html);
+  var html = jade.renderFile(__dirname +'/../jade/templates/_apps.jade', {pretty: true, appList:apps});
+  fs.writeFileSync(__dirname +'/../../public/apps/index.html', html);
   console.log("apps/index.html built.");
 
   buildDataDumpFiles(apps);
@@ -149,7 +148,7 @@ function buildEm(apps) {
 
 function buildDataDumpFiles(apps){
   console.log("Saving JSON file...");
-  fs.writeFileSync('public/data/apps.json', JSON.stringify(apps));
+  fs.writeFileSync(__dirname +'/../../public/data/apps.json', JSON.stringify(apps));
   console.log("Saving CSV file...");
   //get the field name
   var csvFields = [];
@@ -159,7 +158,7 @@ function buildDataDumpFiles(apps){
 
   json2csv({data: apps, fields: csvFields}, function(err, csv) {
     if (err) console.log(err);
-    fs.writeFileSync('public/data/apps.csv', csv);
+    fs.writeFileSync(__dirname +'/../../public/data/apps.csv', csv);
     console.log("DONE.");
     process.exit(0);
   });
