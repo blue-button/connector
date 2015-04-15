@@ -9,7 +9,7 @@ each app in appList
   li.col-sm-4.col-md-3.col-lg-2.app-rapper.text-center
     .app-card
       a(href=app.url target='_blank')
-        img.app-icon(src='#{nestLevel}img/apps/128-height/' + app.img)
+        img.app-icon(src='#{nestLevel}img/apps/128-height/' + app.id + '.png')
         h5.fg-maqua.fs-xsmall #{app.name}
       .app-description.text-left
         p.fs-xxsmall(title=app.description) #{app.description}

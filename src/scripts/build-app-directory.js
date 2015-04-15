@@ -88,9 +88,9 @@ function getAppStoreReviews(apps, cb) {
 }
 
 function checkLogo(app, cb) {
-  if (!fs.existsSync(__dirname + '/../../public/img/apps/'+app.img)) {
+  if ( !fs.existsSync(__dirname + '/../../public/img/apps/128-height/'+app.id+'.png') ) {
     console.warn("LOGO NOT FOUND FOR " + app.id);
-    if (/^http/.test(app.img)) {
+    if (app.img && /^http/.test(app.img)) {
       console.log("...fetching: " + app.img);
       rekwest(app.img, {encoding: 'binary'}, function(error, response, body) {
         if (error) {
