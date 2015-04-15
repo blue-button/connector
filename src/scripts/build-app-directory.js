@@ -88,20 +88,24 @@ function getAppStoreReviews(apps, cb) {
 }
 
 function checkLogo(app, cb) {
-  if (/^http/.test(app.img)) {
-    console.log("...fetching: " + app.img);
-    rekwest(app.img, {encoding: 'binary'}, function(error, response, body) {
-      if (error) {
-        console.log("ERROR FETCHING LOGO: ", error);
-        return cb();
-      }
-      //temp directory
-      if (!fs.existsSync(__dirname +'/../tmp')) fs.mkdirSync(__dirname +'/../tmp');
-      var ext = app.img.split(".").pop();
-      var filepath = __dirname +'/../tmp/'+app.id + '.' + ext;
-      fs.writeFileSync(filepath, body, 'binary');
-      fitLogo(filepath, app, cb);
-    });
+  if (!fs.existsSync(__dirname + '/../../public/img/apps/'+app.img)) {
+    console.warn("LOGO NOT FOUND FOR " + app.id);
+    if (/^http/.test(app.img)) {
+      console.log("...fetching: " + app.img);
+      rekwest(app.img, {encoding: 'binary'}, function(error, response, body) {
+        if (error) {
+          console.log("ERROR FETCHING LOGO: ", error);
+          return cb();
+        }
+        var ext = app.img.split(".").pop();
+        var filepath = __dirname + '/../../public/img/apps/'+app.id+ '.' + ext;
+        fs.writeFileSync(filepath, body, 'binary');
+        fitLogo(filepath, app, cb);
+      });
+    } else {
+      console.warn("ERROR: no existing logo file, but no link to fetch one either. :( ");
+      cb();
+    }
   } else {
     cb();
   }
@@ -124,8 +128,6 @@ function fitLogo(filepath, app, cb) {
       image.writeFile(__dirname +'/../../public/img/apps/128-height/'+app.id+'.png', function(err){
         if (err) {
           console.log("lwip.writeFile error: ", err);
-        } else {
-          app.img = app.id + '.png';
         }
         cb();
       });
