@@ -8,13 +8,13 @@ h2 Transmitting records
         |  Project DIRECT (e.g. secure email)
     .checkbox
       label
-        input(type='checkbox' checked='{{transmit.trust_bundles.patient}}')
+        input(type='checkbox' checked='{{transmit.direct.trust_bundles.patient}}')
         |  Patient Trust Bundle (sharing data with patients/consumers)
     .checkbox
       label
-        input(type='checkbox' checked='{{transmit.trust_bundles.provider}}')
+        input(type='checkbox' checked='{{transmit.direct.trust_bundles.provider}}')
         |  Provider Trust Bundle (sharing data with other healthcare orgs)
     .checkbox
       label
-        input(type='checkbox' checked='{{transmit.trust_bundles.other}}')
+        input(type='checkbox' checked='{{transmit.direct.trust_bundles.other}}')
         |  Participation in other trust bundles
