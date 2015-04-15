@@ -18,6 +18,9 @@
 .no-pad {
   padding: 0;
 }
+.p-10 {
+  padding: 10px;
+}
 .pt-5 {
   padding-top: 5px;
 }
@@ -450,6 +453,14 @@ body {
 }
 body.modal-open {
   margin-right: 0px;
+}
+.pager {
+  text-align: left;
+}
+.pager li>a,
+.pager li>span {
+  -webkit-border-radius: 0;
+  border-radius: 0;
 }
 .btn {
   -webkit-border-radius: 0;

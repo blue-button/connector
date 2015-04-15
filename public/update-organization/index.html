@@ -34,72 +34,345 @@
         </ul>
       </div>
     </nav>
-    <div class="container">
-      <h1 class="page-title"></h1>
+    <div id="org" class="container mb-25"></div>
+    <script id="org_tpl" type="text/ractive">{{#if _loading}}
+      <h1 class="page-title">Loading...</h1>{{elseif _saved}}
+      <h2>Thank you for helping us update the Connector!</h2>
+      <h4>The information will be available on the web site as soon as it is approved.</h4>
+      <p class="pt-5 mb-25"><a href="http://bluebuttonconnector.healthit.gov/" class="btn btn-primary">Back to Connector home</a></p>{{else}}
       <div class="row">
-        <div class="col-sm-6">
-          <div id="wufoo-z12mdm9y05ujdkm">One moment please...<br><br>(you may also fill out this form <a href="https://limechile.wufoo.com/forms/z12mdm9y05ujdkm">here</a>).<br><br></div>
-          <script>
-            var z12mdm9y05ujdkm;
-            function onGetWuVals(res) {
-              setupWu(document, 'script', res.wuParams);
-            }
-            function setupWu(d, t, wuParams) {
-              $('.page-title').remove();
-              var s = d.createElement(t), options = {
-              'userName':'limechile',
-              'formHash':'z12mdm9y05ujdkm',
-              'autoResize':true,
-              'height':'1090',
-              'async':true,
-              'host':'wufoo.com',
-              'header':'show',
-              'defaultValues': wuParams.replace('%2F', '%252F'),
-              'ssl':true};
-              s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
-              s.onload = s.onreadystatechange = function() {
-                var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
-                try {
-                  z12mdm9y05ujdkm = new WufooForm();
-                  z12mdm9y05ujdkm.initialize(options);
-                  z12mdm9y05ujdkm.display();
-                } catch (e) {}
-              };
-              var scr = d.getElementsByTagName(t)[0], par = scr.parentNode;
-              par.insertBefore(s, scr);
-            };
-            var urlParams;
-            (window.onpopstate = function () {
-                var match,
-                    pl     = /\+/g,  // Regex for replacing addition symbol with a space
-                    search = /([^&=]+)=?([^&]*)/g,
-                    decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
-                    query  = window.location.search.substring(1);
-            
-                urlParams = {};
-                while (match = search.exec(query))
-                   urlParams[decode(match[1])] = decode(match[2]);
-            })();
-            
-            if (typeof urlParams.id === "undefined") {
-              setupWu(document, 'script', '')
-            } else {
-              $('.page-title').text("Loading...");
-              $.ajax({
-                url: "http://api.bluebuttonconnector.healthit.gov/wufoo/organizations/" + urlParams.id,
-                dataType: "jsonp",
-                data: {
-                  format: "jsonp"
-                },
-            
-                // work with the response
-                success: onGetWuVals
-              });
-            }
-          </script>
+        <div class="col-sm-12 col-md-8 col-lg-6">
+          <form action="http://api.bluebuttonconnector.healthit.gov/organizations" method="post" class="form-horizontal">{{#if _pageNum == 1}}
+            <div class="form-page">
+              <div class="row mb-25">
+                <p class="p-10 bg-danger col-sm-8 col-sm-push-4"><strong>Please note:</strong> this form is for adding or updating information about an organization that provides healthcare.
+                   We cannot help with individual requests for your own personal data from a specific provider.
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="email" class="control-label col-sm-4">Your email address</label>
+                <div class="col-sm-8">
+                  <input id="email" type="email" name="email" value="{{email}}" class="form-control">
+                  <p class="help-block fs-xxsmall">so we can follow-up if there are questions</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="organization" class="control-label col-sm-4">Organization name</label>
+                <div class="col-sm-8">
+                  <input id="organization" type="text" name="organization" value="{{organization}}" placeholder="e.g. Happy Wellness Clinic" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="description" class="control-label col-sm-4">Description</label>
+                <div class="col-sm-8">
+                  <textarea id="description" name="description" value="{{description}}" rows="4" class="form-control"></textarea>
+                  <p class="help-block fs-xxsmall">150 words maximum</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="category" class="control-label col-sm-4">Category</label>
+                <div class="col-sm-8">
+                  <select id="category" name="category" value="{{category}}" class="form-control">
+                    <option value="">Choose...</option>{{#_categories}}
+                    <option value="{{.}}">{{.}}</option>{{/_categories}}
+                  </select>
+                  <p class="help-block fs-xxsmall">"provider" includes doctors, dentists, nurse practioners, physician assistants, certified nurse-midwifes, hospitals, and clinics.</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-4">Blue Button Logo</label>
+                <div class="checkbox col-sm-8">
+                  <label>
+                    <input type="checkbox" checked="{{bb_logo}}">Blue Button logo is displayed on organization's site
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="phone" class="control-label col-sm-4">Phone</label>
+                <div class="col-sm-8">
+                  <input id="phone" type="text" name="phone" value="{{phone}}" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="url-login" class="control-label col-sm-4">Link to login on your organization's site</label>
+                <div class="col-sm-8">
+                  <input id="url-login" type="text" name="url.login" value="{{url.login}}" class="form-control">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-4">In which states does this organization have an office, clinic, or lab?</label>
+                <div class="col-sm-8">{{#_unitedStates}}
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="{{states}}" value="{{data}}">{{.label}}
+                    </label>
+                  </div>{{/_unitedStates}}
+                </div>
+              </div>
+            </div>{{elseif _pageNum == 2}}
+            <div class="form-page">
+              <h2>Viewing records online</h2>
+              <div class="form-group">
+                <label class="control-label col-sm-4">Check all the services that your customers/patients can view online</label>
+                <div class="col-sm-8">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.active_prescriptions}}">active prescriptions
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.allergies}}">allergies
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.appointment_history}}">appointment history
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.claims}}">claims
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.diagnostics}}">diagnostics
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.family_history}}">family history
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.imaging}}">imagine
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.immunizations}}">immunizations
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.lab_results}}">lab results
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.medical_history}}">medical history
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.medications}}">medications
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.pathology}}">pathology
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.prescriptions}}">prescriptions
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.problems}}">problems
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.visit_history}}">visit history
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{view.vitals}}">vitals
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>{{elseif _pageNum == 3}}
+            <div class="form-page">
+              <h2>Downloading records</h2>
+              <div class="form-group">
+                <label class="control-label col-sm-4">Check all the record formats that your customers/patients can download</label>
+                <div class="col-sm-8">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{download.text}}">text
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{download.pdf}}">pdf
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{download.c32}}">c32
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{download.ccda}}">ccda
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{download.other}}">other
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>{{elseif _pageNum == 4}}
+            <div class="form-page">
+              <h2>Transmitting records</h2>
+              <div class="form-group">
+                <label class="control-label col-sm-4">What types of data transmission does your organization provide?</label>
+                <div class="col-sm-8">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{transmit.direct.enabled}}"> Project DIRECT (e.g. secure email)
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{transmit.trust_bundles.patient}}"> Patient Trust Bundle (sharing data with patients/consumers)
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{transmit.trust_bundles.provider}}"> Provider Trust Bundle (sharing data with other healthcare orgs)
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{transmit.trust_bundles.other}}"> Participation in other trust bundles
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>{{elseif _pageNum == 5 }}
+            <div class="form-page">
+              <h2>Additional Features</h2>
+              <div class="form-group">
+                <label class="control-label col-sm-4">What additional features does your organization provide?</label>
+                <div class="col-sm-8">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.refills}}">Refill your prescription
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.automatic_refills}}">Set up automatic refills
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.transfer_prescriptions}}">Transfer your prescription
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.family_prescription}}">Manage your family's prescription
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.new_prescriptions}}">Request a new prescription
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.bill_pay}}">Pay bills online
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.caregiving}}">Manage health records for family members
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.dispute}}">Dispute a claim
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.open_notes}}">Open Notes (see http://www.myopennotes.org)
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.reminders}}">Get test reminders
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.scheduling}}">Schedule or manage appointments
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.search}}">Search for a doctor in network
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.secure_messaging}}">Send and receive secure messages
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.self_entered}}">Track and record self-reported health data
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.shop}}">Shop for a plan
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.test_request}}">Request a test
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" checked="{{services.email_alerts}}">Email alerts for health record updates
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>{{/if}}
+          </form>
+          <div class="form-section-header hidden-print">
+            <div class="col-sm-8 col-sm-push-4">{{^formReady}}
+              <p intro-outro="slide" class="bg-danger require-message">Email, name, description, category, and login link are required.</p>{{/}}
+              <nav>
+                <ul class="pager text-left">{{#if _pageNum !== 1}}
+                  <li class="page-back">
+                    <button on-tap="_goto:{{_pageNum-1}}" class="btn btn-default"><span aria-hidden="true">&larr;</span> Back</button>
+                  </li>{{/if}}
+                  <li>{{#if _pageNum < _pageCount}}
+                    <button on-tap="_goto:{{_pageNum+1}}" disabled="{{!formReady}}" class="btn btn-primary">Next<span aria-hidden="true"> &rarr;</span></button>{{else}}
+                    <button on-tap="submitForm" type="submit" disabled="{{!formReady}}" class="btn btn-primary btn-lg">Send</button>{{/if}}
+                  </li><span class="p-10">{{_pageNum}}/{{_pageCount}}</span>
+                </ul>
+              </nav>{{#if _pageNum == _pageCount}}
+              <p class="fg-mgrey fw-light fs-xxxsmall">According to the Paperwork Reduction Act of 1995, an agency may not conduct or sponsor, and a person is not required to respond to, a collection of information unless it displays a valid OMB control number. The valid OMB control number for this information collection is 0955-0016. The time required to complete this information collection is estimated to average 3 minutes per response, including the time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information.</p>{{/if}}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </div>{{/if}}
+    </script>
     <div class="section footer">
       <div class="container">
         <ul class="footer-links list-inline inline">
@@ -117,6 +390,7 @@
         <p class="fs-xxsmall">This project was funded by the Office of the National Coordinator for Health Information Technology (ONC)</p>
       </div>
     </div>
-    <script src="../js/bbhub-combined.min.js"></script>
+    <script src="../js/ractive-legacy.min.js"></script>
+    <script src="../js/bb-forms.min.js"></script>
   </body>
 </html>

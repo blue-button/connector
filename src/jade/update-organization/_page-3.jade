@@ -1,0 +1,10 @@
+- downloads = ['text', 'pdf', 'c32', 'ccda', 'other']
+h2 Downloading records
+.form-group
+  label.control-label.col-sm-4 Check all the record formats that your customers/patients can download
+  .col-sm-8
+    each d in downloads
+      .checkbox
+        label
+          input(type='checkbox' checked='{{download.#{d}}}')
+          | #{d}

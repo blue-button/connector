@@ -1,0 +1,26 @@
+{{^formReady}}
+p.bg-danger.require-message(intro-outro='slide') Email, name, description, category, and login link are required.
+{{/}}
+nav
+  ul.pager.text-left
+    {{#if _pageNum !== 1}}
+    li.page-back
+      button.btn.btn-default(on-tap='_goto:{{_pageNum-1}}')
+        span(aria-hidden='true') &larr;
+        |  Back
+    {{/if}}
+    li
+      {{#if _pageNum < _pageCount}}
+      button.btn.btn-primary(on-tap='_goto:{{_pageNum+1}}' disabled='{{!formReady}}')
+        | Next
+        span(aria-hidden='true')  &rarr;
+      {{else}}
+      button.btn.btn-primary.btn-lg(on-tap='submitForm' type='submit' disabled='{{!formReady}}') Send
+      {{/if}}
+
+    span.p-10 {{_pageNum}}/{{_pageCount}}
+
+{{#if _pageNum == _pageCount}}
+p.fg-mgrey.fw-light.fs-xxxsmall
+  | According to the Paperwork Reduction Act of 1995, an agency may not conduct or sponsor, and a person is not required to respond to, a collection of information unless it displays a valid OMB control number. The valid OMB control number for this information collection is 0955-0016. The time required to complete this information collection is estimated to average 3 minutes per response, including the time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information.
+{{/if}}

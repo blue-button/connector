@@ -1,0 +1,72 @@
+.row.mb-25
+  p.p-10.bg-danger.col-sm-8.col-sm-push-4
+    strong Please note:
+    |  this form is for adding or updating information about an organization that provides healthcare.
+    |  We cannot help with individual requests for your own personal data from a specific provider.
+
+.form-group
+  label.control-label.col-sm-4(for='email') Your email address
+  .col-sm-8
+    input#email.form-control(type='email' name='email' value='{{email}}')
+    p.help-block.fs-xxsmall so we can follow-up if there are questions
+
+.form-group
+  label.control-label.col-sm-4(for='organization') Organization name
+  .col-sm-8
+    input#organization.form-control(type='text' name='organization' value='{{organization}}' placeholder='e.g. Happy Wellness Clinic')
+
+.form-group
+  label.control-label.col-sm-4(for='description') Description
+  .col-sm-8
+    textarea#description.form-control(name='description' value='{{description}}' rows='4')
+    p.help-block.fs-xxsmall 150 words maximum
+
+.form-group
+  label.control-label.col-sm-4(for='category') Category
+  .col-sm-8
+    select.form-control(id='category' name='category' value='{{category}}')
+      option(value='') Choose...
+      {{#_categories}}
+      option(value='{{.}}') {{.}}
+      {{/_categories}}
+    p.help-block.fs-xxsmall "provider" includes doctors, dentists, nurse practioners, physician assistants, certified nurse-midwifes, hospitals, and clinics.
+
+.form-group
+  label.control-label.col-sm-4 Blue Button Logo
+  .checkbox.col-sm-8
+    label
+      input(type='checkbox' checked='{{bb_logo}}')
+      | Blue Button logo is displayed on organization's site
+
+.form-group
+  label.control-label.col-sm-4(for='phone') Phone
+  .col-sm-8
+    input#phone.form-control(type='text' name='phone' value='{{phone}}')
+
+.form-group
+  label.control-label.col-sm-4(for='url-login') Link to login on your organization's site
+  .col-sm-8
+    input#url-login.form-control(type='text' name='url.login' value='{{url.login}}')
+
+//- .form-group
+//-   label.control-label.col-sm-4(for='apple_url') Link to Apple App Store page
+//-   .col-sm-8
+//-     input#apple_url.form-control(type='text' name='apple_url' value='{{apple_url}}')
+//-     p.help-block.fs-xxsmall if applicable
+
+//- .form-group
+//-   label.control-label.col-sm-4(for='google_url') Link to Google Play page
+//-   .col-sm-8
+//-     input#google_url.form-control(type='text' name='google_url' value='{{google_url}}')
+//-     p.help-block.fs-xxsmall if applicable
+
+.form-group
+  label.control-label.col-sm-4 In which states does this organization have an office, clinic, or lab?
+  .col-sm-8
+    {{#_unitedStates}}
+    .checkbox
+      label
+        input(type='checkbox' name='{{states}}' value='{{data}}')
+        | {{.label}}
+    {{/_unitedStates}}
+

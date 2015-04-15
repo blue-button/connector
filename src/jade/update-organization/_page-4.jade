@@ -1,0 +1,20 @@
+h2 Transmitting records
+.form-group
+  label.control-label.col-sm-4 What types of data transmission does your organization provide?
+  .col-sm-8
+    .checkbox
+      label
+        input(type='checkbox' checked='{{transmit.direct.enabled}}')
+        |  Project DIRECT (e.g. secure email)
+    .checkbox
+      label
+        input(type='checkbox' checked='{{transmit.trust_bundles.patient}}')
+        |  Patient Trust Bundle (sharing data with patients/consumers)
+    .checkbox
+      label
+        input(type='checkbox' checked='{{transmit.trust_bundles.provider}}')
+        |  Provider Trust Bundle (sharing data with other healthcare orgs)
+    .checkbox
+      label
+        input(type='checkbox' checked='{{transmit.trust_bundles.other}}')
+        |  Participation in other trust bundles

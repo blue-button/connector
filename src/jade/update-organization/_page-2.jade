@@ -1,0 +1,10 @@
+- views = [{data: 'active_prescriptions', label: 'active prescriptions' }, {data: 'allergies', label: 'allergies' }, {data: 'appointment_history', label: 'appointment history' }, {data: 'claims', label: 'claims' }, {data: 'diagnostics', label: 'diagnostics' }, {data: 'family_history', label: 'family history' }, {data: 'imaging', label: 'imagine' }, {data: 'immunizations', label: 'immunizations' }, {data: 'lab_results', label: 'lab results' }, {data: 'medical_history', label: 'medical history' }, {data: 'medications', label: 'medications' }, {data: 'pathology', label: 'pathology' }, {data: 'prescriptions', label: 'prescriptions' }, {data: 'problems', label: 'problems' }, {data: 'visit_history', label: 'visit history' }, {data: 'vitals', label: 'vitals'}],
+h2 Viewing records online
+.form-group
+  label.control-label.col-sm-4 Check all the services that your customers/patients can view online
+  .col-sm-8
+    each v in views
+      .checkbox
+        label
+          input(type='checkbox' checked='{{view.#{v.data}}}')
+          | #{v.label}

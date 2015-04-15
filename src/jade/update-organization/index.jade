@@ -5,65 +5,44 @@ block content
   .pra-title.pull-right
     p.fs-xxsmall.fg-mgrey!= 'Form Approved <br> OMB No. 0955-0016'
   include ../includes/_topnav
-  .container
-    h1.page-title
+
+  #org.container.mb-25
+
+  script#org_tpl(type='text/ractive')
+    {{#if _loading}}
+    h1.page-title Loading...
+    {{elseif _saved}}
+    h2 Thank you for helping us update the Connector!
+    h4 The information will be available on the web site as soon as it is approved.
+    p.pt-5.mb-25
+      a.btn.btn-primary(href='http://bluebuttonconnector.healthit.gov/') Back to Connector home
+    {{else}}
     .row
-      .col-sm-6
-        #wufoo-z12mdm9y05ujdkm One moment please...<br><br>(you may also fill out this form <a href="https://limechile.wufoo.com/forms/z12mdm9y05ujdkm">here</a>).<br><br>
-        script.
-          var z12mdm9y05ujdkm;
-          function onGetWuVals(res) {
-            setupWu(document, 'script', res.wuParams);
-          }
-          function setupWu(d, t, wuParams) {
-            $('.page-title').remove();
-            var s = d.createElement(t), options = {
-            'userName':'limechile',
-            'formHash':'z12mdm9y05ujdkm',
-            'autoResize':true,
-            'height':'1090',
-            'async':true,
-            'host':'wufoo.com',
-            'header':'show',
-            'defaultValues': wuParams.replace('%2F', '%252F'),
-            'ssl':true};
-            s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
-            s.onload = s.onreadystatechange = function() {
-              var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
-              try {
-                z12mdm9y05ujdkm = new WufooForm();
-                z12mdm9y05ujdkm.initialize(options);
-                z12mdm9y05ujdkm.display();
-              } catch (e) {}
-            };
-            var scr = d.getElementsByTagName(t)[0], par = scr.parentNode;
-            par.insertBefore(s, scr);
-          };
-          var urlParams;
-          (window.onpopstate = function () {
-              var match,
-                  pl     = /\+/g,  // Regex for replacing addition symbol with a space
-                  search = /([^&=]+)=?([^&]*)/g,
-                  decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
-                  query  = window.location.search.substring(1);
+      .col-sm-12.col-md-8.col-lg-6
+        form.form-horizontal(action='http://api.bluebuttonconnector.healthit.gov/organizations' method='post')
 
-              urlParams = {};
-              while (match = search.exec(query))
-                 urlParams[decode(match[1])] = decode(match[2]);
-          })();
+          {{#if _pageNum == 1}}
+          .form-page
+            include _page-1
+          {{elseif _pageNum == 2}}
+          .form-page
+            include _page-2
+          {{elseif _pageNum == 3}}
+          .form-page
+            include _page-3
+          {{elseif _pageNum == 4}}
+          .form-page
+            include _page-4
+          {{elseif _pageNum == 5 }}
+          .form-page
+            include _page-5
+          {{/if}}
 
-          if (typeof urlParams.id === "undefined") {
-            setupWu(document, 'script', '')
-          } else {
-            $('.page-title').text("Loading...");
-            $.ajax({
-              url: "http://api.bluebuttonconnector.healthit.gov/wufoo/organizations/" + urlParams.id,
-              dataType: "jsonp",
-              data: {
-                format: "jsonp"
-              },
+        .form-section-header.hidden-print
+          .col-sm-8.col-sm-push-4
+            include _paginator
+    {{/if}}
 
-              // work with the response
-              success: onGetWuVals
-            });
-          }
+block mainscript
+  script(src='#{nestLevel}js/ractive-legacy.min.js')
+  script(src='#{nestLevel}js/bb-forms.min.js')

@@ -1,0 +1,12 @@
+- services = [{data: 'refills', label: 'Refill your prescription'}, {data: 'automatic_refills', label: 'Set up automatic refills'}, {data: 'transfer_prescriptions', label: 'Transfer your prescription'}, {data: 'family_prescription', label: 'Manage your family\'s prescription'}, {data: 'new_prescriptions', label: 'Request a new prescription'}, {data: 'bill_pay', label: 'Pay bills online'}, {data: 'caregiving', label: 'Manage health records for family members'}, {data: 'dispute', label: 'Dispute a claim'}, {data: 'open_notes', label: 'Open Notes (see http://www.myopennotes.org)'}, {data: 'reminders', label: 'Get test reminders'}, {data: 'scheduling', label: 'Schedule or manage appointments'}, {data: 'search', label: 'Search for a doctor in network'}, {data: 'secure_messaging', label: 'Send and receive secure messages'}, {data: 'self_entered', label: 'Track and record self-reported health data'}, {data: 'shop', label: 'Shop for a plan'}, {data: 'test_request', label: 'Request a test'}, {data: 'email_alerts', label: 'Email alerts for health record updates'}]
+h2 Additional Features
+.form-group
+  label.control-label.col-sm-4 What additional features does your organization provide?
+  .col-sm-8
+    each s in services
+      .checkbox
+        label
+          input(type='checkbox' checked='{{services.#{s.data}}}')
+          | #{s.label}
+
+
