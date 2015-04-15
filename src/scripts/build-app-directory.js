@@ -3,6 +3,7 @@ var jade = require('jade');
 var fs = require('fs');
 var json2csv = require('json2csv');
 var async = require('async');
+var lwip = require('lwip');
 
 console.log("Calling 'API'...");
 var leApps = [];
@@ -119,7 +120,7 @@ function fitLogo(filepath, app, cb) {
         console.log("lwip.contain error: ", err);
         return cb();
       }
-      console.log('...writing logo to' + __dirname + '/../../public/img/apps/'+app.id+'.png');
+      console.log('...writing logo to' + __dirname + '/../../public/img/apps/128-height/'+app.id+'.png');
       image.writeFile(__dirname +'/../../public/img/apps/128-height/'+app.id+'.png', function(err){
         if (err) {
           console.log("lwip.writeFile error: ", err);
