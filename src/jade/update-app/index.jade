@@ -26,7 +26,13 @@ block content
             .col-sm-8
               input#email.form-control(type='email' name='submitter_email' value='{{submitter_email}}')
               p.help-block.fs-xxsmall so we can follow-up if there are questions
-
+          {{#if id}}
+          .form-group
+            label.control-label.col-sm-4(for='reason') Reason for updating
+            .col-sm-8
+              textarea#reason.form-control(name='submitter_reason' value='{{submitter_reason}}' rows='4')
+              p.help-block.fs-xxsmall how did you know about the corrections?
+          {{/if}}
           .form-group
             label.control-label.col-sm-4(for='name') App name
             .col-sm-8

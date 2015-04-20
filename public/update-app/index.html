@@ -49,7 +49,14 @@
                 <input id="email" type="email" name="submitter_email" value="{{submitter_email}}" class="form-control">
                 <p class="help-block fs-xxsmall">so we can follow-up if there are questions</p>
               </div>
-            </div>
+            </div>{{#if id}}
+            <div class="form-group">
+              <label for="reason" class="control-label col-sm-4">Reason for updating</label>
+              <div class="col-sm-8">
+                <textarea id="reason" name="submitter_reason" value="{{submitter_reason}}" rows="4" class="form-control"></textarea>
+                <p class="help-block fs-xxsmall">how did you know about the corrections?</p>
+              </div>
+            </div>{{/if}}
             <div class="form-group">
               <label for="name" class="control-label col-sm-4">App name</label>
               <div class="col-sm-8">
