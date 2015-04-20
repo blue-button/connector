@@ -9,7 +9,7 @@ if (/app/.test(window.location.pathname)) {
     el: 'app',
     data: {},
     computed: {
-      formReady: '${email} && ${name} && ${description} && ${img} && ${organization} && ${url}'
+      formReady: '${submitter_email} && ${name} && ${description} && ${img} && ${organization} && ${url}'
     }
   });
 
@@ -101,7 +101,7 @@ if (/app/.test(window.location.pathname)) {
       }
     },
     computed: {
-      formReady: '${email} && ${organization} && ${description} && ${category} && ${url.login}'
+      formReady: '${submitter_email} && ${organization} && ${description} && ${category} && ${url.login}'
     }
   });
 
