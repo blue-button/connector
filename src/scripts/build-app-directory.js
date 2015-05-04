@@ -50,7 +50,12 @@ function getAppStoreReviews(apps, cb) {
   });
 
   function getAppleReview(app, cb) {
-    var apple_id = app.apple_url.split("/id")[1].split('?')[0];
+    var apple_id = false;
+    if(/\/id/.test(app.apple_url)) {
+      apple_id = app.apple_url.split("/id")[1].split('?')[0];
+    } else if (/\?id/.test(app.apple_url)) {
+      apple_id = app.apple_url.split("?id=")[1];
+    }
     rekwest({url:'https://itunes.apple.com/lookup?id=' + apple_id, json:true}, function(err, response, body) {
       if (err != null) {
         console.log('ERROR RETRIEVING: https://itunes.apple.com/lookup?id=' + apple_id);
