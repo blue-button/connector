@@ -117,7 +117,12 @@ block content
         a.get-records-wrapper-link(href=(url || '#') target='_blank')
           //- p.fg-daqua #{bburl}
           p.fg-daqua login to #{organization}
-          img.img-thumbnail.img-responsive.profile-img(src=nestLevel+'img/organizations/' + id + '.png')
+          //- we're about to add over 1000 listings that we don't have websites for, other than the "FollowMyHealth" EHR they use, so gonna hack in a check
+          //- in the name of efficiency over cleanliness
+          - if (/followmyhealth/.test(url))
+            img.img-thumbnail.img-responsive.profile-img(src=nestLevel+'img/organizations/followmyhealth.png')
+          - else
+            img.img-thumbnail.img-responsive.profile-img(src=nestLevel+'img/organizations/' + id + '.png')
           .get-records-prep
             h6.go-get-em-header.fg-maqua.text-center get your health records
             img.arrow-up.hidden-xs(src=nestLevel+'img/arrow-up.png')
