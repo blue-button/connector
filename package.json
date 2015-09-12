@@ -30,5 +30,8 @@
     "pageres": "^1.2.2",
     "request": "~2.27.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "request": "^2.27.0",
+    "x-ray": "^2.0.2"
+  }
 }

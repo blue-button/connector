@@ -39,12 +39,12 @@
       {{/_categories}}
     p.help-block.fs-xxsmall "provider" includes doctors, dentists, nurse practioners, physician assistants, certified nurse-midwifes, hospitals, and clinics.
 
-.form-group
-  label.control-label.col-sm-4 Blue Button Logo
-  .checkbox.col-sm-8
-    label
-      input(type='checkbox' checked='{{bb_logo}}')
-      | Blue Button logo is displayed on organization's site
+//- .form-group
+//-   label.control-label.col-sm-4 Blue Button Logo
+//-   .checkbox.col-sm-8
+//-     label
+//-       input(type='checkbox' checked='{{bb_logo}}')
+//-       | Blue Button logo is displayed on organization's site
 
 .form-group
   label.control-label.col-sm-4(for='phone') Phone
@@ -52,9 +52,9 @@
     input#phone.form-control(type='text' name='phone' value='{{phone}}')
 
 .form-group
-  label.control-label.col-sm-4(for='url-login') Link to login on your organization's site
+  label.control-label.col-sm-4(for='url') Link to login on the organization's site
   .col-sm-8
-    input#url-login.form-control(type='text' name='url.login' value='{{url.login}}')
+    input#url-login.form-control(type='text' name='url' value='{{url}}')
 
 //- .form-group
 //-   label.control-label.col-sm-4(for='apple_url') Link to Apple App Store page
@@ -78,3 +78,18 @@
         | {{.label}}
     {{/_unitedStates}}
 
+.form-group
+  label.control-label.col-sm-4 Check all the services that are available to your customers/patients
+  .col-sm-8
+    .checkbox
+      label
+        input(type='checkbox' checked='{{view}}')
+        | View records online
+    .checkbox
+      label
+        input(type='checkbox' checked='{{download}}')
+        | Download records
+    .checkbox
+      label
+        input(type='checkbox' checked='{{transmit}}')
+        | Securely transmit records to other apps
