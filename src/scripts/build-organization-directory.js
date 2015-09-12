@@ -148,21 +148,15 @@ function buildList(opt) {
     var toRender = org;
     toRender.category = category;
     toRender.updated = moment(org.updated).format("MMM Do, YYYY");
+    toRender.bbview = org.view;
+    toRender.bbdownload = org.download;
+    toRender.bbtransmit = org.transmit;
 
-    toRender.bbview = false;
-    if (org.view.active_prescriptions || org.view.allergies  || org.view.appointment_history  || org.view.claims || org.view.clinical_notes || org.view.diagnostics  || org.view.family_history || org.view.imaging  || org.view.immunizations  || org.view.lab_results  || org.view.medical_history  || org.view.medications  || org.view.pathology  || org.view.prescriptions  || org.view.problems || org.view.visit_history || org.view.vitals) toRender.bbview = true;
+    // toRender.bbautomatic = false;
+    // if (org.transmit.automation) toRender.bbautomatic = true;
 
-    toRender.bbdownload = false;
-    if (org.download.text || org.download.pdf || org.download.c32 || org.download.ccda || org.download.other) toRender.bbdownload = true;
-
-    toRender.bbtransmit = false;
-    if (org.transmit.automation || org.transmit.direct.enabled || org.transmit.direct.trust_bundles.patient || org.transmit.direct.trust_bundles.provider  || org.transmit.direct.trust_bundles.other ) toRender.transmit = true;
-
-    toRender.bbautomatic = false;
-    if (org.transmit.automation) toRender.bbautomatic = true;
-
-    toRender.additionalFeatures = false;
-    if (org.services.bill_pay || org.services.caregiving || org.services.dispute || org.services.family_prescriptions || org.services.new_prescriptions || org.services.transfer_prescription || org.services.refills || org.services.automatic_refills || org.services.test_request || org.services.reminders || org.services.scheduling || org.services.search) toRender.additionalFeatures = true;
+    // toRender.additionalFeatures = false;
+    // if (org.services.bill_pay || org.services.caregiving || org.services.dispute || org.services.family_prescriptions || org.services.new_prescriptions || org.services.transfer_prescription || org.services.refills || org.services.automatic_refills || org.services.test_request || org.services.reminders || org.services.scheduling || org.services.search) toRender.additionalFeatures = true;
 
     toRender.pretty = true;
     var orgHtml = jade.renderFile(__dirname +'/../jade/templates/_organization-profile.jade', toRender);

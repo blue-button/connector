@@ -21,22 +21,8 @@ block content
       .col-sm-12.col-md-8.col-lg-6
         form.form-horizontal(action='http://api.bluebuttonconnector.healthit.gov/organizations' method='post')
 
-          {{#if _pageNum == 1}}
           .form-page
             include _page-1
-          {{elseif _pageNum == 2}}
-          .form-page
-            include _page-2
-          {{elseif _pageNum == 3}}
-          .form-page
-            include _page-3
-          {{elseif _pageNum == 4}}
-          .form-page
-            include _page-4
-          {{elseif _pageNum == 5 }}
-          .form-page
-            include _page-5
-          {{/if}}
 
         .form-section-header.hidden-print
           .col-sm-8.col-sm-push-4

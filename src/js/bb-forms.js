@@ -28,80 +28,20 @@ if (/app/.test(window.location.pathname)) {
     el: 'org',
     data: {
       _pageNum: 1,
-      _pageCount: 5,
+      _pageCount: 1,
       _categories: ['provider', 'insurance', 'lab', 'pharmacy', 'immunization', 'hie'],
       _unitedStates: [{data: "AL", label: "Alabama"}, {data: "AK", label: "Alaska"},{data: "AZ", label: "Arizona"},{data: "AR", label: "Arkansas"},{data: "CA", label: "California"},{data: "CO", label: "Colorado"},{data: "CT", label: "Connecticut"},{data: "DE", label: "Delaware"},{data: "DC", label: "District of Columbia"},{data: "FL", label: "Florida"},{data: "GA", label: "Georgia"},{data: "HI", label: "Hawaii"},{data: "ID", label: "Idaho"},{data: "IL", label: "Illinois"},{data: "IN", label: "Indiana"},{data: "IA", label: "Iowa"},{data: "KS", label: "Kansas"},{data: "KY", label: "Kentucky"},{data: "LA", label: "Louisiana"},{data: "ME", label: "Maine"},{data: "MD", label: "Maryland"},{data: "MA", label: "Massachusetts"},{data: "MI", label: "Michigan"},{data: "MN", label: "Minnesota"},{data: "MS", label: "Mississippi"},{data: "MO", label: "Missouri"},{data: "MT", label: "Montana"},{data: "NE", label: "Nebraska"},{data: "NH", label: "New Hampshire"},{data: "NJ", label: "New Jersey"},{data: "NM", label: "New Mexico"},{data: "NV", label: "Nevada"},{data: "NY", label: "New York"},{data: "NC", label: "North Carolina"},{data: "ND", label: "North Dakota"},{data: "OH", label: "Ohio"},{data: "OK", label: "Oklahoma"},{data: "OR", label: "Oregon"},{data: "PA", label: "Pennsylvania"},{data: "RI", label: "Rhode Island"},{data: "SC", label: "South Carolina"},{data: "SD", label: "South Dakota"},{data: "TN", label: "Tennessee"},{data: "TX", label: "Texas"},{data: "UT", label: "Utah"},{data: "VT", label: "Vermont"},{data: "VA", label: "Virginia"},{data: "WA", label: "Washington"},{data: "WV", label: "West Virginia"},{data: "WI", label: "Wisconsin"},{data: "WY", label: "Wyoming"}],
       "bb_logo": false,
       "category": "",
       "description": "",
-      "download": {
-        "text": false,
-        "pdf": false,
-        "c32": false,
-        "ccda": false,
-        "other": false
-      },
       "organization": "",
       "people_reached": 0,
       "phone": "",
-      "services": {
-        "refills": false,
-        "automatic_refills": false,
-        "transfer_prescriptions": false,
-        "bill_pay": false,
-        "caregiving": false,
-        "dispute": false,
-        "family_prescriptions": false,
-        "new_prescriptions": false,
-        "open_notes": false,
-        "reminders": false,
-        "scheduling": false,
-        "search": false,
-        "secure_messaging": false,
-        "self_entered": false,
-        "shop": false,
-        "test_request": false,
-        "email_alerts": false
-      },
       "states": [],
-      "transmit": {
-        "direct": {
-          "enabled": false,
-          "trust_bundles": {
-            "patient": false,
-            "provider": false,
-            "other": false
-          }
-        }
-      },
-      "url": {
-        "login": "",
-        "logo": "",
-        "mobile": "",
-        "screenshot": "",
-        "web": ""
-      },
-      "view": {
-        "active_prescriptions": false,
-        "allergies": false,
-        "appointment_history": false,
-        "claims": false,
-        "diagnostics": false,
-        "family_history": false,
-        "imaging": false,
-        "immunizations": false,
-        "lab_results": false,
-        "medical_history": false,
-        "medications": false,
-        "pathology": false,
-        "prescriptions": false,
-        "problems": false,
-        "visit_history": false,
-        "vitals": false
-      }
+      "url": ''
     },
     computed: {
-      formReady: '${submitter_email} && ${organization} && ${description} && ${category} && ${url.login}'
+      formReady: '${submitter_email} && ${organization} && ${description} && ${category} && ${url}'
     }
   });
 
