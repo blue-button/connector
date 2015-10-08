@@ -167,7 +167,7 @@ function buildList(opt) {
     if (!(/followmyhealth/.test(org.url)) && category !== 'hie' && !fs.existsSync(__dirname +'/../../public/img/organizations/'+org.id+'.png')) {
       console.warn("IMAGE NOT FOUND FOR " + org.id);
       // queue it up for later processing, since we're living in sync land right now
-      missingScreenshots.push({id: org.id, url: org.url.web || org.url.login});
+      missingScreenshots.push({id: org.id, url: org.url || org.url.web || org.url.login});
     }
 
   });
