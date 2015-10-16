@@ -142,6 +142,8 @@ function buildList(opt) {
   var listhtml = jade.renderFile(__dirname +'/../jade/templates/_organization-list.jade', {pretty: true, orgList:orgList, category:category, searchPlaceholder:searchPlaceholder, unitedStates:unitedStates});
 
   orgList.forEach(function(org, ind) {
+    // limit to just 5 as a test
+    if (missingScreenshots.length < 50) {
     if (!org.id) {
       console.log("Missing ID for " + org.organization);
     }
@@ -163,11 +165,13 @@ function buildList(opt) {
     if (!fs.existsSync(__dirname +'/../../public/organizations/' + org.id)) fs.mkdirSync(__dirname +'/../../public/organizations/' + org.id);
     fs.writeFileSync(__dirname +'/../../public/organizations/' + org.id + '/index.html', orgHtml);
 
+
     //check to see if image exists
-    if (!(/followmyhealth/.test(org.url)) && category !== 'hie' && !fs.existsSync(__dirname +'/../../public/img/organizations/'+org.id+'.png')) {
-      console.warn("IMAGE NOT FOUND FOR " + org.id);
-      // queue it up for later processing, since we're living in sync land right now
-      missingScreenshots.push({id: org.id, url: org.url || org.url.web || org.url.login});
+      if (!(/followmyhealth/.test(org.url)) && category !== 'hie' && !fs.existsSync(__dirname +'/../../public/img/organizations/'+org.id+'.png')) {
+        console.warn("IMAGE NOT FOUND FOR " + org.id);
+        // queue it up for later processing, since we're living in sync land right now
+        missingScreenshots.push({id: org.id, url: org.url || org.url.web || org.url.login});
+      }
     }
 
   });
