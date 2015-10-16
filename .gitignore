@@ -2,6 +2,10 @@ node_modules/
 tmp
 src/scripts/medicaldatame.js
 src/scripts/useprime.js
+src/scripts/AHA.js
+src/scripts/AHA_mturk.csv
+src/scripts/AHA.csv
+src/scripts/AHA.json
 npm-debug.log
 config.json
 blue-button-builder.pem
