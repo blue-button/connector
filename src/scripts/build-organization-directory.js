@@ -12,7 +12,6 @@ var initPathname = '/organizations?limit=100&detailed=1';
 var missingScreenshots = [];
 
 getEm(initPathname);
-
 function getEm(pathname){
   console.log("Fetching " + pathname + "...");
   rekwest({url:'http://api.bluebuttonconnector.healthit.gov'+pathname, json:true}, function(err, response, body) {
@@ -87,7 +86,6 @@ function buildEm(orgs) {
 function buildDataDumpFiles(orgs){
   console.log("Saving JSON file...");
   fs.writeFileSync(__dirname +'/../../public/data/organizations.json', JSON.stringify(orgs));
-
   var toWrite = ''
   var flatFields = [];
   var sampleOrg = orgs[0];
@@ -142,32 +140,25 @@ function buildList(opt) {
   var listhtml = jade.renderFile(__dirname +'/../jade/templates/_organization-list.jade', {pretty: true, orgList:orgList, category:category, searchPlaceholder:searchPlaceholder, unitedStates:unitedStates});
 
   orgList.forEach(function(org, ind) {
-    // limit to just 5 as a test
-    if (missingScreenshots.length < 50) {
-    if (!org.id) {
-      console.log("Missing ID for " + org.organization);
-    }
-    var toRender = org;
-    toRender.category = category;
-    toRender.updated = moment(org.updated).format("MMM Do, YYYY");
-    toRender.bbview = org.view;
-    toRender.bbdownload = org.download;
-    toRender.bbtransmit = org.transmit;
+    // limit to just 20 for now, trying to debug
+    if (missingScreenshots.length < 20) {
+      if (!org.id) {
+        console.log("Missing ID for " + org.organization);
+      }
+      var toRender = org;
+      toRender.category = category;
+      toRender.updated = moment(org.updated).format("MMM Do, YYYY");
+      toRender.bbview = org.view;
+      toRender.bbdownload = org.download;
+      toRender.bbtransmit = org.transmit;
 
-    // toRender.bbautomatic = false;
-    // if (org.transmit.automation) toRender.bbautomatic = true;
+      toRender.pretty = true;
+      var orgHtml = jade.renderFile(__dirname +'/../jade/templates/_organization-profile.jade', toRender);
+      if (!fs.existsSync(__dirname +'/../../public/organizations/' + org.id)) fs.mkdirSync(__dirname +'/../../public/organizations/' + org.id);
+      fs.writeFileSync(__dirname +'/../../public/organizations/' + org.id + '/index.html', orgHtml);
 
-    // toRender.additionalFeatures = false;
-    // if (org.services.bill_pay || org.services.caregiving || org.services.dispute || org.services.family_prescriptions || org.services.new_prescriptions || org.services.transfer_prescription || org.services.refills || org.services.automatic_refills || org.services.test_request || org.services.reminders || org.services.scheduling || org.services.search) toRender.additionalFeatures = true;
-
-    toRender.pretty = true;
-    var orgHtml = jade.renderFile(__dirname +'/../jade/templates/_organization-profile.jade', toRender);
-    if (!fs.existsSync(__dirname +'/../../public/organizations/' + org.id)) fs.mkdirSync(__dirname +'/../../public/organizations/' + org.id);
-    fs.writeFileSync(__dirname +'/../../public/organizations/' + org.id + '/index.html', orgHtml);
-
-
-    //check to see if image exists
-      if (!(/followmyhealth/.test(org.url)) && category !== 'hie' && !fs.existsSync(__dirname +'/../../public/img/organizations/'+org.id+'.png')) {
+      //check to see if image exists
+      if (!/followmyhealth/.test(org.url) && category !== 'hie' && !fs.existsSync(__dirname +'/../../public/img/organizations/'+org.id+'.png')) {
         console.warn("IMAGE NOT FOUND FOR " + org.id);
         // queue it up for later processing, since we're living in sync land right now
         missingScreenshots.push({id: org.id, url: org.url || org.url.web || org.url.login});
@@ -179,7 +170,6 @@ function buildList(opt) {
   return listhtml;
 
 }
-
 
 function handleMissingScreenshots(cb) {
   if (missingScreenshots.length == 0) return cb(null);
@@ -193,8 +183,12 @@ function handleMissingScreenshots(cb) {
   if (!fs.existsSync(__dirname +'/../tmp')) fs.mkdirSync(__dirname +'/../tmp');
   pageres.dest(__dirname +'/../tmp');
   pageres.run(function (err) {
-    console.log('finished screenshots for: ', missingScreenshots);
-    resizeScreenshots(cb, []);
+    if (err) {
+      console.log("pageres err: ", err);
+    } else {
+      console.log('finished screenshots for: ', missingScreenshots);
+      resizeScreenshots(cb, []);
+    }
   });
 
 }
