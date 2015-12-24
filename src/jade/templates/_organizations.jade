@@ -22,44 +22,27 @@ block content
               .wrap-source-icon
                 i.insurance-icon.fa.fa-umbrella.isize-36
               p.data-source-title.fs-small.fg-maqua.fw-strong Health Insurance
-              //- p.hide.rarr &gt;
-              //- h6.start-here.fg-white start here
           li
             a.box-link-rapper(href='#physician' data-toggle='tab')
               .wrap-source-icon
                 i.fa.fa-hospital-o.isize-36
               p.data-source-title.fs-small.fg-maqua.fw-strong Hospital or Clinic
-              //- p.hide.rarr &gt;
-          li
-            a.box-link-rapper(href='#provider' data-toggle='tab')
-              .wrap-source-icon
-                i.fa.fa-user-md.isize-36
-              p.data-source-title.fs-small.fg-maqua.fw-strong Providers
-              //- p.hide.rarr &gt;
           li
             a.box-link-rapper(href='#pharmacy' data-toggle='tab')
               .wrap-source-icon.wrap-pharmacy-icon
                 i.fa.fa-medkit.isize-36
               p.data-source-title.fs-small.fg-maqua.fw-strong Pharmacy
-              //- p.hide.rarr &gt;
           li
             a.box-link-rapper(href='#lab' data-toggle='tab')
               .wrap-source-icon
                 i.fa.fa-flask.isize-36
               p.data-source-title.fs-small.fg-maqua.fw-strong Lab
-              //- p.hide.rarr &gt;
           li
             a.box-link-rapper(href='#immunization' data-toggle='tab')
               .wrap-source-icon
                 i.fa.fa-file-text-o.isize-36
               p.data-source-title.fs-small.fg-maqua.fw-strong Immunization Registry
-              //- p.hide.rarr &gt;
-          //- li
-          //-   a.box-link-rapper(href='#hie' data-toggle='tab')
-          //-     .wrap-source-icon
-          //-       i.fa.fa-random.isize-36
-          //-     p.data-source-title.fs-small.fg-maqua.fw-strong Health Information Exchange Portal
-              //- p.hide.rarr &gt;
+
 
       #select-provider-wrapper.tab-content.col-sm-7.col-md-8
 
@@ -68,7 +51,7 @@ block content
           .row.providers!= html.insurance
 
         #physician.tab-pane
-          h4.fg-mgrey Select your physician
+          h4.fg-mgrey Select your hospital or clinic
           .row.providers!= html.physician
 
         #provider.tab-pane
@@ -88,7 +71,4 @@ block content
           h4.fg-mgrey Select your immunization registry
           .row.providers!= html.immunization
 
-        #hie.tab-pane
-          h4.fg-mgrey Select your exchange portal
-          .row.providers!= html.hie
 

@@ -8,7 +8,7 @@ block content
     h1.page-title Resources for developers
 
     h3.fg-mblue API
-    p.readable-width.fg-dgrey The Blue Button Connector provides a free, public, read-only API to access the directory of organizations and apps that are featured on the Connector site, as well as a an updated list of hospitals and providers that have reached <a class='fw-strong' href="http://www.cms.gov/Regulations-and-Guidance/Legislation/EHRIncentivePrograms/Stage_2.html">Stage 2 of meaningful use</a> under the Medicare and Medicaid EHR Incentive Program. The API supports CORS and JSONP.
+    p.readable-width.fg-dgrey The Blue Button Connector provides a free, public, read-only API to access the directory of organizations and apps that are featured on the Connector site. The API supports CORS and JSONP.
     a.btn.btn-primary(href='http://api.bluebuttonconnector.healthit.gov') API documentation & examples
 
     h3.fg-mblue Bulk Downloads
@@ -22,76 +22,12 @@ block content
       a.fw-strong(href='/data/apps.json') JSON
       |  |&nbsp;
       a.fw-strong(href='/data/apps.csv') CSV
-    p
-      | Meaningful Use Stage 2: &nbsp;
-      a.fw-strong(href='/data/stage2.json') JSON
-      |  |&nbsp;
-      a.fw-strong(href='/data/stage2.csv') CSV
-
 
 
     h3.fg-mblue Data being made available on the Connector API
     p.readable-width.bg-danger
       span.fw-strong Update Sept. 2015:
       |  for now, the available data has been drastically simplified to provide the three high-level features; view, download, and transmit.
-    p.readable-width Note that some properties are not applicable to some categories.
-    #what-info.container
-      .row
-        .col-sm-4
-          h4.fg-mblue Basics
-          ul.dashed
-            li name and description
-            li contact and location
-            li link to website
-            li category
-          h4.fg-mblue Viewable online
-          ul.dashed
-            li appointments
-            li allergies
-            li claims
-            li clinical notes
-            li diagnostics
-            li family history
-            li imaging
-            li immunizations
-            li lab results
-            li medical history
-            li medications
-            li pathology
-            li prescriptions
-            li problems
-            li visit history
-            li vitals
-            li BlueButton+ REST API (Pull) enabled
-        .col-sm-4
-          h4.fg-mblue Download formats
-          ul.dashed
-            li text
-            li PDF
-            li C-CDA
-            li C32
-            li other
-          h4.fg-mblue Data transmission
-          ul.dashed
-            li Project DIRECT (e.g. secure email)
-            li Patient Trust Bundle (sharing data with patients/consumers)
-            li Provider Trust Bundle (sharing data with other healthcare orgs)
-            li Participation in other trust bundles
-        .col-sm-4
-          h4.fg-mblue Additional features
-          ul.dashed
-            li Schedule or manage appointments
-            li Send and receive secure messages
-            li Manage health records for family members
-            li Track and record self-reported health data
-            li Search for a doctor in network
-            li Dispute a claim
-            li Shop for a plan
-            li Refill your prescription
-            li Set up automatic refills
-            li Manage your family's prescription
-            li Transfer your prescription
-            li Request a new prescription
 
 
     h3.fg-mblue Adding data to the Connector

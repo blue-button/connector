@@ -1,50 +1,41 @@
 div(id=category+'-list-wrapper').provider-list-wrapper.col-sm-12.col-md-6
   //- this gets normalized from 'provider,' 'hospital,' etc
-  if category === 'hie'
-    p.fs-medium Coming soon...
+
+  if category === 'physician'
+    label.fs-medium Search by state
+    .provider-search-wrapper
+      select.form-control.input-lg.provider-search-state
+        option(value='false') Choose a state...
+        each st in unitedStates
+          option(value=st.data)= st.label
+    label.fs-medium or search by name
+
   else
-    if category === 'physician' || 'provider'
-      label.fs-medium Search by state
-      .provider-search-wrapper
-        select.form-control.input-lg.provider-search-state
-          option(value='false') Choose a state...
-          each st in unitedStates
-            option(value=st.data)= st.label
-      if category === 'provider'
-        label.fs-medium or search by zip code
-        .input-group.provider-search-wrapper
-          input.form-control.input-lg.provider-search-zip(type='text' placeholder="e.g. 84057")
-          span.input-group-addon
-            i.fa.fa-search.isize-24
-      label.fs-medium or search by name
-
-    else
-      label.fs-medium Search by name
+    label.fs-medium Search by name
 
 
+  .input-group.provider-search-wrapper
+    input.form-control.input-lg.provider-search-name(type='text' placeholder="e.g. " + searchPlaceholder)
+    span.input-group-addon
+      i.fa.fa-search.isize-24
 
-    .input-group.provider-search-wrapper
-      input.form-control.input-lg.provider-search-name(type='text' placeholder="e.g. " + searchPlaceholder)
-      span.input-group-addon
-        i.fa.fa-search.isize-24
+  if category === 'provider'
+    //- put some pagination controls
+    h6.total-listings.fade.text-center.fg-dgrey.fw-light
 
-    if category === 'provider'
-      //- put some pagination controls
-      h6.total-listings.fade.text-center.fg-dgrey.fw-light
+  h4.fw-light.no-results.hide no listings
 
-    h4.fw-light.no-results.hide no listings
+  ul(id=category+'-list').nav.nav-pills.nav-stacked.provider-list.list
+    if category !== 'provider'
+      each org in orgList
+        li: a.provider-link(data-state=org.states.join(',') href='/organizations/' + org.id) #{org.organization}
 
-    ul(id=category+'-list').nav.nav-pills.nav-stacked.provider-list.list
-      if category !== 'provider'
-        each org in orgList
-          li: a.provider-link(data-state=org.states.join(',') href='/organizations/' + org.id) #{org.organization}
+  .scroll-hint-wrapper.text-center
+    .scroll-hint.fa.fa-chevron-down.isize-24.no-show
 
-    .scroll-hint-wrapper.text-center
-      .scroll-hint.fa.fa-chevron-down.isize-24.no-show
-
-    if category === 'provider'
-      //- put some pagination at the bottom, which will only appear on phone-width
-      h6.total-listings.fade.text-center.fg-dgrey.fw-light.visible-xs-block
+  if category === 'provider'
+    //- put some pagination at the bottom, which will only appear on phone-width
+    h6.total-listings.fade.text-center.fg-dgrey.fw-light.visible-xs-block
 
 .tab-content.col-sm-12.col-md-6
   .no-data
