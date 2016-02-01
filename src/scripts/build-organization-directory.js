@@ -40,6 +40,7 @@ function buildEm(orgs) {
   var phaOrgs = [];
   var labOrgs = [];
   var immOrgs = [];
+  var hieOrgs = [];
   // var stateList = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
   // for (var i=0; i<stateList.length; i++) {
   //   immOrgs.push({name:stateList[i], bburl:'#', features:''});
@@ -50,7 +51,7 @@ function buildEm(orgs) {
     var org = orgs[i];
     if (/insurance/i.test(org.category)) {
       insOrgs.push(org);
-    } else if (/hospital|physician/i.test(org.category)) {
+    } else if (/hospital|physician|provider/i.test(org.category)) {
       phyOrgs.push(org);
     } else if (/lab/i.test(org.category)) {
       labOrgs.push(org);
@@ -58,6 +59,8 @@ function buildEm(orgs) {
       phaOrgs.push(org);
     } else if (/immunization/i.test(org.category)) {
       immOrgs.push(org);
+    } else if (/hie/i.test(org.category)) {
+      hieOrgs.push(org);
     }
   }
 
@@ -65,9 +68,11 @@ function buildEm(orgs) {
 
   html.insurance = buildList({category:'insurance', orgList: insOrgs, searchPlaceholder: 'Blue Cross'});
   html.physician = buildList({category:'physician', orgList: phyOrgs, searchPlaceholder: 'Mayo Clinic'});
+  html.provider = buildList({category:'provider', orgList: [], searchPlaceholder: 'Doe, Jane'});
   html.pharmacy = buildList({category:'pharmacy', orgList: phaOrgs, searchPlaceholder: 'Walgreens'});
   html.lab = buildList({category:'lab', orgList: labOrgs, searchPlaceholder: 'Quest Diagnostics'});
   html.immunization = buildList({category:'immunization', orgList: immOrgs, searchPlaceholder: 'Arizona'});
+  html.hie = buildList({category:'hie', orgList: hieOrgs, searchPlaceholder: 'New Jersey'});
 
   var finalHtml = jade.renderFile(__dirname +'/../jade/templates/_organizations.jade', {pretty: true, html:html});
   fs.writeFileSync(__dirname +'/../../public/records/index.html', finalHtml);

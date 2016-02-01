@@ -23,7 +23,7 @@
     "grunt-contrib-watch": "~0.4.4",
     "jade": "~1.9.2",
     "json2csv": "~2.2.1",
-    "lwip": "0.0.6",
+    "lwip": "0.0.8",
     "minimist": "0.0.8",
     "moment": "~2.5.1",
     "nconf": "^0.7.1",
