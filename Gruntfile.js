@@ -74,19 +74,6 @@ module.exports = function(grunt) {
           interrupt: true
         }
       }
-    },
-    clean: {
-      options: {
-        'force': true
-      },
-      dist: ["<%= cnf.GHPAGES_DIR %>*"]
-    },
-    copy: {
-      main: {
-        files: [
-          {expand: true, cwd: '<%= cnf.MASTER_DIR %>public/', src: ['**'], dest: '<%= cnf.GHPAGES_DIR %>'},
-        ]
-      }
     }
   });
 
@@ -95,10 +82,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('dist', ['jade', 'stylus', 'concat', 'uglify', 'clean', 'copy']);
   grunt.registerTask('default', ['jade', 'stylus', 'concat', 'uglify']);
 
 };
