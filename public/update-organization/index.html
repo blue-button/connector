@@ -45,10 +45,11 @@
           <form action="http://api.bluebuttonconnector.healthit.gov/organizations" method="post" class="form-horizontal">
             <div class="form-page">
               <div class="row mb-25">
-                <p class="p-10 bg-danger col-sm-8 col-sm-push-4"><strong>Please note:</strong> this form is for adding or updating information about an organization that provides healthcare.
-                   We cannot help with individual requests for your own personal data from a specific provider.
-                </p>
-              </div>
+                <div class="p-10 bg-danger col-sm-8 col-sm-push-2">
+                  <p><strong>Please note:</strong> this form is for adding or updating information about an organization that provides healthcare.</p>
+                  <p><strong> We cannot help with individual requests for your own personal data from a specific provider.</strong></p>{{#unless _showForm}}<a on-tap="set('_showForm', true)" class="btn btn-primary">I understand. Show me the form.</a>{{/unless}}
+                </div>
+              </div>{{#if _showForm}}
               <div class="form-group">
                 <label for="email" class="control-label col-sm-4">Your email address</label>
                 <div class="col-sm-8">
@@ -127,11 +128,11 @@
                     </label>
                   </div>
                 </div>
-              </div>
+              </div>{{/if}}
             </div>
-          </form>
+          </form>{{#if _showForm}}
           <div class="form-section-header hidden-print">
-            <div class="col-sm-8 col-sm-push-4">{{^formReady}}
+            <div class="col-sm-8 col-sm-push-2">{{^formReady}}
               <p intro-outro="slide" class="bg-danger require-message">Email, name, description, category, and login link are required.</p>{{/}}
               <nav>
                 <ul class="pager text-left">
@@ -142,7 +143,7 @@
               </nav>
               <p class="fg-mgrey fw-light fs-xxxsmall">According to the Paperwork Reduction Act of 1995, an agency may not conduct or sponsor, and a person is not required to respond to, a collection of information unless it displays a valid OMB control number. The valid OMB control number for this information collection is 0955-0016. The time required to complete this information collection is estimated to average 3 minutes per response, including the time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information.</p>
             </div>
-          </div>
+          </div>{{/if}}
         </div>
       </div>{{/if}}
     </script>

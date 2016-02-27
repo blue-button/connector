@@ -24,9 +24,11 @@ block content
           .form-page
             include _page-1
 
+        {{#if _showForm}}
         .form-section-header.hidden-print
-          .col-sm-8.col-sm-push-4
+          .col-sm-8.col-sm-push-2
             include _paginator
+        {{/if}}
     {{/if}}
 
 block mainscript

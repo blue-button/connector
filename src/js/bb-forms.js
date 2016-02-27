@@ -27,6 +27,7 @@ if (/app/.test(window.location.pathname)) {
     template: '#org_tpl',
     el: 'org',
     data: {
+      _showForm: false,
       _pageNum: 1,
       _pageCount: 1,
       _categories: ['provider', 'insurance', 'lab', 'pharmacy', 'immunization', 'hie'],

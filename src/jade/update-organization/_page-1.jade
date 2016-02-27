@@ -1,9 +1,15 @@
 .row.mb-25
-  p.p-10.bg-danger.col-sm-8.col-sm-push-4
-    strong Please note:
-    |  this form is for adding or updating information about an organization that provides healthcare.
-    |  We cannot help with individual requests for your own personal data from a specific provider.
+  .p-10.bg-danger.col-sm-8.col-sm-push-2
+    p
+      strong Please note:
+      |  this form is for adding or updating information about an organization that provides healthcare.
+    p
+      strong  We cannot help with individual requests for your own personal data from a specific provider.
+    {{#unless _showForm}}
+    a.btn.btn-primary(on-tap="set('_showForm', true)") I understand. Show me the form.
+    {{/unless}}
 
+{{#if _showForm}}
 .form-group
   label.control-label.col-sm-4(for='email') Your email address
   .col-sm-8
@@ -79,7 +85,7 @@
     {{/_unitedStates}}
 
 .form-group
-  label.control-label.col-sm-4 Check all the services that are available to your customers/patients
+  label.control-label.col-sm-4 Check all the services that are available to the customers/patients
   .col-sm-8
     .checkbox
       label
@@ -93,3 +99,4 @@
       label
         input(type='checkbox' checked='{{transmit}}')
         | Securely transmit records to other apps
+{{/if}}
