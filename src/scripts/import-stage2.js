@@ -1,8 +1,9 @@
 var fs = require('fs'),
     csv = require('fast-csv')
 
-var HOSPITAL_FILE = __dirname + "/EH_ProvidersPaidByEHR_12_2014_FINAL.csv";
-var PROVIDER_FILE = __dirname + "/EP_ProvidersPaidByEHR_12_2014_FINAL.csv";
+var HOSPITAL_FILE = __dirname + "/EH_ProvidersPaidByEHR_03_2016_FINAL.csv";
+var PROVIDER_FILE_1 = __dirname + "/EP_ProvidersPaidByEHR_03_2016_FINAL_Part1.csv";
+var PROVIDER_FILE_2 = __dirname + "/EP_ProvidersPaidByEHR_03_2016_FINAL_Part2.csv";
 var STAGE2_CSV_OUT = __dirname + "/../../public/data/stage2.csv";
 var STAGE2_JSON_OUT = __dirname + "/../../public/data/stage2.json";
 
@@ -58,7 +59,7 @@ function numerize(dollars) {
   return parseFloat(dollars.slice(1).replace(/,/g, ''));
 }
 
-function parseProviderFile(filepath, cb) {  
+function parseProviderFile(filepath, cb) {
   var counter = 0;
   var csvInStream = csv
     .parse({headers:true, trim: true, ignoreEmpty: true})
@@ -81,10 +82,10 @@ function parseProviderFile(filepath, cb) {
       }
     })
     .on("end", function(){
-      console.log("TOTAL STAGE 2 ENTRIES: " + counter);    
-      cb();      
+      console.log("TOTAL STAGE 2 ENTRIES: " + counter);
+      cb();
     });
-  var fileStream = fs.createReadStream(filepath);   
+  var fileStream = fs.createReadStream(filepath);
   fileStream.pipe(csvInStream);
 }
 
@@ -96,11 +97,14 @@ console.log("PARSING HOSPITALS...");
 parseProviderFile(HOSPITAL_FILE, function(){
   console.log("HOSPITALS DONE");
   console.log("PARSING PROVIDERS...");
-  parseProviderFile(PROVIDER_FILE, function(){
-    console.log("PROVIDERS DONE");
-    console.log("--------------");
-    console.log("DONE AND DONE");    
-    csvOut.end();  
-    jsonFileOutStream.end('\n]');  
+  parseProviderFile(PROVIDER_FILE_1, function(){
+    console.log("PROVIDERS PART 1 DONE");
+    parseProviderFile(PROVIDER_FILE_2, function(){
+      console.log("PROVIDERS PART 2 DONE");
+      console.log("--------------");
+      console.log("DONE AND DONE");
+      csvOut.end();
+      jsonFileOutStream.end('\n]');
+    });
   });
 });
