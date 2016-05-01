@@ -13,19 +13,19 @@ each app in appList
         h5.fg-maqua.fs-xsmall #{app.name}
       .app-description.text-left
         p.fs-xxsmall(title=app.description) #{app.description}
-      if (app.reviews && (app.reviews.apple && app.reviews.google))
-        .app-reviews.text-left
-          if app.reviews.apple && app.reviews.apple.count && app.reviews.apple.average
-            p.review.fs-xxsmall
-              a(href=app.apple_url, target='_blank')
-                img.apple-logo(src='#{nestLevel}img/apps/apple-logo.svg', alt='Apple logo')
-                span.fw-strong #{app.reviews.apple.average}
-                - // TODO proper pluralization of review(s)
-                span.fg-mgrey  from #{app.reviews.apple.count} reviews
+      //- if (app.reviews && (app.reviews.apple && app.reviews.google))
+      //-   .app-reviews.text-left
+      //-     if app.reviews.apple && app.reviews.apple.count && app.reviews.apple.average
+      //-       p.review.fs-xxsmall
+      //-         a(href=app.apple_url, target='_blank')
+      //-           img.apple-logo(src='#{nestLevel}img/apps/apple-logo.svg', alt='Apple logo')
+      //-           span.fw-strong #{app.reviews.apple.average}
+      //-           - // TODO proper pluralization of review(s)
+      //-           span.fg-mgrey  from #{app.reviews.apple.count} reviews
 
-          if app.reviews.google && app.reviews.google.count && app.reviews.google.average
-            p.review.fs-xxsmall
-              a(href=app.google_url, target='_blank')
-                img.android-logo(src='#{nestLevel}img/apps/android-logo.svg', alt='Android logo')
-                span.fw-strong #{app.reviews.google.average}
-                span.fg-mgrey  from #{app.reviews.google.count} reviews
+      //-     if app.reviews.google && app.reviews.google.count && app.reviews.google.average
+      //-       p.review.fs-xxsmall
+      //-         a(href=app.google_url, target='_blank')
+      //-           img.android-logo(src='#{nestLevel}img/apps/android-logo.svg', alt='Android logo')
+      //-           span.fw-strong #{app.reviews.google.average}
+      //-           span.fg-mgrey  from #{app.reviews.google.count} reviews

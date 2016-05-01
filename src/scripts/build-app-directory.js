@@ -1,96 +1,99 @@
 var rekwest = require('request');
 var jade = require('jade');
 var fs = require('fs');
-var json2csv = require('json2csv');
+var csv = require('fast-csv');
 var async = require('async');
 var lwip = require('lwip');
 
-console.log("Calling 'API'...");
 var leApps = [];
-getEm('/apps?limit=100');
+getEm();
 
-function getEm(pathname) {
-  console.log("Fetching " + pathname + "...");
-  rekwest({url:'http://api.bluebuttonconnector.healthit.gov' + pathname, json:true}, function(err, response, body) {
-    if (body && body.results) {
-      leApps = leApps.concat(body.results);
-      if (body.meta.next) {
-        getEm(body.meta.next);
-      } else {
-        getAppStoreReviews(leApps, function(apps){
-          async.each(apps, checkLogo, function(err){
+function getEm() {
+  console.log("Fetching CSV...");
+  rekwest({url:'https://github.com/blue-button/connector/raw/master/public/data/apps.csv'}, function(err, response, body) {
+    if (body && (err == null)) {
+      csv
+        .fromString(body, {headers: true})
+        .transform(function(data){
+          data.id = safeId(data.name);
+          return data;
+        })
+        .on("data", function(data){
+          leApps.push(data);
+        })
+        .on("end", function(){
+          async.each(leApps, checkLogo, function(err){
             if (err) console.log("APP LOGO ERROR: ", err);
             console.log("Logo Checking Done.");
-            buildEm(apps);
+            buildEm(leApps);
           });
         });
-      }
     } else {
-      console.warn("PROBLEM CONNECTING TO API!");
+      console.warn("PROBLEM DOWNLOADING CSV!");
       process.exit(1);
     }
   });
 }
 
-function getAppStoreReviews(apps, cb) {
-  console.log("Fetching app store reviews...");
-  var appleReviewsLeft = 0;
-  var googleReviewsLeft = 0;
+// function getAppStoreReviews(apps, cb) {
+//   console.log("Fetching app store reviews...");
+//   var appleReviewsLeft = 0;
+//   var googleReviewsLeft = 0;
 
-  apps.forEach(function(app) {
-    app.reviews = {apple: null, google: null};
-    if (app.apple_url) {
-      appleReviewsLeft ++;
-      getAppleReview(app, checkReviewsDone);
-    }
-    if (app.google_url) {
-      googleReviewsLeft ++
-      getGoogleReview(app, checkReviewsDone);
-    }
-  });
+//   apps.forEach(function(app) {
+//     app.reviews = {apple: null, google: null};
+//     if (app.apple_url) {
+//       appleReviewsLeft ++;
+//       getAppleReview(app, checkReviewsDone);
+//     }
+//     if (app.google_url) {
+//       googleReviewsLeft ++
+//       getGoogleReview(app, checkReviewsDone);
+//     }
+//   });
 
-  function getAppleReview(app, cb) {
-    var apple_id = false;
-    if(/\/id/.test(app.apple_url)) {
-      apple_id = app.apple_url.split("/id")[1].split('?')[0];
-    } else if (/\?id/.test(app.apple_url)) {
-      apple_id = app.apple_url.split("?id=")[1];
-    }
-    rekwest({url:'https://itunes.apple.com/lookup?id=' + apple_id, json:true}, function(err, response, body) {
-      if (err != null) {
-        console.log('ERROR RETRIEVING: https://itunes.apple.com/lookup?id=' + apple_id);
-        console.log(err);
-      }
-      else if (err == null && body.results && body.results.length > 0) {
-        var deets = body.results[0];
-        app.reviews.apple = {average: deets.averageUserRating || null, count: deets.userRatingCount || 0};
-      } else {
-        console.log("Hmmm... " + app.name, 'https://itunes.apple.com/lookup?id=' + apple_id, body);
-      }
-      appleReviewsLeft--;
-      cb();
-    });
-  }
+//   function getAppleReview(app, cb) {
+//     var apple_id = false;
+//     if(/\/id/.test(app.apple_url)) {
+//       apple_id = app.apple_url.split("/id")[1].split('?')[0];
+//     } else if (/\?id/.test(app.apple_url)) {
+//       apple_id = app.apple_url.split("?id=")[1];
+//     }
+//     rekwest({url:'https://itunes.apple.com/lookup?id=' + apple_id, json:true}, function(err, response, body) {
+//       if (err != null) {
+//         console.log('ERROR RETRIEVING: https://itunes.apple.com/lookup?id=' + apple_id);
+//         console.log(err);
+//       }
+//       else if (err == null && body.results && body.results.length > 0) {
+//         var deets = body.results[0];
+//         app.reviews.apple = {average: deets.averageUserRating || null, count: deets.userRatingCount || 0};
+//       } else {
+//         console.log("Hmmm... " + app.name, 'https://itunes.apple.com/lookup?id=' + apple_id, body);
+//       }
+//       appleReviewsLeft--;
+//       cb();
+//     });
+//   }
 
-  function getGoogleReview(app, cb) {
-    var google_id = app.google_url.split("?id=")[1];
-    rekwest({url:'http://api.bluebuttonconnector.healthit.gov/googleplayreviews/' + google_id, json:true}, function(err, response, body) {
-      if (err != null) {
-        console.log('ERROR RETRIEVING: http://api.bluebuttonconnector.healthit.gov/googleplayreviews/' + google_id);
-        console.log(err);
-      }
-      if (err == null && body.count) {
-        app.reviews.google = body;
-      }
-      googleReviewsLeft--;
-      cb();
-    });
-  }
+//   function getGoogleReview(app, cb) {
+//     var google_id = app.google_url.split("?id=")[1];
+//     rekwest({url:'http://api.bluebuttonconnector.healthit.gov/googleplayreviews/' + google_id, json:true}, function(err, response, body) {
+//       if (err != null) {
+//         console.log('ERROR RETRIEVING: http://api.bluebuttonconnector.healthit.gov/googleplayreviews/' + google_id);
+//         console.log(err);
+//       }
+//       if (err == null && body.count) {
+//         app.reviews.google = body;
+//       }
+//       googleReviewsLeft--;
+//       cb();
+//     });
+//   }
 
-  function checkReviewsDone() {
-    if (appleReviewsLeft == 0 && googleReviewsLeft == 0) cb(apps);
-  }
-}
+//   function checkReviewsDone() {
+//     if (appleReviewsLeft == 0 && googleReviewsLeft == 0) cb(apps);
+//   }
+// }
 
 function checkLogo(app, cb) {
   if ( !fs.existsSync(__dirname + '/../../public/img/apps/128-height/'+app.id+'.png') ) {
@@ -156,18 +159,17 @@ function buildEm(apps) {
 
 function buildDataDumpFiles(apps){
   console.log("Saving JSON file...");
-  fs.writeFileSync(__dirname +'/../../public/data/apps.json', JSON.stringify(apps));
-  console.log("Saving CSV file...");
-  //get the field name
-  var csvFields = [];
-  for (var prop in apps[0]) {
-    csvFields.push(prop);
-  }
-
-  json2csv({data: apps, fields: csvFields}, function(err, csv) {
-    if (err) console.log(err);
-    fs.writeFileSync(__dirname +'/../../public/data/apps.csv', csv);
-    console.log("DONE.");
-    process.exit(0);
+  apps.forEach(function(app){
+    delete app.id;
   });
+  fs.writeFileSync(__dirname +'/../../public/data/apps.json', JSON.stringify(apps));
+}
+
+function trim(s) {
+  if (typeof s === 'string') return s.trim();
+  return s;
+}
+
+function safeId(s) {
+  return trim(s).toLowerCase().replace(/[^a-zA-Z0-9]+/g, '-').replace(/\-+$/, '');
 }

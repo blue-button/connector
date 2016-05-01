@@ -3,27 +3,36 @@ var jade = require('jade');
 var fs = require('fs');
 var moment = require('moment');
 var async = require('async');
+var csv = require('fast-csv');
 var argv = require('minimist')(process.argv.slice(2));
-var Pageres = require('pageres');
-var lwip = require('lwip');
 
 var leOrgs = [];
-var initPathname = '/organizations?limit=100&detailed=1';
-var missingScreenshots = [];
+var dataURL = 'https://raw.githubusercontent.com/blue-button/connector/master/public/data/organizations.csv';
 
-getEm(initPathname);
-function getEm(pathname){
-  console.log("Fetching " + pathname + "...");
-  rekwest({url:'http://api.bluebuttonconnector.healthit.gov'+pathname, json:true}, function(err, response, body) {
-    if (body && body.results) {
-      leOrgs = leOrgs.concat(body.results);
-      if (body.meta.next){
-        getEm(body.meta.next);
-      } else {
-        buildEm(leOrgs);
-      }
+getEm(dataURL);
+function getEm(dataURL){
+  console.log("Fetching " + dataURL + "...");
+  rekwest({url:dataURL}, function(err, response, body) {
+    if (body && (err == null)) {
+      leOrgs = [];
+      csv
+        .fromString(body, {headers: true})
+        .transform(function(data){
+          data.view = (data.view == 'y') ? true : false;
+          data.download = (data.download == 'y') ? true : false;
+          data.transmit = (data.transmit == 'y') ? true : false;
+          if (data.states == '') data.states = [];
+          else data.states = data.states.split(",");
+          return data;
+        })
+        .on("data", function(data){
+          leOrgs.push(data);
+        })
+        .on("end", function(){
+          buildEm(leOrgs);
+        });
     } else {
-      console.warn("PROBLEM CONNECTING TO API!");
+      console.warn("PROBLEM DOWNLOADING CSV!");
       console.log("Error: ", err);
       process.exit(1);
     }
@@ -49,6 +58,7 @@ function buildEm(orgs) {
   var numOrgs = orgs.length;
   for (var i=0; i<numOrgs; i++) {
     var org = orgs[i];
+    org.id = safeId(org.organization);
     if (/insurance/i.test(org.category)) {
       insOrgs.push(org);
     } else if (/hospital|physician|provider/i.test(org.category)) {
@@ -76,59 +86,11 @@ function buildEm(orgs) {
 
   var finalHtml = jade.renderFile(__dirname +'/../jade/templates/_organizations.jade', {pretty: true, html:html});
   fs.writeFileSync(__dirname +'/../../public/records/index.html', finalHtml);
-  handleMissingScreenshots(function(err){
-    if (err) console.warn("PROBLEM with screenshots")
-    console.log("DONE.");
-    process.exit(0);
-  });
 }
 
 function buildDataDumpFiles(orgs){
   console.log("Saving JSON file...");
   fs.writeFileSync(__dirname +'/../../public/data/organizations.json', JSON.stringify(orgs));
-  var toWrite = ''
-  var flatFields = [];
-  var sampleOrg = orgs[0];
-  var eol = '\n';
-
-  listProps(sampleOrg, '', flatFields);
-  toWrite +=  '"' + flatFields.join('","') + '"';
-  orgs.forEach(function(org) {
-    if (org && Object.getOwnPropertyNames(org).length > 0) {
-      var line = '';
-      flatFields.forEach(function(prop) {
-        var keyBits = prop.split('.');
-        var evalable = "org";
-        for (var i=0; i<keyBits.length; i++) {
-          evalable+= '["' + keyBits[i] + '"]';
-        }
-        var evalHack = eval(evalable);
-        if (typeof evalHack !== "undefined") {
-          line += JSON.stringify(evalHack);
-        }
-        line += ',';
-      });
-      //remove last delimeter
-      line = line.substring(0, line.length - 1);
-      line = line.replace(/\\"/g, '""');
-      toWrite += eol + line;
-    }
-  });
-
-  console.log("Saving CSV file...");
-  fs.writeFileSync(__dirname +'/../../public/data/organizations.csv', toWrite);
-
-  function listProps(obj, prefix, flat) {
-    for (var p in obj) {
-      var propName = (prefix == '') ? p : prefix+"."+p;
-      if (Object.prototype.toString.call(obj[p]) == "[object Object]") {
-        listProps(obj[p], propName, flat);
-      } else {
-        flat.push(propName);
-      }
-    }
-  }
-
 }
 
 function buildList(opt) {
@@ -140,89 +102,42 @@ function buildList(opt) {
   var listhtml = jade.renderFile(__dirname +'/../jade/templates/_organization-list.jade', {pretty: true, orgList:orgList, category:category, searchPlaceholder:searchPlaceholder, unitedStates:unitedStates});
 
   console.log("Rendering HTML files for " + opt.category + "...");
+  var buildCount = orgList.length;
   orgList.forEach(function(org, ind) {
-    // limit to just 20 for now, trying to debug
-    if (missingScreenshots.length < 20) {
-      if (!org.id) {
-        console.log("Missing ID for " + org.organization);
-      }
-      var toRender = org;
-      toRender.category = category;
-      toRender.updated = moment(org.updated).format("MMM Do, YYYY");
-      toRender.bbview = org.view;
-      toRender.bbdownload = org.download;
-      toRender.bbtransmit = org.transmit;
-
-      toRender.pretty = true;
-      var orgHtml = jade.renderFile(__dirname +'/../jade/templates/_organization-profile.jade', toRender);
-      if (!fs.existsSync(__dirname +'/../../public/organizations/' + org.id)) fs.mkdirSync(__dirname +'/../../public/organizations/' + org.id);
-      fs.writeFileSync(__dirname +'/../../public/organizations/' + org.id + '/index.html', orgHtml);
-
-      //check to see if image exists
-      if (!/followmyhealth/.test(org.url) && category !== 'hie' && !fs.existsSync(__dirname +'/../../public/img/organizations/'+org.id+'.png')) {
-        console.warn("IMAGE NOT FOUND FOR " + org.id);
-        // queue it up for later processing, since we're living in sync land right now
-        missingScreenshots.push({id: org.id, url: org.url || org.url.web || org.url.login});
-      }
+    console.log(buildCount + " left");
+    if (!org.id) {
+      console.log("Missing ID for " + org.organization);
     }
+    var toRender = org;
+    toRender.category = category;
+    // toRender.updated = moment(org.updated).format("MMM Do, YYYY");
+    toRender.bbview = org.view;
+    toRender.bbdownload = org.download;
+    toRender.bbtransmit = org.transmit;
 
+    toRender.pretty = true;
+    var orgHtml = jade.renderFile(__dirname +'/../jade/templates/_organization-profile.jade', toRender);
+    if (!fs.existsSync(__dirname +'/../../public/organizations/' + org.id)) fs.mkdirSync(__dirname +'/../../public/organizations/' + org.id);
+    fs.writeFileSync(__dirname +'/../../public/organizations/' + org.id + '/index.html', orgHtml);
+
+    //check to see if image exists
+    if (!/followmyhealth/.test(org.url) && category !== 'hie' && !fs.existsSync(__dirname +'/../../public/img/organizations/'+org.id+'.png')) {
+      console.warn("IMAGE NOT FOUND FOR " + org.id);
+      // queue it up for later processing, since we're living in sync land right now
+      // missingScreenshots.push({id: org.id, url: org.url || org.url.web || org.url.login});
+    }
+    buildCount--;
   });
 
   return listhtml;
 
 }
 
-function handleMissingScreenshots(cb) {
-  if (missingScreenshots.length == 0) return cb(null);
-  console.log("Fetching missing screenshots...", missingScreenshots);
-  var pageres = new Pageres({delay: 3});
-  missingScreenshots.forEach(function(ss){
-    pageres.src(ss.url, ['1200x768'], {filename: ss.id, crop: true});
-  });
-
-  //temp directory for full-size screenshots:
-  if (!fs.existsSync(__dirname +'/../tmp')) fs.mkdirSync(__dirname +'/../tmp');
-  pageres.dest(__dirname +'/../tmp');
-  pageres.run(function (err) {
-    if (err) {
-      console.log("pageres err: ", err);
-    } else {
-      console.log('finished screenshots for: ', missingScreenshots);
-      resizeScreenshots(cb, []);
-    }
-  });
-
+function trim(s) {
+  if (typeof s === 'string') return s.trim();
+  return s;
 }
 
-function resizeScreenshots(cb, errs) {
-  if (missingScreenshots.length < 1) return cb();
-  var errors = errs || [];
-  var nextSS = missingScreenshots.pop();
-  console.log("nextImage: " + nextSS.id);
-
-  // oh async callbacks in a recursive function, you so crazy.
-  lwip.open(__dirname +'/../tmp/'+nextSS.id+'.png', function(err, image){
-    if (err) {
-      errors.push(err);
-      console.log("lwip.open error: ", err);
-      resizeScreenshots(cb, errors);
-    } else {
-      image.scale(0.666666667, function(err, image){
-        if (err) {
-          errors.push(err);
-          console.log("lwip.scale error: ", err);
-          resizeScreenshots(cb, errors);
-        } else {
-          image.writeFile(__dirname +'/../../public/img/organizations/'+nextSS.id+'.png', function(err){
-            if (err) {
-              errors.push(err);
-              console.log("lwip.writeFile error: ", err);
-            }
-            resizeScreenshots(cb, errors);
-          });
-        }
-      });
-    }
-
-  });
+function safeId(s) {
+  return trim(s).toLowerCase().replace(/[^a-zA-Z0-9]+/g, '-').replace(/\-+$/, '');
 }

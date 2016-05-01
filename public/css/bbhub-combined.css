@@ -950,7 +950,7 @@ li.active .box-link-rapper .wrap-source-icon {
 .app-card {
   position: relative;
   height: 260px;
-  padding-top: 10px;
+  padding-top: 30px;
   background-color: #fff;
 }
 @media (max-width:320px) {

@@ -134,10 +134,9 @@ block content
           p.provider-description.people-reached
             strong= people_reached.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             |  people can access their data from #{organization}.
-        p.fg-mgrey This profile was last updated on #{updated}.
+        //- p.fg-mgrey This profile was last updated on #{updated}.
 
     .row
       .col-xs-12
         hr.hairline
-        h5.fw-normal.fg-dblue Does this profile need an update?
-        p You can help by <a class='fg-maqua fw-strong' href='/update-organization?id=#{id}'>suggesting corrections and updates</a>.
+        p.mt-25.fg-mgrey Is information on this page incorrect? You can help by <a class='fg-maqua fw-strong' href='/update-organization?id=#{id}'>suggesting corrections and updates</a>.
