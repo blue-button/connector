@@ -11,9 +11,6 @@ html
       meta(http-equiv='X-UA-Compatible' content='IE=edge')
       link(rel='shortcut icon' href='#{nestLevel}favicon.ico')
 
-      script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
-      script.
-        window.jQuery || document.write('<script src="#{nestLevel}js/jquery-1.10.2.min.js">\x3C/script>')
       block mainstyle
         link(rel='stylesheet' href='#{nestLevel}css/bbhub-combined.css')
       script.
@@ -31,10 +28,6 @@ html
     block footer
       .section.footer
         .container
-          //- ul.pull-right.list-inline
-          //-   li: a(href="#").share-icon: i.icon-envelope
-          //-   li: a(href="https://www.facebook.com/bluebuttonhealth").share-icon: i.icon-facebook
-          //-   li: a(href="https://twitter.com/ProjectBlueBtn").share-icon: i.icon-twitter
 
           ul.footer-links.list-inline.inline
             li.hidden-xs.force-inline: img.little-logo(src='#{nestLevel}img/bb-logo-depth-small-greybg.jpg')
@@ -48,5 +41,9 @@ html
             li.hidden-xs.force-inline |
             li: a(href='mailto:bluebutton@hhs.gov?subject=Feedback%20on%20Blue%20Button%20Connector' target='_blank') Feedback
           p.fs-xxsmall This project was funded by the Office of the National Coordinator for Health Information Technology (ONC)
-    block mainscript
+
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+    script.
+      window.jQuery || document.write('<script src="#{nestLevel}js/jquery-1.10.2.min.js">\x3C/script>')
+    block pagescripts
       script(src='#{nestLevel}js/bbhub-combined.min.js')
