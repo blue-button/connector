@@ -105,7 +105,7 @@ function checkLogo(app, cb) {
           console.log("ERROR FETCHING LOGO: ", error);
           return cb();
         }
-        var ext = app.img.split(".").pop();
+        var ext = app.img.split(".").pop().replace(/\?.*/, '');
         var filepath = __dirname + '/../../public/img/apps/'+app.id+ '.' + ext;
         fs.writeFileSync(filepath, body, 'binary');
         fitLogo(filepath, app, cb);
