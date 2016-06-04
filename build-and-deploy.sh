@@ -8,4 +8,4 @@ npm run build-apps;
 git status;
 git add --all;
 git commit -am "update data for one or more profiles";
-git subtree push --prefix=public "https://${GH_TOKEN}@${GH_REF}" gh-pages;
+git subtree push --force --prefix=public "https://${GH_TOKEN}@${GH_REF}" gh-pages;
