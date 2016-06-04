@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node build-listener.js",
     "build-organizations": "node src/scripts/build-organization-directory",
-    "build-apps": "node src/scripts/build-app-directory"
+    "build-apps": "node src/scripts/build-app-directory",
+    "build-and-deploy": "./build-and-deploy.sh"
   },
   "author": "",
   "license": "BSD",

@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "4.2"
+env:
+  - CXX=g++-4.8
+before_script:
+  - npm install -g grunt
+script:
+  - npm run build-and-deploy
+env:
+ global:
+ - GH_REF: github.com/blue-button/connector.git
+ - secure: TSvlY1PaEbxcSEc7lQ1E7j87p/JBmnzu5bb0wwa3h6gM2oF6rgXahvFsb53DupTVywe3sIYv6hgNoz6/D6ifzxowDaXq3WB2vCL4NmZBFKw5Dm8ffPyHFeU+svaRHulewpSEQVpJc1HfQ56x1EiGg1Ful7slPOqMnDQDuZfc4iI=
