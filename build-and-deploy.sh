@@ -4,7 +4,6 @@ git pull origin master;
 npm run build-organizations;
 npm run build-apps;
 git status;
-grunt;
 git add --all;
 git commit -am "update data for one or more profiles";
 git push origin master;
