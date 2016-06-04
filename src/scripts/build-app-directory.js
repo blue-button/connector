@@ -3,7 +3,6 @@ var jade = require('jade');
 var fs = require('fs');
 var csv = require('fast-csv');
 var async = require('async');
-var lwip = require('lwip');
 
 var leApps = [];
 getEm();
@@ -108,7 +107,6 @@ function checkLogo(app, cb) {
         var ext = app.img.split(".").pop().replace(/\?.*/, '');
         var filepath = __dirname + '/../../public/img/apps/'+app.id+ '.' + ext;
         fs.writeFileSync(filepath, body, 'binary');
-        fitLogo(filepath, app, cb);
       });
     } else {
       console.warn("ERROR: no existing logo file, but no link to fetch one either. :( ");
@@ -118,31 +116,6 @@ function checkLogo(app, cb) {
     cb();
   }
 };
-
-function fitLogo(filepath, app, cb) {
-  console.log("opening " + filepath);
-  lwip.open(filepath, function(err, image){
-    if (err) {
-      console.log("lwip.open error: ", err);
-      return cb();
-    }
-    console.log("...containing logo");
-    image.contain(256, 128, {r: 0, g: 0, b: 0, a: 0}, function(err, image){
-      if (err) {
-        console.log("lwip.contain error: ", err);
-        return cb();
-      }
-      console.log('...writing logo to' + __dirname + '/../../public/img/apps/128-height/'+app.id+'.png');
-      image.writeFile(__dirname +'/../../public/img/apps/128-height/'+app.id+'.png', function(err){
-        if (err) {
-          console.log("lwip.writeFile error: ", err);
-        }
-        cb();
-      });
-    });
-
-  });
-}
 
 function buildEm(apps) {
   console.log("Building HTML files for " + apps.length + " apps...");
