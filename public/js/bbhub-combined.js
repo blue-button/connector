@@ -86,26 +86,6 @@ $(function() {
   var canPush = false;
   if (!!(window.history && history.pushState)) {
     canPush = true;
-    // we dropped the pagination of apps. Might need to bring it back when we got a lotta apps
-
-    // $('body').on('click', '.app-pagination a', function(evt) {
-    //   var link = $(this).attr('href');
-    //   $.get(link, function(data) {
-    //     var $data = $(data);
-    //     var $appList = $('#app-list');
-    //     var appHTML = $data.find('#app-list').html();
-    //     var $appPagination = $('.app-pagination');
-    //     var paginationHTML = $data.find('.app-pagination').html();
-    //     $appList.html(appHTML);
-    //     $appPagination.html(paginationHTML);
-    //   });
-    //   history.pushState(null, '', link);
-    //   $.smoothScroll({
-    //     scrollTarget: '#app-list'
-    //   });
-    //   evt.preventDefault();
-    //   return false;
-    // });
 
     // only place we're using XHR is for retrieving MU Stage2 listings.
     // TODO get smarter about handling provider types auto-selecting when using browser back-and-forth
@@ -228,7 +208,7 @@ $(function() {
       history.pushState(null, '', window.location.pathname + hashNoQuery + '?' + bits[1]);
     }
 
-    $.get('http://api.bluebuttonconnector.healthit.gov' + pathAndQuery, function( res ) {
+    $.get('https://thin-api-ebskmuadgo.now.sh' + pathAndQuery, function( res ) {
       if (!res.results || res.results.length == 0) {
         clearMU2();
         $('#provider .no-results').removeClass('hide');
