@@ -3,6 +3,7 @@
 git config user.name ${GIT_NAME}
 git config user.email ${GIT_EMAIL}
 git fetch;
+git checkout master;
 git status;
 npm run build-organizations;
 npm run build-apps;
