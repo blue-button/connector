@@ -9,4 +9,4 @@ npm run build-organizations;
 npm run build-apps;
 git add --all;
 git commit -am "update data for one or more profiles";
-git push -f "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages
+git subtree push --prefix 'public' -f "https://${GH_TOKEN}@${GH_REF}" origin:gh-pages
