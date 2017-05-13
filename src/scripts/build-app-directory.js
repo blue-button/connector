@@ -127,7 +127,7 @@ function buildEm(apps) {
   fs.writeFileSync(__dirname +'/../../public/apps/index.html', html);
   console.log("apps/index.html built.");
 
-  buildDataDumpFiles(apps);
+  //buildDataDumpFiles(apps);
 }
 
 function buildDataDumpFiles(apps){

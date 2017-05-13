@@ -7,7 +7,7 @@ block content
 
   .container
     h1.page-title Locate your records
-
+    .p-10.bg-danger.col-sm-8 <strong>NOTE:</strong> Thank you for your interest in the Blue Button Connector. As of May 2017, information on the Blue Button Connector website will no longer by actively updated. The provider contact information you find may not be up to date. The Office of the National Coordinator for Health Information Technology (ONC) is continuing work on additional resources to help patients manage their health care information. For more information and other Health IT resources, visit <a href='https://www.healthit.gov'>HealthIT.gov</a>
     .row
 
       .col-sm-5.col-md-4
@@ -30,11 +30,11 @@ block content
                 i.fa.fa-hospital-o.isize-36
               p.data-source-title.fs-small.fg-maqua.fw-strong Hospital or Clinic
               //- p.hide.rarr &gt;
-          li
-            a.box-link-rapper(href='#provider' data-toggle='tab')
-              .wrap-source-icon
-                i.fa.fa-user-md.isize-36
-              p.data-source-title.fs-small.fg-maqua.fw-strong Providers
+          //- li
+          //-   a.box-link-rapper(href='#provider' data-toggle='tab')
+          //-     .wrap-source-icon
+          //-       i.fa.fa-user-md.isize-36
+          //-     p.data-source-title.fs-small.fg-maqua.fw-strong Providers
               //- p.hide.rarr &gt;
           li
             a.box-link-rapper(href='#pharmacy' data-toggle='tab')
@@ -64,10 +64,10 @@ block content
           h4.fg-mgrey Select your physician
           .row.providers!= html.physician
 
-        #provider.tab-pane
-          //- h4.fg-mgrey Search for your provider
-          p.mt-25: em.highlight This section allows you to search for providers and hospitals that are not yet listed directly on the Connector, but that may provide digital access to your health records because they have attested <a class='fw-strong' href="http://www.cms.gov/Regulations-and-Guidance/Legislation/EHRIncentivePrograms/Stage_2.html" target="_blank">Meaningful Use Stage 2</a>. One of the criteria for that program is providing patients with digital access to their records.
-          .row.providers!= html.provider
+        //- #provider.tab-pane
+        //-   //- h4.fg-mgrey Search for your provider
+        //-   p.mt-25: em.highlight This section allows you to search for providers and hospitals that are not yet listed directly on the Connector, but that may provide digital access to your health records because they have attested <a class='fw-strong' href="http://www.cms.gov/Regulations-and-Guidance/Legislation/EHRIncentivePrograms/Stage_2.html" target="_blank">Meaningful Use Stage 2</a>. One of the criteria for that program is providing patients with digital access to their records.
+        //-   .row.providers!= html.provider
 
         #pharmacy.tab-pane
           h4.fg-mgrey Select your pharmacy

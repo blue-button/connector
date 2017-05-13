@@ -1,6 +1,8 @@
 Blue Button "Connector" web site.
 ---
 
+# NOTE: As of May 2017, the Connector website is essentially "deprecated." It will no longer be updated/maintained.
+
 ## API
 The Connector provides a simple public HTTP API. Check out the [API documentation](http://api.bluebuttonconnector.healthit.gov) or check out its [repository](https://github.com/blue-button/connector-API).
 

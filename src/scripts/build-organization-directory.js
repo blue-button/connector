@@ -42,7 +42,7 @@ function getEm(dataURL){
 function buildEm(orgs) {
   console.log("TOTAL ORGANIZATION COUNT: " + orgs.length);
 
-  buildDataDumpFiles(orgs);
+  //buildDataDumpFiles(orgs);
 
   var insOrgs = [];
   var phyOrgs = [];
@@ -61,7 +61,7 @@ function buildEm(orgs) {
     org.id = safeId(org.organization);
     if (/insurance/i.test(org.category)) {
       insOrgs.push(org);
-    } else if (/hospital|physician|provider/i.test(org.category)) {
+    } else if (/hospital|physician/i.test(org.category)) {
       phyOrgs.push(org);
     } else if (/lab/i.test(org.category)) {
       labOrgs.push(org);
@@ -78,7 +78,7 @@ function buildEm(orgs) {
 
   html.insurance = buildList({category:'insurance', orgList: insOrgs, searchPlaceholder: 'Blue Cross'});
   html.physician = buildList({category:'physician', orgList: phyOrgs, searchPlaceholder: 'Mayo Clinic'});
-  html.provider = buildList({category:'provider', orgList: [], searchPlaceholder: 'Doe, Jane'});
+  // html.provider = buildList({category:'provider', orgList: [], searchPlaceholder: 'Doe, Jane'});
   html.pharmacy = buildList({category:'pharmacy', orgList: phaOrgs, searchPlaceholder: 'Walgreens'});
   html.lab = buildList({category:'lab', orgList: labOrgs, searchPlaceholder: 'Quest Diagnostics'});
   html.immunization = buildList({category:'immunization', orgList: immOrgs, searchPlaceholder: 'Arizona'});
